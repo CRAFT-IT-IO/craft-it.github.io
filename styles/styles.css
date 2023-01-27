@@ -1,0 +1,26 @@
+﻿@import "menu.css";
+@import "header.css";
+@import "footer.css";
+@import "section/section.css";
+@import "animation.css";
+@import "text-block.css";
+@import "button.css";
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(../fonts/tt_font.otf);
+}
+
+@font-face {
+    font-family: madeFutureXHeader;
+    src: url(../fonts/MADE_Future_X_HEADER_Regular.otf);
+}
+
+.craft-it-font{
+    font-family: madeFutureXHeader;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
