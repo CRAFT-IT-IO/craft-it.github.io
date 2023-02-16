@@ -1,0 +1,34 @@
+:root {
+    /*colors*/
+    --blue: #0028A1;
+    --white: #ffffff;
+    --red: #C00E0E;
+    --black: black;
+    /*colors*/
+
+}
+
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(fonts/tt_font.otf);
+}
+
+@font-face {
+    font-family: madeFutureXHeader;
+    src: url(../fonts/MADE_Future_X_HEADER_Regular.otf);
+}
+
+@font-face {
+    font-family: gothamBold;
+    src: url(../fonts/GOTHAM_Family/Gotham-Bold/Gotham-Bold.otf);
+}
+
+@font-face {
+    font-family: gothamBook;
+    src: url(../fonts/GOTHAM_Family/Gotham-Book/Gotham-Book.otf);
+}
+
+* {
+    font-family: gothamBook !important;
+}

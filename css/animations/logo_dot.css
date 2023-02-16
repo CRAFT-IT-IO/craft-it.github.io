@@ -1,0 +1,331 @@
+:root {
+	--animation-duration-first: 0.3s;
+}
+
+.logo-dot-effect-container .p {
+	position: absolute;
+	display: block;
+}
+
+	.logo-dot-effect-container .a {
+		top: -2%;
+		width: 100%;
+		height: 26%;
+		background-color: white;
+		z-index: 9;
+		animation: aa var(--animation-duration-first) linear;
+		animation-fill-mode: forwards;
+		left: 0;
+	}
+
+@keyframes aa {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: -100%;
+		opacity: 0;
+	}
+}
+
+.b {
+	top: 23%;
+	width: 29%;
+	height: 65%;
+	background-color: white;
+	z-index: 9;
+	animation: b 0.2s linear;
+	animation-delay: 0.2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes b {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 100%;
+		opacity: 0;
+	}
+}
+
+.c {
+	left: 28.5%;
+	width: 3%;
+	height: 35%;
+	top: 51%;
+	background-color: white;
+	z-index: 9;
+	animation: c 0.2s linear;
+	animation-delay: 0.35s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes c {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 15%;
+		opacity: 0;
+	}
+}
+
+.d {
+	left: 29%;
+	width: 15%;
+	height: 2%;
+	top: 52%;
+	background-color: white;
+	z-index: 9;
+	animation: d 0.2s linear;
+	animation-delay: 0.45s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes d {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: 43%;
+		opacity: 0;
+	}
+}
+
+.e {
+	left: 41%;
+	width: 5%;
+	height: 45%;
+	top: 51%;
+	background-color: white;
+	z-index: 9;
+	animation: e 0.2s linear;
+	animation-delay: 0.55s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes e {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 100%;
+		opacity: 0;
+	}
+}
+
+.f {
+	left: 41%;
+	width: 20%;
+	height: 5%;
+	top: 92%;
+	background-color: white;
+	z-index: 9;
+	animation: f 0.2s linear;
+	animation-delay: 0.65s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes f {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: 60%;
+		opacity: 0;
+	}
+}
+
+.g {
+	left: 57%;
+	width: 2%;
+	height: 45%;
+	top: 51%;
+	background-color: white;
+	z-index: 9;
+	animation: g 0.2s linear;
+	animation-delay: 0.75s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 5%;
+		opacity: 0;
+	}
+}
+
+
+.h {
+	left: 59%;
+	width: 15%;
+	height: 2%;
+	top: 52%;
+	background-color: white;
+	z-index: 9;
+	animation: h 0.2s linear;
+	animation-delay: 0.85s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes h {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: 72%;
+		opacity: 0;
+	}
+}
+
+.i {
+	left: 70%;
+	width: 2%;
+	height: 35%;
+	top: 51%;
+	background-color: white;
+	z-index: 9;
+	animation: i 0.2s linear;
+	animation-delay: 0.95s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes i {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 85%;
+		opacity: 0;
+	}
+}
+
+.j {
+	left: 72%;
+	top: 42%;
+	width: 12%;
+	height: 45%;
+	background-color: white;
+	z-index: 9;
+	animation: j 0.2s linear;
+	animation-delay: 1.05s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes j {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: -5%;
+		opacity: 0;
+	}
+}
+
+
+.k {
+	left: 47%;
+	top: 40%;
+	width: 35%;
+	height: 3%;
+	background-color: white;
+	z-index: 9;
+	animation: k 0.2s linear;
+	animation-delay: 1.15s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes k {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: 14%;
+		opacity: 0;
+	}
+}
+
+.l {
+	left: 49%;
+	width: 2%;
+	height: 19%;
+	top: 23%;
+	background-color: white;
+	z-index: 9;
+	animation: l 0.2s linear;
+	animation-delay: 1.25s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes l {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		top: 4%;
+		opacity: 0;
+	}
+}
+
+.m {
+	left: 50%;
+	width: 30%;
+	height: 2%;
+	top: 23%;
+	background-color: white;
+	z-index: 9;
+	animation: m 0.2s linear;
+	animation-delay: 1.35s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes m {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		left: 80%;
+		opacity: 0;
+	}
+}
+
+.n {
+	clip-path: circle(50% at 50% 50%);
+	left: 28%;
+	width: 15%;
+	height: 21%;
+	top: 22%;
+	background-color: white;
+	z-index: 9;
+	animation: n 0.3s linear;
+	animation-delay: 1.7s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes n {
+	85% {
+		opacity: 1
+	}
+
+	to {
+		clip-path: circle(30% at 50% 50%);
+		opacity: 0;
+	}
+}

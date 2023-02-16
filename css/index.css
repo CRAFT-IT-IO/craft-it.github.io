@@ -1,0 +1,25 @@
+@import "animations/logo_dot.css";
+@import "animations/logo.css";
+@import "animations/footer.css";
+@import "animations/typing-effect.css";
+
+.logo-move-to-header {
+    animation: move 2s ease forwards;
+}
+
+@keyframes move {
+    from {
+        position: fixed;
+        top: 36%;
+        height: 20%;
+        z-index: 999;
+    }
+
+    to {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 20%;
+        z-index: 999;
+    }
+}

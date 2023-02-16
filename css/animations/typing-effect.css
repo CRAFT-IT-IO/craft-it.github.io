@@ -1,0 +1,46 @@
+/* Typing effect */
+.typewriter {
+    align-self: center;
+}
+    .typewriter * {
+        display: inline-block;
+        color: var(--black);
+    }
+
+.typewriter .message {
+    font-family: madeFutureXHeader;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    float: left;
+    width: 1%;
+    font-size: 2vw;
+}
+
+:is(.animated, .section-animated) .typewriter .message {
+    animation: typing 4.5s steps(78, end) forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes typing {
+    from { width: 1%; }
+    to { width: 100%; }
+}
+
+.typewriter .cursor{
+    width: 15px;
+    height: 2.2vw;
+    /* To avoid to display in 2 lines */
+    position: absolute;
+}
+:is(.animated, .section-animated) .typewriter .cursor{
+    animation:  blink-caret .75s step-end infinite;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes blink-caret {
+    from { border-bottom: .15em solid white; }
+    50% { border-color: black; }
+    to {border-color: white; }
+}
+/* Typing effect */
