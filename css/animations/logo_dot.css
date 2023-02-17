@@ -5,6 +5,11 @@
 .logo-dot-effect-container .p {
 	position: absolute;
 	display: block;
+	opacity: 0;
+}
+
+.animated.logo-dot-effect-container .p {
+	opacity: 1;
 }
 
 	.logo-dot-effect-container .a {
@@ -13,10 +18,13 @@
 		height: 26%;
 		background-color: white;
 		z-index: 9;
-		animation: aa var(--animation-duration-first) linear;
-		animation-fill-mode: forwards;
 		left: 0;
 	}
+
+.animated.logo-dot-effect-container .a {
+	animation: aa var(--animation-duration-first) linear;
+	animation-fill-mode: forwards;
+}
 
 @keyframes aa {
 	85% {
@@ -35,29 +43,35 @@
 	height: 65%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .b {
 	animation: b 0.2s linear;
 	animation-delay: 0.2s;
 	animation-fill-mode: forwards;
 }
 
 @keyframes b {
-	85% {
-		opacity: 1
+		85% {
+			opacity: 1
+		}
+
+		to {
+			top: 100%;
+			opacity: 0;
+		}
 	}
 
-	to {
-		top: 100%;
-		opacity: 0;
-	}
-}
-
-.c {
+.animated.logo-dot-effect-container .c {
 	left: 28.5%;
 	width: 3%;
 	height: 35%;
 	top: 51%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .c {
 	animation: c 0.2s linear;
 	animation-delay: 0.35s;
 	animation-fill-mode: forwards;
@@ -74,13 +88,16 @@
 	}
 }
 
-.d {
+.animated.logo-dot-effect-container .d {
 	left: 29%;
 	width: 15%;
 	height: 2%;
 	top: 52%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .d {
 	animation: d 0.2s linear;
 	animation-delay: 0.45s;
 	animation-fill-mode: forwards;
@@ -97,13 +114,16 @@
 	}
 }
 
-.e {
+.animated.logo-dot-effect-container .e {
 	left: 41%;
 	width: 5%;
 	height: 45%;
 	top: 51%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .e {
 	animation: e 0.2s linear;
 	animation-delay: 0.55s;
 	animation-fill-mode: forwards;
@@ -120,13 +140,16 @@
 	}
 }
 
-.f {
+.animated.logo-dot-effect-container .f {
 	left: 41%;
 	width: 20%;
 	height: 5%;
 	top: 92%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .f {
 	animation: f 0.2s linear;
 	animation-delay: 0.65s;
 	animation-fill-mode: forwards;
@@ -143,13 +166,16 @@
 	}
 }
 
-.g {
+.animated.logo-dot-effect-container .g {
 	left: 57%;
 	width: 2%;
 	height: 45%;
 	top: 51%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .g {
 	animation: g 0.2s linear;
 	animation-delay: 0.75s;
 	animation-fill-mode: forwards;
@@ -166,14 +192,16 @@
 	}
 }
 
-
-.h {
+.animated.logo-dot-effect-container .h {
 	left: 59%;
 	width: 15%;
 	height: 2%;
 	top: 52%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .h {
 	animation: h 0.2s linear;
 	animation-delay: 0.85s;
 	animation-fill-mode: forwards;
@@ -190,13 +218,16 @@
 	}
 }
 
-.i {
+.animated.logo-dot-effect-container .i {
 	left: 70%;
 	width: 2%;
 	height: 35%;
 	top: 51%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .i {
 	animation: i 0.2s linear;
 	animation-delay: 0.95s;
 	animation-fill-mode: forwards;
@@ -213,13 +244,16 @@
 	}
 }
 
-.j {
+.animated.logo-dot-effect-container .j {
 	left: 72%;
 	top: 42%;
 	width: 12%;
 	height: 45%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .j {
 	animation: j 0.2s linear;
 	animation-delay: 1.05s;
 	animation-fill-mode: forwards;
@@ -237,13 +271,16 @@
 }
 
 
-.k {
+.animated.logo-dot-effect-container .k {
 	left: 47%;
 	top: 40%;
 	width: 35%;
 	height: 3%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .k {
 	animation: k 0.2s linear;
 	animation-delay: 1.15s;
 	animation-fill-mode: forwards;
@@ -260,13 +297,16 @@
 	}
 }
 
-.l {
+.animated.logo-dot-effect-container .l {
 	left: 49%;
 	width: 2%;
 	height: 19%;
 	top: 23%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .l {
 	animation: l 0.2s linear;
 	animation-delay: 1.25s;
 	animation-fill-mode: forwards;
@@ -283,13 +323,16 @@
 	}
 }
 
-.m {
+.animated.logo-dot-effect-container .m {
 	left: 50%;
 	width: 30%;
 	height: 2%;
 	top: 23%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .m {
 	animation: m 0.2s linear;
 	animation-delay: 1.35s;
 	animation-fill-mode: forwards;
@@ -306,7 +349,7 @@
 	}
 }
 
-.n {
+.animated.logo-dot-effect-container .n {
 	clip-path: circle(50% at 50% 50%);
 	left: 28%;
 	width: 15%;
@@ -314,6 +357,9 @@
 	top: 22%;
 	background-color: white;
 	z-index: 9;
+}
+
+.animated.logo-dot-effect-container .n {
 	animation: n 0.3s linear;
 	animation-delay: 1.7s;
 	animation-fill-mode: forwards;

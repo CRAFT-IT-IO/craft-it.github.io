@@ -1,13 +1,13 @@
 :root {
     /*colors*/
-    --blue: #0028A1;
+    --blue: #006699;
     --white: #ffffff;
-    --red: #C00E0E;
+    --red: #cc0000;
     --black: black;
+    --aqua: #009999;
     /*colors*/
 
 }
-
 
 @font-face {
     font-family: myFirstFont;
@@ -29,6 +29,10 @@
     src: url(../fonts/GOTHAM_Family/Gotham-Book/Gotham-Book.otf);
 }
 
-* {
+*:not(.fa) {
     font-family: gothamBook !important;
+}
+
+.back-red {
+    background-color: var(--red);
 }

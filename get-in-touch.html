@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/libs/jquery.scrollify.js"></script>
+    <script src="js/animations/logo.js"></script>
+    <script src="js/animations/logo_dot.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Craft IT</title>
+
+    <script>
+        $(document).ready(function () {
+            let logoDotContainer = $('.logo-dot-effect-container');
+            logoDotContainer.hide();
+            logoDotContainer.initializeLogoDotEffect();
+            initLogo();
+            setTimeout(function () {
+                logoDotContainer.show().toggleClass('animated');
+                setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
+            }, 1000);
+
+            setTimeout(function () {
+                $('.title').animate({ left: 0 }, 1000, function () {
+                    var txts = ['Contact us'];
+                    initContentMenu(txts, function () {
+                        $('.content-right').addClass('animated');
+                        addHeader(1000);
+                        let textContent = $('.content-right-content').children();
+                        let count = 0;
+                        let interval = setInterval(function () {
+                            if (count >= textContent.length)
+                                clearInterval(interval);
+
+                            let text = textContent[count];
+                            $(text).addClass('animated');
+                            ++count;
+                        }, 800);
+                    });
+                });
+            }, 3000);
+        });
+    </script>
+    <style>
+        :root {
+            --menu-main-color: var(--white);
+            --menu-second-color: var(--white);
+            --logo-display-delay: 4s;
+        }
+
+        h1 {
+            font-size: 3vw;
+            color: var(--red);
+        }
+
+        .content-menu-display > * {
+            font-size: 2vw;
+        }
+
+        .content-menu-display {
+            display: grid;
+            grid-auto-flow: row;
+        }
+
+            .content-menu-display > * {
+                display: grid;
+                grid-template-columns: 2vw 1fr;
+                grid-column-gap: 2vw;
+            }
+
+            .content-menu-display > * > i{
+                align-self: center;
+                font-size: 2vw;
+            }
+
+
+        div.content-left {
+            grid-template-rows: 10vw 1fr;
+        }
+    </style>
+</head>
+<body>
+    <logo-dot class="logo-dot-effect-container"></logo-dot>
+
+    <logo class="animated">
+    </logo>
+    <section class="craft-it">
+        <div class="container-two-side">
+            <div class="content-left">
+                <h1 class="title">GET IN TOUCH</h1>
+                <div class="content-menu">
+                    <p class="menu-item" data-display="one"></p>
+                </div>
+            </div>
+            <div class="content-right back-red">
+                <div class="content-right-content">
+                    <div class="content-menu-display" data-display="one">
+                        <div>
+                            <i class="fa fa-map-marker display-icon" aria-hidden="true"></i>
+                            <label class="display-text">Silversquare BAILLI</br>Avenue Louise 231</br>1050 Brussels - Belgium</label>
+
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
+                            <a class="display-text" href="intouch@craft-it.io">intouch@craft-it.io</a>
+                        </div>
+                        <div>
+                            <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
+                            <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/">Craft-IT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

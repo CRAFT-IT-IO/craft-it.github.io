@@ -1,0 +1,72 @@
+
+.content-left .title, .content-left .sub-title {
+    place-self: start;
+    position: relative;
+    left: -200%;
+}
+
+.content-left .title-container {
+    display: grid;
+    place-content: start;
+}
+
+.content-left > :nth-child(1) {
+    padding-left: 1vw;
+}
+
+.content-right {
+    background-color: var(--content-right-back-color, var(--red));
+    position: relative;
+    right: -100%;
+    opacity: 0.8;
+    display: grid;
+    grid-area: contentright;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: calc(10vw + 100px) 1fr 50px;
+    grid-template-areas: ". . ." ". contentrightcontent ." ". . .";
+}
+
+.animated.content-right {
+    right: 0;
+    transition: right ease-out 1.5s;
+}
+
+.content-right-content {
+    grid-area: contentrightcontent;
+    place-items: center;
+    display: grid;
+}
+
+    .content-right-content > * {
+        position: relative;
+        left: 150%;
+    }
+
+    .content-right-content > .animated {
+        left: 0;
+        transition: left ease-out 1.5s;
+    }
+
+div.container-two-side {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-self: stretch;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: calc(10vw + 100px) 1fr 50px;
+    grid-template-areas: ". contentright" "contentleft contentright" ". contentright";
+}
+
+div.content-left {
+    min-height: 50%;
+    grid-area: contentleft;
+    justify-content: center;
+    align-self: center;
+    grid-template-rows: 6vw 1fr;
+    grid-template-columns: 0.8fr;
+    position: relative;
+    display: grid;
+    align-content: center;
+    grid-row-gap: 20px;
+}
