@@ -19,7 +19,7 @@
 
     <script>
         $(document).ready(function () {
-            let logoDotContainer = $('.logo-dot-effect-container');
+            let logoDotContainer = $('logo-dot');
             logoDotContainer.hide();
             logoDotContainer.initializeLogoDotEffect();
             initLogo();
@@ -82,7 +82,7 @@
     </style>
 </head>
 <body>
-    <logo-dot class="logo-dot-effect-container"></logo-dot>
+    <logo-dot></logo-dot>
 
     <logo class="animated">
     </logo>
@@ -129,7 +129,6 @@
                             disseminate our workmanship.
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 var isMenuClosed = false;
 $(document).ready(function () {
     $(document).on('click', '.hamburger, .overlay', hamburgerMenuClick);
+
 });
 
 function hamburgerMenuClick() {
@@ -95,7 +96,7 @@ function initContentMenu(menuItemTexts, callback, delay) {
         let menuItem = $(this);
         let position = menuItem.position();
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-50px', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
             menuItem.addClass('selected');
         });
 

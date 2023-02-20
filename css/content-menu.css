@@ -5,10 +5,6 @@
     position: relative;
 }
 
-    .content-menu > .menu-item {
-        grid-area: menuitem;
-    }
-
 .menu-item {
     font-size: 2vw;
     padding-left: 1vw;
@@ -39,15 +35,27 @@
 
 .content-menu-display {
     position: relative;
+}
+
+.content-menu-display > * {
+    position: relative;
+    color: var(--white);
+    margin-bottom: 2vw;
+    font-size: 1vw
+}
+
+/* RIGHT */
+.content-right .content-menu-display {
+    position: relative;
     right: -100%;
 }
 
-.animated.content-menu-display {
+.content-right .animated.content-menu-display {
     right: 0;
     transition: right ease-out 1.5s;
 }
 
-.content-menu-display > * {
+.content-right .content-menu-display > * {
     position: relative;
     left: 150%;
     color: var(--white);
@@ -55,7 +63,31 @@
     font-size: 1vw
 }
 
-.animated.content-menu-display > * {
+.content-right .animated.content-menu-display > * {
+    left: 0;
+    transition: left ease-out 1.5s;
+}
+
+/* FOOTER */
+.content-bottom .content-menu-display {
+    position: relative;
+    right: -100%;
+}
+
+.content-bottom .animated.content-menu-display {
+    right: 0;
+    transition: right ease-out 1.5s;
+}
+
+.content-bottom .content-menu-display > * {
+    position: relative;
+    left: 150%;
+    color: var(--white);
+    margin-bottom: 2vw;
+    font-size: 1vw
+}
+
+.content-bottom .animated.content-menu-display > * {
     left: 0;
     transition: left ease-out 1.5s;
 }

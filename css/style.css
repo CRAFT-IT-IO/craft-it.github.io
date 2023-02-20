@@ -10,15 +10,13 @@ logo-dot {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    display: grid;
+    display: flex;
+    place-content: center;
 }
 
     logo-dot .content-image {
         position: relative;
         display: grid;
-/*        align-items: center;
-        align-content: center;*/
-        /*background: white;*/
     }
 
     /* logo*/
@@ -61,7 +59,6 @@ header {
     position: fixed;
     right: 30px;
     top: 30px;
-    /*background-color: white;*/
     z-index: 99;
 }
 
@@ -123,30 +120,6 @@ body, html {
     width: 100%;
 }
 
-div.container {
-    padding: 0;
-    width: 100%;
-}
-
-div.content {
-    position: relative;
-    grid-area: content;
-    display: grid;
-    place-content: center;
-}
-
-
-div.container {
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    display: grid;
-    align-self: stretch;
-    grid-template-columns: 50px 1fr 50px;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". content ."
-}
-
 section.craft-it {
     position: relative;
     overflow: hidden;
@@ -160,14 +133,6 @@ section.craft-it {
         height: 100%;
         width: 100%;
     }
-
-/*.content-image {
-    position: relative;
-    display: grid;
-    align-items: center;
-    align-content: center;*/
-    /*background: white;*/
-/*}*/
 
 .logo-effect {
     height: 100%;

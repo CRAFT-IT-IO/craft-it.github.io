@@ -2,8 +2,8 @@
 
 
 
-/* Typing effect */
-/*.typewriter {
+ Typing effect 
+.typewriter {
     align-self: center;
 }
     .typewriter * {
@@ -13,10 +13,10 @@
 
 .typewriter .message {
     font-family: madeFutureXHeader;
-    overflow: hidden;*/ /* Ensures the content is not revealed until the animation */
-    /*white-space: nowrap;*/ /* Keeps the content on a single line */
-    /*margin: 0 auto;*/ /* Gives that scrolling effect as the typing happens */
-    /*float: left;
+    overflow: hidden;  Ensures the content is not revealed until the animation 
+    white-space: nowrap;  Keeps the content on a single line 
+    margin: 0 auto;  Gives that scrolling effect as the typing happens 
+    float: left;
     width: 1%;
     font-size: 2vw;
 }
@@ -33,9 +33,9 @@
 
 .typewriter .cursor{
     width: 15px;
-    height: 2.2vw;*/
-    /* To avoid to display in 2 lines */
-    /*position: absolute;
+    height: 2.2vw;
+     To avoid to display in 2 lines 
+    position: absolute;
 }
 :is(.animated, .section-animated) .typewriter .cursor{
     animation:  blink-caret .75s step-end infinite;
@@ -46,5 +46,5 @@
     from { border-bottom: .15em solid white; }
     50% { border-color: black; }
     to {border-color: white; }
-}*/
-/* Typing effect */
+}
+ Typing effect 

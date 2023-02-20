@@ -19,67 +19,220 @@
 
     <script>
         $(document).ready(function () {
-            $('.arrow-text').hide();
-
-            let logoDotContainer = $('.logo-dot-effect-container');
+            let logoDotContainer = $('logo-dot');
+            logoDotContainer.hide();
             logoDotContainer.initializeLogoDotEffect();
 
             let logoContainer = $('<div></div>', { class: 'p logo-effect-container', style: 'display: none' });
             logoDotContainer.find('.content-image').append(logoContainer);
             logoContainer.initializeLogoEffect();
+            logoDotContainer.show().toggleClass('animated');
+
+
+
+            initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
+                logoContainer.addClass('logo-move-to-header ');
+                addHeader();
+                let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
+                    .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
+
+                $('.craft-footer ').prepend(nextPageButton);
+
+                var isSCrolling = false;
+                let arrow = $('.arrow-down');
+                let footerAnimations = $('.craft-footer .footer-item');
+                let currentAnimationIndex = 0;
+                arrow.on('click', function () {
+                    ++currentAnimationIndex;
+                    if (currentAnimationIndex > footerAnimations.length) {
+                        isSCrolling = false;
+                        return;
+                    }
+
+                    let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
+                    animation.addClass('animated');
+
+                    if (currentAnimationIndex == footerAnimations.length)
+                        arrow.hide();
+
+                    isSCrolling = false;
+                });
+
+                $(window).on('wheel', function (e) {
+
+                    if (isSCrolling)
+                        return;
+
+                    let delta = getDelta(e);
+
+                    if (delta < 0) {
+                        isSCrolling = true;
+                        arrow.click();
+                    }
+                });
+
+                function getDelta(e) {
+                    let value;
+                    if (e.originalEvent) {
+                        value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
+                    } else {
+                        value = e.wheelDelta || -e.deltaY || -e.detail;
+                    }
+
+                    return Math.max(-1, Math.min(1, value));
+                }
+
+            });
+
 
             setTimeout(function () {
                 logoContainer.show().addClass('animated');
 
                 setTimeout(function () {
-                    $('.craft-footer').addClass('animated');
-
-                    setTimeout(function () {
-                        logoContainer.addClass('logo-move-to-header');
-                        addHeader();
-                        $('.arrow-text').show().addClass('animated');
-                    }, 5000);
-
+                    //initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
+                    //    addHeader();
+                    //});
                 }, 2000);
             }, 2000);
         });
     </script>
     <style>
 
+
+        /*Arrow scrolling*/
+        .btn-next-page {
+            transform: matrix(1, 0, 0, 1, 0, 0);
+            position: fixed;
+            bottom: 3%;
+            left: 50%;
+            z-index: 999999;
+        }
+
+            .btn-next-page .arrow-down {
+                display: block;
+                margin: 0 auto;
+                opacity: 0;
+                animation: jump .6s linear alternate infinite;
+                animation-fill-mode: forwards;
+            }
+
+            .btn-next-page i.arrow-down {
+                font-size: 30px;
+                color: white;
+                cursor: pointer;
+            }
+            /* blue theme*/
+            .btn-next-page.blue i.arrow-down {
+                font-size: 30px;
+                color: #0028A1;
+            }
+            /* white theme*/
+            .btn-next-page.white i.arrow-down {
+                font-size: 30px;
+                color: white;
+            }
+
+            /* black theme*/
+            .btn-next-page.black i.arrow-down {
+                font-size: 30px;
+                color: black;
+            }
+
+        @keyframes jump {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(10px);
+            }
+        }
+        /*Arrow scrolling*/
+
+        div.container {
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            align-self: stretch;
+            grid-template-columns: 0.2fr 1fr 0.2fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: ". content .";
+        }
+
+        div.content {
+            position: relative;
+            grid-area: content;
+            display: grid;
+            place-content: center;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr;
+            place-items: center;
+            justify-items: start;
+            align-items: center;
+        }
+
+        .content-menu {
+            width: 100%;
+        }
+
+        .footer-item {
+            position: absolute;
+            top: 100%;
+        }
+
+            .footer-item.animated[animation-order="1"] {
+                animation: footerOne 2s ease-in-out forwards;
+            }
+
+        @keyframes footerOne {
+            from {
+                right: 50%;
+            }
+
+            to {
+                right: 10%;
+                top: 10%;
+            }
+        }
     </style>
 </head>
 <body>
+    <logo-dot></logo-dot>
     <section class="craft-it">
         <div class="container">
-            <div class="content logo-dot-effect-container"></div>
-        </div>
-        <div class="arrow-text">
-            <div class="arrow-text-container">
-                <img src="images/resources/arrow.png" alt="arrow" style="height: 100%; align-self: end; width: 100%;" />
-                <div class="typewriter ">
-                    <div class="typewriter-content">
-                        <p class="message">&nbsp;IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT.</p>
-                        <div class="cursor"></div>
-                    </div>
+            <div class="content">
+                <div class="content-menu">
+                    <p class="menu-item" data-display="footer"></p>
                 </div>
             </div>
         </div>
 
-        <div class="craft-footer">
-            <div class="footer-content">
-                <div class="dream">
-                    <img src="images/dream.png" />
-                    <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                </div>
-                <div class="draft">
-                    <img src="images/draft.png" />
-                    <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                </div>
-                <div class="craft">
-                    <img src="images/craft.png" />
-                    <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                </div>
+        <div class="craft-footer content-menu-display" data-display="footer">
+
+            <div class="footer-item" animation-order="1" style="font-size: 2vw;">
+                <p>
+                    We believe it's up to the IT
+                </p>
+                <p>to adapt to your needs. Not you.</p>
             </div>
+
+            <!--<div class="footer-content">
+                        <div class="dream">
+                            <img src="images/dream.png" />
+                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
+                        </div>
+                        <div class="draft">
+                            <img src="images/draft.png" />
+                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
+                        </div>
+                        <div class="craft">
+                            <img src="images/craft.png" />
+                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
+                        </div>
+                    </div>-->
         </div>
     </section>
 </body>
