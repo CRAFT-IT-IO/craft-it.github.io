@@ -27,77 +27,68 @@
             logoDotContainer.find('.content-image').append(logoContainer);
             logoContainer.initializeLogoEffect();
             logoDotContainer.show().toggleClass('animated');
-
-
-
-            initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
-                logoContainer.addClass('logo-move-to-header ');
-                addHeader();
-                let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
-                    .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
-
-                $('.craft-footer ').prepend(nextPageButton);
-
-                var isSCrolling = false;
-                let arrow = $('.arrow-down');
-                let footerAnimations = $('.craft-footer .footer-item');
-                let currentAnimationIndex = 0;
-                arrow.on('click', function () {
-                    isSCrolling = true;
-                    ++currentAnimationIndex;
-                    if (currentAnimationIndex > footerAnimations.length) {
-                        isSCrolling = false;
-                        return;
-                    }
-
-                    if (currentAnimationIndex == 2) {
-                        footerAnimations.filter('.animated').addClass('to-hide');
-                    }
-
-
-                    let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
-                    animation.addClass('animated');
-
-                    if (currentAnimationIndex == footerAnimations.length)
-                        arrow.hide();
-
-                    isSCrolling = false;
-                });
-
-                $(window).on('wheel', function (e) {
-
-                    if (isSCrolling)
-                        return;
-
-                    isSCrolling = true;
-                    let delta = getDelta(e);
-
-                    if (delta < 0) {
-                        arrow.click();
-                    }
-                });
-
-                function getDelta(e) {
-                    let value;
-                    if (e.originalEvent) {
-                        value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
-                    } else {
-                        value = e.wheelDelta || -e.deltaY || -e.detail;
-                    }
-
-                    return Math.max(-1, Math.min(1, value));
-                }
-
-            });
-
-
             setTimeout(function () {
                 logoContainer.show().addClass('animated');
-
                 setTimeout(function () {
-                    //initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
-                    //    addHeader();
-                    //});
+                    initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
+                        logoContainer.addClass('logo-move-to-header ');
+                        addHeader();
+                        let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
+                            .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
+
+                        $('.craft-footer ').prepend(nextPageButton);
+
+                        var isSCrolling = false;
+                        let arrow = $('.arrow-down');
+                        let footerAnimations = $('.craft-footer .footer-item');
+                        let currentAnimationIndex = 0;
+                        arrow.on('click', function () {
+                            isSCrolling = true;
+                            ++currentAnimationIndex;
+                            if (currentAnimationIndex > footerAnimations.length) {
+                                isSCrolling = false;
+                                return;
+                            }
+
+                            if (currentAnimationIndex == 2) {
+                                footerAnimations.filter('.animated').addClass('to-hide');
+                            }
+
+
+                            let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
+                            animation.addClass('animated');
+
+                            if (currentAnimationIndex == footerAnimations.length)
+                                arrow.hide();
+
+                            isSCrolling = false;
+                        });
+
+                        $(window).on('wheel', function (e) {
+
+                            if (isSCrolling)
+                                return;
+
+                            isSCrolling = true;
+                            let delta = getDelta(e);
+
+                            if (delta < 0) {
+                                arrow.click();
+                            }
+                        });
+
+                        function getDelta(e) {
+                            let value;
+                            if (e.originalEvent) {
+                                value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
+                            } else {
+                                value = e.wheelDelta || -e.deltaY || -e.detail;
+                            }
+
+                            return Math.max(-1, Math.min(1, value));
+                        }
+
+                    });
                 }, 2000);
             }, 2000);
         });
