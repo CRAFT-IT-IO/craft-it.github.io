@@ -43,11 +43,17 @@
                 let footerAnimations = $('.craft-footer .footer-item');
                 let currentAnimationIndex = 0;
                 arrow.on('click', function () {
+                    isSCrolling = true;
                     ++currentAnimationIndex;
                     if (currentAnimationIndex > footerAnimations.length) {
                         isSCrolling = false;
                         return;
                     }
+
+                    if (currentAnimationIndex == 2) {
+                        footerAnimations.filter('.animated').addClass('to-hide');
+                    }
+
 
                     let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
                     animation.addClass('animated');
@@ -63,10 +69,10 @@
                     if (isSCrolling)
                         return;
 
+                    isSCrolling = true;
                     let delta = getDelta(e);
 
                     if (delta < 0) {
-                        isSCrolling = true;
                         arrow.click();
                     }
                 });
@@ -187,6 +193,24 @@
                 animation: footerOne 2s ease-in-out forwards;
             }
 
+                .footer-item.animated[animation-order="1"].to-hide {
+                    animation: toHide 2s ease forwards;
+                }
+
+        @keyframes toHide {
+
+            from {
+                right: 10%;
+                top: 20%;
+            }
+
+            to {
+                right: 10%;
+                top: -50%;
+                opacity: 0;
+            }
+        }
+
         @keyframes footerOne {
             from {
                 right: 50%;
@@ -194,8 +218,34 @@
 
             to {
                 right: 10%;
-                top: 10%;
+                top: 20%;
             }
+        }
+
+        .footer-item.animated[animation-order="2"] {
+            left: 5%;
+            top: 10%;
+            transition: top ease 2s;
+        }
+
+        .dream, .draft, .craft {
+            width: 25%;
+        }
+
+        .footer-item.animated[animation-order="3"] {
+            left: 37%;
+            top: 10%;
+            transition: top ease 2s;
+        }
+
+        .footer-item.animated[animation-order="4"] {
+            right: 5%;
+            top: 10%;
+            transition: top ease 2s;
+        }
+
+        .text {
+            padding-top: 2vw;
         }
     </style>
 </head>
@@ -218,21 +268,33 @@
                 </p>
                 <p>to adapt to your needs. Not you.</p>
             </div>
-
-            <!--<div class="footer-content">
-                        <div class="dream">
-                            <img src="images/dream.png" />
-                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                        </div>
-                        <div class="draft">
-                            <img src="images/draft.png" />
-                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                        </div>
-                        <div class="craft">
-                            <img src="images/craft.png" />
-                            <p class="text">test test test test test test test test test test test test test test test test test test test test test test test test</p>
-                        </div>
-                    </div>-->
+            <div class="footer-item dream" animation-order="2" style="">
+                <div class="">
+                    <img src="images/dream.png" />
+                    <p class="text">
+                        Aximus, merum diis. Mae conderitil hortero
+                        rurortuidi, con sil trissus hactum sendi
+                    </p>
+                </div>
+            </div>
+            <div class="footer-item draft" animation-order="3" style="">
+                <div class="">
+                    <img src="images/draft.png" />
+                    <p class="text">
+                        Nihilii sendam, Castrum et videmunu
+                        inteatqua et Catus, que conericivir imis
+                    </p>
+                </div>
+            </div>
+            <div class="footer-item craft" animation-order="4" style="">
+                <div class="">
+                    <img src="images/craft.png" />
+                    <p class="text">
+                        Ad coniquam ponihin sulius re in igitin
+                        redetil inpres! Viverni prium ut re inpred
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </body>
