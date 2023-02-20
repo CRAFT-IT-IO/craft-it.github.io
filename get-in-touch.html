@@ -18,6 +18,25 @@
     <title>Craft IT</title>
 
     <script>
+        let map;
+
+        function initMap() {
+            let myInfo = { lat: 50.825654978502364, lng: 4.365243356136159 };
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: myInfo,
+                zoom: 16,
+            });
+
+            new google.maps.Marker({
+                position: myInfo,
+                map,
+                title: "Craft-IT",
+            });
+
+        }
+
+        window.initMap = initMap;
+
         $(document).ready(function () {
             let logoDotContainer = $('logo-dot');
             logoDotContainer.hide();
@@ -85,6 +104,11 @@
         div.content-left {
             grid-template-rows: 10vw 1fr;
         }
+
+        .content-right-content {
+            justify-items: center;
+            align-items: start;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +130,6 @@
                         <div>
                             <i class="fa fa-map-marker display-icon" aria-hidden="true"></i>
                             <label class="display-text">Silversquare BAILLI</br>Avenue Louise 231</br>1050 Brussels - Belgium</label>
-
                         </div>
                         <div>
                             <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
@@ -116,10 +139,17 @@
                             <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
                             <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/">Craft-IT</a>
                         </div>
+                        <div id="map" style="position: relative;overflow: hidden;height: 20vw;width: 35vw;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!--/* release*/
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyjnB9WyheAawXSXEBKcdRFpp4EybBzmk&callback=initMap&v=weekly"
+            defer></script>-->
+    <!--/* test */-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoeaHadBP9LKWtpICAuhbq_k1s43oSej8&callback=initMap&v=weekly"
+            defer></script>
 </body>
 </html>

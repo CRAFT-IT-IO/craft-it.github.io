@@ -98,11 +98,10 @@ function initContentMenu(menuItemTexts, callback, delay) {
         menuItems.removeClass('selected');
         arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
             menuItem.addClass('selected');
+            let toDisplay = menuItem.data('display');
+            contentDisplay.hide().removeClass('animated')
+                .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
         });
-
-        let toDisplay = menuItem.data('display');
-        contentDisplay.hide().removeClass('animated')
-            .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
     });
 
     menuItems.length = menuItemTexts.length;
