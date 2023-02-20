@@ -1,0 +1,146 @@
+@import "constants.css";
+@import "menu.css";
+@import "button.css";
+@import "content.css";
+@import "content-menu.css";
+
+
+logo-dot {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    place-content: center;
+}
+
+    logo-dot .content-image {
+        position: relative;
+        display: grid;
+    }
+
+    /* logo*/
+    logo {
+        display: flex;
+        position: fixed;
+        left: 30px;
+        top: -50%;
+        background-color: transparent;
+        z-index: 99;
+        width: 15%;
+        height: 10%;
+        cursor: pointer;
+    }
+
+    logo:not(.animated) {
+        top: 25px;
+    }
+
+    logo.animated {
+        animation: logoDisplay 2s ease-out var(--logo-display-delay, 2s) forwards;
+    }
+
+@keyframes logoDisplay {
+    to {
+        top: 25px;
+    }
+}
+
+logo img {
+    height: 100%;
+    width: 100%;
+}
+/* logo*/
+
+/*header */
+header {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 99;
+}
+
+    header .header-content {
+        height: 100%;
+        display: grid;
+        place-content: center;
+        place-self: stretch;
+        grid-template-columns: 1fr 100px;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header-logo header-menu";
+    }
+
+div.header-logo {
+    grid-area: header-logo;
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+}
+
+div.header-title {
+    grid-area: header-title;
+    display: grid;
+    place-content: center;
+}
+
+div.header-logo img.logo {
+    width: 100%;
+    position: relative;
+}
+
+div.header-menu {
+    grid-area: header-menu;
+    display: grid;
+    place-content: center;
+}
+/*header */
+
+.craft-it-font {
+    font-family: madeFutureXHeader;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    margin: 0 auto;
+    align-self: stretch;
+}
+
+.hide {
+    display: none;
+}
+
+.colorBlack {
+    color: black !important;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+section.craft-it {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    place-self: stretch;
+    place-items: stretch;
+    z-index: 10;
+}
+
+    section.craft-it:not(.ignore) {
+        height: 100%;
+        width: 100%;
+    }
+
+.logo-effect {
+    height: 100%;
+    width: 100%;
+}
+
+
+.craft-section {
+    width: 100%;
+    height: 100%;
+}

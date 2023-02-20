@@ -1,0 +1,93 @@
+.content-menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    position: relative;
+}
+
+.menu-item {
+    font-size: 2vw;
+    padding-left: 1vw;
+    cursor: pointer;
+}
+
+.menu-item.selected {
+    font-family: gothamBold !important;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.menu-item-arrow {
+    position: absolute;
+    left: -50%;
+    height: 3vw;
+    align-self: center;
+    width: 3vw;
+}
+
+.content-menu-display {
+    position: relative;
+}
+
+.content-menu-display > * {
+    position: relative;
+    color: var(--white);
+    margin-bottom: 2vw;
+    font-size: 1vw
+}
+
+/* RIGHT */
+.content-right .content-menu-display {
+    position: relative;
+    right: -100%;
+}
+
+.content-right .animated.content-menu-display {
+    right: 0;
+    transition: right ease-out 1.5s;
+}
+
+.content-right .content-menu-display > * {
+    position: relative;
+    left: 150%;
+    color: var(--white);
+    margin-bottom: 2vw;
+    font-size: 1vw
+}
+
+.content-right .animated.content-menu-display > * {
+    left: 0;
+    transition: left ease-out 1.5s;
+}
+
+/* FOOTER */
+.content-bottom .content-menu-display {
+    position: relative;
+    right: -100%;
+}
+
+.content-bottom .animated.content-menu-display {
+    right: 0;
+    transition: right ease-out 1.5s;
+}
+
+.content-bottom .content-menu-display > * {
+    position: relative;
+    left: 150%;
+    color: var(--white);
+    margin-bottom: 2vw;
+    font-size: 1vw
+}
+
+.content-bottom .animated.content-menu-display > * {
+    left: 0;
+    transition: left ease-out 1.5s;
+}

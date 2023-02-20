@@ -1,240 +1,154 @@
-var scrollifyCallBacks = { };
-var scrollifyScrollAnimation
-function initScrollify(callbacks, mainPage, section, scrollAnimation){
-    if(scrollAnimation == null)
-        scrollAnimation = true;
+var isMenuClosed = false;
+$(document).ready(function () {
+    $(document).on('click', '.hamburger, .overlay', hamburgerMenuClick);
 
-    scrollifyScrollAnimation = scrollAnimation;
+});
 
-    $.scrollify({
-        section : section + '', // convert to string otherwise it thinks it is an object.
-        sectionName : "section", // [data-section]
-        scrollbars: false,
-        scrollSpeed: 1500,
-        updateHash: false,
-        easing: "easeOutExpo",
-        interstitialSection: '.craft-it.ignore',
-        // standardScrollElements : '.section-container, .dots',
-        before: scrollifyBefore,
-        after: callbacks.after,
-        afterResize: callbacks.afterResize,
-        afterRender: callbacks.afterRender
+function hamburgerMenuClick() {
+    let items = $('.hamburger, .navbar');
+    let isMenuClosed = items[0].classList.contains('is-closed');
+
+    items.removeClass('is-open is-closed');
+    items.addClass(isMenuClosed ? 'is-open' : 'is-closed');
+    $('.overlay').toggleClass('hide');
+    $('#wrapper').toggleClass('toggled');
+}
+
+function addHeader(delay) {
+    let header = $('<header></header>');
+    let headerContent = $('<div></div>', { class: 'header-content' });
+
+    let button = $('<button></button>', { type: 'button', class: 'hamburger is-closed', 'data-toggle': 'offcanvas' })
+        .append($('<span></span>', { class: 'hamb-top' }))
+        .append($('<span></span>', { class: 'hamb-middle' }))
+        .append($('<span></span>', { class: 'hamb-bottom' }));
+
+    let sideBar = $('<ul></ul>', { class: 'nav sidebar-nav' })
+        .append('<li><a page="what-we-do" back-color="var(--red)">WHAT WE DO</a></li>')
+        .append('<li><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></li>')
+        .append('<li><a page="modus-cogitandi" back-color="var(--aqua)">MODUS COGITANDI</a></li>')
+        .append('<li><a page="get-in-touch" back-color="var(--red)">GET IN TOUCH</a></li>');
+
+    sideBar.find('a').on('click', function () {
+        redirect($(this).attr('page'), $(this).attr('back-color'));
     });
-    scrollifyCallBacks = callbacks;
-    $.scrollify.move('#home');
-}
 
-function checkNextSection(delta){
-    let currentIndex = $.scrollify.currentIndex();
+    let hrefParts = window.location.href.split('/');
+    let currentPage = hrefParts[hrefParts.length - 1].replace('.html', '');
 
-    if(delta > 0){
-        $.scrollify.previous();
-        if(currentIndex == $.scrollify.currentIndex())
-            $.scrollify.next();
-    }else
-    {
-        $.scrollify.next();
-        if(currentIndex == $.scrollify.currentIndex())
-            $.scrollify.previous();
-    }
-}
+    let selectedItem = sideBar.find('a[page="' + currentPage + '"]');
+    if (selectedItem.length != 0)
+        selectedItem.closest('li').addClass('selected');
 
-// $(window).on('wheel', function(e){
-//     console.log('wheel current : ' + $.scrollify.current());
-//     let currentSection = $.scrollify.current();
-//     let delta = getDelta(e);
-//
-//     if(currentSection == null)
-//     {
-//         checkNextSection(delta);
-//         return;
-//     }
-//
-//     let currentSectionName = $.scrollify.current().data('section');
-//     console.log('current section : ' + currentSectionName);
-//
-//     if(!currentSection.is('.section-container'))
-//     {
-//         checkNextSection(delta);
-//         return;
-//     }
-//
-//     let currentSectionIndex = $.scrollify.currentIndex();
-//     subSectioncrolling(delta > 0 ? --currentSectionIndex : ++currentSectionIndex, currentSection, true);
-// });
-/* Scrollify */
-var isScrolling = false;
-function subSectioncrolling(indexToDisplay, currentSection, changeSelection){
-    if(isScrolling)   return;
+    let navBar = $('<nav></nav>', { class: 'navbar navbar-inverse navbar-fixed-top is-closed', id: 'sidebar-wrapper', role: 'navigation' })
+        .append(sideBar);
 
-    let subSectionIndex = $.scrollify.currentIndex();
-    let displayNextElt = indexToDisplay > subSectionIndex;
-    let subSections = currentSection.find('.sub-section');
-    let nbSubSections = subSections.length;
+    let headerMenu = $('<div></div>', { class: 'header-menu', id: 'wrapper' })
+        .append(button)
+        .append(navBar);
 
-    if(nbSubSections == 0)
-        return;
+    header.append(headerMenu);
 
-    isScrolling = true;
-    let selectedSubSection = subSections.filter('.selected');
-    let currentSubSectionIndex = 0;
-
-    if(selectedSubSection.length == 0) {
-        selectedSubSection = $(subSections[0]);
-        selectedSubSection.addClass('selected');
-        displayNextElt = true;
-        currentSubSectionIndex = 1
-    }else{
-        currentSubSectionIndex = subSections.index(selectedSubSection) + 1;
-    }
-    let istoDown = true;
-    if(changeSelection) {
-        if (displayNextElt) {
-            istoDown = true;
-            ++currentSubSectionIndex;
-        } else {
-            istoDown = false;
-            --currentSubSectionIndex;
-        }
-    }
-
-    let oldSelection = selectedSubSection;
-    if(currentSubSectionIndex > 0 && currentSubSectionIndex <= nbSubSections) {
-        selectedSubSection.removeClass('selected');
-        selectedSubSection = $(subSections[currentSubSectionIndex - 1]);
-        selectedSubSection.addClass('selected');
-    }
-    else{
-        if(currentSubSectionIndex <= 0){
-            if($.scrollify.currentIndex() != 0)
-                $.scrollify.previous();
-        }
-        else if($.scrollify.currentIndex() != $('section.craft-it').length)
-            $.scrollify.next()
-
-        isScrolling = false;
+    if (delay) {
+        setTimeout(function () { $('body').prepend(header); }, delay);
         return;
     }
 
-    if(changeSelection) {
-        let container = currentSection.find('.sub-section-container');
-        let topPosition = 0;
-        console.log('current Index : ' + currentSubSectionIndex);
-        console.log('is to down : ' + istoDown);
-        if(scrollifyScrollAnimation) {
-            if (istoDown)
-                topPosition = parseInt(container.css('top')) - (oldSelection.height() * 0.75);
-            else {
-                if (currentSubSectionIndex == 1)
-                    topPosition = 0;
-                else
-                    topPosition = parseInt(container.css('top')) + (oldSelection.height() * 0.75);
-            }
-
-            console.log(' new top : ' + topPosition);
-            // fake animate because transform property doesn't work with animate
-            container.animate({top: topPosition + 'px'}, {
-                duration: 1000
-            });
-        }
-    }
-
-    subSections.removeClass('sub-section-animated');
-    subSections.find('*:not(.footer)').css('opacity', 0.7);
-    subSections.find('img').css('opacity', 0);
-
-    selectedSubSection.addClass('sub-section-animated');
-    selectedSubSection.find('*').not('img').animate(
-        {
-            'opacity': 1
-        }, 1000, function() {
-            isScrolling = false;
-        });
-
-    selectedSubSection.find('img').animate(
-        {
-            'opacity': 1
-        }, 2000, function() {
-            isScrolling = false;
-        });
+    $('body').prepend(header);
 }
 
-function getDelta(e){
-    let  value;
-    if (e.originalEvent) {
-        value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
-    } else {
-        value = e.wheelDelta || -e.deltaY || -e.detail;
-    }
-
-    return Math.max(-1, Math.min(1, value));
-}
-
-function scrollifyBefore(index, sections){
-    let currentSection = sections[index];
-    let sectionName = currentSection.attr('data-section');
-
-    if(scrollifyCallBacks.before && typeof scrollifyCallBacks.before === 'function')
-        scrollifyCallBacks.before(index, sections);
-
-    refreshSelectionDotMenuItem(sectionName);
-    refreshSelectedSection(currentSection, index);
-
-    if(currentSection.is('.section-container'))
-        subSectioncrolling(index, currentSection, false);
-
-    return true;
-}
-
-function refreshSelectionDotMenuItem(sectionName){
-    $('.dot').removeClass('active');
-    $('.dot[data-menu="' + sectionName +'"]').addClass('active');
-}
-
-function refreshSelectedSection(currentSection, currentIndex){
-    if(currentIndex == 0)
-        currentSection.addClass('animated');
-
-    $('.section-animated').removeClass('section-animated');
-    currentSection.addClass('section-animated');
-}
-
-function redirect(page){
+function redirect(page, backcolor) {
     let overlay = $('.overlay');
-    if(overlay.length == 0){
+    if (overlay.length == 0) {
         overlay = $('<div></div>', { class: 'overlay' });
+        $('body').append(overlay);
     }
+
+    if (!backcolor)
+        backcolor = 'white';
 
     overlay.removeClass('hide');
     overlay.css({
-        'left' : '-100%',
-        'display' : 'block',
-        'background-color' : 'white',
-        'z-index' : 99999
+        'left': '-100%',
+        'display': 'block',
+        'background-color': backcolor,
+        'z-index': 99999
     });
 
-    overlay.animate({ left: 0 }, 1000, function(){
-        window.location.href = page;
+    overlay.animate({ left: 0 }, 1000, function () {
+        window.location.href = page + '.html';
     });
 }
 
-$(function() {
-    let copyright = $('.footer-copyright');
-    copyright.text(new Date().getFullYear());
+function initContentMenu(menuItemTexts, callback, delay) {
+    let contentDisplay = $('.content-menu-display');
+    contentDisplay.hide();
+    let contentMenu = $('.content-menu').show();
+    contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
+    var menuItems = $('.menu-item');
+    menuItems.show();
+    time = 300;
+    delay = delay == null ? 80 : delay;
 
-    $('.btn-next-page').on('click', function(){
-        $.scrollify.next();
+    let arrow = $('.menu-item-arrow');
+    let deltaTop = arrow.height() / 2;
+    menuItems.on('click', function () {
+        let menuItem = $(this);
+        let position = menuItem.position();
+        menuItems.removeClass('selected');
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
+            menuItem.addClass('selected');
+            let toDisplay = menuItem.data('display');
+            contentDisplay.hide().removeClass('animated')
+                .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
+        });
     });
 
-    $('.find-out').on('click', function(e){
-        if($(this).data('move-to') != null) {
-            $.scrollify.move('#' + $(this).data('move-to'));
-            e.preventDefault();
-            return;
+    menuItems.length = menuItemTexts.length;
+
+    for (var index = 0; index < menuItems.length; index++) {
+        let menuItem = $(menuItems[index]);
+        if (index == 1)
+            setTimeout(function () {
+                menuItems[0].click();
+            }, time);
+
+        let textParts = menuItemTexts[index].split('\n');
+        for (var textPartsIndex = 0; textPartsIndex < textParts.length; textPartsIndex++) {
+            let txt = textParts[textPartsIndex];
+            if (textPartsIndex > 0) {
+                time += delay;
+                setTimeout(function () {
+                    menuItem.append($('</br>'));
+                }, time);
+            }
+            for (var j = 0; j < txt.length; j++) {
+                time += delay;
+                setTimeout(function (texteMessage) {
+                    menuItem.html(menuItem.html().replace('_', '') + texteMessage + '_');
+                }, time, txt[j]);
+            }
         }
 
-        if($(this).data('redirect-to') != null)
-            redirect($(this).data('redirect-to'));
-    });
-});
+        setTimeout(function (currentIndex) {
+            menuItem.html(menuItem.html().replace('_', ''));
+            if (currentIndex == 0 && callback)
+                callback();
+        }, time, index);
+    }
 
+    setTimeout(function () {
+        if (menuItems.length == 1)
+            menuItems[0].click();
+    }, time);
+}
+
+function initLogo(path) {
+    let logoContainer = $('logo');
+    if (logoContainer.length == 0)
+        return;
+
+    let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo2.png' });
+    logo.on('click', function () { redirect('index'); });
+    logoContainer.append(logo);
+}
