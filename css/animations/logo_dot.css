@@ -2,6 +2,12 @@
 	--animation-duration-first: 0.3s;
 }
 
+.back-logo-dot {
+	background-image: url("../../images/resources/big_dot.jpeg");
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
 logo-dot .p {
 	position: absolute;
 	display: block;

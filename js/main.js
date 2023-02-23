@@ -87,21 +87,26 @@ function initContentMenu(menuItemTexts, callback, delay) {
     contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
     menuItems.show();
-    time = 300;
+    time = 200;
     delay = delay == null ? 80 : delay;
 
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
     menuItems.on('click', function () {
+
+        if ($(this).is('.selected'))
+            return;
+
         let menuItem = $(this);
         let position = menuItem.position();
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
-            menuItem.addClass('selected');
-            let toDisplay = menuItem.data('display');
-            contentDisplay.hide().removeClass('animated')
-                .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 100, function () {
         });
+
+        menuItem.addClass('selected');
+        let toDisplay = menuItem.data('display');
+        contentDisplay.hide().removeClass('animated')
+            .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
     });
 
     menuItems.length = menuItemTexts.length;

@@ -32,27 +32,21 @@
                 map,
                 title: "Craft-IT",
             });
-
         }
 
         window.initMap = initMap;
+        initLogo();
+
 
         $(document).ready(function () {
-            let logoDotContainer = $('logo-dot');
-            logoDotContainer.hide();
-            logoDotContainer.initializeLogoDotEffect();
-            initLogo();
-            setTimeout(function () {
-                logoDotContainer.show().toggleClass('animated');
-                setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
-            }, 1000);
-
-            setTimeout(function () {
-                $('.title').animate({ left: 0 }, 1000, function () {
+            addHeader(0);
+            //initLogo();
+            //setTimeout(function () {
+                $('.title').animate({ left: 0 }, 500, function () {
                     var txts = ['Contact us'];
                     initContentMenu(txts, function () {
                         $('.content-right').addClass('animated');
-                        addHeader(1000);
+                        
                         let textContent = $('.content-right-content').children();
                         let count = 0;
                         let interval = setInterval(function () {
@@ -65,7 +59,7 @@
                         }, 800);
                     });
                 });
-            }, 3000);
+            //}, 3000);
         });
     </script>
     <style>
@@ -116,7 +110,7 @@
 
     <logo class="animated">
     </logo>
-    <section class="craft-it">
+    <section class="craft-it back-logo-dot">
         <div class="container-two-side">
             <div class="content-left">
                 <h1 class="title">GET IN TOUCH</h1>

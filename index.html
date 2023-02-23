@@ -31,7 +31,6 @@
                 logoContainer.show().addClass('animated');
                 setTimeout(function () {
                     initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
-                        logoContainer.addClass('logo-move-to-header ');
                         addHeader();
                         let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
                             .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
@@ -41,29 +40,34 @@
                         var isSCrolling = false;
                         let arrow = $('.arrow-down');
                         let footerAnimations = $('.craft-footer .footer-item');
+                        let animationCount = 0;
+                        for (var i = 0; i < footerAnimations.length; i++) {
+                            let animationIndex = $(footerAnimations[i]).attr('animation-order');
+                            if (animationIndex > animationCount)
+                                animationCount = animationIndex;
+                        }
+
                         let currentAnimationIndex = 0;
                         arrow.on('click', function () {
                             isSCrolling = true;
                             ++currentAnimationIndex;
-                            if (currentAnimationIndex > footerAnimations.length) {
+                            if (currentAnimationIndex > animationCount) {
                                 isSCrolling = false;
                                 return;
                             }
 
-                            if (currentAnimationIndex == 2) {
-                                footerAnimations.filter('.animated').addClass('to-hide');
-                            }
-
+                            footerAnimations.filter('.animated').addClass('to-hide');
 
                             let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
                             animation.addClass('animated');
 
-                            if (currentAnimationIndex == footerAnimations.length)
+                            if (currentAnimationIndex == animationCount)
                                 arrow.hide();
 
-                            isSCrolling = false;
+                            setTimeout(function () { isSCrolling = false; }, 1500);
                         });
 
+                        arrow.click();
                         $(window).on('wheel', function (e) {
 
                             if (isSCrolling)
@@ -88,14 +92,12 @@
                             return Math.max(-1, Math.min(1, value));
                         }
 
-                    });
+                    }, 20);
                 }, 2000);
             }, 2000);
         });
     </script>
     <style>
-
-
         /*Arrow scrolling*/
         .btn-next-page {
             transform: matrix(1, 0, 0, 1, 0, 0);
@@ -114,27 +116,11 @@
             }
 
             .btn-next-page i.arrow-down {
-                font-size: 30px;
+                font-size: 50px;
                 color: white;
                 cursor: pointer;
             }
-            /* blue theme*/
-            .btn-next-page.blue i.arrow-down {
-                font-size: 30px;
-                color: #0028A1;
-            }
-            /* white theme*/
-            .btn-next-page.white i.arrow-down {
-                font-size: 30px;
-                color: white;
-            }
-
-            /* black theme*/
-            .btn-next-page.black i.arrow-down {
-                font-size: 30px;
-                color: black;
-            }
-
+            
         @keyframes jump {
             from {
                 opacity: 1;
@@ -180,13 +166,9 @@
             top: 100%;
         }
 
-            .footer-item.animated[animation-order="1"] {
-                animation: footerOne 2s ease-in-out forwards;
+            .footer-item.animated.to-hide {
+                animation: toHide 2s ease forwards;
             }
-
-                .footer-item.animated[animation-order="1"].to-hide {
-                    animation: toHide 2s ease forwards;
-                }
 
         @keyframes toHide {
 
@@ -202,18 +184,7 @@
             }
         }
 
-        @keyframes footerOne {
-            from {
-                right: 50%;
-            }
-
-            to {
-                right: 10%;
-                top: 20%;
-            }
-        }
-
-        .footer-item.animated[animation-order="2"] {
+        .footer-item.animated.dream {
             left: 5%;
             top: 10%;
             transition: top ease 2s;
@@ -221,19 +192,19 @@
 
         .dream, .draft, .craft {
             width: 25%;
-        }  
+        }
 
         :is(.dream, .draft, .craft) img {
             width: 100%;
         }
 
-        .footer-item.animated[animation-order="3"] {
+        .footer-item.animated.draft, .footer-item.animated.button {
             left: 37%;
             top: 10%;
             transition: top ease 2s;
         }
 
-        .footer-item.animated[animation-order="4"] {
+        .footer-item.animated.craft {
             right: 5%;
             top: 10%;
             transition: top ease 2s;
@@ -242,6 +213,7 @@
         .text {
             padding-top: 2vw;
         }
+
     </style>
 </head>
 <body>
@@ -256,8 +228,7 @@
         </div>
 
         <div class="craft-footer content-menu-display" data-display="footer">
-
-            <div class="footer-item" animation-order="1" style="font-size: 2vw;">
+            <div class="footer-item" animation-order="1" style="font-size: 2vw; right: 10%; top: 20%;">
                 <p>
                     We believe it's up to the IT
                 </p>
@@ -272,7 +243,7 @@
                     </p>
                 </div>
             </div>
-            <div class="footer-item draft" animation-order="3" style="">
+            <div class="footer-item draft" animation-order="2" style="">
                 <div class="">
                     <img src="images/draft.png" />
                     <p class="text">
@@ -281,13 +252,23 @@
                     </p>
                 </div>
             </div>
-            <div class="footer-item craft" animation-order="4" style="">
+            <div class="footer-item craft" animation-order="2" style="">
                 <div class="">
                     <img src="images/craft.png" />
                     <p class="text">
                         Ad coniquam ponihin sulius re in igitin
                         redetil inpres! Viverni prium ut re inpred
                     </p>
+                </div>
+            </div>
+            <div class="footer-item button" animation-order="3" style="">
+                <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                    <h1 class="text" style="padding-bottom: 2vw;">
+                        Discover what we do
+                    </h1>
+                    <button class="find-out" onclick="redirect('what-we-do', 'var(--red)')">
+                        <span class="arrow">More</span>
+                    </button>
                 </div>
             </div>
         </div>

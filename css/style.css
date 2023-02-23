@@ -1,6 +1,5 @@
 @import "constants.css";
 @import "menu.css";
-@import "button.css";
 @import "content.css";
 @import "content-menu.css";
 
@@ -27,7 +26,7 @@ logo-dot {
         top: -50%;
         background-color: transparent;
         z-index: 99;
-        width: 15%;
+        width: 20%;
         height: 10%;
         cursor: pointer;
     }
@@ -144,3 +143,37 @@ section.craft-it {
     width: 100%;
     height: 100%;
 }
+
+
+button {
+    display: inline-block;
+    background-color: white;
+    border-radius: 20px;
+    border: 0.5px solid #C00E0E;
+    color: #C00E0E;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+    button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        /*transition: 0.2s;*/
+    }
+
+    button.find-out:hover {
+        background-color: var(--black);
+        color: var(--white);
+    }
+
+    button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
