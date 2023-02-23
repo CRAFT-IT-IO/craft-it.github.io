@@ -1,0 +1,225 @@
+@import "index-logo-effect.css";
+@import "typing-effect.css";
+
+.section{
+    display: flex;
+    place-self: stretch;
+}
+
+div.content{
+     position: relative;
+     grid-area: content;
+     display: grid;
+     place-content: center;
+ }
+
+div.header-logo img.logo{
+    display: none;
+    left: 50%;
+}
+
+div.container{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-self: stretch;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 1fr 0.3fr;
+    grid-template-areas: ". content ." "console console console"
+}
+
+.typewriter{
+    height: 100%;
+}
+
+/* part 2 */
+
+[data-section="home-part-2"] {
+    background-color: black;
+    overflow: hidden;
+}
+
+div.container-home-part-2{
+    grid-gap: 0;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    /*place-items: stretch;*/
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 80px 0.3fr 0.3fr 0.3fr; /*0.5fr 0.5fr 0.5fr;*/
+    grid-template-areas:
+            ". . ."
+            ". title-1 ."
+            ". title-2 ."
+            ". title-3 .";
+}
+
+:is(.title-1, .title-2, .title-3) h2,
+:is(.title-1, .title-2, .title-3) p{
+    font-size: 8vw;
+    color: white;
+}
+
+div.title-1{
+    grid-area: title-1;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-areas: "stamp titleone";
+}
+
+div.title-1 .title-1.part-1{
+    font-family: madeFutureXHeader;
+    font-size: 9vw;
+    align-self: end;
+}
+
+div.title-1 img.stamp{
+    position: relative;
+    top: 10%;
+    width: 100%;
+    height: 50%;
+    grid-area: stamp;
+    align-self: center;
+    justify-self: end;
+}
+
+div.title-2{
+    justify-self: end;
+    grid-area: title-2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "title-2-part-1";
+}
+
+div.title-2 .title-2.part-1{
+    grid-area: title-2-part-1;
+    place-self: center;
+}
+
+div.title-3{
+    grid-area: title-3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "title-3-part-1";
+}
+
+.title.title-3.sub-section{
+    align-self: start;
+}
+
+div.title-3 .title-3.part-1{
+    grid-area: title-3-part-1;
+    align-self: start;
+    justify-self: start;
+}
+
+/* Part 3 */
+
+/* titles */
+section.craft-it[data-section="home-part-3"] .container .content h2,
+section.craft-it[data-section="home-part-4"] .container .content h2,
+section.craft-it[data-section="home-part-5"] .container .content h2{
+    text-align: center;
+    font-size: 4vw;
+    padding: 0 20px
+}
+
+
+section.section-animated[data-section="home-part-3"]{
+    color: white;
+}
+
+section.section-animated[data-section="home-part-3"] .back-left{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #C00E0E;
+    z-index: -10;
+}
+
+section.section-animated[data-section="home-part-3"] .back-right{
+    z-index: -10;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #C00E0E;
+}
+
+:is([data-section="home-part-4"], [data-section="home-part-3"]) div.container{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-self: stretch;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". content ."
+}
+:is([data-section="home-part-4"], [data-section="home-part-3"]) div.content{
+    position: relative;
+    grid-area: content;
+    display: grid;
+    place-content: center;
+    grid-gap: 5%;
+}
+
+
+section.section-animated[data-section="home-part-4"]{
+    color: white;
+}
+section.section-animated[data-section="home-part-4"] .back-color{
+    background-color: #0028A1;
+}
+
+section.section-animated[data-section="home-part-4"] .back-left,
+section.section-animated[data-section="home-part-4"] .back-right,
+section.section-animated[data-section="home-part-4"] .back-top,
+section.section-animated[data-section="home-part-4"] .back-bottom{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: -10;
+}
+
+[data-section="home-part-5"] div.container{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-self: stretch;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 1fr 0.2fr;
+    grid-template-areas: ". content ." "footer footer footer"
+}
+
+[data-section="home-part-5"] div.content{
+    position: relative;
+    grid-area: content;
+    display: grid;
+    place-items: center;
+    grid-gap: 10%;
+}
+
+[data-section="home-part-5"].section-animated div.content .find-out{
+    opacity: 0;
+    -webkit-animation: show-button 2s ease 1s forwards;
+    -o-animation: show-button 2s ease 1s forwards;
+    animation: show-button 2s ease 1s forwards;
+}
+
+[data-section="home-part-5"] div.container div.footer {
+    grid-area: footer;
+    position: relative;
+}
+
+@keyframes show-button {
+    to {
+        opacity: 1;
+    }
+}
+
