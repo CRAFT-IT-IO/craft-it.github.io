@@ -80,7 +80,7 @@ function redirect(page, backcolor) {
     });
 }
 
-function initContentMenu(menuItemTexts, callback, delay) {
+function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
     let contentDisplay = $('.content-menu-display');
     contentDisplay.hide();
     let contentMenu = $('.content-menu').show();
@@ -93,7 +93,6 @@ function initContentMenu(menuItemTexts, callback, delay) {
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
     menuItems.on('click', function () {
-
         if ($(this).is('.selected'))
             return;
 
@@ -109,8 +108,21 @@ function initContentMenu(menuItemTexts, callback, delay) {
             .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
     });
 
-    menuItems.length = menuItemTexts.length;
+    if (withAnimation)
+        initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay);
+    //else {
+    //    for (var i = 0; i < menuItemTexts.length; i++) {
+    //        let text = menuItemTexts[i];
+    //        $(menuItems[i]).html(text.replace('\n', '</br>'));
+    //    }
 
+    //    menuItems[0].click();
+    //    if (callback)
+    //        callback();
+    //}
+}
+
+function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay){
     for (var index = 0; index < menuItems.length; index++) {
         let menuItem = $(menuItems[index]);
         if (index == 1)

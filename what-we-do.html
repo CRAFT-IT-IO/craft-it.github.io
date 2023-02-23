@@ -19,43 +19,30 @@
 
     <script>
         $(document).ready(function () {
-            //let logoDotContainer = $('logo-dot');
-            //logoDotContainer.hide();
-            //logoDotContainer.initializeLogoDotEffect();
+            let logoDotContainer = $('logo-dot');
+            logoDotContainer.hide();
+            logoDotContainer.initializeLogoDotEffect();
             initLogo();
-            //setTimeout(function () {
-            //    logoDotContainer.show().toggleClass('animated');
-            //    setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
-            //}, 1000);
-
+            logoDotContainer.show().toggleClass('animated');
             setTimeout(function () {
-                $('.title').animate({ left: 0 }, 1000, function () {
-                    var txts = ['Made-to-Measure Solutions\nfor Exclusive Clients'];
-                    initContentMenu(txts, function () {
-                        $('.content-right').addClass('animated');
-                        addHeader(1000);
-                        let textContent = $('.content-right-content').children();
-                        let count = 0;
-                        let interval = setInterval(function () {
-                            if (count >= textContent.length)
-                                clearInterval(interval);
+                setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
+            }, 1000);
 
-                            let text = textContent[count];
-                            $(text).addClass('animated');
-                            ++count;
-                        }, 800);
-                    });
-                });
-            }, 3000);
+            $('.content-right').addClass('animated');
+            $('.title').animate({ left: 0 }, 1000);
+            initContentMenu();
+            $('.menu-item').animate({ left: 0 }, 1000);  
+            setTimeout(function () { addHeader(1000); $('.menu-item').click(); }, 1000);
         });
     </script>
     <style>
         :root {
             --menu-main-color: var(--white);
             --menu-second-color: var(--white);
-            --logo-display-delay: 4s;
+            --logo-display-delay: 0s;
+            --logo-display-duration: 1s;
         }
-        
+
         h1 {
             font-size: 3vw;
             color: var(--red);
@@ -65,21 +52,21 @@
             grid-template-rows: 10vw 1fr;
         }
 
+        .menu-item {
+            left: -100%;
+            position: relative;
+        }
     </style>
-
-    
 </head>
 <body>
-    <!--<logo-dot></logo-dot>-->
-
-    <logo class="animated">
-    </logo>
-    <section class="craft-it  back-logo-dot">
+    <logo-dot></logo-dot>
+    <logo class="animated"></logo>
+    <section class="craft-it">
         <div class="container-two-side">
             <div class="content-left">
                 <h1 class="title">WHAT WE DO</h1>
                 <div class="content-menu">
-                    <p class="menu-item" data-display="one"></p>
+                    <p class="menu-item" data-display="one">Made-to-Measure Solutions</br>for Exclusive Clients</p>
                 </div>
             </div>
             <div class="content-right back-red">

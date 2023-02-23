@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+    .menu-item:hover {
+        font-family: gothamBold !important;
+    }
+
 .menu-item.selected {
     font-family: gothamBold !important;
 }

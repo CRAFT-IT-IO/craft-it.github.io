@@ -23,34 +23,16 @@
             logoDotContainer.hide();
             logoDotContainer.initializeLogoDotEffect();
             initLogo('logos/moodys/CRAFT-IT_Logo_Moody\'s_Partner_Black-Blue.png');
+            logoDotContainer.show().toggleClass('animated');
             setTimeout(function () {
-                logoDotContainer.show().toggleClass('animated');
                 setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
             }, 1000);
 
-            setTimeout(function () {
-                $('.title').animate({ left: 0 }, 1000, function () {
-                    var txts = ["A Proud Member of\nMoody's Analytics",
-                        "Moody's FACT Solution",
-                        "CreditLens",
-                        "Moody's Analytics\nPartnerAlliance"];
-
-                    initContentMenu(txts, function () {
-                        $('.content-right').addClass('animated');
-                        addHeader(1000);
-                        let textContent = $('.content-right-content').children();
-                        let count = 0;
-                        let interval = setInterval(function () {
-                            if (count >= textContent.length)
-                                clearInterval(interval);
-
-                            let text = textContent[count];
-                            $(text).addClass('animated');
-                            ++count;
-                        }, 800);
-                    }, 60);
-                });
-            }, 3000);
+            $('.content-right').addClass('animated');
+            $('.title').animate({ left: 0 }, 1000);
+            initContentMenu();
+            $('.menu-item').animate({ left: 0 }, 1000);
+            setTimeout(function () { addHeader(1000); $('.menu-item').first().click(); }, 1000);
         });
     </script>
     <style>
@@ -58,7 +40,8 @@
             --menu-main-color: var(--white);
             --menu-second-color: var(--white);
             --content-right-back-color: var(--blue);
-            --logo-display-delay: 4s;
+            --logo-display-delay: 0s;
+            --logo-display-duration: 1s;
         }
 
         h1 {
@@ -68,6 +51,11 @@
 
         div.content-left {
             min-height: 80%;
+        }
+
+        .menu-item {
+            left: -100%;
+            position: relative;
         }
     </style>
 </head>
@@ -79,10 +67,10 @@
             <div class="content-left">
                 <h1 class="title">BANKING SOLUTIONS</h1>
                 <div class="content-menu">
-                    <p class="menu-item" data-display="one"></p>
-                    <p class="menu-item" data-display="two"></p>
-                    <p class="menu-item" data-display="three"></p>
-                    <p class="menu-item" data-display="four"></p>
+                    <p class="menu-item" data-display="one">A Proud Member of</br>Moody's Analytics</p>
+                    <p class="menu-item" data-display="two">Moody's FACT Solution</p>
+                    <p class="menu-item" data-display="three">CreditLens</p>
+                    <p class="menu-item" data-display="four">Moody's Analytics</br>PartnerAlliance</p>
                 </div>
             </div>
             <div class="content-right">

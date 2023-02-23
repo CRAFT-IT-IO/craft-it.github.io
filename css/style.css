@@ -35,9 +35,9 @@ logo-dot {
         top: 25px;
     }
 
-    logo.animated {
-        animation: logoDisplay 2s ease-out var(--logo-display-delay, 2s) forwards;
-    }
+        logo.animated {
+            animation: logoDisplay var(--logo-display-duration, 2s) ease-out var(--logo-display-delay, 2s) forwards;
+        }
 
 @keyframes logoDisplay {
     to {
@@ -177,3 +177,12 @@ button {
         right: 0;
     }
 
+    /* link */
+
+a, a:focus, a:hover {
+    color: var(--white);
+}
+/*
+    a:focus, a:hover {
+        font-family: gothamBold !important;
+    }*/

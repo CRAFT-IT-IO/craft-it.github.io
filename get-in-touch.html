@@ -18,55 +18,58 @@
     <title>Craft IT</title>
 
     <script>
-        let map;
-
-        function initMap() {
-            let myInfo = { lat: 50.825654978502364, lng: 4.365243356136159 };
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: myInfo,
-                zoom: 16,
-            });
-
-            new google.maps.Marker({
-                position: myInfo,
-                map,
-                title: "Craft-IT",
-            });
-        }
-
-        window.initMap = initMap;
-        initLogo();
-
-
         $(document).ready(function () {
-            addHeader(0);
+            //let logoDotContainer = $('logo-dot');
+            //logoDotContainer.hide();
+            //logoDotContainer.initializeLogoDotEffect();
             //initLogo();
             //setTimeout(function () {
-                $('.title').animate({ left: 0 }, 500, function () {
-                    var txts = ['Contact us'];
-                    initContentMenu(txts, function () {
-                        $('.content-right').addClass('animated');
-                        
-                        let textContent = $('.content-right-content').children();
-                        let count = 0;
-                        let interval = setInterval(function () {
-                            if (count >= textContent.length)
-                                clearInterval(interval);
+            //    logoDotContainer.show().toggleClass('animated');
+            //    setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
+            //}, 1000);
 
-                            let text = textContent[count];
-                            $(text).addClass('animated');
-                            ++count;
-                        }, 800);
-                    });
-                });
+            //setTimeout(function () {
+            //    $('.title').animate({ left: 0 }, 1000, function () {
+            //        var txts = ['Contact us'];
+            //        initContentMenu(txts, function () {
+            //            $('.content-right').addClass('animated');
+            //            addHeader(1000);
+            //            let textContent = $('.content-right-content').children();
+            //            let count = 0;
+            //            let interval = setInterval(function () {
+            //                if (count >= textContent.length)
+            //                    clearInterval(interval);
+
+            //                let text = textContent[count];
+            //                $(text).addClass('animated');
+            //                ++count;
+            //            }, 800);
+            //        });
+            //    });
             //}, 3000);
+
+            let logoDotContainer = $('logo-dot');
+            logoDotContainer.hide();
+            logoDotContainer.initializeLogoDotEffect();
+            initLogo();
+            logoDotContainer.show().toggleClass('animated');
+            setTimeout(function () {
+                setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
+            }, 1000);
+
+            $('.content-right').addClass('animated');
+            $('.title').animate({ left: 0 }, 1000);
+            initContentMenu();
+            $('.menu-item').animate({ left: 0 }, 1000);
+            setTimeout(function () { addHeader(1000); $('.menu-item').first().click(); }, 1000);
         });
     </script>
     <style>
         :root {
             --menu-main-color: var(--white);
             --menu-second-color: var(--white);
-            --logo-display-delay: 4s;
+            --logo-display-delay: 0s;
+            --logo-display-duration: 1s;
         }
 
         h1 {
@@ -89,61 +92,61 @@
                 grid-column-gap: 2vw;
             }
 
-            .content-menu-display > * > i{
-                align-self: center;
-                font-size: 2vw;
-            }
+                .content-menu-display > * > i {
+                    align-self: center;
+                    font-size: 2vw;
+                }
 
 
         div.content-left {
             grid-template-rows: 10vw 1fr;
         }
 
-        .content-right-content {
-            justify-items: center;
-            align-items: start;
+        .menu-item {
+            left: -100%;
+            position: relative;
+        }
+
+        .info {
+            display: flex;
+            align-items: end;
         }
     </style>
 </head>
 <body>
     <logo-dot></logo-dot>
-
-    <logo class="animated">
-    </logo>
-    <section class="craft-it back-logo-dot">
+    <logo class="animated"></logo>
+    <section class="craft-it">
         <div class="container-two-side">
             <div class="content-left">
                 <h1 class="title">GET IN TOUCH</h1>
                 <div class="content-menu">
-                    <p class="menu-item" data-display="one"></p>
+                    <p class="menu-item" data-display="one">Contact us</p>
                 </div>
             </div>
             <div class="content-right back-red">
                 <div class="content-right-content">
                     <div class="content-menu-display" data-display="one">
-                        <div>
+                        <div class="info">
                             <i class="fa fa-map-marker display-icon" aria-hidden="true"></i>
-                            <label class="display-text">Silversquare BAILLI</br>Avenue Louise 231</br>1050 Brussels - Belgium</label>
+                            <a class="display-text" href="geo:50.825654978502364,4.365243356136159" target="_blank">
+                                CRAFT-IT</br>Avenue Louise 231</br>1050 Brussels</br>Belgium
+                            </a>
                         </div>
-                        <div>
+                        <div class="info">
                             <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
                             <a class="display-text" href="intouch@craft-it.io">intouch@craft-it.io</a>
                         </div>
-                        <div>
+                        <div class="info">
                             <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
-                            <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/">Craft-IT</a>
+                            <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/" target="_blank">
+                                Craft-IT
+                            </a>
                         </div>
-                        <div id="map" style="position: relative;overflow: hidden;height: 20vw;width: 35vw;"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/* release*/
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyjnB9WyheAawXSXEBKcdRFpp4EybBzmk&callback=initMap&v=weekly"
-            defer></script>-->
-    <!--/* test */-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoeaHadBP9LKWtpICAuhbq_k1s43oSej8&callback=initMap&v=weekly"
-            defer></script>
 </body>
 </html>
