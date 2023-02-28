@@ -10,7 +10,7 @@ $(function() {
     setTimeout(function () {
         logoContainer.show().addClass('animated');
         setTimeout(function () {
-            initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
+            initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], { delay: 40, withAnimation: true, contentDirection: 'bottom' }, function () {
                 addHeader();
                 let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
                     .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
@@ -76,7 +76,7 @@ $(function() {
                     return Math.max(-1, Math.min(1, value));
                 }
 
-            }, 40, true);
+            });
         }, 2000);
     }, 2000);
 });

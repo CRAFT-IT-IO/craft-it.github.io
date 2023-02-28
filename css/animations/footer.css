@@ -5,11 +5,11 @@
     width: 100%;
     z-index: 999;
     background: var(--red);
+    overflow: hidden;
 }
 .animated.craft-footer {
     bottom: 0;
     transition: bottom ease 2s;
-    overflow: hidden;
 }
 
 .footer-container {

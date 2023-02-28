@@ -80,7 +80,7 @@ function redirect(page, backcolor) {
     });
 }
 
-function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
+function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
     contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
@@ -91,7 +91,7 @@ function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
         return;
 
     menuItems.show();
-    delay = delay == null ? 80 : delay;
+
 
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
@@ -103,7 +103,7 @@ function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
         let position = menuItem.position();
 
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () { });
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
 
         let menuItemsContent = contentDisplay;
@@ -111,22 +111,27 @@ function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
             menuItemsContent = menuItemsContent.filter(':not(:first)');
         }
 
-        let itemToDisplay = menuItemsContent.hide().css('right', '-150%')
-            .filter('[data-display="' + menuItem.data('display') + '"]').show();
+        let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
+        let itemToDisplay = menuItemsContent.hide();
+        contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
+        itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
 
-        itemToDisplay.animate({ right : 0 }, 800);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 800);
     });
 
-    if (withAnimation)
-        initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay);
+    if (params?.withAnimation)
+        initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params);
 }
 
-function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay){
+function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params) {
+    let time = 200;
+    let delay = params?.delay == null ? 80 : params.delay;
+
     for (var index = 0; index < menuItems.length; index++) {
         let menuItem = $(menuItems[index]);
         if (index == 1)
             setTimeout(function () {
-                menuItems[0].click();
+                menuItems.first().trigger('click', { contentDirection: params.contentDirection });
             }, time);
 
         let textParts = menuItemTexts[index].split('\n');
@@ -155,7 +160,7 @@ function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay)
 
     setTimeout(function () {
         if (menuItems.length == 1)
-            menuItems[0].click();
+            menuItems.first().trigger('click', { contentDirection: params.contentDirection });
     }, time);
 }
 
