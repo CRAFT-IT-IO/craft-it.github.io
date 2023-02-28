@@ -29,9 +29,10 @@
 
             $('.content-right').addClass('animated');
             $('.title').animate({ left: 0 }, 1000);
+            $('.sub-title').animate({ left: 0 }, 1000);
             initContentMenu();
             $('.menu-item').animate({ left: 0 }, 1000);
-            setTimeout(function () { addHeader(1000); $('.menu-item').first().click(); }, 1000);
+            setTimeout(function () { addHeader(1000); $('.menu-item').first().trigger('click', { isStarting: true }); }, 1000);
         });
     </script>
     <style>
@@ -75,10 +76,8 @@
                     <h3 class="sub-title">Our grasp of the trade allows us to assert that...</h3>
                 </div>
                 <div class="content-menu">
-                    <p class="menu-item" data-display="one">We shall not only craft working software,<br /> we shall devise well-crafted software</p>
-                    <p class="menu-item" data-display="one">We shall not simply respond to change,<br />we shall recognise its merit</p>
-                    <p class="menu-item" data-display="one">We shall not mind individuals and synergy,<br />we shall nurture a brotherhood of fellow crafters</p>
-                    <p class="menu-item" data-display="one">We shall not be satisfied with customer collaboration,<br />we shall forge rich partnerships</p>
+                    <p class="menu-item" data-display="one">Item A</p>
+                    <p class="menu-item" data-display="two">Item B</p>
                 </div>
             </div>
             <div class="content-right">
@@ -108,6 +107,20 @@
                             As zealous IT Crafters, we shall set a higher standard by practicing
                             our art and sharing our science with others. We will unremittingly
                             disseminate our workmanship.
+                        </p>
+                    </div>
+                    <div class="content-menu-display" data-display="two">
+                        <p>
+                            We shall not only craft working software, we shall devise well-crafted software
+                        </p>
+                        <p>
+                            We shall not simply respond to change, we shall recognise its merit
+                        </p>
+                        <p>
+                            We shall not mind individuals and synergy, we shall nurture a brotherhood of fellow crafters
+                        </p>
+                        <p>
+                            We shall not be satisfied with customer collaboration, we shall forge rich partnerships
                         </p>
                     </div>
                 </div>

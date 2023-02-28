@@ -4,93 +4,17 @@
     height: 40%;
     width: 100%;
     z-index: 999;
-    /*background: linear-gradient(to bottom, #E33C3C, #DF2828, var(--red));*/
     background: var(--red);
-    /* grid properties*/
-    /*display: grid;
-    grid-template-columns: 50px 1fr 50px;
-    grid-template-rows: 0.2fr 0.5fr 0.3fr;
-    grid-template-areas: ". . ." ". footercontent ." ". . ."*/
 }
 .animated.craft-footer {
     bottom: 0;
     transition: bottom ease 2s;
+    overflow: hidden;
 }
 
-
-
-
-/*.footer-content {
-    grid-area: footercontent;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "dreamimg draftimg craftimg"
+.footer-container {
+    display: block;
+    position: absolute;
+    height: auto;
+    width: 100%;
 }
-
-    .footer-content img {
-        width: 90%;
-        height: 60px;
-    }
-
-    .footer-content p {
-        color: var(--white);
-        overflow-wrap: break-word;
-        width: 100%;
-        padding: 10px 10% 5px 0;
-    }*/
-
-
-
-/*.craft-footer .dream {
-    grid-area: dreamimg
-}
-
-.craft-footer .draft {
-    grid-area: draftimg
-}
-
-.craft-footer .craft {
-    grid-area: craftimg
-}
-
-.footer-content > div > * {
-    position: relative;
-    bottom: -200%;
-}
-
-.animated.craft-footer .dream img {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 1s;
-}
-
-.animated.craft-footer .dream .text {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 1s;
-}
-
-.animated.craft-footer .draft img {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 2s;
-}
-
-.animated.craft-footer .draft .text {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 3s;
-}
-
-.animated.craft-footer .craft img {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 4s;
-}
-
-.animated.craft-footer .craft .text {
-    bottom: 0;
-    transition: bottom ease 2s;
-    transition-delay: 5s;
-}*/

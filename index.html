@@ -13,88 +13,14 @@
     <script src="js/animations/logo.js"></script>
     <script src="js/animations/logo_dot.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/index/index.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>Craft IT</title>
 
     <script>
         $(document).ready(function () {
-            let logoDotContainer = $('logo-dot');
-            logoDotContainer.hide();
-            logoDotContainer.initializeLogoDotEffect();
-
-            let logoContainer = $('<div></div>', { class: 'p logo-effect-container', style: 'display: none' });
-            logoDotContainer.find('.content-image').append(logoContainer);
-            logoContainer.initializeLogoEffect();
-            logoDotContainer.show().toggleClass('animated');
-            setTimeout(function () {
-                logoContainer.show().addClass('animated');
-                setTimeout(function () {
-                    initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], function () {
-                        addHeader();
-                        let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
-                            .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
-
-                        $('.craft-footer ').prepend(nextPageButton);
-
-                        var isSCrolling = false;
-                        let arrow = $('.arrow-down');
-                        let footerAnimations = $('.craft-footer .footer-item');
-                        let animationCount = 0;
-                        for (var i = 0; i < footerAnimations.length; i++) {
-                            let animationIndex = $(footerAnimations[i]).attr('animation-order');
-                            if (animationIndex > animationCount)
-                                animationCount = animationIndex;
-                        }
-
-                        let currentAnimationIndex = 0;
-                        arrow.on('click', function () {
-                            isSCrolling = true;
-                            ++currentAnimationIndex;
-                            if (currentAnimationIndex > animationCount) {
-                                isSCrolling = false;
-                                return;
-                            }
-
-                            footerAnimations.filter('.animated').addClass('to-hide');
-
-                            let animation = footerAnimations.filter('[animation-order="' + currentAnimationIndex + '"]');
-                            animation.addClass('animated');
-
-                            if (currentAnimationIndex == animationCount)
-                                arrow.hide();
-
-                            setTimeout(function () { isSCrolling = false; }, 1500);
-                        });
-
-                        arrow.click();
-                        $(window).on('wheel', function (e) {
-
-                            if (isSCrolling)
-                                return;
-
-                            isSCrolling = true;
-                            let delta = getDelta(e);
-
-                            if (delta < 0) {
-                                arrow.click();
-                            }
-                        });
-
-                        function getDelta(e) {
-                            let value;
-                            if (e.originalEvent) {
-                                value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
-                            } else {
-                                value = e.wheelDelta || -e.deltaY || -e.detail;
-                            }
-
-                            return Math.max(-1, Math.min(1, value));
-                        }
-
-                    }, 20, true);
-                }, 2000);
-            }, 2000);
+            
         });
     </script>
     <style>
@@ -162,58 +88,34 @@
         }
 
         .footer-item {
-            position: absolute;
-            top: 100%;
+            position: relative;
+            margin-top: 20%;
         }
 
-            .footer-item.animated.to-hide {
-                animation: toHide 2s ease forwards;
-            }
-
-        @keyframes toHide {
-
-            from {
-                right: 10%;
-                top: 20%;
-            }
-
-            to {
-                right: 10%;
-                top: -50%;
-                opacity: 0;
-            }
-        }
-
-        .footer-item.animated.dream {
-            left: 5%;
-            top: 10%;
-            transition: top ease 2s;
-        }
-
-        .dream, .draft, .craft {
+       .dream, .draft, .craft {
             width: 25%;
+            display: inline-block;
+        }
+
+        .dream{
+            margin-left: 7.5%;
+        }
+
+        .draft, .craft{
+            margin-left: 5%;
         }
 
         :is(.dream, .draft, .craft) img {
             width: 100%;
         }
 
-        .footer-item.animated.draft, .footer-item.animated.button {
-            left: 37%;
-            top: 10%;
-            transition: top ease 2s;
-        }
-
-        .footer-item.animated.craft {
-            right: 5%;
-            top: 10%;
-            transition: top ease 2s;
-        }
-
         .text {
             padding-top: 2vw;
         }
 
+
+
+        
     </style>
 </head>
 <body>
@@ -228,47 +130,49 @@
         </div>
 
         <div class="craft-footer content-menu-display" data-display="footer">
-            <div class="footer-item" animation-order="1" style="font-size: 2vw; right: 10%; top: 20%;">
-                <p>
-                    We believe it's up to the IT
-                </p>
-                <p>to adapt to your needs. Not you.</p>
-            </div>
-            <div class="footer-item dream" animation-order="2" style="">
-                <div class="">
-                    <img src="images/dream.png" />
-                    <p class="text">
-                        Aximus, merum diis. Mae conderitil hortero
-                        rurortuidi, con sil trissus hactum sendi
+            <div class="footer-container">
+                <div class="footer-item" animation-index="0" style="font-size: 2vw; left: 60%; margin-top: 10%;">
+                    <p>
+                        We believe it's up to the IT
                     </p>
+                    <p>to adapt to your needs. Not you.</p>
                 </div>
-            </div>
-            <div class="footer-item draft" animation-order="2" style="">
-                <div class="">
-                    <img src="images/draft.png" />
-                    <p class="text">
-                        Nihilii sendam, Castrum et videmunu
-                        inteatqua et Catus, que conericivir imis
-                    </p>
+                <div class="footer-item dream" animation-index="1" style="">
+                    <div class="">
+                        <img src="images/dream.png" />
+                        <p class="text">
+                            Aximus, merum diis. Mae conderitil hortero
+                            rurortuidi, con sil trissus hactum sendi
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-item craft" animation-order="2" style="">
-                <div class="">
-                    <img src="images/craft.png" />
-                    <p class="text">
-                        Ad coniquam ponihin sulius re in igitin
-                        redetil inpres! Viverni prium ut re inpred
-                    </p>
+                <div class="footer-item draft" animation-index="1" style="">
+                    <div class="">
+                        <img src="images/draft.png" />
+                        <p class="text">
+                            Nihilii sendam, Castrum et videmunu
+                            inteatqua et Catus, que conericivir imis
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-item button" animation-order="3" style="">
-                <div class="" style=" display: flex; flex-direction: column; align-items: center;">
-                    <h1 class="text" style="padding-bottom: 2vw;">
-                        Discover what we do
-                    </h1>
-                    <button class="find-out" onclick="redirect('what-we-do', 'var(--red)')">
-                        <span class="arrow">More</span>
-                    </button>
+                <div class="footer-item craft" animation-index="1" style="">
+                    <div class="">
+                        <img src="images/craft.png" />
+                        <p class="text">
+                            Ad coniquam ponihin sulius re in igitin
+                            redetil inpres! Viverni prium ut re inpred
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-item button" animation-index="2" style="">
+                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                        <h1 class="text" style="padding-bottom: 2vw;">
+                            Discover what we do
+                        </h1>
+                        <button class="find-out" onclick="redirect('what-we-do', 'var(--red)')">
+                            <span class="arrow">More</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

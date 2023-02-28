@@ -19,35 +19,6 @@
 
     <script>
         $(document).ready(function () {
-            //let logoDotContainer = $('logo-dot');
-            //logoDotContainer.hide();
-            //logoDotContainer.initializeLogoDotEffect();
-            //initLogo();
-            //setTimeout(function () {
-            //    logoDotContainer.show().toggleClass('animated');
-            //    setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
-            //}, 1000);
-
-            //setTimeout(function () {
-            //    $('.title').animate({ left: 0 }, 1000, function () {
-            //        var txts = ['Contact us'];
-            //        initContentMenu(txts, function () {
-            //            $('.content-right').addClass('animated');
-            //            addHeader(1000);
-            //            let textContent = $('.content-right-content').children();
-            //            let count = 0;
-            //            let interval = setInterval(function () {
-            //                if (count >= textContent.length)
-            //                    clearInterval(interval);
-
-            //                let text = textContent[count];
-            //                $(text).addClass('animated');
-            //                ++count;
-            //            }, 800);
-            //        });
-            //    });
-            //}, 3000);
-
             let logoDotContainer = $('logo-dot');
             logoDotContainer.hide();
             logoDotContainer.initializeLogoDotEffect();
@@ -61,7 +32,7 @@
             $('.title').animate({ left: 0 }, 1000);
             initContentMenu();
             $('.menu-item').animate({ left: 0 }, 1000);
-            setTimeout(function () { addHeader(1000); $('.menu-item').first().click(); }, 1000);
+            setTimeout(function () { addHeader(1000); $('.menu-item').first().trigger('click', { isStarting: true }); }, 1000);
         });
     </script>
     <style>
@@ -83,16 +54,29 @@
 
         .content-menu-display {
             display: grid;
-            grid-auto-flow: row;
+            place-self: stretch;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.9fr 0.1fr;
+            place-items: center;
         }
 
-            .content-menu-display > * {
-                display: grid;
-                grid-template-columns: 2vw 1fr;
-                grid-column-gap: 2vw;
-            }
+        .content-address {
+            grid-area: contentaddress;
+            font-size: 30px;
+            position: relative;
+            left: 20%;
+        }
 
-                .content-menu-display > * > i {
+        .content-icons {
+            display: flex;
+            column-gap: 50px;
+        }
+
+        .content-icons > i{
+            font-size: 35px;
+        }
+
+                .content-menu-display > .info > i {
                     align-self: center;
                     font-size: 2vw;
                 }
@@ -109,8 +93,12 @@
 
         .info {
             display: flex;
-            align-items: end;
+            flex-direction: column;
         }
+
+            .info > *:not(img) {
+            
+            }
     </style>
 </head>
 <body>
@@ -128,21 +116,26 @@
                 <div class="content-right-content">
                     <div class="content-menu-display" data-display="one">
                         <div class="info">
-                            <i class="fa fa-map-marker display-icon" aria-hidden="true"></i>
-                            <a class="display-text" href="geo:50.825654978502364,4.365243356136159" target="_blank">
-                                CRAFT-IT</br>Avenue Louise 231</br>1050 Brussels</br>Belgium
+                            <img alt="logo craft-it" src="images/logos/CRAFT-IT_Logo_white_negatif.png" />
+                            <a class="content-address" href="geo:50.825654978502364,4.365243356136159">
+                                Avenue Louise 231</br>1050 Brussels</br>Belgium
                             </a>
+
                         </div>
-                        <div class="info">
-                            <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
-                            <a class="display-text" href="intouch@craft-it.io">intouch@craft-it.io</a>
-                        </div>
-                        <div class="info">
+                        <div class="content-icons">
                             <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
-                            <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/" target="_blank">
-                                Craft-IT
-                            </a>
+                            <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
                         </div>
+                        <!--<div class="info">
+        <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
+        <a class="display-text" href="intouch@craft-it.io">intouch@craft-it.io</a>
+    </div>
+    <div class="info">
+        <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
+        <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/" target="_blank">
+            Craft-IT
+        </a>
+    </div>-->
                     </div>
                 </div>
             </div>

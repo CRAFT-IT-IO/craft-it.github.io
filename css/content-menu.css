@@ -5,6 +5,32 @@
     position: relative;
 }
 
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+    div.example {
+        font-size: 80px;
+    }
+    .menu-item {
+        font-size: 2vw;
+        padding-left: 1vw;
+        cursor: pointer;
+    }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    div.example {
+        font-size: 30px;
+    }
+    .menu-item {
+        font-size: 2vw;
+        padding-left: 1vw;
+        cursor: pointer;
+    }
+}
+
+
 .menu-item {
     font-size: 2vw;
     padding-left: 1vw;
@@ -49,28 +75,26 @@
 }
 
 /* RIGHT */
-.content-right .content-menu-display {
+.content-right .content-menu-display:not(:first-child) {
     position: relative;
-    right: -100%;
+    right: -150%;
 }
 
-.content-right .animated.content-menu-display {
+.content-right .content-menu-display:first-child {
+    position: relative;
     right: 0;
-    transition: right ease-out 1.5s;
 }
 
-.content-right .content-menu-display > * {
-    position: relative;
-    left: 150%;
-    color: var(--white);
-    margin-bottom: 2vw;
-    font-size: 1vw
+@keyframes display{
+    from {
+        right: -150%;
+    }
+
+    to {
+    right: 0;
+    }
 }
 
-.content-right .animated.content-menu-display > * {
-    left: 0;
-    transition: left ease-out 1.5s;
-}
 
 /* FOOTER */
 .content-bottom .content-menu-display {

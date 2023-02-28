@@ -82,44 +82,43 @@ function redirect(page, backcolor) {
 
 function initContentMenu(menuItemTexts, callback, delay, withAnimation) {
     let contentDisplay = $('.content-menu-display');
-    contentDisplay.hide();
+    contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
     contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
+
+    if (menuItems.length == 0)
+        return;
+
     menuItems.show();
-    time = 200;
     delay = delay == null ? 80 : delay;
 
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
-    menuItems.on('click', function () {
+    menuItems.on('click', function (e, args) {
         if ($(this).is('.selected'))
             return;
 
         let menuItem = $(this);
         let position = menuItem.position();
-        menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 100, function () {
-        });
 
+        menuItems.removeClass('selected');
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () { });
         menuItem.addClass('selected');
-        let toDisplay = menuItem.data('display');
-        contentDisplay.hide().removeClass('animated')
-            .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
+
+        let menuItemsContent = contentDisplay;
+        if (args && args.isStarting) {
+            menuItemsContent = menuItemsContent.filter(':not(:first)');
+        }
+
+        let itemToDisplay = menuItemsContent.hide().css('right', '-150%')
+            .filter('[data-display="' + menuItem.data('display') + '"]').show();
+
+        itemToDisplay.animate({ right : 0 }, 800);
     });
 
     if (withAnimation)
         initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay);
-    //else {
-    //    for (var i = 0; i < menuItemTexts.length; i++) {
-    //        let text = menuItemTexts[i];
-    //        $(menuItems[i]).html(text.replace('\n', '</br>'));
-    //    }
-
-    //    menuItems[0].click();
-    //    if (callback)
-    //        callback();
-    //}
 }
 
 function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, delay){
