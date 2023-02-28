@@ -37,16 +37,6 @@
     display: grid;
 }
 
-/*    .content-right-content > * {
-        position: relative;
-        left: 150%;
-    }
-
-    .content-right-content > .animated {
-        left: 0;
-        transition: left ease-out 1.5s;
-    }*/
-
 div.container-two-side {
     padding: 0;
     height: 100%;
