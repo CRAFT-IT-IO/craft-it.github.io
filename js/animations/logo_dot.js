@@ -22,7 +22,12 @@
 $.fn.initializeLogoDotEffect = function () {
 
     let contentImage = $('<div></div>', { class: 'content-image' });
-    contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/resources/big_dot.jpeg', alt: 'Craft-It Dot Logo' }));
+    let displayModel = $(this).data('display-mode');
+    if (displayModel == 'right') 
+        contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/resources/big_dot_transp.png', alt: 'Craft-It Dot Logo' }));
+    else
+        contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/resources/big_dot.jpeg', alt: 'Craft-It Dot Logo' }));
+
 
     let parts = generateAlphabet(14);
 

@@ -27,7 +27,7 @@
         .btn-next-page {
             transform: matrix(1, 0, 0, 1, 0, 0);
             position: fixed;
-            bottom: 3%;
+            bottom: 2%;
             left: 50%;
             z-index: 999999;
         }
@@ -88,20 +88,8 @@
 
         .footer-item {
             position: relative;
-            margin-top: 20%;
-        }
-
-       .dream, .draft, .craft {
-            width: 25%;
-            display: inline-block;
-        }
-
-        .dream{
-            margin-left: 7.5%;
-        }
-
-        .draft, .craft{
-            margin-left: 5%;
+            height: 100%;
+            padding-top: 4%; /*40% / 10 = 4%  -> 40 = height of footer */
         }
 
         :is(.dream, .draft, .craft) img {
@@ -112,10 +100,18 @@
             padding-top: 2vw;
         }
 
+        .dream, .draft, .craft {
+            width: 25%;
+            display: inline-block;
+        }
 
+        .dream {
+            margin-left: 7.5%;
+        }
 
-
-        
+        .draft, .craft {
+            margin-left: 5%;
+        }
     </style>
 </head>
 <body>
@@ -131,7 +127,7 @@
 
         <div class="craft-footer content-menu-display" data-display="footer">
             <div class="footer-container">
-                <div class="footer-item" animation-index="0" style="font-size: 2vw; left: 60%; margin-top: 10%;">
+                <div class="footer-item" animation-index="0" style="font-size: 2vw; left: 60%;">
                     <p>
                         We believe it's up to the IT
                     </p>

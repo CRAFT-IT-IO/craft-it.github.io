@@ -30,7 +30,7 @@ $(function() {
                 let currentAnimationIndex = 0;
                 arrow.on('click', function () {
                     isSCrolling = true;
-                    footerAnimation( -1);
+                    footerAnimation(-1);
                 });
 
                 $(window).on('wheel', function (e) {
@@ -59,7 +59,7 @@ $(function() {
                         currentAnimationIndex = animationCount;
 
                     let container = $('.footer-container');
-                    container.animate({ top: -(currentAnimationIndex * 100) + '%' }, 1500, function () {
+                    container.animate({ top: -((currentAnimationIndex * 100)) + '%' }, 1500, function () {
                         currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
                         isSCrolling = false;
                     });
@@ -75,7 +75,6 @@ $(function() {
 
                     return Math.max(-1, Math.min(1, value));
                 }
-
             });
         }, 2000);
     }, 2000);

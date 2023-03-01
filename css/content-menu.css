@@ -63,21 +63,32 @@
     position: relative;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
     .content-menu-display > * {
-        font-size: 1.5vw;
+        font-size: 12px;
     }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 900px) {
+    .content-menu-display > * {
+        font-size: 15px;
+    }
+}
+
+/*@media screen and (min-width: 900px) {
+    .content-menu-display > * {
+        font-size: 12px;
+    }
+}*/
+/*@media screen and (min-width: 900px) {
     .content-menu-display > * {
         font-size: 1vw;
     }
-}
+}*/
 
 @media screen and (min-width: 1500px) {
     .content-menu-display > * {
-        font-size: 15px;
+        font-size: 20px;
     }
 }
 

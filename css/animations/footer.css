@@ -14,7 +14,8 @@
 
 .footer-container {
     display: block;
-    position: absolute;
-    height: auto;
+    position: relative;
+    /*top: 20%;*/
+    height: 100%;
     width: 100%;
 }

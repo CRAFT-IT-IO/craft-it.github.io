@@ -169,6 +169,7 @@ function initLogo(path) {
     if (logoContainer.length == 0)
         return;
 
+    logoContainer.empty();
     let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo2.png' });
     logo.on('click', function () { redirect('index'); });
     logoContainer.append(logo);

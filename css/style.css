@@ -2,6 +2,7 @@
 @import "menu.css";
 @import "content.css";
 @import "content-menu.css";
+@import "animations/logo_dot.css";
 
 @media screen and (min-width: 1500px) {
     h1.title {
@@ -38,7 +39,6 @@ logo-dot {
         background-color: transparent;
         z-index: 99;
         width: 20%;
-        height: 10%;
         cursor: pointer;
     }
 

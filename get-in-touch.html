@@ -13,26 +13,11 @@
     <script src="js/animations/logo.js"></script>
     <script src="js/animations/logo_dot.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/common.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Craft IT</title>
-
     <script>
-        $(document).ready(function () {
-            let logoDotContainer = $('logo-dot');
-            logoDotContainer.hide();
-            logoDotContainer.initializeLogoDotEffect();
-            initLogo();
-            logoDotContainer.show().toggleClass('animated');
-            setTimeout(function () {
-                setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
-            }, 1000);
 
-            $('.content-right').addClass('animated');
-            $('.title').animate({ left: 0 }, 1000);
-            initContentMenu();
-            $('.menu-item').animate({ left: 0 }, 1000);
-            setTimeout(function () { addHeader(1000); $('.menu-item').first().trigger('click', { isStarting: true }); }, 1000);
-        });
     </script>
     <style>
         :root {
@@ -108,6 +93,7 @@
                 </div>
             </div>
             <div class="content-right back-red">
+                <logo-dot data-display-mode="right"></logo-dot>
                 <div class="content-right-content">
                     <div class="content-menu-display" data-display="one">
                         <div class="info">

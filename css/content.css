@@ -42,10 +42,10 @@
     background-color: var(--content-right-back-color, var(--red));
     position: relative;
     right: -100%;
-    opacity: 0.8;
     display: grid;
     grid-area: contentright;
     grid-template-areas: ". . ." ". contentrightcontent ." ". . .";
+    z-index: 1;
 }
 
 .animated.content-right {
@@ -73,7 +73,7 @@ div.content-left {
     grid-area: contentleft;
     justify-content: center;
     align-self: center;
-    grid-template-rows: 6vw 1fr;
+    grid-template-rows: auto 1fr;
     grid-template-columns: 0.8fr;
     position: relative;
     display: grid;

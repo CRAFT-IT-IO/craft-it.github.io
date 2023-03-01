@@ -2,6 +2,13 @@
 	--animation-duration-first: 0.3s;
 }
 
+logo-dot[data-display-mode="right"] {
+	position: fixed; 
+	left : 0;
+	opacity: 0.2;
+	z-index: -10;
+}
+
 .back-logo-dot {
 	background-image: url("../../images/resources/big_dot.jpeg");
 	background-repeat: no-repeat;
@@ -359,8 +366,8 @@ logo-dot.animated .n {
 	clip-path: circle(50% at 50% 50%);
 	left: 28%;
 	width: 15%;
-	height: 21%;
-	top: 22%;
+	height: 30%;
+	top: 18%;
 	background-color: white;
 	z-index: 9;
 }
