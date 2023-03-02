@@ -40,7 +40,7 @@
 
 .content-right {
     background-color: var(--content-right-back-color, var(--red));
-    position: relative;
+    /*position: relative;*/
     right: -100%;
     display: grid;
     grid-area: contentright;
@@ -79,4 +79,5 @@ div.content-left {
     display: grid;
     align-content: center;
     grid-row-gap: 20px;
+    z-index: 10;
 }

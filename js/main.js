@@ -16,7 +16,6 @@ function hamburgerMenuClick() {
 
 function addHeader(delay) {
     let header = $('<header></header>');
-    let headerContent = $('<div></div>', { class: 'header-content' });
 
     let button = $('<button></button>', { type: 'button', class: 'hamburger is-closed', 'data-toggle': 'offcanvas' })
         .append($('<span></span>', { class: 'hamb-top' }))
@@ -26,7 +25,7 @@ function addHeader(delay) {
     let sideBar = $('<ul></ul>', { class: 'nav sidebar-nav' })
         .append('<li><a page="what-we-do" back-color="var(--red)">WHAT WE DO</a></li>')
         .append('<li><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></li>')
-        .append('<li><a page="modus-cogitandi" back-color="var(--aqua)">MODUS COGITANDI</a></li>')
+        .append('<li><a page="our-approaches" back-color="var(--aqua)">OUR APPROACHES</a></li>')
         .append('<li><a page="get-in-touch" back-color="var(--red)">GET IN TOUCH</a></li>');
 
     sideBar.find('a').on('click', function () {
@@ -170,7 +169,7 @@ function initLogo(path) {
         return;
 
     logoContainer.empty();
-    let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo2.png' });
+    let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
     logoContainer.append(logo);
 }

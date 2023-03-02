@@ -8,7 +8,7 @@ $(document).ready(function () {
     initLogo();
     logoDotContainer.show().toggleClass('animated');
     setTimeout(function () {
-        setInterval(function () { logoDotContainer.show().toggleClass('animated'); }, 3000);
+        setInterval(function () { logoDotContainer.toggleClass('animated'); }, 3000);
     }, 1000);
 
     $('.content-right').addClass('animated');

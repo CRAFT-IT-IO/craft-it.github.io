@@ -16,20 +16,6 @@
     }
 }
 
-logo-dot {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    place-content: center;
-}
-
-    logo-dot .content-image {
-        position: relative;
-        display: grid;
-    }
-
     /* logo*/
     logo {
         display: flex;
@@ -146,7 +132,8 @@ section.craft-it {
 
 .logo-effect {
     height: 100%;
-    width: 100%;
+    /*width: 100%;*/
+    width: 80%;
 }
 
 .craft-section {
