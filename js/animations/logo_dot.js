@@ -29,7 +29,7 @@ $.fn.initializeLogoDotEffect = function () {
         contentImage.append($('<div></div>', { class: 'p ' + parts[i] }));
     }
 
-    $(this).append(contentImage);
+    $(this).append($('<div></div>', { class: 'logo-dot-left'})).append(contentImage);
 }
 
 function generateAlphabet(nbLetter) {

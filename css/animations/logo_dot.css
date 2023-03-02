@@ -13,18 +13,27 @@ logo-dot, logo-dot[data-display-mode="right"] {
 	place-content: center;
 }
 
+logo-dot[data-display-mode="right"] .logo-dot-left {
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		left: 0;
+		background: white;
+		display: block;
+	}
+	logo-dot[data-display-mode="right"] .content-image {
+		z-index: -3;
+	}
+
 	logo-dot .content-image {
 		position: relative;
 		display: grid;
-		/*  */
 		place-items: center;
 	}
 
 logo-dot[data-display-mode="right"] {
-	/*position: fixed;*/
 	left: 0;
 	opacity: 0.3;
-	z-index: -10;
 }
 
 .back-logo-dot {
