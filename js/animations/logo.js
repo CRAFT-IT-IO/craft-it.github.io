@@ -12,7 +12,7 @@
 $.fn.initializeLogoEffect = function() {
     let contentImage = $('<div></div>', { class: 'content-image' });
     //contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/logos/craft-it_logo.svg', alt: 'Craft-It Logo' }));
-    contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/logo2.png', alt: 'Craft-It Logo' }));
+    contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg', alt: 'Craft-It Logo' }));
     contentImage.append($('<div></div>', { class: 'p letter_a' }));
     contentImage.append($('<div></div>', { class: 'p cr' }));
     contentImage.append($('<div></div>', { class: 'p ft' }));

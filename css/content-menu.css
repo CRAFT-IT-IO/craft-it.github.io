@@ -5,15 +5,41 @@
     position: relative;
 }
 
+
+@media screen and (max-width: 1300px) {
+    .menu-item {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .menu-item {
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .menu-item {
+        font-size: 1vw;
+    }
+    .menu-item-arrow {
+        height: 2vw;
+        width: 2vw;
+    }
+}
+
 .menu-item {
-    font-size: 2vw;
     padding-left: 1vw;
     cursor: pointer;
 }
 
-.menu-item.selected {
-    font-family: gothamBold !important;
-}
+    .menu-item:hover, .menu-item *:hover {
+        font-family: gothamBold !important;
+    }
+
+    .menu-item.selected, .menu-item.selected * {
+        font-family: gothamBold !important;
+    }
 
 @keyframes blink {
     0%, 100% {
@@ -37,36 +63,62 @@
     position: relative;
 }
 
+@media screen and (max-width: 600px) {
+    .content-menu-display > * {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .content-menu-display > * {
+        font-size: 15px;
+    }
+}
+
+/*@media screen and (min-width: 900px) {
+    .content-menu-display > * {
+        font-size: 12px;
+    }
+}*/
+/*@media screen and (min-width: 900px) {
+    .content-menu-display > * {
+        font-size: 1vw;
+    }
+}*/
+
+@media screen and (min-width: 1500px) {
+    .content-menu-display > * {
+        font-size: 20px;
+    }
+}
+
 .content-menu-display > * {
     position: relative;
     color: var(--white);
-    margin-bottom: 2vw;
-    font-size: 1vw
+    margin-bottom: 1vw;
 }
 
 /* RIGHT */
-.content-right .content-menu-display {
+.content-right .content-menu-display:not(:first-child) {
     position: relative;
-    right: -100%;
+    right: -150%;
 }
 
-.content-right .animated.content-menu-display {
+.content-right .content-menu-display:first-child {
+    position: relative;
     right: 0;
-    transition: right ease-out 1.5s;
 }
 
-.content-right .content-menu-display > * {
-    position: relative;
-    left: 150%;
-    color: var(--white);
-    margin-bottom: 2vw;
-    font-size: 1vw
+@keyframes display{
+    from {
+        right: -150%;
+    }
+
+    to {
+    right: 0;
+    }
 }
 
-.content-right .animated.content-menu-display > * {
-    left: 0;
-    transition: left ease-out 1.5s;
-}
 
 /* FOOTER */
 .content-bottom .content-menu-display {

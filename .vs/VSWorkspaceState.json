@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\css",
-    "\\js"
+    "\\css\\animations",
+    "\\images",
+    "\\js",
+    "\\js\\animations"
   ],
-  "SelectedNode": "\\modus-cogitandi.html",
+  "SelectedNode": "\\css\\style.css",
   "PreviewInSolutionExplorer": false
 }

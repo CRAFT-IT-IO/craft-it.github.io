@@ -16,7 +16,6 @@ function hamburgerMenuClick() {
 
 function addHeader(delay) {
     let header = $('<header></header>');
-    let headerContent = $('<div></div>', { class: 'header-content' });
 
     let button = $('<button></button>', { type: 'button', class: 'hamburger is-closed', 'data-toggle': 'offcanvas' })
         .append($('<span></span>', { class: 'hamb-top' }))
@@ -26,7 +25,7 @@ function addHeader(delay) {
     let sideBar = $('<ul></ul>', { class: 'nav sidebar-nav' })
         .append('<li><a page="what-we-do" back-color="var(--red)">WHAT WE DO</a></li>')
         .append('<li><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></li>')
-        .append('<li><a page="modus-cogitandi" back-color="var(--aqua)">MODUS COGITANDI</a></li>')
+        .append('<li><a page="our-approaches" back-color="var(--aqua)">OUR APPROACHES</a></li>')
         .append('<li><a page="get-in-touch" back-color="var(--red)">GET IN TOUCH</a></li>');
 
     sideBar.find('a').on('click', function () {
@@ -80,37 +79,58 @@ function redirect(page, backcolor) {
     });
 }
 
-function initContentMenu(menuItemTexts, callback, delay) {
+function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
-    contentDisplay.hide();
+    contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
     contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
+
+    if (menuItems.length == 0)
+        return;
+
     menuItems.show();
-    time = 300;
-    delay = delay == null ? 80 : delay;
+
 
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
-    menuItems.on('click', function () {
+    menuItems.on('click', function (e, args) {
+        if ($(this).is('.selected'))
+            return;
+
         let menuItem = $(this);
         let position = menuItem.position();
+
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500, function () {
-            menuItem.addClass('selected');
-            let toDisplay = menuItem.data('display');
-            contentDisplay.hide().removeClass('animated')
-                .filter('[data-display="' + toDisplay + '"]').show().addClass('animated');
-        });
+        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
+        menuItem.addClass('selected');
+
+        let menuItemsContent = contentDisplay;
+        if (args && args.isStarting) {
+            menuItemsContent = menuItemsContent.filter(':not(:first)');
+        }
+
+        let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
+        let itemToDisplay = menuItemsContent.hide();
+        contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
+        itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
+
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 800);
     });
 
-    menuItems.length = menuItemTexts.length;
+    if (params?.withAnimation)
+        initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params);
+}
+
+function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params) {
+    let time = 200;
+    let delay = params?.delay == null ? 80 : params.delay;
 
     for (var index = 0; index < menuItems.length; index++) {
         let menuItem = $(menuItems[index]);
         if (index == 1)
             setTimeout(function () {
-                menuItems[0].click();
+                menuItems.first().trigger('click', { contentDirection: params.contentDirection });
             }, time);
 
         let textParts = menuItemTexts[index].split('\n');
@@ -139,7 +159,7 @@ function initContentMenu(menuItemTexts, callback, delay) {
 
     setTimeout(function () {
         if (menuItems.length == 1)
-            menuItems[0].click();
+            menuItems.first().trigger('click', { contentDirection: params.contentDirection });
     }, time);
 }
 
@@ -148,7 +168,8 @@ function initLogo(path) {
     if (logoContainer.length == 0)
         return;
 
-    let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo2.png' });
+    logoContainer.empty();
+    let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
     logoContainer.append(logo);
 }
