@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/libs/jquery.scrollify.js"></script>
+    <script src="js/animations/logo.js"></script>
+    <script src="js/animations/logo_dot.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Craft IT</title>
+    <script>
+
+    </script>
+    <style>
+        :root {
+            --menu-main-color: var(--white);
+            --menu-second-color: var(--white);
+            --logo-display-delay: 0s;
+            --logo-display-duration: 1s;
+        }
+
+        h1.title {
+            color: var(--red);
+        }
+
+        .content-menu-display > * {
+            font-size: 2vw;
+        }
+
+        .content-menu-display {
+            display: grid;
+            place-self: stretch;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.9fr 0.1fr;
+            place-items: center;
+        }
+
+        .content-address {
+            grid-area: contentaddress;
+            font-size: 1.5vw;
+            align-self: center;
+        }
+
+        .content-icons {
+            display: flex;
+            column-gap: 50px;
+        }
+
+            .content-icons i {
+                font-size: 35px;
+            }
+
+        .content-menu-display > .info > i {
+            align-self: center;
+            font-size: 2vw;
+        }
+
+
+        div.content-left {
+            grid-template-rows: 10vw 1fr;
+        }
+
+        .menu-item {
+            left: -100%;
+            position: relative;
+            font-size: 1.5vw;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            justify-self: center;
+            row-gap: 50px;
+        }
+    </style>
+</head>
+<body>
+    <logo-dot></logo-dot>
+    <logo class="animated"></logo>
+    <section class="craft-it">
+        <div class="container-two-side">
+            <div class="content-left">
+                <h1 class="title">GET IN TOUCH</h1>
+                <div class="content-menu">
+                    <p class="menu-item" data-display="one">Contact us</p>
+                </div>
+            </div>
+            <div class="content-right back-red">
+                <logo-dot data-display-mode="right"></logo-dot>
+                <div class="content-right-content" style="position: relative;">
+                    <div class="content-menu-display" data-display="one" style="position: absolute; top: 45%; width: 100%;">
+                        <div class="info">
+                            <img alt="logo craft-it" class="logo" src="images/logo/CRAFT-IT_Logo_white_negatif.svg"
+                                 style="position: fixed; width: 20%; top: 32%; left: 51%; z-index: 10; opacity:0;"/>
+                            <a class="content-address" href="https://www.google.com/maps/place/Av.+Louise+231,+1050+Bruxelles,+Belgique/@50.8255093,4.3630279,17z/data=!3m1!4b1!4m6!3m5!1s0x47c3c4f2e9d96479:0xf651f053374296a9!8m2!3d50.8255059!4d4.3652219!16s%2Fg%2F11csd73d87"
+                               target="_blank">
+                                Avenue Louise 231</br>1050 Brussels</br>Belgium<br />BE 0787.711.462
+                            </a>
+                        </div>
+                        <div class="content-icons">
+                            <a class="display-text" href="https://www.linkedin.com/company/craft-it-solution/" target="_blank">
+                                <i class="fa fa-linkedin display-icon" aria-hidden="true"></i>
+                            </a>
+                            <a class="display-text" href="mailto:intouch@craft-it.io">
+                                <i class="fa fa-envelope-o display-icon" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

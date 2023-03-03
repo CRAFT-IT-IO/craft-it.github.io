@@ -1,0 +1,13 @@
+section.craft-it, div.craft-it{
+    position: relative;
+    /*padding-top: 100px;*/
+    overflow: hidden;
+    display: flex;
+    place-self: stretch;
+    place-items: stretch;
+}
+
+section.craft-it:not(.ignore), div.craft-it:not(.ignore){
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,83 @@
+
+.content-left .title, .content-left .sub-title {
+    place-self: start;
+    position: relative;
+    left: -200%;
+}
+
+.content-left .title-container {
+    display: grid;
+    place-content: start;
+}
+
+.content-left > :nth-child(1) {
+    padding-left: 1vw;
+}
+
+@media screen and (min-width: 1500px) {
+    .content-right {
+        grid-template-columns: 50px 1fr 50px;
+        grid-template-rows: calc(2vw + 100px) 1fr 50px;
+    }
+
+    div.container-two-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: calc(2vw + 100px) 1fr 50px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .content-right {
+        grid-template-columns: 50px 1fr 50px;
+        grid-template-rows: calc(10vw + 100px) 1fr 50px;
+    }
+
+    div.container-two-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: calc(10vw + 100px) 1fr 50px;
+    }
+}
+
+.content-right {
+    background-color: var(--content-right-back-color, var(--red));
+    position: relative;
+    right: -100%;
+    display: grid;
+    grid-area: contentright;
+    grid-template-areas: ". . ." ". contentrightcontent ." ". . .";
+    z-index: 1;
+}
+
+.animated.content-right {
+    right: 0;
+    transition: right ease-out 1s;
+}
+
+.content-right-content {
+    grid-area: contentrightcontent;
+    place-items: center;
+    display: grid;
+}
+
+div.container-two-side {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-self: stretch;
+    grid-template-areas: ". contentright" "contentleft contentright" ". contentright";
+}
+
+div.content-left {
+    min-height: 50%;
+    grid-area: contentleft;
+    justify-content: center;
+    align-self: center;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 0.8fr;
+    position: relative;
+    display: grid;
+    align-content: center;
+    grid-row-gap: 20px;
+    z-index: 10;
+}

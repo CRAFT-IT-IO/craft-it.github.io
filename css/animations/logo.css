@@ -1,0 +1,155 @@
+/* Logo effect */
+.logo-effect-container {
+    overflow: hidden;
+    display: grid;
+    width: 30%;
+    top: 32%;
+    left: 55%;
+ /*   height: 16%;*/
+}
+
+    .logo-effect-container .content-image {
+        position: relative;
+        display: grid;
+        align-items: center;
+        align-content: center;
+        /*background: white;*/
+    }
+
+    .logo-effect-container .logo-effect {
+        width: 100%;
+        height: 100%
+    }
+
+    .logo-effect-container .p {
+        position: absolute;
+        display: block;
+    }
+
+        /* letters of CRAFT-IT*/
+        .logo-effect-container .p.letter_a {
+            clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 50%, 70% 25%, 70% 0%);
+            left: 33%;
+            width: 21%;
+            top: 15%;
+            height: 55%;
+            background-color: white;
+        }
+
+.animated .letter_a {
+    animation: a 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes a {
+    from {
+        background: white;
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.cr {
+    height: 70%;
+    top: 0;
+    width: 33%;
+    background: white;
+    left: 0;
+}
+
+.animated .cr {
+    animation: cr 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cr {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: -100%;
+        opacity: 0;
+    }
+}
+
+.ft {
+    clip-path: polygon(0% 0%, 0% 65%, 5% 88%, 15% 100%, 100% 100%, 100% 0%);
+    height: 70%;
+    top: 0;
+    width: 35%;
+    left: 50%;
+    background: white;
+}
+
+.animated .ft {
+    animation: ft 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ft {
+    from {
+        left: 50%;
+    }
+
+    to {
+        left: 200%;
+        opacity: 0;
+    }
+}
+
+.it_makes_sense {
+    height: 25%;
+    top: 80%;
+    width: 100%;
+    left: 0;
+    background: white;
+}
+
+.animated .it_makes_sense {
+    animation: it_makes_sense 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes it_makes_sense {
+    from {
+        top: 80%;
+    }
+
+    to {
+        top: 90%;
+        opacity: 0;
+    }
+}
+
+.red_circle {
+    height: 50%;
+    top: 0%;
+    width: 15%;
+    left: 85%;
+    background: white;
+}
+
+.animated .red_circle {
+    animation: red_circle 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes red_circle {
+    from {
+        left: 85%;
+    }
+
+    to {
+        left: 150%;
+        opacity: 0;
+    }
+}
+/* Logo effect */

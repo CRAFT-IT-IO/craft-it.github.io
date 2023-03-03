@@ -1,0 +1,21 @@
+.craft-footer {
+    position: fixed;
+    bottom: -50%;
+    height: 40%;
+    width: 100%;
+    z-index: 999;
+    background: var(--red);
+    overflow: hidden;
+}
+.animated.craft-footer {
+    bottom: 0;
+    transition: bottom ease 2s;
+}
+
+.footer-container {
+    display: block;
+    position: relative;
+    /*top: 20%;*/
+    height: 100%;
+    width: 100%;
+}

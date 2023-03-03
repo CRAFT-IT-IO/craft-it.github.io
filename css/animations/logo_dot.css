@@ -1,0 +1,458 @@
+:root {
+    --animation-duration-first: 0.4s;
+    --animation-duration-other-delay: calc(var(--animation-duration-first) * 2);
+    --animation-duration-other: 0.2s;
+}
+
+logo-dot, logo-dot[data-display-mode="right"], logo-dot[data-display-mode="bottom"] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    place-content: center;
+}
+
+    logo-dot[data-display-mode="right"] .logo-dot-left {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        left: 0;
+        background: white;
+        display: block;
+    }
+
+    logo-dot[data-display-mode="bottom"] .logo-dot-left {
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        top: 0;
+        left: 0;
+        background: white;
+        display: block;
+    }
+
+    logo-dot[data-display-mode="right"] .content-image, logo-dot[data-display-mode="bottom"] .content-image {
+        z-index: -3;
+    }
+
+    logo-dot .content-image {
+        position: relative;
+        display: grid;
+        place-items: center;
+    }
+
+    logo-dot[data-display-mode="right"] {
+        left: 0;
+        opacity: 0;
+        position: fixed;
+    }
+
+    logo-dot[data-display-mode="bottom"] {
+        left: 0;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+    }
+
+        logo-dot[data-display-mode="right"].animated, logo-dot[data-display-mode="bottom"].animated {
+            animation: logoDotRight 1s ease 0s forwards;
+        }
+
+@keyframes logoDotRight {
+    to {
+        opacity: 0.3;
+    }
+}
+
+.back-logo-dot {
+    background-image: url("../../images/resources/big_dot.jpeg");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+logo-dot .p {
+    position: absolute;
+    display: block;
+    opacity: 0;
+}
+
+logo-dot.animated .p {
+    opacity: 1;
+}
+
+logo-dot .a {
+    top: 7%;
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    z-index: 9;
+    left: 0;
+}
+
+logo-dot.animated .a {
+    animation: aa var(--animation-duration-first) linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes aa {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: -100%;
+        opacity: 0;
+    }
+}
+
+.b {
+    top: 23%;
+    width: 29%;
+    left: 0;
+    height: 65%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .b {
+    animation: b var(--animation-duration-first) linear;
+    animation-delay: calc(var(--animation-duration-first) - 0.1s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes b {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .c {
+    left: 24%;
+    width: 3%;
+    height: 30%;
+    top: 50%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .c {
+    animation: c var(--animation-duration-other) linear;
+    animation-delay: calc(var(--animation-duration-other-delay) - 0.2s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes c {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 15%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .d {
+    left: 23%;
+    width: 18%;
+    height: 2%;
+    top: 52%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .d {
+    animation: d 0.2s linear;
+    animation-delay: calc(var(--animation-duration-other-delay) + var(--animation-duration-other) - 0.3s);
+    /*animation-delay: 0.45s;*/
+    animation-fill-mode: forwards;
+}
+
+@keyframes d {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 43%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .e {
+    left: 40%;
+    width: 5%;
+    height: 45%;
+    top: 51%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .e {
+    animation: e 0.2s linear;
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 2) - 0.4s);
+    /*animation-delay: 0.55s;*/
+    animation-fill-mode: forwards;
+}
+
+@keyframes e {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .f {
+    left: 40%;
+    width: 21%;
+    height: 5%;
+    top: 86%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .f {
+    animation: f 0.2s linear;
+    /*animation-delay: 0.65s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 3) - 0.5s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes f {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 62%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .g {
+    left: 59%;
+    width: 2%;
+    height: 45%;
+    top: 51%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .g {
+    animation: g 0.2s linear;
+    /*animation-delay: 0.75s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 4) - 0.6s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes g {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 5%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .h {
+    left: 59%;
+    width: 16%;
+    height: 2%;
+    top: 52%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .h {
+    animation: h 0.2s linear;
+    /*animation-delay: 0.85s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 5) - 0.7s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes h {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 72%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .i {
+    left: 75%;
+    width: 2%;
+    height: 35%;
+    top: 51%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .i {
+    animation: i 0.2s linear;
+    /*animation-delay: 0.95s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 6) - 0.8s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes i {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 85%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .j {
+    left: 76%;
+    top: 44%;
+    width: 14%;
+    height: 37%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .j {
+    animation: j 0.4s linear;
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 7) - 0.9s);
+    /*animation-delay: 1s;*/
+    animation-fill-mode: forwards;
+}
+
+@keyframes j {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+
+logo-dot.animated .k {
+    left: 47%;
+    top: 41%;
+    width: 43%;
+    height: 3%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .k {
+    animation: k 0.2s linear;
+    /*animation-delay: 1.20s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 8) - 1s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes k {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 14%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .l {
+    left: 49%;
+    width: 2%;
+    height: 19%;
+    top: 23%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .l {
+    animation: l 0.2s linear;
+    /*animation-delay: 1.35s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 9) - 1.1s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes l {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        top: 4%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .m {
+    left: 50%;
+    top: 27%;
+    width: 35%;
+    height: 2%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .m {
+    animation: m 0.2s linear;
+    /*animation-delay: 1.50s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 10) - 1.2s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes m {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        left: 80%;
+        opacity: 0;
+    }
+}
+
+logo-dot.animated .n {
+    clip-path: circle(50% at 50% 50%);
+    left: 21%;
+    width: 21%;
+    height: 20%;
+    top: 25%;
+    background-color: white;
+    z-index: 9;
+}
+
+logo-dot.animated .n {
+    animation: n 0.3s linear;
+    /*animation-delay: 1.7s;*/
+    animation-delay: calc(var(--animation-duration-other-delay) + (var(--animation-duration-other) * 10) - 1s);
+    animation-fill-mode: forwards;
+}
+
+@keyframes n {
+    85% {
+        opacity: 1
+    }
+
+    to {
+        clip-path: circle(30% at 50% 50%);
+        opacity: 0;
+    }
+}
