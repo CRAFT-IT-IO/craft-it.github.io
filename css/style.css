@@ -178,3 +178,7 @@ button {
 a, a:focus, a:hover {
     color: var(--white);
 }
+
+.italic{
+    font-style: italic;
+}

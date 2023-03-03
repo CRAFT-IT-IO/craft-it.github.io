@@ -33,13 +33,13 @@
     cursor: pointer;
 }
 
-    .menu-item:hover {
+    .menu-item:hover, .menu-item *:hover {
         font-family: gothamBold !important;
     }
 
-.menu-item.selected {
-    font-family: gothamBold !important;
-}
+    .menu-item.selected, .menu-item.selected * {
+        font-family: gothamBold !important;
+    }
 
 @keyframes blink {
     0%, 100% {
@@ -95,7 +95,7 @@
 .content-menu-display > * {
     position: relative;
     color: var(--white);
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
 }
 
 /* RIGHT */

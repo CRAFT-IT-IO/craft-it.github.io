@@ -45,7 +45,7 @@
 
         .content-address {
             grid-area: contentaddress;
-            font-size: 30px;
+            font-size: 1.5vw;
             align-self: center;
         }
 
@@ -78,7 +78,7 @@
             display: flex;
             flex-direction: column;
             align-self: center;
-            justify-self: start;
+            justify-self: center;
             row-gap: 50px;
         }
     </style>
@@ -96,13 +96,14 @@
             </div>
             <div class="content-right back-red">
                 <logo-dot data-display-mode="right"></logo-dot>
-                <div class="content-right-content">
-                    <div class="content-menu-display" data-display="one">
+                <div class="content-right-content" style="position: relative;">
+                    <div class="content-menu-display" data-display="one" style="position: absolute; top: 45%; width: 100%;">
                         <div class="info">
-                            <img alt="logo craft-it" class="logo" src="images/logo/CRAFT-IT_Logo_white_negatif.svg" />
+                            <img alt="logo craft-it" class="logo" src="images/logo/CRAFT-IT_Logo_white_negatif.svg"
+                                 style="position: fixed; width: 20%; top: 32%; left: 51%; z-index: 10; opacity:0;"/>
                             <a class="content-address" href="https://www.google.com/maps/place/Av.+Louise+231,+1050+Bruxelles,+Belgique/@50.8255093,4.3630279,17z/data=!3m1!4b1!4m6!3m5!1s0x47c3c4f2e9d96479:0xf651f053374296a9!8m2!3d50.8255059!4d4.3652219!16s%2Fg%2F11csd73d87"
                                target="_blank">
-                                Avenue Louise 231</br>1050 Brussels</br>Belgium
+                                Avenue Louise 231</br>1050 Brussels</br>Belgium<br />BE 0787.711.462
                             </a>
                         </div>
                         <div class="content-icons">

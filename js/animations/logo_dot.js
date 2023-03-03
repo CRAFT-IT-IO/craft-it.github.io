@@ -20,13 +20,15 @@
  */
 
 $.fn.initializeLogoDotEffect = function () {
-
     let contentImage = $('<div></div>', { class: 'content-image' });
     contentImage.append($('<img></img>', { class: 'logo-effect', src: 'images/resources/big_dot_grey.svg', alt: 'Craft-It Dot Logo' }));
 
-    let parts = generateAlphabet(14);
-    for (var i = 0; i < parts.length; i++) {
-        contentImage.append($('<div></div>', { class: 'p ' + parts[i] }));
+    let displayModel = $(this).data('display-mode');
+    if (!displayModel) {
+        let parts = generateAlphabet(14);
+        for (var i = 0; i < parts.length; i++) {
+            contentImage.append($('<div></div>', { class: 'p ' + parts[i] }));
+        }
     }
 
     $(this).append($('<div></div>', { class: 'logo-dot-left'})).append(contentImage);

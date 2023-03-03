@@ -63,7 +63,7 @@
 }
 
 .is-open .sidebar-nav li:before {
-    animation: sidebarOpen 1s ease-out 0.5s;
+    animation: sidebarOpen 1s ease-out 0s;
 }
 
 @keyframes sidebarOpen {
@@ -92,12 +92,12 @@
 
 .is-open .sidebar-nav li {
     left: 0;
-    transition: left 1s ease-out 0.3s;
+    transition: left 0.5s ease-out 0.3s;
 }
 
 .is-closed .sidebar-nav li {
     left: 100%;
-    transition: left 1s ease-out 1s;
+    transition: left 1s ease-out 0s;
 }
 
 .sidebar-nav li {

@@ -35,7 +35,11 @@ logo-dot, logo-dot[data-display-mode="right"] {
     logo-dot[data-display-mode="right"] {
         left: 0;
         opacity: 0;
-        animation: logoDotRight 1s ease 1s forwards;
+        position: fixed;
+    }
+
+    logo-dot[data-display-mode="right"].animated {
+        animation: logoDotRight 1s ease 0s forwards;
     }
 
 @keyframes logoDotRight {

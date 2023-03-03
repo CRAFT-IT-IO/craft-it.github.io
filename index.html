@@ -19,7 +19,7 @@
     <title>Craft IT</title>
     <script>
         $(document).ready(function () {
-            
+
         });
     </script>
     <style>
@@ -45,7 +45,7 @@
                 color: white;
                 cursor: pointer;
             }
-            
+
         @keyframes jump {
             from {
                 opacity: 1;
@@ -87,9 +87,7 @@
         }
 
         .footer-item {
-            position: relative;
-            height: 100%;
-            padding-top: 4%; /*40% / 10 = 4%  -> 40 = height of footer */
+            position: absolute;
         }
 
         :is(.dream, .draft, .craft) img {
@@ -102,15 +100,21 @@
 
         .dream, .draft, .craft {
             width: 25%;
-            display: inline-block;
+            top: 110%;
         }
 
         .dream {
-            margin-left: 7.5%;
+            left: 7%;
         }
 
-        .draft, .craft {
-            margin-left: 5%;
+        .draft {
+            left: 40%;
+            width: 21%;
+        }
+
+        .craft {
+            left: 70%;
+            width: 20%;
         }
     </style>
 </head>
@@ -120,47 +124,45 @@
         <div class="container">
             <div class="content">
                 <div class="content-menu">
-                    <p class="menu-item" data-display="footer"></p>
+                    <p class="menu-item" style="font-family: gothamBold !important" data-display="footer"></p>
                 </div>
             </div>
         </div>
 
         <div class="craft-footer content-menu-display" data-display="footer">
             <div class="footer-container">
-                <div class="footer-item" animation-index="0" style="font-size: 2vw; left: 60%;">
-                    <p>
-                        We believe it's up to the IT
-                    </p>
-                    <p>to adapt to your needs. Not you.</p>
-                </div>
-                <div class="footer-item dream" animation-index="1" style="">
-                    <div class="">
-                        <img src="images/dream.png" />
-                        <p class="text">
-                            Aximus, merum diis. Mae conderitil hortero
-                            rurortuidi, con sil trissus hactum sendi
+                <div class="footer-item" animation-index="0" style="font-size: 2vw; width: 100%; top: 15%;">
+                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                        <p>
+                            We believe it's up to the IT to adapt to your needs. Not you.
                         </p>
                     </div>
                 </div>
-                <div class="footer-item draft" animation-index="1" style="">
+                <div class="footer-item dream" animation-index="1">
                     <div class="">
-                        <img src="images/draft.png" />
+                        <img src="images/Dream_IT_Neg.svg"/>
                         <p class="text">
-                            Nihilii sendam, Castrum et videmunu
-                            inteatqua et Catus, que conericivir imis
+                            We observe your vision, assess your requirements and devise a blueprint for your project.
                         </p>
                     </div>
                 </div>
-                <div class="footer-item craft" animation-index="1" style="">
+                <div class="footer-item draft" animation-index="1">
                     <div class="">
-                        <img src="images/craft.png" />
+                        <img src="images/Draft_IT_Neg.svg"/>
                         <p class="text">
-                            Ad coniquam ponihin sulius re in igitin
-                            redetil inpres! Viverni prium ut re inpred
+                            We appropriate your vision and convert it into an elaborate masterplan for the solution we will shape.
                         </p>
                     </div>
                 </div>
-                <div class="footer-item button" animation-index="2" style="">
+                <div class="footer-item craft" animation-index="1">
+                    <div class="">
+                        <img src="images/Craft_IT_Neg.svg"/>
+                        <p class="text">
+                            We use our expertise and experience to develop the masterplan into a premium, seamless software tailored to your needs and transcending expectations.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%">
                     <div class="" style=" display: flex; flex-direction: column; align-items: center;">
                         <h1 class="text" style="padding-bottom: 2vw;">
                             Discover what we do
