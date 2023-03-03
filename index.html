@@ -116,6 +116,10 @@
             left: 70%;
             width: 20%;
         }
+
+        .menu-item-arrow{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -124,23 +128,28 @@
         <div class="container">
             <div class="content">
                 <div class="content-menu">
-                    <p class="menu-item" style="font-family: gothamBold !important" data-display="footer"></p>
+                    <p class="menu-item" style="opacity: 0" data-display="footer"></p>
                 </div>
             </div>
         </div>
 
         <div class="craft-footer content-menu-display" data-display="footer">
+            <logo-dot data-display-mode="bottom" style="z-index:10;"></logo-dot>
             <div class="footer-container">
                 <div class="footer-item" animation-index="0" style="font-size: 2vw; width: 100%; top: 15%;">
                     <div class="" style=" display: flex; flex-direction: column; align-items: center;">
-                        <p>
+                        <p style="font-family: gothamBold !important; color: var(--black); font-size: 2.5vw; align-self: start; padding-left: 2vw;">
+                            > IT Workshop for beskopen solution in risk management.
+                        </p>
+                        <p></p>
+                        <p style="font-family: gothamBold !important; align-self: end; padding-right: 2vw; padding-top: 2vw;">
                             We believe it's up to the IT to adapt to your needs. Not you.
                         </p>
                     </div>
                 </div>
                 <div class="footer-item dream" animation-index="1">
                     <div class="">
-                        <img src="images/Dream_IT_Neg.svg"/>
+                        <img src="images/Dream_IT_Neg.svg" />
                         <p class="text">
                             We observe your vision, assess your requirements and devise a blueprint for your project.
                         </p>
@@ -148,7 +157,7 @@
                 </div>
                 <div class="footer-item draft" animation-index="1">
                     <div class="">
-                        <img src="images/Draft_IT_Neg.svg"/>
+                        <img src="images/Draft_IT_Neg.svg" />
                         <p class="text">
                             We appropriate your vision and convert it into an elaborate masterplan for the solution we will shape.
                         </p>
@@ -156,7 +165,7 @@
                 </div>
                 <div class="footer-item craft" animation-index="1">
                     <div class="">
-                        <img src="images/Craft_IT_Neg.svg"/>
+                        <img src="images/Craft_IT_Neg.svg" />
                         <p class="text">
                             We use our expertise and experience to develop the masterplan into a premium, seamless software tailored to your needs and transcending expectations.
                         </p>
