@@ -115,7 +115,7 @@ function initContentMenu(menuItemTexts, params, callback) {
         contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
         itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
 
-        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 800);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 1200);
     });
 
     if (params?.withAnimation)

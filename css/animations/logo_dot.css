@@ -4,7 +4,7 @@
     --animation-duration-other: 0.2s;
 }
 
-logo-dot, logo-dot[data-display-mode="right"] {
+logo-dot, logo-dot[data-display-mode="right"], logo-dot[data-display-mode="bottom"] {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -22,7 +22,17 @@ logo-dot, logo-dot[data-display-mode="right"] {
         display: block;
     }
 
-    logo-dot[data-display-mode="right"] .content-image {
+    logo-dot[data-display-mode="bottom"] .logo-dot-left {
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        top: 0;
+        left: 0;
+        background: white;
+        display: block;
+    }
+
+    logo-dot[data-display-mode="right"] .content-image, logo-dot[data-display-mode="bottom"] .content-image {
         z-index: -3;
     }
 
@@ -38,9 +48,16 @@ logo-dot, logo-dot[data-display-mode="right"] {
         position: fixed;
     }
 
-    logo-dot[data-display-mode="right"].animated {
-        animation: logoDotRight 1s ease 0s forwards;
+    logo-dot[data-display-mode="bottom"] {
+        left: 0;
+        opacity: 0;
+        position: fixed;
+        top: 0;
     }
+
+        logo-dot[data-display-mode="right"].animated, logo-dot[data-display-mode="bottom"].animated {
+            animation: logoDotRight 1s ease 0s forwards;
+        }
 
 @keyframes logoDotRight {
     to {

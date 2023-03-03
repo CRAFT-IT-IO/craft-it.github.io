@@ -1,7 +1,10 @@
-$(function() {
-    let logoDotContainer = $('logo-dot');
+$(function () {
+    let logoDotContainer = $('logo-dot:not([data-display-mode])');
+    let logoDotContainerRightSide = $('logo-dot[data-display-mode]');
+
     logoDotContainer.hide();
     logoDotContainer.initializeLogoDotEffect();
+    logoDotContainerRightSide.initializeLogoDotEffect();
 
     let logoContainer = $('<div></div>', { class: 'p logo-effect-container', style: 'display: none' });
     logoDotContainer.find('.content-image').append(logoContainer);
@@ -9,8 +12,9 @@ $(function() {
     logoDotContainer.show().toggleClass('animated');
     setTimeout(function () {
         logoContainer.show().addClass('animated');
-        setTimeout(function () {
+        //setTimeout(function () {
             initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], { delay: 40, withAnimation: true, contentDirection: 'bottom' }, function () {
+                logoDotContainerRightSide.addClass('animated');
                 addHeader();
                 let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
                     .append($('<i></i>', { class: 'arrow-down fa fa-chevron-down', 'aria-hidden': true, alt: 'next-section' }));
@@ -76,6 +80,6 @@ $(function() {
                     return Math.max(-1, Math.min(1, value));
                 }
             });
-        }, 2000);
-    }, 2000);
+        //}, 2000);
+    }, 1000);
 });
