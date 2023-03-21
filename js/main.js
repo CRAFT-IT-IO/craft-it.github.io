@@ -23,10 +23,10 @@ function addHeader(delay) {
         .append($('<span></span>', { class: 'hamb-bottom' }));
 
     let sideBar = $('<ul></ul>', { class: 'nav sidebar-nav' })
-        .append('<li><a page="what-we-do" back-color="var(--red)">WHAT WE DO</a></li>')
+        .append('<li><a page="expertise" back-color="var(--red)">EXPERTISE</a></li>')
         .append('<li><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></li>')
-        .append('<li><a page="our-approaches" back-color="var(--aqua)">OUR APPROACHES</a></li>')
-        .append('<li><a page="get-in-touch" back-color="var(--red)">GET IN TOUCH</a></li>');
+        .append('<li><a page="our-technique" back-color="var(--aqua)">OUR TECHNIQUE</a></li>')
+        .append('<li><a page="contacting-us" back-color="var(--red)">CONTACTING US</a></li>');
 
     sideBar.find('a').on('click', function () {
         redirect($(this).attr('page'), $(this).attr('back-color'));
@@ -111,11 +111,12 @@ function initContentMenu(menuItemTexts, params, callback) {
         }
 
         let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
-        let itemToDisplay = menuItemsContent.hide();
+        let itemToDisplay = menuItemsContent.removeClass('selected').hide();
         contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
         itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
 
-        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 1200);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 1200);
+        itemToDisplay.addClass('selected');
     });
 
     if (params?.withAnimation)

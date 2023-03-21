@@ -13,7 +13,7 @@ $(function () {
     setTimeout(function () {
         logoContainer.show().addClass('animated');
         //setTimeout(function () {
-            initContentMenu(['IT WORKSHOP FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], { delay: 40, withAnimation: true, contentDirection: 'bottom' }, function () {
+            initContentMenu(['I.T. Lab FOR BESKOPEN SOLUTION IN RISK MANAGEMENT'], { delay: 40, withAnimation: true, contentDirection: 'bottom' }, function () {
                 logoDotContainerRightSide.addClass('animated');
                 addHeader();
                 let nextPageButton = $('<div></div>', { class: 'btn-next-page' })
