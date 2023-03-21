@@ -15,7 +15,7 @@
     <script src="js/main.js"></script>
     <script src="js/common.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Craft IT</title>
+    <title>Craft IT - Banking solutions</title>
     <script>
         $(document).ready(function () {
             initLogo('logo/CRAFT-IT_Logo_Moodys_BASELINE.svg');
@@ -45,18 +45,37 @@
             }
         }
 
-        .button-container{
-            display: flex;  
+        .button-container {
+            display: flex;
             justify-content: center;
         }
+
             .button-container button {
                 width: 250px;
                 border: none;
             }
 
-            .button-container button .arrow {
-                font-size: 20px;
-            }
+                .button-container button .arrow {
+                    font-size: 20px;
+                }
+
+        [data-display="one"] img.logo {
+            position: fixed;
+            width: 30%;
+            bottom: 0;
+            left: 5%;
+            opacity: 0;
+        }
+
+        [data-display="one"].selected img.logo {
+            animation: moodysLogo linear 1.2s forwards;
+        }
+
+        @keyframes moodysLogo {
+            to {
+                opacity: 1;
+            } 
+        }
     </style>
 </head>
 <body>
@@ -76,7 +95,7 @@
             <div class="content-right">
                 <logo-dot data-display-mode="right"></logo-dot>
                 <div class="content-right-content">
-                    <div class="content-menu-display" data-display="one">
+                    <div class="content-menu-display selected" data-display="one">
                         <p>
                             Attentive to the necessity to respond to financial and credit risk operational challenges
                             and intent on offering a few outstanding, exacting clients the best-of-breed technology,
@@ -93,6 +112,7 @@
                             Henceforth, via a completely integrated environment, clients can directly liaise with CRAFT IT with all their
                             desiderata whilst taking advantage of the official support of Moody’s official endorsement as well as the latter’s Client Service team.
                         </p>
+                        <img alt="Logo Moodys Analytics Partner Alliance" class="logo" src="images/logo/moodys/MoodysAnalytics_PartnerAllianceElite_Black.svg" />
                     </div>
                     <div class="content-menu-display" data-display="two">
                         <p>
