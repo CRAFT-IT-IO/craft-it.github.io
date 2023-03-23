@@ -59,19 +59,18 @@
                     font-size: 20px;
                 }
 
-        [data-display="one"] img.logo {
+        img.logo {
             position: fixed;
             width: 15%;
             bottom: 5%;
             left: 5%;
-            opacity: 0;
-        }
-
-        [data-display="one"].selected img.logo {
-            animation: moodysLogo linear 1.2s forwards;
+            animation: moodysLogo linear 1.5s forwards;
         }
 
         @keyframes moodysLogo {
+            from {
+            opacity: 0;
+            }
             to {
                 opacity: 1;
             } 
@@ -79,6 +78,7 @@
     </style>
 </head>
 <body>
+    <img alt="Logo Moodys Analytics Partner Alliance" class="logo" src="images/logo/moodys/MoodysAnalytics_PartnerAllianceElite_Black.svg" />
     <logo-dot></logo-dot>
     <logo class="animated"></logo>
     <section class="craft-it">
@@ -112,7 +112,6 @@
                             Henceforth, via a completely integrated environment, clients can directly liaise with CRAFT IT with all their
                             desiderata whilst taking advantage of the official support of Moody’s official endorsement as well as the latter’s Client Service team.
                         </p>
-                        <img alt="Logo Moodys Analytics Partner Alliance" class="logo" src="images/logo/moodys/MoodysAnalytics_PartnerAllianceElite_Black.svg" />
                     </div>
                     <div class="content-menu-display" data-display="two">
                         <p>
