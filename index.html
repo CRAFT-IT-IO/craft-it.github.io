@@ -23,6 +23,12 @@
         });
     </script>
     <style>
+
+        :root {
+            --color-menu-item: var(--black);
+            --color-menu-item-hover: var(--black);
+        }
+
         /*Arrow scrolling*/
         .btn-next-page {
             transform: matrix(1, 0, 0, 1, 0, 0);
@@ -91,7 +97,7 @@
         }
 
         :is(.dream, .draft, .craft) img {
-            width: 100%;
+            width: 80%;
         }
 
         .text {
@@ -99,26 +105,37 @@
         }
 
         .dream, .draft, .craft {
-            width: 25%;
-            top: 110%;
+            top: 115%;
         }
 
         .dream {
-            left: 7%;
+            width: 25%;
+            left: 10%;
         }
 
         .draft {
-            left: 40%;
+            left: 42%;
             width: 21%;
         }
 
         .craft {
-            left: 70%;
+            left: 71%;
             width: 20%;
         }
 
-        .menu-item-arrow{
+        .menu-item-arrow {
             display: none;
+        }
+
+        .not-you {
+            opacity: 0;
+            animation: notYou 1s ease 1s forwards;
+        }
+
+        @keyframes notYou {
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -138,12 +155,13 @@
             <div class="footer-container">
                 <div class="footer-item" animation-index="0" style="font-size: 2vw; width: 100%; top: 15%;">
                     <div class="" style=" display: flex; flex-direction: column; align-items: center;">
-                        <p style="font-family: gothamBold !important; color: var(--black); font-size: 2.5vw; align-self: start; padding-left: 2vw;">
-                            > I.T. Lab for beskopen solution in risk management.
+                        <p style="font-family: gothamLight !important; color: var(--black); font-size: 2.5vw; align-self: start; padding-left: 2vw;">
+                            I.T. Workshop for bespoken solution in risk management.
                         </p>
                         <p></p>
                         <p style="font-family: gothamBold !important; align-self: end; padding-right: 2vw; padding-top: 2vw;">
-                            We believe it's up to the I.T. to adapt to your needs. Not you.
+                            We believe it's up to the I.T. to adapt to your needs.
+                            <span style="font-family: gothamBold !important;" class="not-you">Not you.</span>
                         </p>
                     </div>
                 </div>
@@ -172,7 +190,7 @@
                     </div>
                 </div>
                 <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%">
-                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                    <div class="" style="display: flex; flex-direction: column; align-items: center;">
                         <h1 class="text" style="padding-bottom: 2vw;">
                             Discover what we do
                         </h1>
