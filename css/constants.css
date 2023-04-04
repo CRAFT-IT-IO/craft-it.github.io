@@ -29,6 +29,17 @@
     src: url(../fonts/GOTHAM_Family/Gotham-Book/Gotham-Book.otf);
 }
 
+@font-face {
+    font-family: gothamLight;
+    src: url(../fonts/GOTHAM_Family/Gotham-Light/Gotham-Light.otf);
+}
+
+@font-face {
+    font-family: gothamBoldItalic;
+    src: url(../fonts/GOTHAM_Family/Gotham-Bold-Italic/Gotham-BoldItalic.otf);
+}
+
+
 *:not(.fa) {
     font-family: gothamBook !important;
 }

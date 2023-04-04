@@ -14,28 +14,14 @@
     padding-left: 1vw;
 }
 
-@media screen and (min-width: 1500px) {
-    .content-right {
-        grid-template-columns: 50px 1fr 50px;
-        grid-template-rows: calc(2vw + 100px) 1fr 50px;
-    }
-
-    div.container-two-side {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: calc(2vw + 100px) 1fr 50px;
-    }
+.content-right {
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 160px 1fr 50px;
 }
 
-@media screen and (max-width: 1500px) {
-    .content-right {
-        grid-template-columns: 50px 1fr 50px;
-        grid-template-rows: calc(10vw + 100px) 1fr 50px;
-    }
-
-    div.container-two-side {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: calc(10vw + 100px) 1fr 50px;
-    }
+div.container-two-side {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px 1fr 50px;
 }
 
 .content-right {
@@ -55,7 +41,6 @@
 
 .content-right-content {
     grid-area: contentrightcontent;
-    place-items: center;
     display: grid;
 }
 
@@ -65,19 +50,33 @@ div.container-two-side {
     width: 100%;
     display: grid;
     align-self: stretch;
-    grid-template-areas: ". contentright" "contentleft contentright" ". contentright";
+    grid-template-areas: 
+        ". contentright" 
+        "contentleft contentright" 
+        ". contentright";
 }
 
 div.content-left {
-    min-height: 50%;
     grid-area: contentleft;
     justify-content: center;
-    align-self: center;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 80px 1fr;
     grid-template-columns: 0.8fr;
     position: relative;
     display: grid;
     align-content: center;
     grid-row-gap: 20px;
     z-index: 10;
+}
+
+@media screen and (min-height: 700px) {
+    .content-right-content, .content-left {
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .content-right-content, .content-left {
+        overflow-y: auto;
+        overflow-x: hidden;
+    } 
 }

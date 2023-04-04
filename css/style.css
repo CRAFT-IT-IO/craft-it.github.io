@@ -1,50 +1,40 @@
 @import "constants.css";
+@import "section.css";
 @import "menu.css";
 @import "content.css";
 @import "content-menu.css";
 @import "animations/logo_dot.css";
 
-@media screen and (min-width: 1500px) {
-    h1.title {
-        font-size: 2vw;
-    }
-}
 
-@media screen and (max-width: 1500px) {
-    h1.title {
-        font-size: 3vw;
-    }
+/* logo*/
+logo {
+    display: flex;
+    position: fixed;
+    /*left: 30px;*/
+    left: 6%;
+    top: -50%;
+    background-color: transparent;
+    z-index: 99;
+    width: 20%;
+    cursor: pointer;
 }
-
-    /* logo*/
-    logo {
-        display: flex;
-        position: fixed;
-        left: 30px;
-        top: -50%;
-        background-color: transparent;
-        z-index: 99;
-        width: 20%;
-        cursor: pointer;
-    }
 
     logo:not(.animated) {
         top: 25px;
     }
 
-        logo.animated {
-            animation: logoDisplay var(--logo-display-duration, 2s) ease-out var(--logo-display-delay, 2s) forwards;
-        }
+    logo.animated {
+        animation: logoDisplay var(--logo-display-duration, 2s) ease-out var(--logo-display-delay, 2s) forwards;
+    }
 
 @keyframes logoDisplay {
     to {
-        top: 25px;
+        top: 50px;
     }
 }
 
 logo img {
-    height: 100%;
-    width: 100%;
+    width: 200px;
 }
 /* logo*/
 
@@ -54,8 +44,9 @@ header {
     flex-direction: column;
     position: fixed;
     right: 30px;
-    top: 30px;
+    /*top: 30px;*/
     z-index: 99;
+    /*margin-right: 0%;*/
 }
 
     header .header-content {
@@ -88,7 +79,7 @@ div.header-logo img.logo {
 div.header-menu {
     grid-area: header-menu;
     display: grid;
-    place-content: center;
+    place-content: end;
 }
 /*header */
 
@@ -116,40 +107,20 @@ body, html {
     width: 100%;
 }
 
-section.craft-it {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    place-self: stretch;
-    place-items: stretch;
-    z-index: 10;
-}
-
-    section.craft-it:not(.ignore) {
-        height: 100%;
-        width: 100%;
-    }
-
 .logo-effect {
     height: 100%;
     /*width: 100%;*/
     width: 80%;
 }
 
-.craft-section {
-    width: 100%;
-    height: 100%;
-}
-
 button {
     display: inline-block;
     background-color: white;
-    border-radius: 20px;
     border: 0.5px solid #C00E0E;
     text-align: center;
     font-size: 28px;
-    padding: 20px;
-    width: 200px;
+    padding: 10px;
+    width: 120px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -177,10 +148,14 @@ button {
 
 /* link */
 
+.content-left a, .content-left a:focus, .content-left a:hover {
+    color: var(--black);
+}
+
 a, a:focus, a:hover {
     color: var(--white);
 }
 
-.italic{
+.italic {
     font-style: italic;
 }

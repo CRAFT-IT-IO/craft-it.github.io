@@ -14,9 +14,7 @@ function hamburgerMenuClick() {
     $('#wrapper').toggleClass('toggled');
 }
 
-function addHeader(delay) {
-    let header = $('<header></header>');
-
+function burgerMenu() {
     let button = $('<button></button>', { type: 'button', class: 'hamburger is-closed', 'data-toggle': 'offcanvas' })
         .append($('<span></span>', { class: 'hamb-top' }))
         .append($('<span></span>', { class: 'hamb-middle' }))
@@ -28,17 +26,6 @@ function addHeader(delay) {
         .append('<li><a page="our-technique" back-color="var(--aqua)">OUR TECHNIQUE</a></li>')
         .append('<li><a page="contacting-us" back-color="var(--red)">CONTACTING US</a></li>');
 
-    sideBar.find('a').on('click', function () {
-        redirect($(this).attr('page'), $(this).attr('back-color'));
-    });
-
-    let hrefParts = window.location.href.split('/');
-    let currentPage = hrefParts[hrefParts.length - 1].replace('.html', '');
-
-    let selectedItem = sideBar.find('a[page="' + currentPage + '"]');
-    if (selectedItem.length != 0)
-        selectedItem.closest('li').addClass('selected');
-
     let navBar = $('<nav></nav>', { class: 'navbar navbar-inverse navbar-fixed-top is-closed', id: 'sidebar-wrapper', role: 'navigation' })
         .append(sideBar);
 
@@ -46,9 +33,38 @@ function addHeader(delay) {
         .append(button)
         .append(navBar);
 
-    header.append(headerMenu);
+    return headerMenu;
+}
+
+function headerMenu() {
+    let menuWrap = $('<div></div>', { class: 'menu-wrap' })
+        .append('<div><a page="expertise" back-color="var(--red)">EXPERTISE</a></div>')
+        .append('<div><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></div>')
+        .append('<div><a page="our-technique" back-color="var(--aqua)">OUR TECHNIQUE</a></div>')
+        .append('<div><a page="contacting-us" back-color="var(--red)">CONTACTING US</a></div>');
+
+    return menuWrap;
+}
+
+function addHeader(delay) {
+    let header = $('<header></header>');
+    let menuWrap = headerMenu();
+    let mobileMenu = burgerMenu();
+    header.addClass('animated').append(menuWrap).append(mobileMenu);
+
+    header.find('a').on('click', function () {
+        redirect($(this).attr('page'), $(this).attr('back-color'));
+    });
+
+    let hrefParts = window.location.href.split('/');
+    let currentPage = hrefParts[hrefParts.length - 1].replace('.html', '');
+
+    header.find('a[page="' + currentPage + '"]').each(function (i, item) {
+        $(this).parent().addClass('selected');
+    });
 
     if (delay) {
+        debugger;
         setTimeout(function () { $('body').prepend(header); }, delay);
         return;
     }
@@ -91,18 +107,20 @@ function initContentMenu(menuItemTexts, params, callback) {
 
     menuItems.show();
 
-
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
     menuItems.on('click', function (e, args) {
         if ($(this).is('.selected'))
             return;
 
+        if (deltaTop == 0)
+            deltaTop = arrow.height() / 2;
+
         let menuItem = $(this);
         let position = menuItem.position();
 
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
+        arrow.animate({ left: '-2vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
 
         let menuItemsContent = contentDisplay;
