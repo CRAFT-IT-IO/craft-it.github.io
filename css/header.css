@@ -1,0 +1,132 @@
+
+/* logo*/
+logo {
+/*    display: flex;
+    position: fixed;
+    top: -50%;
+    background-color: transparent;
+    z-index: 99;
+    cursor: pointer;*/
+}
+
+@media screen and (min-width: 1000px) {
+    logo {
+        width: 20%;
+        left: 6%;
+    }
+
+        logo img {
+            width: 200px;
+        }
+}
+
+@media screen and (max-width: 1000px) {
+    logo {
+/*        width: 100%;
+        grid-area: contentleft;
+        justify-content: center;
+        grid-template-rows: 80px;
+        grid-template-columns: 0.8fr;
+        display: grid;
+        z-index: 10;*/
+    }
+
+        logo img {
+            width: 130px;
+        }
+
+    header {
+        /*margin-right: 5%;*/
+    }
+
+    /*        header.animated {
+            animation: headerDisplay var(--logo-display-duration, 1.5s) ease var(--logo-display-delay, 1s) forwards;
+        }
+
+    @keyframes headerDisplay {
+        to {
+            top: 50px;
+        }
+    }*/
+}
+
+logo:not(.animated) {
+    top: 25px;
+}
+
+logo.animated {
+    animation: logoDisplay var(--logo-display-duration, 2s) ease-out var(--logo-display-delay, 2s) forwards;
+}
+
+@keyframes logoDisplay {
+    to {
+        top: 50px;
+    }
+}
+/* logo*/
+
+/*header */
+header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    top: 0;
+    z-index: 99;
+    place-items: center;
+    display: grid;
+}
+
+header-content {
+    place-items: center;
+    grid-template-rows: 1fr;
+    grid-template-columns: 20px 0.5fr 0.5fr 20px;
+    grid-template-areas: ". header-left header-right .";
+    display: grid;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.header-left {
+    grid-area: header-left;
+    justify-self: start;
+}
+
+.header-right {
+    grid-area: header-right;
+    justify-self: end;
+}
+
+    header .header-content {
+        height: 100%;
+        display: grid;
+        place-content: center;
+        place-self: stretch;
+        grid-template-columns: 1fr 100px;
+        grid-template-rows: 1fr;
+        grid-template-areas: "header-logo header-menu";
+    }
+
+div.header-logo {
+    grid-area: header-logo;
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+}
+
+div.header-title {
+    grid-area: header-title;
+    display: grid;
+    place-content: center;
+}
+
+div.header-logo img.logo {
+    width: 100%;
+    position: relative;
+}
+
+div.header-menu {
+    grid-area: header-menu;
+    display: grid;
+    place-content: end;
+}
+/*header */

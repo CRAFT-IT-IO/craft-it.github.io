@@ -7,6 +7,7 @@ $(document).ready(function () {
     logoDotContainerRightSide.initializeLogoDotEffect();
 
     /* Main side */
+    addHeader();
     initLogo();
     logoDotContainer.show().toggleClass('animated');
     setInterval(function () {
@@ -30,5 +31,6 @@ $(document).ready(function () {
     $('.title').animate({ left: 0 }, 1000);
     initContentMenu();
     $('.menu-item').animate({ left: 0 }, 1000);
-    setTimeout(function () { addHeader(); $('.menu-item').first().trigger('click', { isStarting: true }); }, 1000);
+
+    setTimeout(function () {  $('.menu-item').first().trigger('click', { isStarting: true }); }, 1000);
 });

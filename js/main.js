@@ -48,9 +48,14 @@ function headerMenu() {
 
 function addHeader(delay) {
     let header = $('<header></header>');
+    let headerContent = $('<header-content></header-content>');
     let menuWrap = headerMenu();
     let mobileMenu = burgerMenu();
-    header.addClass('animated').append(menuWrap).append(mobileMenu);
+
+    let leftPart = $('<div></div>', { class: 'header-left' });
+    let rightPart = $('<div></div>', { class: 'header-right' }).append(menuWrap).append(mobileMenu);
+    header.addClass('animated').append(headerContent);
+    headerContent.append([leftPart, rightPart]);
 
     header.find('a').on('click', function () {
         redirect($(this).attr('page'), $(this).attr('back-color'));
@@ -90,23 +95,22 @@ function redirect(page, backcolor) {
         'z-index': 99999
     });
 
-    overlay.animate({ left: 0 }, 1000, function () {
+    overlay.animate({ left: 0 }, 500, function () {
         window.location.href = page + '.html';
     });
 }
 
 function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
-    contentDisplay.filter(':not(:first-child)').hide();
+    //contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
-    contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
+    //contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
 
     if (menuItems.length == 0)
         return;
 
     menuItems.show();
-
     let arrow = $('.menu-item-arrow');
     let deltaTop = arrow.height() / 2;
     menuItems.on('click', function (e, args) {
@@ -118,7 +122,6 @@ function initContentMenu(menuItemTexts, params, callback) {
 
         let menuItem = $(this);
         let position = menuItem.position();
-
         menuItems.removeClass('selected');
         arrow.animate({ left: '-2vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
@@ -183,12 +186,9 @@ function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params
 }
 
 function initLogo(path) {
-    let logoContainer = $('logo');
-    if (logoContainer.length == 0)
-        return;
-
+    let logoContainer = $('<logo class="animated"></logo>');
     logoContainer.empty();
     let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
-    logoContainer.append(logo);
+    $('.header-left').append(logoContainer.append(logo));
 }
