@@ -42,7 +42,7 @@
 .content-menu-display > * {
     position: relative;
     color: var(--white);
-    margin-bottom: 1vw;
+    margin-bottom: 15px;
 }
 
 /* RIGHT */

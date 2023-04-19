@@ -24,11 +24,11 @@
     overflow-x: hidden;
     background: transparent;
     border-color: transparent;
-    transition: all 1s ease;
+    transition: all 0.2s ease;
     top: 100px;
     margin: 0;
     /* test */
-    width: 30%;
+    width: 250px;
     height: 15%;
 }
 
@@ -92,7 +92,7 @@
 
 .is-open .sidebar-nav li {
     left: 0;
-    transition: left 1s ease-out 0.3s;
+    transition: left 0.5s ease-out;
 }
 
 .is-closed .sidebar-nav li {
