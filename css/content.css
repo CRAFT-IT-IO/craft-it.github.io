@@ -15,17 +15,17 @@
 }
 
 .content-right {
-    grid-template-columns: 50px 1fr 50px;
-    grid-template-rows: 160px 1fr 50px;
+    grid-template-columns: 20px 1fr 20px;
+    grid-template-rows: 1fr;
 }
 
 .content-right {
     background-color: var(--content-right-back-color, var(--red));
     position: relative;
-    /*right: -100%;*/
     display: grid;
     grid-area: contentright;
-    grid-template-areas: ". . ." ". contentrightcontent ." ". . .";
+    grid-template-areas:
+        ". contentrightcontent .";
     z-index: 1;
 }
 
@@ -37,6 +37,9 @@
 .content-right-content {
     grid-area: contentrightcontent;
     display: grid;
+    color:var(--white);
+    width:100%;
+    max-width: 600px;
 }
 
 .container-two-side-content {

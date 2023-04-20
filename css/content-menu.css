@@ -6,7 +6,6 @@
 }
 
 .menu-item {
-    padding-left: 1vw;
     cursor: pointer;
 }
 
@@ -39,6 +38,10 @@
     position: relative;
 }
 
+    .content-menu-display > * {
+        color: var(--text-color, var(--black));
+    }
+
 @media screen and (min-width: 1000px) {
     .content-menu .content-menu-display {
         display: none;
@@ -59,7 +62,6 @@
     }
 
     .content-menu-display > * {
-        color: var(--black);
         margin-bottom: 15px;
     }
 
@@ -71,10 +73,6 @@
         display: block !important;
     }
 }
-
-
-
-
 
 /* RIGHT */
 .content-right .content-menu-display:not(:first-child) {

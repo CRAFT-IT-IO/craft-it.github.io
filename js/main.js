@@ -69,7 +69,6 @@ function addHeader(delay) {
     });
 
     if (delay) {
-        debugger;
         setTimeout(function () { $('body').prepend(header); }, delay);
         return;
     }
@@ -102,41 +101,38 @@ function redirect(page, backcolor) {
 
 function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
-    //contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
-    //contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
+    let rightContent = $('.content-right-content');
+    rightContent.empty();
 
     if (menuItems.length == 0)
         return;
 
     menuItems.show();
-    let arrow = $('.menu-item-arrow');
-    let deltaTop = arrow.height() / 2;
+
     menuItems.on('click', function (e, args) {
         if ($(this).is('.selected'))
             return;
 
-        if (deltaTop == 0)
-            deltaTop = arrow.height() / 2;
-
+        rightContent.empty();
         let menuItem = $(this);
-        let position = menuItem.position();
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-2vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
 
         let menuItemsContent = contentDisplay;
+        let itemToDisplay = contentMenu.find('.content-menu-display[data-display="' + menuItem.data('display') + '"]').clone();
         if (args && args.isStarting) {
-            menuItemsContent = menuItemsContent.filter(':not(:first)');
+            rightContent.append(itemToDisplay);
+            return;
+            //menuItemsContent = menuItemsContent.filter(':not(:first)');
         }
 
         let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
-        let itemToDisplay = menuItemsContent.removeClass('selected').hide();
-        contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
-        itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
+        contentDirection == 'right' ? itemToDisplay.css('right', '-150%') : itemToDisplay.css('bottom', '-50%');
+        rightContent.append(itemToDisplay);
 
-        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 1200);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 800);
         itemToDisplay.addClass('selected');
     });
 
