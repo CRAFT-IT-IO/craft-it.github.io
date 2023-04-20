@@ -49,22 +49,19 @@
 
                 function footerAnimation(delta) {
 
-                    let animationCount = 0;
-                    for (var i = 0; i < footerAnimations.length; i++) {
-                        let animationIndex = $(footerAnimations[i]).attr('animation-index');
-                        if (animationIndex > animationCount)
-                            animationCount = animationIndex;
-                    }
+                    let animationCount = getAnimationCount();
 
                     delta < 0 ? ++currentAnimationIndex /* to down*/ : --currentAnimationIndex; /* to up*/
-
                     if (currentAnimationIndex < 0)
                         currentAnimationIndex = 0;
                     else if (currentAnimationIndex > animationCount)
                         currentAnimationIndex = animationCount;
 
+                    let currentItem = animationCount == footerAnimations.length - 1 ? $(footerAnimations[currentAnimationIndex]) :
+                        $(footerAnimations).filter('[animation-index=' + currentAnimationIndex + ']').first();
+
                     let container = $('.footer-container');
-                    container.animate({ top: -((currentAnimationIndex * 100)) + '%' }, 1500, function () {
+                    container.animate({ top: -currentItem.position().top + 20 }, 1500, function () {
                         currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
                         isSCrolling = false;
                     });
@@ -80,6 +77,47 @@
 
                     return Math.max(-1, Math.min(1, value));
                 }
+
+                function getAnimationCount() {
+                    let animationCount = 0;
+                    for (var i = 0; i < footerAnimations.length; i++) {
+                        let animationIndex = $(footerAnimations[i]).attr('animation-index');
+                        if (animationIndex > animationCount)
+                            animationCount = animationIndex;
+                        else if (animationCount != 0) {
+                            let currentTop = $(footerAnimations[i]);
+                            let oldTop = $(footerAnimations[i - 1]);
+
+                            if (oldTop.position().top != currentTop.position().top)
+                                animationCount++;
+                        }
+                    }
+
+                    return animationCount;
+                }
+
+                //$(window).on('resize', function (e) {
+                //    if (isSCrolling)
+                //        return;
+                //    isSCrolling = true;
+                //    let animationCount = getAnimationCount();
+
+                //    if (currentAnimationIndex < 0)
+                //        currentAnimationIndex = 0;
+                //    else if (currentAnimationIndex > animationCount)
+                //        currentAnimationIndex = animationCount;
+
+                //    let currentItem = animationCount == footerAnimations.length - 1 ? $(footerAnimations[currentAnimationIndex]) :
+                //        $(footerAnimations).filter('[animation-index=' + currentAnimationIndex + ']').first();
+
+                //    console.log('current item : ' + currentItem.attr('animation-index'));
+                //    let container = $('.footer-container');
+                //    //let delta = Math.abs(currentItem.position().top + $('.footer-container').position().top);
+                //    container.animate({ top: -currentItem.position().top + 20 }, 1000, function () {
+                //        currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
+                //        isSCrolling = false;
+                //    });
+                //});
             }, 800);
         });
     </script>
@@ -210,23 +248,62 @@
             height: 70%;
             place-content: center;
         }
+
+        @media only screen and (max-width: 1000px) {
+            logo-loading {
+                height: 50%;
+            }
+
+            .craft-footer {
+                height: 60%;
+                bottom: -60%;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .footer-item {
+                position: relative;
+            }
+
+                .footer-item[animation-index="0"] {
+                    font-size: 20px !important;
+                }
+
+            :is(.dream, .draft, .craft) img {
+                width: 80%;
+                min-width: 130px;
+            }
+
+
+            .dream, .draft, .craft {
+                width: 80%
+            }
+
+            .dream {
+                left: 10%;
+            }
+
+            .draft, .craft {
+                left: 10%;
+                padding-top: 30px;
+            }
+        }
     </style>
 </head>
 <body>
-    <logo-loading>
-        <div class="p logo-effect-container animated" style="">
-            <div class="content-image">
-                <img class="logo-effect" src="images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg" alt="Craft-It Logo">
-                <div class="p letter_a"></div>
-                <div class="p cr"></div>
-                <div class="p ft"></div>
-                <div class="p it_makes_sense"></div>
-                <div class="p red_circle"></div>
-            </div>
-        </div>
-    </logo-loading>
-
     <section class="craft-it">
+        <logo-loading>
+            <div class="p logo-effect-container animated" style="">
+                <div class="content-image">
+                    <img class="logo-effect" src="images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg" alt="Craft-It Logo">
+                    <div class="p letter_a"></div>
+                    <div class="p cr"></div>
+                    <div class="p ft"></div>
+                    <div class="p it_makes_sense"></div>
+                    <div class="p red_circle"></div>
+                </div>
+            </div>
+        </logo-loading>
         <div class="craft-footer content-menu-display" data-display="footer">
             <div class="btn-next-page"><i class="arrow-down fa fa-chevron-down" aria-hidden="true" alt="next-section"></i></div>
             <div class="footer-container">
