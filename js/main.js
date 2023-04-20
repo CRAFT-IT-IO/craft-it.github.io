@@ -54,8 +54,8 @@ function addHeader(delay) {
 
     let leftPart = $('<div></div>', { class: 'header-left' });
     let rightPart = $('<div></div>', { class: 'header-right' }).append(menuWrap).append(mobileMenu);
-    header.addClass('animated').append(headerContent);
-    headerContent.append([leftPart, rightPart]);
+    header.addClass('animated').append([headerContent, rightPart]);
+    headerContent.append(leftPart);
 
     header.find('a').on('click', function () {
         redirect($(this).attr('page'), $(this).attr('back-color'));

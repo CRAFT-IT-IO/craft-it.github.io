@@ -11,7 +11,7 @@
 }
 
 .content-left > :nth-child(1) {
-    padding-left: 1vw;
+    /*padding-left: 1vw;*/
 }
 
 .content-right {
@@ -19,44 +19,55 @@
     grid-template-rows: 160px 1fr 50px;
 }
 
-
-
 .content-right {
     background-color: var(--content-right-back-color, var(--red));
     position: relative;
-    right: -100%;
+    /*right: -100%;*/
     display: grid;
     grid-area: contentright;
     grid-template-areas: ". . ." ". contentrightcontent ." ". . .";
     z-index: 1;
 }
 
-.animated.content-right {
+/*.animated.content-right {
     right: 0;
     transition: right ease-out 1s;
-}
+}*/
 
 .content-right-content {
     grid-area: contentrightcontent;
     display: grid;
 }
 
-div.container-two-side {
-    padding: 0;
-    height: 100%;
-    width: 100%;
+.container-two-side-content {
+    grid-area: twosidecontent;
     display: grid;
     align-self: stretch;
-
 }
+
 @media screen and (min-width: 1000px) {
     div.container-two-side {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 160px 1fr 50px;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        align-self: stretch;
+        grid-template-columns: 0.5fr 0.5fr;
+        grid-template-rows: 100px 1fr 50px;
         grid-template-areas:
-            ". contentright"
-            "contentleft contentright"
-            ". contentright";
+            ". ."
+            "twosidecontent contentright"
+            "twosidecontent contentright";
+    }
+
+    .container-two-side-content {
+        width: 100%;
+        max-width: 600px;
+        justify-self: end;
+        grid-template-columns: 20px 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            ". contentleft";
     }
 
     div.content-left {
@@ -65,12 +76,12 @@ div.container-two-side {
 }
 
 @media screen and (max-width: 1000px) {
-    div.container-two-side {
+    .container-two-side-content {
         grid-template-rows: 110px 1fr;
-        grid-template-columns: 20px 1fr 20px;
+        grid-template-columns: 20px 1fr;
         grid-template-areas:
-            ". . ."
-            ". contentleft .";
+            ". ."
+            ". contentleft";
     }
 
     div.content-left {
@@ -78,32 +89,32 @@ div.container-two-side {
         overflow: visible;
     }
 
-    .content-menu .menu-item span{
+    .content-menu .menu-item span {
         font-family: gothamBold !important;
         font-size: 18px;
     }
 }
 
 div.content-left {
-        grid-area: contentleft;
-        justify-content: center;
-        grid-template-rows: 80px 1fr;
-        grid-template-columns: 1fr;
-        position: relative;
-        display: grid;
-        grid-row-gap: 20px;
-        z-index: 10;
-    }
+    grid-area: contentleft;
+    justify-content: center;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 1fr;
+    position: relative;
+    display: grid;
+    grid-row-gap: 20px;
+    z-index: 10;
+}
 
-    @media screen and (min-height: 700px) {
-        .content-right-content, .content-left {
-            overflow: hidden;
-        }
+@media screen and (min-height: 700px) {
+    .content-right-content, .content-left {
+        overflow: hidden;
     }
+}
 
-    @media screen and (max-height: 700px) {
-        .content-right-content, .content-left {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+@media screen and (max-height: 700px) {
+    .content-right-content, .content-left {
+        overflow-y: auto;
+        overflow-x: hidden;
     }
+}
