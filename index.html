@@ -19,7 +19,86 @@
     <title>Craft IT</title>
     <script>
         $(document).ready(function () {
+            setTimeout(function () {
+                $('.craft-footer').addClass('animated');
+                addHeader();
+                var isSCrolling = false;
+                let arrow = $('.arrow-down');
+                let footerAnimations = $('.craft-footer .footer-item');
+                let animationCount = 0;
+                for (var i = 0; i < footerAnimations.length; i++) {
+                    let animationIndex = $(footerAnimations[i]).attr('animation-order');
+                    if (animationIndex > animationCount)
+                        animationCount = animationIndex;
+                }
 
+                let currentAnimationIndex = 0;
+                arrow.on('click', function () {
+                    isSCrolling = true;
+                    footerAnimation(-1);
+                });
+
+                $(window).on('wheel', function (e) {
+                    if (isSCrolling)
+                        return;
+
+                    isSCrolling = true;
+                    let delta = getDelta(e);
+                    footerAnimation(delta);
+                });
+
+                function footerAnimation(delta) {
+
+                    let animationCount = getAnimationCount();
+
+                    if (delta != 0)
+                        delta < 0 ? ++currentAnimationIndex /* to down*/ : --currentAnimationIndex; /* to up*/
+
+                    if (currentAnimationIndex < 0)
+                        currentAnimationIndex = 0;
+                    else if (currentAnimationIndex > animationCount)
+                        currentAnimationIndex = animationCount;
+
+                    let currentItem = animationCount == footerAnimations.length - 1 ? $(footerAnimations[currentAnimationIndex]) :
+                        $(footerAnimations).filter('[animation-index=' + currentAnimationIndex + ']').first();
+
+                    let container = $('.footer-container');
+                    let supp = 20;
+                    container.animate({ top: currentAnimationIndex == 0 ? 0 : -currentItem.position().top + supp }, 1500, function () {
+                        currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
+                        isSCrolling = false;
+                    });
+                }
+
+                function getDelta(e) {
+                    let value;
+                    if (e.originalEvent) {
+                        value = e.originalEvent.wheelDelta || -e.originalEvent.deltaY || -e.originalEvent.detail;
+                    } else {
+                        value = e.wheelDelta || -e.deltaY || -e.detail;
+                    }
+
+                    return Math.max(-1, Math.min(1, value));
+                }
+
+                function getAnimationCount() {
+                    let animationCount = 0;
+                    for (var i = 0; i < footerAnimations.length; i++) {
+                        let animationIndex = $(footerAnimations[i]).attr('animation-index');
+                        if (animationIndex > animationCount)
+                            animationCount = animationIndex;
+                        else if (animationCount != 0) {
+                            let currentTop = $(footerAnimations[i]);
+                            let oldTop = $(footerAnimations[i - 1]);
+
+                            if (oldTop.position().top != currentTop.position().top)
+                                animationCount++;
+                        }
+                    }
+
+                    return animationCount;
+                }
+            }, 800);
         });
     </script>
     <style>
@@ -27,15 +106,16 @@
         :root {
             --color-menu-item: var(--black);
             --color-menu-item-hover: var(--black);
+            --text-color: var(--white);
         }
 
         /*Arrow scrolling*/
         .btn-next-page {
             transform: matrix(1, 0, 0, 1, 0, 0);
-            position: fixed;
-            bottom: 2%;
-            left: 50%;
             z-index: 999999;
+            position: absolute;
+            bottom: 1%;
+            left: calc(50% - 25px);
         }
 
             .btn-next-page .arrow-down {
@@ -98,6 +178,7 @@
 
         :is(.dream, .draft, .craft) img {
             width: 80%;
+            min-width: 130px;
         }
 
         .text {
@@ -137,29 +218,77 @@
                 opacity: 1;
             }
         }
+
+        /*   NEW */
+        logo-loading {
+            position: fixed;
+            display: grid;
+            place-self: stretch;
+            width: 100%;
+            height: 70%;
+            place-content: center;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            logo-loading {
+                height: 50%;
+            }
+
+            .craft-footer {
+                height: 60%;
+                bottom: -60%;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .footer-item {
+                position: relative;
+            }
+
+                .footer-item[animation-index="0"] {
+                    font-size: 20px !important;
+                }
+
+            :is(.dream, .draft, .craft) img {
+                width: 80%;
+                min-width: 130px;
+            }
+
+            .dream, .draft, .craft {
+                left: 10%;
+                width: 80%
+            }
+
+            .draft, .craft {
+                padding-top: 30px;
+            }
+        }
     </style>
 </head>
 <body>
-    <logo-dot></logo-dot>
     <section class="craft-it">
-        <div class="container">
-            <div class="content">
-                <div class="content-menu">
-                    <p class="menu-item" style="opacity: 0" data-display="footer"></p>
+        <logo-loading>
+            <div class="p logo-effect-container animated" style="">
+                <div class="content-image">
+                    <img class="logo-effect" src="images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg" alt="Craft-It Logo">
+                    <div class="p letter_a"></div>
+                    <div class="p cr"></div>
+                    <div class="p ft"></div>
+                    <div class="p it_makes_sense"></div>
+                    <div class="p red_circle"></div>
                 </div>
             </div>
-        </div>
-
+        </logo-loading>
         <div class="craft-footer content-menu-display" data-display="footer">
-            <logo-dot data-display-mode="bottom" style="z-index:10;"></logo-dot>
+            <div class="btn-next-page"><i class="arrow-down fa fa-chevron-down" aria-hidden="true" alt="next-section"></i></div>
             <div class="footer-container">
-                <div class="footer-item" animation-index="0" style="font-size: 2vw; width: 100%; top: 15%;">
-                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
-                        <p style="font-family: gothamLight !important; color: var(--black); font-size: 2.5vw; align-self: start; padding-left: 2vw;">
+                <div class="footer-item" animation-index="0" style="font-size: 30px; width: 100%; top: 15%;">
+                    <div class="" style=" display: flex; flex-direction: column; align-items: center; width: 90%; margin-left: 5%;">
+                        <p style="font-family: gothamLight !important; color: var(--black); align-self: start;">
                             I.T. Workshop for bespoken solution in risk management.
                         </p>
                         <p></p>
-                        <p style="font-family: gothamBold !important; align-self: end; padding-right: 2vw; padding-top: 2vw;">
+                        <p style="font-family: gothamBold !important; align-self: end;">
                             We believe it's up to the I.T. to adapt to your needs.
                             <span style="font-family: gothamBold !important;" class="not-you">Not you.</span>
                         </p>
@@ -189,7 +318,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%">
+                <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%;">
                     <div class="" style="display: flex; flex-direction: column; align-items: center;">
                         <h1 class="text" style="padding-bottom: 2vw;">
                             Discover what we do

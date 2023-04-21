@@ -48,9 +48,14 @@ function headerMenu() {
 
 function addHeader(delay) {
     let header = $('<header></header>');
+    let headerContent = $('<header-content></header-content>');
     let menuWrap = headerMenu();
     let mobileMenu = burgerMenu();
-    header.addClass('animated').append(menuWrap).append(mobileMenu);
+
+    let leftPart = $('<div></div>', { class: 'header-left' });
+    let rightPart = $('<div></div>', { class: 'header-right' }).append(menuWrap).append(mobileMenu);
+    header.addClass('animated').append([headerContent, rightPart]);
+    headerContent.append(leftPart);
 
     header.find('a').on('click', function () {
         redirect($(this).attr('page'), $(this).attr('back-color'));
@@ -64,7 +69,6 @@ function addHeader(delay) {
     });
 
     if (delay) {
-        debugger;
         setTimeout(function () { $('body').prepend(header); }, delay);
         return;
     }
@@ -90,50 +94,45 @@ function redirect(page, backcolor) {
         'z-index': 99999
     });
 
-    overlay.animate({ left: 0 }, 1000, function () {
+    overlay.animate({ left: 0 }, 500, function () {
         window.location.href = page + '.html';
     });
 }
 
 function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
-    contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
-    contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
+    let rightContent = $('.content-right-content');
+    rightContent.empty();
 
     if (menuItems.length == 0)
         return;
 
     menuItems.show();
 
-    let arrow = $('.menu-item-arrow');
-    let deltaTop = arrow.height() / 2;
     menuItems.on('click', function (e, args) {
         if ($(this).is('.selected'))
             return;
 
-        if (deltaTop == 0)
-            deltaTop = arrow.height() / 2;
-
+        rightContent.empty();
         let menuItem = $(this);
-        let position = menuItem.position();
-
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-2vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
 
         let menuItemsContent = contentDisplay;
+        let itemToDisplay = contentMenu.find('.content-menu-display[data-display="' + menuItem.data('display') + '"]').clone();
         if (args && args.isStarting) {
-            menuItemsContent = menuItemsContent.filter(':not(:first)');
+            rightContent.append(itemToDisplay);
+            return;
+            //menuItemsContent = menuItemsContent.filter(':not(:first)');
         }
 
         let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
-        let itemToDisplay = menuItemsContent.removeClass('selected').hide();
-        contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
-        itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
+        contentDirection == 'right' ? itemToDisplay.css('right', '-150%') : itemToDisplay.css('bottom', '-50%');
+        rightContent.append(itemToDisplay);
 
-        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 1200);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 800);
         itemToDisplay.addClass('selected');
     });
 
@@ -183,12 +182,8 @@ function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params
 }
 
 function initLogo(path) {
-    let logoContainer = $('logo');
-    if (logoContainer.length == 0)
-        return;
-
-    logoContainer.empty();
+    let logoContainer = $('<logo class="animated"></logo>');
     let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
-    logoContainer.append(logo);
+    $('.header-left').empty().append(logoContainer.append(logo));
 }

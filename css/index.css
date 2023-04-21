@@ -1,3 +1,8 @@
 @import "animations/logo.css";
 @import "animations/footer.css";
 @import "animations/typing-effect.css";
+
+:root {
+    --content-right-back-color: var(--white);
+    --menu-color: var(--white);
+}

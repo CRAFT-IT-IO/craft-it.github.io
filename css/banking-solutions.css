@@ -33,7 +33,7 @@ img.logo {
     position: fixed;
     width: 180px;
     bottom: 5%;
-    left: 6%;
+    left: 20px;
     animation: moodysLogo linear 1.5s forwards;
     z-index: 999;
 }
