@@ -9,6 +9,11 @@
     cursor: pointer;
 }
 
+.menu-item {
+    left: -100%;
+    position: relative;
+}
+
     .menu-item:hover, .menu-item *:hover {
         font-family: gothamBold !important;
     }
@@ -42,11 +47,14 @@
         color: var(--text-color, var(--black));
     }
 
+.content-right .content-menu-display > * {
+    color: var(--white);
+}
+
 @media screen and (min-width: 1000px) {
     .content-menu .content-menu-display {
         display: none;
     }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -59,6 +67,10 @@
 
     .content-menu .content-menu-display {
         display: block;
+    }
+
+    .content-menu .content-menu-display:last-child {
+        margin-bottom: calc(6% + 50px);
     }
 
     .content-menu-display > * {

@@ -51,7 +51,9 @@
 
                     let animationCount = getAnimationCount();
 
-                    delta < 0 ? ++currentAnimationIndex /* to down*/ : --currentAnimationIndex; /* to up*/
+                    if (delta != 0)
+                        delta < 0 ? ++currentAnimationIndex /* to down*/ : --currentAnimationIndex; /* to up*/
+
                     if (currentAnimationIndex < 0)
                         currentAnimationIndex = 0;
                     else if (currentAnimationIndex > animationCount)
@@ -61,7 +63,8 @@
                         $(footerAnimations).filter('[animation-index=' + currentAnimationIndex + ']').first();
 
                     let container = $('.footer-container');
-                    container.animate({ top: -currentItem.position().top + 20 }, 1500, function () {
+                    let supp = 20;
+                    container.animate({ top: currentAnimationIndex == 0 ? 0 : -currentItem.position().top + supp }, 1500, function () {
                         currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
                         isSCrolling = false;
                     });
@@ -95,29 +98,6 @@
 
                     return animationCount;
                 }
-
-                //$(window).on('resize', function (e) {
-                //    if (isSCrolling)
-                //        return;
-                //    isSCrolling = true;
-                //    let animationCount = getAnimationCount();
-
-                //    if (currentAnimationIndex < 0)
-                //        currentAnimationIndex = 0;
-                //    else if (currentAnimationIndex > animationCount)
-                //        currentAnimationIndex = animationCount;
-
-                //    let currentItem = animationCount == footerAnimations.length - 1 ? $(footerAnimations[currentAnimationIndex]) :
-                //        $(footerAnimations).filter('[animation-index=' + currentAnimationIndex + ']').first();
-
-                //    console.log('current item : ' + currentItem.attr('animation-index'));
-                //    let container = $('.footer-container');
-                //    //let delta = Math.abs(currentItem.position().top + $('.footer-container').position().top);
-                //    container.animate({ top: -currentItem.position().top + 20 }, 1000, function () {
-                //        currentAnimationIndex == animationCount ? arrow.hide() : arrow.show();
-                //        isSCrolling = false;
-                //    });
-                //});
             }, 800);
         });
     </script>
@@ -134,8 +114,8 @@
             transform: matrix(1, 0, 0, 1, 0, 0);
             z-index: 999999;
             position: absolute;
-            bottom: 0;
-            left: 50%;
+            bottom: 1%;
+            left: calc(50% - 25px);
         }
 
             .btn-next-page .arrow-down {
@@ -274,17 +254,12 @@
                 min-width: 130px;
             }
 
-
             .dream, .draft, .craft {
+                left: 10%;
                 width: 80%
             }
 
-            .dream {
-                left: 10%;
-            }
-
             .draft, .craft {
-                left: 10%;
                 padding-top: 30px;
             }
         }
@@ -308,7 +283,7 @@
             <div class="btn-next-page"><i class="arrow-down fa fa-chevron-down" aria-hidden="true" alt="next-section"></i></div>
             <div class="footer-container">
                 <div class="footer-item" animation-index="0" style="font-size: 30px; width: 100%; top: 15%;">
-                    <div class="" style=" display: flex; flex-direction: column; align-items: center;">
+                    <div class="" style=" display: flex; flex-direction: column; align-items: center; width: 90%; margin-left: 5%;">
                         <p style="font-family: gothamLight !important; color: var(--black); align-self: start;">
                             I.T. Workshop for bespoken solution in risk management.
                         </p>
@@ -343,7 +318,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%">
+                <div class="footer-item button" animation-index="2" style="top: 210%; width: 100%;">
                     <div class="" style="display: flex; flex-direction: column; align-items: center;">
                         <h1 class="text" style="padding-bottom: 2vw;">
                             Discover what we do

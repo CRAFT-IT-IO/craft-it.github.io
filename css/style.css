@@ -1,4 +1,5 @@
 @import "constants.css";
+@import "scrollbar.css";
 @import "section.css";
 @import "menu.css";
 @import "header.css";
@@ -48,7 +49,7 @@ button {
     margin: 5px;
     color: var(--white);
     background-color: var(--black);
-    color: var(--menu-color,--white);
+    color: var(--button-color,var(--white));
 }
 
     button span {

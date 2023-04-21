@@ -11,8 +11,8 @@ h1 {
 }
 
 .menu-item {
-    left: -100%;
-    position: relative;
+/*    left: -100%;
+    position: relative;*/
 }
 
 h3 {
@@ -26,6 +26,6 @@ h3 {
 
 @media screen and (min-width: 1500px) {
     .content-menu-display[data-display="three"] > * {
-        font-size: 1vw;
+        /*font-size: 1vw;*/
     }
 }

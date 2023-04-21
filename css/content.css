@@ -37,8 +37,8 @@
 .content-right-content {
     grid-area: contentrightcontent;
     display: grid;
-    color:var(--white);
-    width:100%;
+    color: var(--white);
+    width: 100%;
     max-width: 600px;
 }
 
@@ -81,10 +81,10 @@
 @media screen and (max-width: 1000px) {
     .container-two-side-content {
         grid-template-rows: 110px 1fr;
-        grid-template-columns: 20px 1fr;
+        grid-template-columns: 20px 1fr 20px;
         grid-template-areas:
-            ". ."
-            ". contentleft";
+            ". . ."
+            ". contentleft .";
     }
 
     div.content-left {
@@ -117,7 +117,19 @@ div.content-left {
 
 @media screen and (max-height: 700px) {
     .content-right-content, .content-left {
-        overflow-y: auto;
+        overflow-y: visible;
         overflow-x: hidden;
+    }
+
+    .container-two-side {
+        overflow: auto;
+    }
+
+    .content-right {
+        overflow: auto;
+    }
+
+    .content-right-content .content-menu-display {
+        overflow: auto;
     }
 }

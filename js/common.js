@@ -28,7 +28,7 @@ $(document).ready(function () {
     /* Right side */
 
     $('.content-right').addClass('animated');
-    $('.title').animate({ left: 0 }, 1000);
+    $('.title').animate({ left: 0 }, 500);
     initContentMenu();
     $('.menu-item').animate({ left: 0 }, 500);
     setTimeout(function () {  $('.menu-item').first().trigger('click', { isStarting: true }); }, 500);

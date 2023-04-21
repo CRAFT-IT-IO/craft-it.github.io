@@ -16,6 +16,10 @@ header {
     grid-area: headermenu;
 }
 
+header {
+    cursor: pointer;
+}
+
 @media screen and (min-width: 1000px) {
     logo {
         width: 20%;
@@ -35,10 +39,6 @@ header {
 
     logo img {
         width: 130px;
-    }
-
-    header {
-        /*margin-right: 5%;*/
     }
 
     /*        header.animated {

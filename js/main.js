@@ -183,8 +183,7 @@ function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params
 
 function initLogo(path) {
     let logoContainer = $('<logo class="animated"></logo>');
-    logoContainer.empty();
     let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
-    $('.header-left').append(logoContainer.append(logo));
+    $('.header-left').empty().append(logoContainer.append(logo));
 }

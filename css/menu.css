@@ -76,7 +76,7 @@
     background: var(--menu-sidebar-back-color, transparent);
     border-color: var(--menu-sidebar-back-color, transparent);
     transition: all 0.2s ease;
-    top: 100px;
+    top: 75px;
     margin: 0;
     height: 150px;
 }
