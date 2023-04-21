@@ -130,6 +130,6 @@ div.content-left {
     }
 
     .content-right-content .content-menu-display {
-        overflow: auto;
+        overflow: visible;
     }
 }
