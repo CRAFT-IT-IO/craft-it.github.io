@@ -4,6 +4,7 @@
     --content-right-back-color: var(--aqua);
     --logo-display-delay: 0s;
     --logo-display-duration: 1s;
+    --scrollbar-back-color: #00b3b3;
 }
 
 h1 {

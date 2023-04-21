@@ -4,6 +4,7 @@
     --content-right-back-color: var(--blue);
     --logo-display-delay: 0s;
     --logo-display-duration: 1s;
+    --scrollbar-back-color: #0077b3;
 }
 
 h1.title {

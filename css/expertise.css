@@ -3,6 +3,7 @@
     --menu-second-color: var(--white);
     --logo-display-delay: 0s;
     --logo-display-duration: 1s;
+    --scrollbar-back-color: #e60000;
 }
 
 h1.title {

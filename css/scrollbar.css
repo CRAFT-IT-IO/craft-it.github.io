@@ -8,9 +8,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--white);
+    background: var(--scrollbar-back-color, white);
     border-radius: 10px;
-
+    filter: brightness(85%);
 }
 
 /*    ::-webkit-scrollbar-thumb:hover {
