@@ -40,6 +40,7 @@ h1.title {
 }
 
 .content-icons {
+    z-index: 999;
     position: absolute;
     width: 15%;
     bottom: 5%;
