@@ -12,19 +12,5 @@
         overflow: auto;
     }*/
 
-    .footer-container {
-        overflow: auto;
-    }
 
-    section.craft-it{
-        overflow: hidden;
-    }
-
-    .btn-next-page{
-        display:none;
-    }
-
-    .footer-item.button{
-        height: 80%;
-    }
 }
