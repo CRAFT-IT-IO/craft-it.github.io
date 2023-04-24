@@ -125,7 +125,6 @@ function initContentMenu(menuItemTexts, params, callback) {
         if (args && args.isStarting) {
             rightContent.append(itemToDisplay);
             return;
-            //menuItemsContent = menuItemsContent.filter(':not(:first)');
         }
 
         let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom

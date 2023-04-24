@@ -6,3 +6,25 @@
     --content-right-back-color: var(--white);
     --menu-color: var(--white);
 }
+
+@media screen and (max-width: 1000px) {
+/*    .craft-footer.content-menu-display.animated {
+        overflow: auto;
+    }*/
+
+    .footer-container {
+        overflow: auto;
+    }
+
+    section.craft-it{
+        overflow: hidden;
+    }
+
+    .btn-next-page{
+        display:none;
+    }
+
+    .footer-item.button{
+        height: 80%;
+    }
+}
