@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://www.craft-it.io</loc>
+	  <lastmod></lastmod>
+	  <changefreq></changefreq>
+	  <priority>1.0</priority>
+	  <description></description>
+  </url>
+	<url>
+		<loc>https://www.craft-it.io/expertise.html</loc>
+		<lastmod></lastmod>
+		<changefreq></changefreq>
+		<priority>0.8</priority>
+		<description></description>
+	</url>
+	<url>
+		<loc>https://www.craft-it.io/banking-solutions.html</loc>
+		<lastmod></lastmod>
+		<changefreq></changefreq>
+		<priority>0.8</priority>
+		<description></description>
+	</url>
+	<url>
+		<loc>https://www.craft-it.io/our-technique.html</loc>
+		<lastmod></lastmod>
+		<changefreq></changefreq>
+		<priority>0.8</priority>
+		<description></description>
+	</url>
+	<url>
+		<loc>https://www.craft-it.io/contacting-us.html</loc>
+		<lastmod></lastmod>
+		<changefreq></changefreq>
+		<priority>0.8</priority>
+		<description></description>
+	</url>
+</urlset>
