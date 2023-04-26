@@ -1,0 +1,61 @@
+:root {
+    --menu-main-color: var(--white);
+    --menu-second-color: var(--white);
+    --logo-display-delay: 0s;
+    --logo-display-duration: 1s;
+}
+
+@media screen and (min-width: 1000px) {
+    .content-menu .content-menu-display {
+        display: block !important;
+    }
+
+    .content-right-content .content-menu-display{
+        display: none;
+    }
+}
+
+h1.title {
+    color: var(--red);
+}
+
+.content-address {
+    grid-area: contentaddress;
+    align-self: center;
+}
+
+.content-icons {
+    display: flex;
+    column-gap: 50px;
+}
+
+    .content-icons i {
+        font-size: 30px;
+        color: var(--black);
+    }
+
+.menu-item {
+    left: -100%;
+    position: relative;
+}
+
+.content-icons {
+    z-index: 999;
+    position: absolute;
+    width: 15%;
+    bottom: 5%;
+    left: 20px;
+    opacity: 0;
+    animation: iconsAnimation 1s linear 0.5s forwards;
+}
+
+@keyframes iconsAnimation {
+    to {
+        opacity: 1;
+    }
+}
+
+.container-two-side-content{
+    position: relative;
+    height: 100%;
+}

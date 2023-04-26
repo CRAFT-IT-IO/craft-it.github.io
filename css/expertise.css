@@ -1,0 +1,16 @@
+:root {
+    --menu-main-color: var(--white);
+    --menu-second-color: var(--white);
+    --logo-display-delay: 0s;
+    --logo-display-duration: 1s;
+    --scrollbar-back-color: #e60000;
+}
+
+h1.title {
+    color: var(--red);
+}
+
+.menu-item {
+    left: -100%;
+    position: relative;
+}

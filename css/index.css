@@ -1,3 +1,16 @@
 @import "animations/logo.css";
 @import "animations/footer.css";
 @import "animations/typing-effect.css";
+
+:root {
+    --content-right-back-color: var(--white);
+    --menu-color: var(--white);
+}
+
+@media screen and (max-width: 1000px) {
+/*    .craft-footer.content-menu-display.animated {
+        overflow: auto;
+    }*/
+
+
+}

@@ -14,30 +14,17 @@ function hamburgerMenuClick() {
     $('#wrapper').toggleClass('toggled');
 }
 
-function addHeader(delay) {
-    let header = $('<header></header>');
-
+function burgerMenu() {
     let button = $('<button></button>', { type: 'button', class: 'hamburger is-closed', 'data-toggle': 'offcanvas' })
         .append($('<span></span>', { class: 'hamb-top' }))
         .append($('<span></span>', { class: 'hamb-middle' }))
         .append($('<span></span>', { class: 'hamb-bottom' }));
 
     let sideBar = $('<ul></ul>', { class: 'nav sidebar-nav' })
-        .append('<li><a page="what-we-do" back-color="var(--red)">WHAT WE DO</a></li>')
+        .append('<li><a page="expertise" back-color="var(--red)">EXPERTISE</a></li>')
         .append('<li><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></li>')
-        .append('<li><a page="our-approaches" back-color="var(--aqua)">OUR APPROACHES</a></li>')
-        .append('<li><a page="get-in-touch" back-color="var(--red)">GET IN TOUCH</a></li>');
-
-    sideBar.find('a').on('click', function () {
-        redirect($(this).attr('page'), $(this).attr('back-color'));
-    });
-
-    let hrefParts = window.location.href.split('/');
-    let currentPage = hrefParts[hrefParts.length - 1].replace('.html', '');
-
-    let selectedItem = sideBar.find('a[page="' + currentPage + '"]');
-    if (selectedItem.length != 0)
-        selectedItem.closest('li').addClass('selected');
+        .append('<li><a page="our-technique" back-color="var(--aqua)">OUR TECHNIQUE</a></li>')
+        .append('<li><a page="contacting-us" back-color="var(--red)">CONTACTING US</a></li>');
 
     let navBar = $('<nav></nav>', { class: 'navbar navbar-inverse navbar-fixed-top is-closed', id: 'sidebar-wrapper', role: 'navigation' })
         .append(sideBar);
@@ -46,7 +33,40 @@ function addHeader(delay) {
         .append(button)
         .append(navBar);
 
-    header.append(headerMenu);
+    return headerMenu;
+}
+
+function headerMenu() {
+    let menuWrap = $('<div></div>', { class: 'menu-wrap' })
+        .append('<div><a page="expertise" back-color="var(--red)">EXPERTISE</a></div>')
+        .append('<div><a page="banking-solutions" back-color="var(--blue)">BANKING SOLUTIONS</a></div>')
+        .append('<div><a page="our-technique" back-color="var(--aqua)">OUR TECHNIQUE</a></div>')
+        .append('<div><a page="contacting-us" back-color="var(--red)">CONTACTING US</a></div>');
+
+    return menuWrap;
+}
+
+function addHeader(delay) {
+    let header = $('<header></header>');
+    let headerContent = $('<header-content></header-content>');
+    let menuWrap = headerMenu();
+    let mobileMenu = burgerMenu();
+
+    let leftPart = $('<div></div>', { class: 'header-left' });
+    let rightPart = $('<div></div>', { class: 'header-right' }).append(menuWrap).append(mobileMenu);
+    header.addClass('animated').append([headerContent, rightPart]);
+    headerContent.append(leftPart);
+
+    header.find('a').on('click', function () {
+        redirect($(this).attr('page'), $(this).attr('back-color'));
+    });
+
+    let hrefParts = window.location.href.split('/');
+    let currentPage = hrefParts[hrefParts.length - 1].replace('.html', '');
+
+    header.find('a[page="' + currentPage + '"]').each(function (i, item) {
+        $(this).parent().addClass('selected');
+    });
 
     if (delay) {
         setTimeout(function () { $('body').prepend(header); }, delay);
@@ -74,48 +94,45 @@ function redirect(page, backcolor) {
         'z-index': 99999
     });
 
-    overlay.animate({ left: 0 }, 1000, function () {
+    overlay.animate({ left: 0 }, 500, function () {
         window.location.href = page + '.html';
     });
 }
 
 function initContentMenu(menuItemTexts, params, callback) {
     let contentDisplay = $('.content-menu-display');
-    contentDisplay.filter(':not(:first-child)').hide();
     let contentMenu = $('.content-menu').show();
-    contentMenu.append($('<img></img>', { class: 'menu-item-arrow', src: 'images/resources/arrow.png', alt: 'arrow' }));
     var menuItems = $('.menu-item');
+    let rightContent = $('.content-right-content');
+    rightContent.empty();
 
     if (menuItems.length == 0)
         return;
 
     menuItems.show();
 
-
-    let arrow = $('.menu-item-arrow');
-    let deltaTop = arrow.height() / 2;
     menuItems.on('click', function (e, args) {
         if ($(this).is('.selected'))
             return;
 
+        rightContent.empty();
         let menuItem = $(this);
-        let position = menuItem.position();
-
         menuItems.removeClass('selected');
-        arrow.animate({ left: '-3vw', top: position.top + (menuItem.height() / 2) - deltaTop }, 500);
         menuItem.addClass('selected');
 
         let menuItemsContent = contentDisplay;
+        let itemToDisplay = contentMenu.find('.content-menu-display[data-display="' + menuItem.data('display') + '"]').clone();
         if (args && args.isStarting) {
-            menuItemsContent = menuItemsContent.filter(':not(:first)');
+            rightContent.append(itemToDisplay);
+            return;
         }
 
         let contentDirection = args && args.contentDirection ? args.contentDirection : 'right'; // or bottom
-        let itemToDisplay = menuItemsContent.hide();
-        contentDirection == 'right' ? menuItemsContent.css('right', '-150%') : menuItemsContent.css('bottom', '-50%');
-        itemToDisplay.filter('[data-display="' + menuItem.data('display') + '"]').show();
+        contentDirection == 'right' ? itemToDisplay.css('right', '-150%') : itemToDisplay.css('bottom', '-50%');
+        rightContent.append(itemToDisplay);
 
-        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom : 0}, 1200);
+        itemToDisplay.animate(contentDirection == 'right' ? { right: 0 } : { bottom: 0 }, 800);
+        itemToDisplay.addClass('selected');
     });
 
     if (params?.withAnimation)
@@ -164,12 +181,8 @@ function initContentMenuWithAnimation(menuItems, menuItemTexts, callback, params
 }
 
 function initLogo(path) {
-    let logoContainer = $('logo');
-    if (logoContainer.length == 0)
-        return;
-
-    logoContainer.empty();
+    let logoContainer = $('<logo class="animated"></logo>');
     let logo = $('<img></img>', { src: path != null ? 'images/' + path : 'images/logo/CRAFT-IT_Logo_Craft-IT_BASELINE.svg' });
     logo.on('click', function () { redirect('index'); });
-    logoContainer.append(logo);
+    $('.header-left').empty().append(logoContainer.append(logo));
 }

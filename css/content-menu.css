@@ -5,32 +5,13 @@
     position: relative;
 }
 
-
-@media screen and (max-width: 1300px) {
-    .menu-item {
-        font-size: 2vw;
-    }
-}
-
-@media screen and (min-width: 1300px) {
-    .menu-item {
-        font-size: 1.5vw;
-    }
-}
-
-@media screen and (min-width: 1800px) {
-    .menu-item {
-        font-size: 1vw;
-    }
-    .menu-item-arrow {
-        height: 2vw;
-        width: 2vw;
-    }
+.menu-item {
+    cursor: pointer;
 }
 
 .menu-item {
-    padding-left: 1vw;
-    cursor: pointer;
+    left: -100%;
+    position: relative;
 }
 
     .menu-item:hover, .menu-item *:hover {
@@ -54,48 +35,55 @@
 .menu-item-arrow {
     position: absolute;
     left: -50%;
-    height: 3vw;
     align-self: center;
-    width: 3vw;
+    width: 30px;
 }
 
 .content-menu-display {
     position: relative;
 }
 
-@media screen and (max-width: 600px) {
     .content-menu-display > * {
-        font-size: 12px;
+        color: var(--text-color, var(--black));
     }
-}
 
-@media screen and (max-width: 900px) {
-    .content-menu-display > * {
-        font-size: 15px;
-    }
-}
-
-/*@media screen and (min-width: 900px) {
-    .content-menu-display > * {
-        font-size: 12px;
-    }
-}*/
-/*@media screen and (min-width: 900px) {
-    .content-menu-display > * {
-        font-size: 1vw;
-    }
-}*/
-
-@media screen and (min-width: 1500px) {
-    .content-menu-display > * {
-        font-size: 20px;
-    }
-}
-
-.content-menu-display > * {
-    position: relative;
+.content-right .content-menu-display > * {
     color: var(--white);
-    margin-bottom: 1vw;
+}
+
+@media screen and (min-width: 1000px) {
+    .content-menu .content-menu-display {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        --menu-color: var(--black);
+        --menu-main-color: var(--black);
+        --menu-back-color: var(--black);
+        --menu-second-color: var(--black);
+    }
+
+    .content-menu .content-menu-display {
+        display: block;
+    }
+
+    .content-menu .content-menu-display:last-child {
+        margin-bottom: calc(6% + 50px);
+    }
+
+    .content-menu-display > * {
+        margin-bottom: 15px;
+    }
+
+    .content-right{
+        display: none;
+    }
+
+    .content-menu-display{
+        display: block !important;
+    }
 }
 
 /* RIGHT */
@@ -109,6 +97,10 @@
     right: 0;
 }
 
+.content-right .content-menu-display {
+    margin-top: 100px;
+}
+
 @keyframes display{
     from {
         right: -150%;
@@ -118,7 +110,6 @@
     right: 0;
     }
 }
-
 
 /* FOOTER */
 .content-bottom .content-menu-display {
