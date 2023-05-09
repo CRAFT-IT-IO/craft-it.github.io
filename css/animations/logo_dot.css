@@ -4,12 +4,24 @@
     --animation-duration-other: 0.2s;
 }
 
+@media screen and (max-width: 1000px) {
+    logo-dot {
+        height: 80%;
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    logo-dot {
+        display: flex;
+        height: 100%;
+    }
+}
+
 logo-dot, logo-dot[data-display-mode="right"], logo-dot[data-display-mode="bottom"] {
     position: absolute;
-    height: 100%;
     width: 100%;
     overflow: hidden;
-    display: flex;
     place-content: center;
 }
 

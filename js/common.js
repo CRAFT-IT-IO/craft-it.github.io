@@ -1,9 +1,11 @@
 $(document).ready(function () {
-    //let logoDotContainer = $('logo-dot:not([data-display-mode])');
+    let logoDotContainer = $('<logo-dot></logo-dot>');
+    $('body').prepend(logoDotContainer);
     //let logoDotContainerRightSide = $('logo-dot[data-display-mode]');
     //logoDotContainer.hide();
     //logoDotContainerRightSide.hide();
-    //logoDotContainer.initializeLogoDotEffect();
+    logoDotContainer.initializeLogoDotEffect();
+
     //logoDotContainerRightSide.initializeLogoDotEffect();
 
     /* Main side */

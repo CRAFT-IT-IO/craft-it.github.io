@@ -3,6 +3,7 @@
     flex-direction: column;
     row-gap: 10px;
     position: relative;
+    padding-left: 30px;
 }
 
 .menu-item {

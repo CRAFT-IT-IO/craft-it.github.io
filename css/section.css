@@ -7,12 +7,6 @@ section.craft-it {
     z-index: 10;
 }
 
-@media screen and (min-width: 1000px) {
-    section.craft-it {
-        
-    }
-}
-
 @media screen and (max-width: 1000px) {
     section.craft-it {
         overflow: auto;
