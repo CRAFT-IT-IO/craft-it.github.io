@@ -1,14 +1,20 @@
+:root {
+    --scrollbar-width: 6px;
+    --scrollbar-back-color-main: var(--white);
+}
+
 ::-webkit-scrollbar {
-    width: 10px;
+    width: var(--scrollbar-width);
+
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
+    box-shadow: inset 0 0 5px transparent;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-back-color, white);
+    background: var(--scrollbar-back-color-main);
     border-radius: 10px;
     filter: brightness(85%);
 }

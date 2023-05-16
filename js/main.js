@@ -1,7 +1,30 @@
 var isMenuClosed = false;
+var interval;
+var isRunning = false;
+
 $(document).ready(function () {
     $(document).on('click', '.hamburger, .overlay', hamburgerMenuClick);
 
+    var r = document.querySelector(':root');
+    var rs = getComputedStyle(r);
+    var mainBckColor = rs.getPropertyValue('--scrollbar-back-color-main');
+
+    $(window).on('wheel', function (e) {
+        if ($('.craft-it').css('overflow') != 'auto')
+            return;
+
+        var currentBckColor = rs.getPropertyValue('--scrollbar-back-color');
+        if (isRunning)
+            clearTimeout(interval);
+
+        isRunning = true;
+        r.style.setProperty('--scrollbar-back-color-main', currentBckColor);
+
+        interval = setTimeout(function () {
+            r.style.setProperty('--scrollbar-back-color-main', mainBckColor);
+            isRunning = false;
+        }, 500);
+    });
 });
 
 function hamburgerMenuClick() {

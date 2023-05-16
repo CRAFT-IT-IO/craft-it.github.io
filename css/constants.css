@@ -6,6 +6,10 @@
     --black: black;
     --aqua: #009999;
     /*colors*/
+    /*Screen Sizes*/
+    /* 1800px */
+    --max-width-content: 900px;
+    /*Screen Sizes*/
 }
 
 @font-face {

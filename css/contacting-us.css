@@ -59,3 +59,11 @@ h1.title {
     position: relative;
     height: 100%;
 }
+
+logo-dot {
+    z-index: unset;
+}
+
+logo-dot .content-image{
+    z-index: 50;
+}

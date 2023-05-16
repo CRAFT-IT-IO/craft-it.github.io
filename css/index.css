@@ -7,10 +7,16 @@
     --menu-color: var(--white);
 }
 
-@media screen and (max-width: 1000px) {
-/*    .craft-footer.content-menu-display.animated {
-        overflow: auto;
-    }*/
+@media only screen and (max-width: 1000px) {
+   button {
+        border: unset;
+        color: var(--black);
+        background-color: var(--white);
+    }
+}
 
-
+button {
+    border: 1px solid var(--white);
+    color: var(--white);
+    background-color: unset;
 }
