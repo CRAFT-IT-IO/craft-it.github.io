@@ -29,11 +29,6 @@
     z-index: 1;
 }
 
-/*.animated.content-right {
-    right: 0;
-    transition: right ease-out 1s;
-}*/
-
 .content-right-content {
     grid-area: contentrightcontent;
     display: grid;
@@ -62,7 +57,7 @@
         grid-template-columns: 0.5fr 0.5fr;
         grid-template-rows: 100px 1fr 50px;
         grid-template-areas:
-            ". ."
+            ". contentrightfirst"
             "twosidecontent contentright"
             "twosidecontent contentright";
     }

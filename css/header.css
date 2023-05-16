@@ -29,11 +29,16 @@ header {
     .header-right {
         background-color: var(--content-right-back-color, var(--red));
     }
+
+    header {
+        z-index: unset;
+    }
 }
 
 @media screen and (max-width: 1000px) {
     header {
         background-color: white;
+        z-index: 99;
     }
 
     logo img {
@@ -94,10 +99,7 @@ header {
     position: absolute;
     width: 100%;
     height: 100px;
-    /*background-color: white;*/
     top: 0;
-    /*z-index: 99;*/
-    z-index: unset;
     display: grid;
     place-items: stretch;
 }

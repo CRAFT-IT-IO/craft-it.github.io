@@ -56,6 +56,11 @@
     .content-menu .content-menu-display {
         display: none;
     }
+
+    .content-right-first {
+        background-color: var(--content-right-back-color);
+        grid-area: contentrightfirst;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -78,7 +83,7 @@
         margin-bottom: 15px;
     }
 
-    .content-right{
+    .content-right, .content-right-first {
         display: none;
     }
 
