@@ -20,8 +20,9 @@ $(function () {
         });
 
         $(window).on('wheel', function (e) {
-            if (isSCrolling || $('.footer-container').css('overflow') == 'auto')
+            if (isSCrolling || $('.footer-container').css('overflow') == 'auto') {
                 return;
+            }
 
             console.log('target scroll : ' + e.target);
             isSCrolling = true;
@@ -29,7 +30,7 @@ $(function () {
             footerAnimation(delta);
         });
 
-        var footerAnimation = function(delta, animationIndex) {
+        var footerAnimation = function (delta, animationIndex) {
             let animationCount = getAnimationCount();
             if (animationIndex == null && delta != 0)
                 delta < 0 ? ++currentAnimationIndex /* to down*/ : --currentAnimationIndex; /* to up*/

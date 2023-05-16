@@ -7,6 +7,10 @@
 @import "content-menu.css";
 @import "animations/logo_dot.css";
 
+html {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 .craft-it-font {
     font-family: madeFutureXHeader;
 }
