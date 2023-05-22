@@ -9,17 +9,21 @@
 	<url>
 		<loc>https://www.craft-it.io/expertise.html</loc>
 		<lastmod>2023-05-22</lastmod>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://www.craft-it.io/banking-solutions.html</loc>
 		<lastmod>2023-05-22</lastmod>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://www.craft-it.io/our-technique.html</loc>
 		<lastmod>2023-05-22</lastmod>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://www.craft-it.io/contacting-us.html</loc>
 		<lastmod>2023-05-22</lastmod>
+		<priority>1.0</priority>
 	</url>
 </urlset>
