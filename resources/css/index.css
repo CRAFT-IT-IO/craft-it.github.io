@@ -1,0 +1,207 @@
+:root{
+    --Red-200: #F5EBE7;
+    --Red-500: #FF4135;
+    --Red-700: #B30137;
+
+    --Grey-25: #F5F4F4; 
+    --Grey-200: #EEEEEE; 
+    --Grey-700: #44403C; 
+    --Grey-900: #1F1C1A;
+    
+}
+
+body{
+    background-color: var(--Grey-25);
+}
+
+/* ————————— FONT FACES */
+/* Aspekta */
+  
+  @font-face {
+    font-family: "Aspekta";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url("../fonts/Aspekta-200.woff2") format("woff2");
+  }
+  
+  
+  @font-face {
+    font-family: "Aspekta";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/Aspekta-400.woff2") format("woff2");
+  }
+
+  
+  @font-face {
+    font-family: "Aspekta";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/Aspekta-600.woff2") format("woff2");
+  }
+  
+
+  /* ————————— TYPOGRAPHIC STYLE */
+
+h1 a{
+    color: var(--Grey-900);
+    text-transform: uppercase;
+
+    font-family: 'Aspekta', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+h1 span{
+    text-transform: none;
+
+    font-family: 'Aspekta', Arial, sans-serif;
+    font-weight: 600;
+}
+
+h2{
+    color: var(--Grey-900);
+    line-height: 100%;
+    letter-spacing: -4px;
+
+    font-family: 'Aspekta', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 140px;
+}
+
+  /* ————————— GRID */
+
+.site-grid{
+    display: grid;
+    grid-template-columns: repeat(16,minmax(0,1fr));
+    grid-template-rows: auto;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    
+}
+
+/* ————————— HEADER */
+
+header{
+    position: relative;
+}
+
+/* ————————— NAV */
+
+nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+/* ————————— MAIN */
+
+main{
+    position: relative;
+    width: 100%;
+}
+
+.container{
+    padding: 1.6rem;
+}
+
+/* ————————— HERO */
+
+#spline{
+    position: absolute !important;
+    top: 0;
+}
+
+
+.hero-heading:nth-child(1) {
+    grid-area: 1 / 1 / 2 / 9; /* Adjust this to position the first heading */
+    margin-top: 25vh;
+}
+
+.hero-heading:nth-child(2) {
+    grid-area: 2 / 1 / 3 / 17; /* Adjust this to position the second heading */
+}
+
+.hero-heading:nth-child(3) {
+    grid-area: 3 / 8 / 4 / 17; /* Adjust this to position the third heading */
+}
+
+.hero-heading:nth-child(4) {
+    grid-area: 4 / 8 / 5 / 17; /* Adjust this to position the fourth heading */
+}
+
+.ml16 {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.ml16 .letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.ml17 {
+    text-align: right;
+}
+
+
+/* ——————— RESPONSIVE */
+
+@media (max-width: 768px){
+
+    /* ————————— TYPOGRAPHIC STYLE */
+
+
+    h2{
+        font-size: 12vw;
+    }
+
+    /* ——————— GRID */
+
+    .site-grid{
+        display: grid;
+        grid-template-columns: repeat(4,minmax(0,1fr));
+        grid-template-rows: auto;
+    
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    /* ——————— HERO */
+
+    .hero-heading:nth-child(1) {
+        grid-area: 1 / 1 / 1 / 5; /* Adjust this to position the first heading */
+        margin-top: 20vh;
+    }
+    
+    .hero-heading:nth-child(2) {
+        grid-area: 2 / 1 / 2 / 5; /* Adjust this to position the second heading */
+    }
+    
+    .hero-heading:nth-child(3) {
+        text-align: right;
+        grid-area: 10 / 5 / 10 / 1; /* Adjust this to position the third heading */
+        margin-top: 30vh;
+    }
+    
+    .hero-heading:nth-child(4) {
+        grid-area: 11 / 5 / 11 / 1; /* Adjust this to position the fourth heading */
+    }
+    
+    .hero-description {
+        grid-area: 12 / 1 / 20 / 5; /* Adjust this to position the description */
+        margin: 24px 0;
+        font-size: 1.125rem;
+    }
+}
