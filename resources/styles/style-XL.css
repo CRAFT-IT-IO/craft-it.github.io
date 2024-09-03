@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "Aspekta";
+    src: url(/resources/fonts/Aspekta-400.woff2);
+}
+body,html {
+    margin: 0;
+    padding: 0;
+    font-family: "Aspekta";
+}
+* {
+    box-sizing: border-box;
+}
+main{
+    /* overflow: auto; */
+    height: 100vh;
+}
+.hero-wrapper{
+    height: 100vh;
+    width: 100vw;
+    padding: 2em 5em 2em 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: black;
+}
+.hero-top{
+    height: 6vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a{
+        color: #F0ECE9;
+        text-decoration: none;
+        font-size: 1.3em;
+    }
+}
+.hero-links{
+    display: flex;
+    justify-content: space-between;
+    gap: 3em;
+}
+.hero-message{
+    h1{
+        color: #F0ECE9;
+        font-family: "Aspekta";
+        font-size: 8em;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1em;
+        letter-spacing: -5.76px;
+        margin: 0;
+    }
+}
+.hero-button{
+    height: 10vh;
+    width: auto;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #F0ECE9;
+    border-radius: 4px;
+    padding: 0em 2em;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+.button-text{
+    font-family: "Aspekta";
+    color: #F0ECE9;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+}
+
+#threejs-canvas{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1; 
+}
+.call-to-action{
+    /* display: fixed;
+    height: 40vh;
+    width: 100%; */
+}

@@ -1,2 +1,0 @@
-user-agent: *
-sitemap: https://www.craft-it.io/sitemap.xml
