@@ -1,7 +1,13 @@
 @font-face {
     font-family: "Aspekta";
-    src: url(/resources/fonts/Aspekta-400.woff2);
+    src: local(/resources/fonts/Aspekta-400.woff2);
 }
+
+:root{
+    --Grey-200: #F0ECE9;
+    --Grey-800: #171815; 
+}
+
 body,html {
     margin: 0;
     padding: 0;
@@ -21,15 +27,17 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #171815;
+    background-color: var(--Grey-800);
 }
 .hero-top{
     height: 6vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1; 
+
     a{
-        color: #F0ECE9;
+        color: var(--Grey-200);
         text-decoration: none;
         font-size: 1.3em;
     }
@@ -40,39 +48,45 @@ main{
     gap: 3em;
 }
 .hero-message{
+    z-index: 1; 
     h1{
-        color: #F0ECE9;
+        color: var(--Grey-200);
         font-family: "Aspekta";
-        font-size: 8em;
+        font-size: 5.5em;
         font-style: normal;
         font-weight: 400;
-        line-height: 1em;
-        letter-spacing: -5.76px;
+        line-height: 6rem;
+        letter-spacing: -0.22rem;
         margin: 0;
     }
 }
+
+.hero-bottom{
+    z-index: 1;
+}
 .hero-button{
-    height: 10vh;
+    height: 9.5vh;
     width: auto;
     display: flex;
     flex-grow: 1;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #F0ECE9;
+    border: 1px solid var(--Grey-200);
     text-transform: uppercase;
     padding: 0em 2em;
     transition: ease-in-out 0.2s;
     cursor: pointer;
 }
 .button-text{
+    color: var(--Grey-200);
     font-family: "Aspekta";
-    color: #F0ECE9;
-    font-size: 1.2em;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.36px;
+    line-height: 100%; /* 0.875rem */
+    letter-spacing: 0.175rem;
+    text-transform: uppercase;
 }
 
 #threejs-canvas{
@@ -82,9 +96,4 @@ main{
     height: 100%;
     width: 100%;
     z-index: 0; 
-}
-.call-to-action{
-    /* display: fixed;
-    height: 40vh;
-    width: 100%; */
 }
