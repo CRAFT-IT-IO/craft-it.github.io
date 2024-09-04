@@ -60,7 +60,7 @@ main{
     align-items: center;
     justify-content: space-between;
     border: 1px solid #F0ECE9;
-    border-radius: 4px;
+    text-transform: uppercase;
     padding: 0em 2em;
     transition: ease-in-out 0.2s;
     cursor: pointer;
