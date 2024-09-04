@@ -35,8 +35,21 @@ for (let z = 0; z < gridSize; z++) {
 const vertices = new Float32Array(points);
 geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
-// Création du matériau des points
-const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+// Chargement d'une texture de cercle pour les points
+const textureLoader = new THREE.TextureLoader();
+const circleTexture = textureLoader.load('https://threejs.org/examples/textures/sprites/disc.png');
+
+// Création du matériau des points avec transparence et texture de cercle
+const material = new THREE.PointsMaterial({ 
+  color: 0xF0ECE9,    // Couleur blanche
+  size: 0.4,          // Taille des points
+  transparent: true,  // Activer la transparence
+  opacity: 0.7,       // Opacité
+  map: circleTexture, // Utilisation de la texture de cercle
+  alphaTest: 0.5,     // Gère les pixels semi-transparents (ignorer les pixels trop transparents)
+  depthWrite: false   // Permet de rendre les points semi-transparents correctement
+});
+
 const pointCloud = new THREE.Points(geometry, material);
 scene.add(pointCloud);
 
@@ -128,6 +141,7 @@ window.addEventListener('resize', () => {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 });
+
 
 
 
