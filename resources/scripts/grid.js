@@ -1,193 +1,133 @@
-// Récupérer l'élément canvas
+// Initialisation de la scène
 const canvas = document.getElementById('threejs-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true }); // Fond transparent
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0); // Couleur du fond (totalement transparent)
 
-// Configurer la scène
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 7; // Reculez la caméra pour voir plus de la grille
+camera.position.z = 50;
 
-// Configurer le rendu
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
-
-// Paramètres de la grille
-const gridSize = 50; // Augmenter la densité de la grille
-const pointRadius = 0.02; // Réduire la taille des points
-const lineOpacity = 0.1; // Rendre les lignes plus transparentes
-const crossOpacity = 0.3; // Opacité des croix
-const crossSize = 0.1; // Taille des croix
+// Création des points du cube
+const geometry = new THREE.BufferGeometry();
 const points = [];
-const intersections = []; // Stocker les positions des intersections
 
-// Définir les matériaux pour les lignes et les croix
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: lineOpacity });
-const crossMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: crossOpacity });
+const gridSize = 10; // Nombre de points sur chaque axe (10x10x10 cube)
+const spacing = 5;  // Espacement entre les points
+const initialPositions = []; // Stocke les positions initiales des points
+const timeOffsets = []; // Stocke les timers pour chaque point
 
-for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-        const x = (i - gridSize / 2) * 0.5;
-        const y = (j - gridSize / 2) * 0.5;
-        const z = 0;
+// Création de la grille de points dans un espace 3D (X, Y, Z)
+for (let z = 0; z < gridSize; z++) {
+  for (let y = 0; y < gridSize; y++) {
+    for (let x = 0; x < gridSize; x++) {
+      const posX = x * spacing - ((gridSize - 1) * spacing) / 2;
+      const posY = y * spacing - ((gridSize - 1) * spacing) / 2;
+      const posZ = z * spacing - ((gridSize - 1) * spacing) / 2;
 
-        intersections.push({ x, y, occupied: false }); // Stocker les intersections
-
-        // Créer des lignes entre les points
-        if (i < gridSize - 1) {
-            const lineGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, y, z), new THREE.Vector3(x + 0.5, y, z)]);
-            const line = new THREE.Line(lineGeometry, lineMaterial);
-            scene.add(line);
-        }
-        if (j < gridSize - 1) {
-            const lineGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, y, z), new THREE.Vector3(x, y + 0.5, z)]);
-            const line = new THREE.Line(lineGeometry, lineMaterial);
-            scene.add(line);
-        }
-
-        // Ajouter une croix à l'intersection de chaque deuxième carré
-        if ((i + j) % 2 === 0) {
-            // Ligne horizontale de la croix
-            const crossHorizontalGeometry = new THREE.BufferGeometry().setFromPoints([
-                new THREE.Vector3(x - crossSize / 2, y, z),
-                new THREE.Vector3(x + crossSize / 2, y, z),
-            ]);
-            const crossHorizontalLine = new THREE.Line(crossHorizontalGeometry, crossMaterial);
-            scene.add(crossHorizontalLine);
-
-            // Ligne verticale de la croix
-            const crossVerticalGeometry = new THREE.BufferGeometry().setFromPoints([
-                new THREE.Vector3(x, y - crossSize / 2, z),
-                new THREE.Vector3(x, y + crossSize / 2, z),
-            ]);
-            const crossVerticalLine = new THREE.Line(crossVerticalGeometry, crossMaterial);
-            scene.add(crossVerticalLine);
-        }
+      points.push(posX, posY, posZ);
+      initialPositions.push({ x: posX, y: posY, z: posZ });
+      timeOffsets.push(0); // Chaque point commence avec un timer à 0
     }
+  }
 }
 
-// Fonction pour créer un ease-in-out
-function easeInOut(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-}
+const vertices = new Float32Array(points);
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
-// Fonction pour étendre une ligne d'une intersection à une autre
-function extendLine(start, end, callback) {
-    const lineGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(start.x, start.y, 0), new THREE.Vector3(start.x, start.y, 0)]);
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
-    const line = new THREE.Line(lineGeometry, lineMaterial);
-    scene.add(line);
+// Création du matériau des points
+const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+const pointCloud = new THREE.Points(geometry, material);
+scene.add(pointCloud);
 
-    const duration = 1000; // Durée de l'extension en ms
-    const startTime = Date.now();
+// Variables pour stocker la position de la souris
+let mouseX = 0;
+let mouseY = 0;
+let isMouseInside = true; // Variable pour savoir si la souris est dans la zone d'influence
 
-    function animateLine() {
-        const elapsed = Date.now() - startTime;
-        const t = Math.min(elapsed / duration, 1);
-        const easeT = easeInOut(t);
+// Fonction pour mettre à jour la position de la souris
+document.addEventListener('mousemove', (event) => {
+  const halfWidth = window.innerWidth / 2;
+  const halfHeight = window.innerHeight / 2;
 
-        // Mise à jour de la géométrie de la ligne pour l'étendre
-        line.geometry.setFromPoints([
-            new THREE.Vector3(start.x, start.y, 0),
-            new THREE.Vector3(
-                THREE.MathUtils.lerp(start.x, end.x, easeT),
-                THREE.MathUtils.lerp(start.y, end.y, easeT),
-                0
-            )
-        ]);
+  // Normalisation des coordonnées de la souris dans l'espace 3D du canvas
+  mouseX = ((event.clientX - halfWidth) / halfWidth) * 50; // Conversion en coordonnées du monde 3D
+  mouseY = ((event.clientY - halfHeight) / halfHeight) * -50; // Inversé pour correspondre à l'axe Y 3D
 
-        if (t < 1) {
-            requestAnimationFrame(animateLine);
-        } else {
-            contractLine(line, end, callback); // Contracter la ligne après l'extension
-        }
-    }
-
-    animateLine();
-}
-
-// Fonction pour contracter une ligne vers la destination finale
-function contractLine(line, end, callback) {
-    const start = new THREE.Vector3(line.geometry.attributes.position.array[0], line.geometry.attributes.position.array[1], 0);
-    const duration = 1000; // Durée de la contraction en ms
-    const startTime = Date.now();
-
-    function animateContract() {
-        const elapsed = Date.now() - startTime;
-        const t = Math.min(elapsed / duration, 1);
-        const easeT = easeInOut(t);
-
-        // Mise à jour de la géométrie de la ligne pour la contracter vers la position finale
-        line.geometry.setFromPoints([
-            new THREE.Vector3(
-                THREE.MathUtils.lerp(start.x, end.x, easeT),
-                THREE.MathUtils.lerp(start.y, end.y, easeT),
-                0
-            ),
-            new THREE.Vector3(end.x, end.y, 0)
-        ]);
-
-        if (t < 1) {
-            requestAnimationFrame(animateContract);
-        } else {
-            scene.remove(line); // Supprimer la ligne une fois la contraction terminée
-            if (callback) callback();
-        }
-    }
-
-    animateContract();
-}
-
-// Fonction pour créer un mouvement aléatoire de ligne sur la grille
-function createExtendingPoint() {
-    const freeIntersections = intersections.filter(pos => !pos.occupied);
-    if (freeIntersections.length === 0) return;
-
-    const startPosition = freeIntersections[Math.floor(Math.random() * freeIntersections.length)];
-    startPosition.occupied = true;
-
-    const maxSteps = 4; // Maximum number of steps to move (can be adjusted)
-    const possiblePositions = intersections.filter(pos => {
-        const distanceX = Math.abs(pos.x - startPosition.x);
-        const distanceY = Math.abs(pos.y - startPosition.y);
-
-        // Allow movement only if it's purely horizontal or vertical, and within maxSteps
-        const isHorizontal = (distanceX > 0 && distanceX <= 0.5 * maxSteps) && (distanceY === 0);
-        const isVertical = (distanceY > 0 && distanceY <= 0.5 * maxSteps) && (distanceX === 0);
-
-        return (isHorizontal || isVertical) && !pos.occupied;
-    });
-
-    if (possiblePositions.length === 0) {
-        startPosition.occupied = false; // Libérer la position si aucun déplacement possible
-        return;
-    }
-
-    const endPosition = possiblePositions[Math.floor(Math.random() * possiblePositions.length)];
-    endPosition.occupied = true;
-
-    extendLine(startPosition, endPosition, () => {
-        endPosition.occupied = false; // Libérer l'intersection à la fin du mouvement
-        setTimeout(createExtendingPoint, 500); // Relancer le processus de déplacement
-    });
-}
-
-// Créer plusieurs lignes pour démarrer l'animation en continu
-for (let i = 0; i < 20; i++) {
-    setTimeout(createExtendingPoint, i * 1000); // Espacer l'apparition des lignes
-}
-
-// Gérer la redimension des fenêtres
-window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+  isMouseInside = true; // La souris est dans la zone d'influence
 });
 
+// Lorsque la souris quitte la fenêtre, on continue l'animation jusqu'à ce qu'elle retourne à la position initiale
+document.addEventListener('mouseleave', () => {
+  isMouseInside = false; // La souris est sortie de la zone
+});
+
+// Fonction d'interpolation ease-in-out
+function easeInOut(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
+// Fonction pour mettre à jour les positions des points avec une interpolation fluide
+function updatePoints() {
+  const positions = geometry.attributes.position.array;
+  const timeFactor = 0.01; // Vitesse de l'animation
+
+  for (let i = 0; i < positions.length; i += 3) {
+    const initialPosition = initialPositions[i / 3];
+    const distanceX = mouseX - initialPosition.x;
+    const distanceY = mouseY - initialPosition.y;
+
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY); // Distance à la souris
+
+    const maxDistance = 15; // Distance maximale à laquelle les points sont influencés
+    const influence = Math.max(0, maxDistance - distance) / maxDistance; // Influence basée sur la distance
+
+    // Si la souris est dans la zone d'influence, augmenter le timer
+    if (isMouseInside && influence > 0) {
+      timeOffsets[i / 3] = Math.min(timeOffsets[i / 3] + timeFactor, 1); // Incrémenter le timer jusqu'à 1
+    } else {
+      // Lorsque la souris quitte, réduire progressivement le timer
+      timeOffsets[i / 3] = Math.max(timeOffsets[i / 3] - timeFactor * 0.5, 0); // Décrémenter lentement le timer vers 0
+    }
+
+    // Application de l'ease-in-out sur le timer
+    const easeValue = easeInOut(timeOffsets[i / 3]);
+
+    // Déplacement en Z influencé par la proximité avec la souris (onde)
+    const waveEffect = Math.sin(distance * 0.2 + performance.now() * 0.005) * influence * 2 * easeValue;
+
+    // Appliquer l'effet de vague avec easing
+    positions[i + 2] = initialPosition.z + waveEffect;
+  }
+
+  geometry.attributes.position.needsUpdate = true; // Indique à Three.js que les positions ont changé
+}
+
+// Fonction d'animation
 function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+
+  // Légère rotation automatique du cube
+  pointCloud.rotation.x += 0.001;
+  pointCloud.rotation.y += 0.001;
+
+  // Mettre à jour les positions des points avec l'effet de vague
+  updatePoints();
+
+  // Rendu de la scène
+  renderer.render(scene, camera);
 }
 
 animate();
+
+// Gestion du redimensionnement de la fenêtre
+window.addEventListener('resize', () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
+
+
+
