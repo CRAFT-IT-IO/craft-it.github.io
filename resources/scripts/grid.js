@@ -83,7 +83,7 @@ function easeInOut(t) {
 // Fonction pour mettre à jour les positions des points avec une interpolation fluide
 function updatePoints() {
   const positions = geometry.attributes.position.array;
-  const timeFactor = 0.01; // Vitesse de l'animation
+  const timeFactor = 0.06; // Vitesse de l'animation
 
   for (let i = 0; i < positions.length; i += 3) {
     const initialPosition = initialPositions[i / 3];
@@ -92,7 +92,7 @@ function updatePoints() {
 
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY); // Distance à la souris
 
-    const maxDistance = 15; // Distance maximale à laquelle les points sont influencés
+    const maxDistance = 30; // Distance maximale à laquelle les points sont influencés
     const influence = Math.max(0, maxDistance - distance) / maxDistance; // Influence basée sur la distance
 
     // Si la souris est dans la zone d'influence, augmenter le timer
@@ -123,6 +123,7 @@ function animate() {
   // Légère rotation automatique du cube
   pointCloud.rotation.x += 0.001;
   pointCloud.rotation.y += 0.001;
+  pointCloud.rotation.z += 0.001;
 
   // Mettre à jour les positions des points avec l'effet de vague
   updatePoints();
@@ -141,7 +142,3 @@ window.addEventListener('resize', () => {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 });
-
-
-
-
