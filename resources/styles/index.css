@@ -1,27 +1,41 @@
 @font-face {
-    font-family: "Aspekta";
-    src: url(/resources/fonts/Aspekta-400.woff2), local(/resources/fonts/Aspekta-400.woff2);
-}
+    font-family: 'Aspekta';
+    src: url('/resources/fonts/Aspekta-400.woff2') format('woff2');
+    src: url('/resources/fonts/Aspekta-400.woff') format('woff');
+    src: url('/resources/fonts/Aspekta-400.ttf') format('ttf');
+  }
+  
 
 :root{
     --Grey-200: #F0ECE9;
     --Grey-800: #171815; 
 }
+
+body,html {
+    margin: 0;
+    padding: 0;
+    font-family: "Aspekta", Helvetica, sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+
+    /* TYPOGRAPHY */ 
+
 h1{
     color: #F0ECE9;
     font-family: "Aspekta", Arial, Helvetica, sans-serif;
-    font-size: 7.5em;
+    font-size: 9em;
     font-style: normal;
     font-weight: 400;
-    line-height: 7rem;
-    letter-spacing: -0.22rem;
+    line-height: 8.25rem;
     margin: 0;
 }
 h3{
     margin: 0;
     font-size: 2.4em;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 32px;
 }
 
@@ -29,7 +43,7 @@ h5{
     margin:0;
     font-size: 1.2em;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1em;
 }
 
@@ -41,14 +55,17 @@ h6{
     line-height: 1.2em;
 }
 
-body,html {
-    margin: 0;
-    padding: 0;
-    font-family: "Aspekta", Helvetica, sans-serif;
+.upperlinks{
+    color: var(--Grey-200);
+    font-family: "Aspekta", Arial, Helvetica, sans-serif;;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0.175rem;
+    text-transform: uppercase;
 }
-* {
-    box-sizing: border-box;
-}
+
 main{
     overflow: auto;
     height: 100vh;
@@ -57,13 +74,24 @@ main{
     height: 100vh;
     width: 100vw;
     /* padding: 2em 5em 2em 5em; */
-    padding: 1em;
+    padding: 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--Grey-800);
     z-index: 1;
 }
+
+.hero-content-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4.5rem;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
 .hero-top{
     height: 6vh;
     display: flex;
@@ -73,12 +101,12 @@ main{
     a{
         color: var(--Grey-200);
         text-decoration: none;
-        font-size: 1.3em;
     }
 }
 .hero-links{
     display: flex;
     justify-content: space-between;
+    text-transform: uppercase;
     gap: 3em;
 }
 .hero-message{
@@ -87,29 +115,18 @@ main{
 
 .hero-button{
     width: 100%;
-    height: 9.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
     border: 1px solid var(--Grey-200);
     text-transform: uppercase;
-    padding: 0em 2em;
+    padding: 2em 2em;
     transition: ease-in-out 0.2s;
     cursor: pointer;
     z-index: 1;
 }
 
-.button-text{
-    color: var(--Grey-200);
-    font-family: "Aspekta";
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: 0.175rem;
-    text-transform: uppercase;
-}
 
 .call-to-action{
     position: fixed;
