@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'Aspekta';
     src: url('/resources/fonts/Aspekta-400.woff2') format('woff2');
-    src: url('/resources/fonts/Aspekta-400.woff') format('woff');
-    src: url('/resources/fonts/Aspekta-400.ttf') format('ttf');
+    /* src: url('/resources/fonts/Aspekta-400.woff') format('woff');
+    src: url('/resources/fonts/Aspekta-400.ttf') format('ttf'); */
   }
   
 
@@ -24,8 +24,17 @@ body,html {
 
 h1{
     color: #F0ECE9;
-    font-family: "Aspekta", Arial, Helvetica, sans-serif;
-    font-size: 9em;
+    font-family: "Aspekta", Helvetica, sans-serif;
+    font-size: 8em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 8.25rem;
+    margin: 0;
+}
+h2{
+    color: #F0ECE9;
+    font-family: "Aspekta", Helvetica, sans-serif;
+    font-size: 8em;
     font-style: normal;
     font-weight: 400;
     line-height: 8.25rem;
@@ -54,6 +63,16 @@ h6{
     font-weight: 400;
     line-height: 1.2em;
 }
+p{
+    color: #F0ECE9;
+    font-family: "Aspekta", Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: -0.64px;
+    margin: 0;
+}
 
 .upperlinks{
     color: var(--Grey-200);
@@ -73,7 +92,6 @@ main{
 .hero-wrapper{
     height: 100vh;
     width: 100vw;
-    /* padding: 2em 5em 2em 5em; */
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -110,7 +128,17 @@ main{
     gap: 3em;
 }
 .hero-message{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     z-index: 1; 
+    width: 100%;
+}
+.hero-text-left{
+    width: 60%;
+}
+.hero-text-right{
+    width: 30%;
 }
 
 .hero-button{
@@ -176,19 +204,19 @@ main{
     width: 50%;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
+    justify-content: space-between;
 }
 .cta-contact-address{
     display: flex;
     flex-direction: column;
-    height: 50%;
+    height: 45%;
     width: 70%;
     gap: 1em;
+    border-bottom:solid 1px rgba(23, 24, 21, 0.10);
 }
 .cta-address-wrap{
     display: flex;
     justify-content: space-between;
-    gap: 8em;
 }
 .cta-address-right{
     display: flex;
@@ -199,7 +227,7 @@ main{
 .cta-contact-mail{
     display: flex;
     flex-direction: column;
-    height: 50%;
+    height: 45%;
     width: 70%;
     gap: 1em;
 }
@@ -244,4 +272,88 @@ main{
     height: 100%;
     width: 100%;
     z-index: 0; 
+}
+
+@media screen and (max-width: 500px) {
+    h1{
+        font-size: 13vw;
+        line-height: 8vh;
+    }
+    h2{
+        font-size: 15vw;
+        line-height: 7vh;
+    }
+    h3{
+        font-size: 7.5vw;
+        line-height: 4vh;
+    }
+    h5{
+        font-size: 4vw;
+        line-height: 4vh;
+    }
+    h6{
+        font-size: 3.5vw;
+        line-height: 4vh;
+    }
+    p{
+        font-size: 3.5vw;
+        line-height: 32px;
+        margin-top: 4vh;
+    }
+    .upperlinks{
+        font-size: 3vw;
+    }
+    .hero-top{
+        height: 2vh;
+    }
+    .hero-message{
+        flex-direction: column;
+        z-index: 1; 
+        height: 50%;
+    }
+    .hero-text-left{
+        width: 100%;
+    }
+    .hero-text-right{
+        width: 100%;
+    }
+    .cta-mid{
+        display: flex;
+        height: 75%;
+    }
+    .cta-mid-message{
+        height: 50vh;
+    }
+    .cta-mid-content{
+        margin: 0;
+        flex-direction: column;
+    }
+    .cta-mid-contacts {
+        height: 60vh;
+        width: 100%;
+    }
+    .cta-contact-address {
+        width: 100%;
+    }
+    .cta-address-right{
+        gap: 0;
+    }
+    .cta-contact-mail {
+        width: 100%;
+    }
+    .cta-email-right{
+        gap: 0;
+        a{
+            font-size: 3.5vw;
+            line-height: 4vh;
+        }
+    }
+    .cta-email-left {
+        gap: 0;
+
+    }
+    .call-to-action.active {
+        max-height: 88vh;
+    }
+    
 }
