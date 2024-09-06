@@ -103,7 +103,7 @@ main{
 .hero-content-wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 4.5rem;
     flex: 1 0 0;
@@ -140,9 +140,23 @@ main{
 .hero-text-right{
     width: 30%;
 }
+.hero-bottom{
+    position: fixed;
+    bottom: 2em;
+    height: 8vh;
+    width: 96%;
+    z-index: 1;
+    overflow: hidden;
+    float: left;
+    transition: ease-in-out .5s;
+}
+.hero-bottom.active{
+    transition: ease-in-out .5s;
+    height: 85vh;
+}
 
 .hero-button{
-    width: 100%;
+    height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,31 +164,51 @@ main{
     border: 1px solid var(--Grey-200);
     text-transform: uppercase;
     padding: 2em 2em;
-    transition: ease-in-out 0.2s;
+    transition: ease-in-out .3s;
     cursor: pointer;
-    z-index: 1;
+}
+.hero-button:hover{
+    background: #F0ECE9;
+    .button-text{
+        color: black;
+    }
+    .arrow-path{
+        stroke: black;
+    }
+}
+.hero-button.active{
+    background: #F0ECE9;
+    border: 1px solid #F0ECE9;
+    .button-text{
+        color: black;
+    }
+    .arrow-path{
+        stroke: black;
+    }
+}
+.svg-arrow.active{
+    transition: 1s ease-in-out;
+    transform: rotate(180deg);
 }
 
-
 .call-to-action{
-    position: fixed;
-    height: 0vh;
-    width: 98.3%;
-    margin-left: 0.85%;
+    /* position: fixed; */
+    height: 77vh;
+    width: 100%;
+    bottom: 3em;
+    left: 1%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    bottom: 1em;
     background-color: var(--Grey-200);
     transition: .5s ease-in-out;
     z-index: 1;
-    overflow: hidden;
 }
-.call-to-action.active{
-    height: 90vh;
-}
+/* .call-to-action.active{
+    height: 80vh;
+} */
 
 .cta-top{
     width: 100%;
