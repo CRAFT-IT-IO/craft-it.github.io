@@ -6,14 +6,14 @@ renderer.setClearColor(0x000000, 0); // Couleur du fond (totalement transparent)
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 50;
+camera.position.z = 100; // Caméra plus éloignée initialement
 
 // Création des points du cube
 const geometry = new THREE.BufferGeometry();
 const points = [];
 
-const gridSize = 10; // Nombre de points sur chaque axe (10x10x10 cube)
-const spacing = 5;  // Espacement entre les points
+const gridSize = 20; // Augmentation du nombre de points sur chaque axe (20x20x20 cube)
+const spacing = 5;   // Espacement entre les points
 const initialPositions = []; // Stocke les positions initiales des points
 const timeOffsets = []; // Stocke les timers pour chaque point
 
@@ -40,9 +40,9 @@ const textureLoader = new THREE.TextureLoader();
 const circleTexture = textureLoader.load('https://threejs.org/examples/textures/sprites/disc.png');
 
 // Création du matériau des points avec transparence et texture de cercle
-const material = new THREE.PointsMaterial({ 
+const material = new THREE.PointsMaterial({
   color: 0xF0ECE9,    // Couleur blanche
-  size: 0.4,          // Taille des points
+  size: 0.5,          // Taille des points
   transparent: true,  // Activer la transparence
   opacity: 0.7,       // Opacité
   map: circleTexture, // Utilisation de la texture de cercle
@@ -57,6 +57,10 @@ scene.add(pointCloud);
 let mouseX = 0;
 let mouseY = 0;
 let isMouseInside = true; // Variable pour savoir si la souris est dans la zone d'influence
+
+// Variables pour gérer le scrolling
+let scrollY = 0;  // Position de scroll initiale
+let cameraTargetZ = 50; // Position cible de la caméra au centre du cube
 
 // Fonction pour mettre à jour la position de la souris
 document.addEventListener('mousemove', (event) => {
@@ -116,14 +120,29 @@ function updatePoints() {
   geometry.attributes.position.needsUpdate = true; // Indique à Three.js que les positions ont changé
 }
 
+// Gestion du scroll pour déplacer la caméra et réinitialiser la rotation du cube
+window.addEventListener('scroll', () => {
+  scrollY = window.scrollY;
+
+  // Avancer la caméra vers le centre du cube (en ajustant sa position Z)
+  camera.position.z = 100 - scrollY * 0.1; // La caméra se rapproche du cube en scrollant
+
+  // Recentrer le cube et faire tourner uniquement sur l'axe Y
+  pointCloud.rotation.x = 0;
+  pointCloud.rotation.z = 0;
+  pointCloud.rotation.y += 0.01; // Rotation uniquement sur Y
+});
+
 // Fonction d'animation
 function animate() {
   requestAnimationFrame(animate);
 
-  // Légère rotation automatique du cube
-  pointCloud.rotation.x += 0.001;
-  pointCloud.rotation.y += 0.001;
-  pointCloud.rotation.z += 0.001;
+  // Légère rotation automatique du cube uniquement sur l'axe Y si pas de scroll
+  if (scrollY === 0) {
+    pointCloud.rotation.x += 0.001;
+    pointCloud.rotation.y += 0.001;
+    pointCloud.rotation.z += 0.001;
+  }
 
   // Mettre à jour les positions des points avec l'effet de vague
   updatePoints();
