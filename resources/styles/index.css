@@ -19,7 +19,8 @@ body,html {
     background-color: var(--Grey-800);
 }
 
-body.no-scroll {
+main.no-scroll {
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -107,7 +108,6 @@ header{
     width: 100%;
 
     position: sticky;
-    top: 2rem;
     z-index: 10;
 
     a{
@@ -219,6 +219,7 @@ header{
     height: calc(92vh - 8rem);
     width: 100%;
     padding: 2rem;
+    gap: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -232,6 +233,7 @@ header{
     color: var(--Grey-800);
     text-decoration: none;
     font-size: 1.2rem;
+    text-align: right;
 }
 
 .cta-top{
@@ -275,36 +277,24 @@ header{
     padding: 2rem;
     gap: 2em;
 }
-.cta-address-wrap{
-    display: flex;
-    justify-content: space-between;
-}
-.cta-address-right{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 50%;
-}
-.cta-contact-wrap{
-    display: flex;
-}
+
 .cta-mid-email{
     height: 50%;
     display: flex;
     flex-direction: column;
 }
-.cta-email-left{
+.cta-contact-wrap{
     display: flex;
+    gap: 1rem;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1em;
-    width: 50%;
 }
-.cta-email-right{
+
+.contact-wrapper{
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    width: 50%;
+    align-items: flex-start;
+
+    a{text-decoration: underline;}
 }
 
 .cta-bottom{
@@ -325,7 +315,10 @@ header{
     z-index: 0; 
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 760px) {
+
+      /* TYPOGRAPHY */
+
     h1{
         font-size: 13vw;
         line-height: 13vw;
@@ -335,9 +328,23 @@ header{
         line-height: 13vw;
     }
 
-    .hero-top{
-        height: 2vh;
+    /* STRUCTURE */
+
+    main{
+        padding: 1rem;
     }
+    header{
+        padding-bottom: 1rem;
+    }
+    .call-to-action{
+        padding: 1rem;
+    }
+    .hero-button{
+        padding: 1rem;
+    }
+
+      /* STRUCTURE */
+
     .hero-message{
         flex-direction: column;
         z-index: 1;
@@ -357,12 +364,11 @@ header{
         margin: 0;
         flex-direction: column;
     }
-    .cta-mid-contacts {
-        height: 60vh;
+    .cta-mid-contacts{
         width: 100%;
     }
-    .cta-contact-address {
-        width: 100%;
+    .cta-contact-info{
+        padding: 1rem;
     }
     .cta-address-right{
         gap: 0;
@@ -376,10 +382,6 @@ header{
     .cta-email-left {
         gap: 0;
     }
-}
-
-@media screen and (max-width: 720px){
-
 }
 
 /* NEW PAGES */
@@ -402,4 +404,15 @@ header{
         line-height: 1;
     }
 
+}
+
+@media screen and (max-width: 460px) {
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .cta-copy{
+        text-align: left;
+    }
+    
 }
