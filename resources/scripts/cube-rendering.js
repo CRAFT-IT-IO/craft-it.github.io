@@ -3,28 +3,28 @@ import { createPoints, updatePoints, pointCloud, initialPositions, timeOffsets }
 const canvas = document.getElementById('threejs-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 70;
+camera.position.z = 80;
 
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 const material = new THREE.PointsMaterial({
-  color: 0xF0ECE9,
+  color: 0x353331, // Update to the desired color
   size: 0.5,
-  transparent: true,
-  opacity: 0.7,
+  transparent: false,
   map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png'),
   alphaTest: 0.5,
   depthWrite: false,
 });
+
 
 // Create initial points
 createPoints(scene, material);
 
 // Variables to control mouse behavior and scroll
 let mouseX = 0, mouseY = 0, isMouseInside = true, scrollActivated = false;
-const initialCameraZ = 70;
+const initialCameraZ = 80;
 let rotationSpeed = 0.001; // Rotation speed when idle
 let rotating = true;
 let rotationTarget = { x: 0, y: 0 }; // Target rotation to snap cube to face
