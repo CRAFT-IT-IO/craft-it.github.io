@@ -136,6 +136,17 @@ header{
     }
 }
 
+.container-wrap{
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
 /* -------------- GRID */ 
 
 .site-grid{
@@ -146,7 +157,18 @@ header{
 
 .section-title{
     display: grid;
-    grid-column: span 8;
+    grid-column: span 7;
+}
+
+.collaboration_models{
+    justify-content: end;
+
+    li{ 
+        display: flex;
+        grid-column: span 3;
+        flex-direction: column;
+        gap: 2rem;
+        }
 }
 
 /* -------------- HERO */ 
@@ -465,18 +487,12 @@ header{
     padding-top: 200px;
 }
 
-.container-wrap{
-    position: relative;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    z-index: 1;
-}
-
 .services{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
+    grid-column: 4 / 13;
 }
 
 .services_item{
@@ -632,22 +648,19 @@ header{
 }
 
 .collaboration_models{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 1rem;
     padding: 0;
 }
 
 .collaboration_models_item{
-    display: flex;
-    gap: 1.5rem;
-    flex-direction: column;
-
+    height: 512px;
+    gap: .5rem;
+    grid-column: span 3; 
     list-style: none;
     padding: 1.5rem;
     border-right: 1px solid var(--Grey-800);
+}
+.collaboration_models_item:first-child{
+    grid-column: 4 / 7;
 }
 .collaboration_models_item:last-child{
     border: none;
@@ -656,6 +669,15 @@ header{
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
+}
+
+.collaboration-model-descriptive-list{
+    padding: 0;
+    list-style: circle;
+
+    li{
+        list-style: square;
+    }
 }
 
 /* ----------- RESPONSIVE */
