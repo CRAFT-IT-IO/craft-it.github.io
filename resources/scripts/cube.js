@@ -42,7 +42,7 @@ export function createPoints(scene, material, currentSpacing = spacing, gridSize
 
 export function updatePoints(mouseX, mouseY, isMouseInside, easeInOut) {
   const positions = geometry.attributes.position.array;
-  const timeFactor = 0.06;
+  const timeFactor = 0.08;
 
   for (let i = 0; i < positions.length; i += 3) {
     const initialPosition = initialPositions[i / 3];

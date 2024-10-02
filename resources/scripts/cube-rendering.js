@@ -96,7 +96,7 @@ window.addEventListener('scroll', () => {
   }
 
   // Move the camera based on scroll
-  camera.position.z = initialCameraZ - scrollAmount * 0.02;
+  camera.position.z = initialCameraZ - scrollAmount * 0.03;
 
   // When scroll reaches the top, resume rotation and enable mouse effects
   if (scrollAmount === 0) {
@@ -104,6 +104,7 @@ window.addEventListener('scroll', () => {
     scrollActivated = false;
     resetPointsToInitial = false; // Disable reset behavior when scroll reaches the top
   }
+
 });
 
 // Animation loop
