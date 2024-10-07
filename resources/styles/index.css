@@ -8,6 +8,7 @@
 
 :root{
     --Grey-200: #F0ECE9;
+    --Grey-500: #C0C0C0;
     --Grey-700: #56514c;
     --Grey-800: #171815; 
 
@@ -98,6 +99,10 @@ p {
     margin: 0;
 }
 
+.p-sm{
+    font-size: clamp(0.875rem, 0.875vw, 1rem);
+}
+
 .cta-copy{
     color: var(--Grey-200);
     text-decoration: none;
@@ -109,21 +114,23 @@ p {
 .anotation{
     color: var(--Grey-700);
     font-family: "Aspekta", Helvetica, sans-serif;
-    font-size: clamp(1rem, 1vw, 1.2rem);
     font-style: normal;
     font-weight: 400;
-    line-height: 1em;
+    font-size: clamp(0.875rem, 0.875vw, 1rem);
+    letter-spacing: 0.125rem;
+    line-height: 1;
     margin: 0;
+    text-transform: uppercase;
 }
 
 .upperlinks{
     color: var(--Grey-800);
     font-family: "Aspekta", Arial, Helvetica, sans-serif;;
-    font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%;
-    letter-spacing: 0.175rem;
+    font-size: clamp(0.875rem, 0.875vw, 1rem);
+    line-height: 1;
+    letter-spacing: 0.125rem;
     text-transform: uppercase;
 }
 
@@ -141,6 +148,16 @@ p {
 
 .collaboration-title-wrapper h4{
     color: var(--Grey-800);
+}
+
+.model-anotation{
+    color: var(--Grey-800);
+    font-family: "Aspekta", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(3rem, 10vw, 14rem);
+    line-height: 1;
+    margin: 0;
 }
 
 
@@ -176,7 +193,7 @@ header{
 
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 4rem;
 }
 
 /* -------------- GRID */ 
@@ -192,6 +209,15 @@ header{
     grid-column: span 7;
 }
 
+.section-subtitle{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--Grey-500);
+    border-top: 1px solid var(--Grey-500);
+    padding: 1rem 0 1rem 0;
+    color: var(--Grey-700);
+}
+
 .collaboration_models{
     justify-content: end;
 
@@ -201,6 +227,54 @@ header{
         flex-direction: column;
         gap: 2rem;
         }
+}
+
+/* -------------- LOADER */ 
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: transparent;
+  }
+  
+  /* Loader Halves */
+  .loader-half {
+    position: absolute;
+    width: 100vw;
+    height: 50vh;
+    background-color: #FF4135; /* Red background */
+    transition: all 1s ease-in-out; /* Smooth transition for the animation */
+  }
+  
+  /* Top half starts above the center */
+  .top-half {
+    top: 0;
+  }
+  
+  /* Bottom half starts below the center */
+  .bottom-half {
+    bottom: 0;
+  }  
+  
+
+/* -------------- TEXT APPARITION ANIMATION */ 
+
+.disap{
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.disap.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* -------------- HERO */ 
@@ -272,13 +346,18 @@ header{
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--Grey-800);
+    border: 1px solid var(--Grey-500);
     text-transform: uppercase;
     padding: 2rem;
     transition: ease-in-out .3s;
     cursor: pointer;
 
     position: sticky;
+}
+
+.hero-bottom.sticky {
+    position: absolute;
+    bottom: 2rem;
 }
 
 .hero-button:hover{
@@ -294,7 +373,7 @@ header{
 
 .hero-button.active{
     background: var(--Grey-800);
-    border: 1px solid var(--Grey-800);
+    border: 1px solid var(--Grey-700);
     height: 8vh;
 
     .button-text{
@@ -456,9 +535,11 @@ header{
 }
 
 /* NEW PAGES */
+
 .msg-window{
     background: var(--Grey-200);
     display: flex;
+    flex-direction: column;
 
 }
 .msg-window.visible {
@@ -473,33 +554,18 @@ header{
     align-items: center;
     text-align: center;
     margin: auto;
-    width: 70vw;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
     z-index: 1;
 
 }
-
-.disap{
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease-in-out;
-}
-
-.disap.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
     
 /* ----------- MOODYS */
 
 #moodys{
-    border-top: 1px solid var(--Grey-800) ;
     display: flex;
     gap: 4rem;
     flex-direction: column;
-
-    padding-top: 200px;
 }
 
 .services{
@@ -517,7 +583,7 @@ header{
     padding: 2rem 0rem 4rem 0rem;
     width: 100%;
     
-    border-bottom: 1px solid var(--Grey-800);
+    border-bottom: 1px solid var(--Grey-500);
     list-style: none;
 
 }
@@ -652,27 +718,17 @@ header{
 
 /* ----------- COLLABORATION MODEL */
 
-.model-anotation{
-    color: var(--Grey-800);
-    font-family: "Aspekta", Helvetica, sans-serif;
-    font-size: 10vw;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 10vw;
-    margin: 0;
-}
-
 .collaboration_models{
     padding: 0;
 }
 
 .collaboration_models_item{
-    height: 512px;
+    min-height: 512px;
     gap: .5rem;
     grid-column: span 3; 
     list-style: none;
     padding: 1.5rem;
-    border-right: 1px solid var(--Grey-800);
+    border-right: 1px solid var(--Grey-500);
 }
 .collaboration_models_item:first-child{
     grid-column: 4 / 7;
@@ -691,11 +747,42 @@ header{
     list-style: circle;
 
     li{
-        list-style: square;
+        
+        padding: 0.25rem 0 0.25rem 0;
+
+        p{
+            color: var(--Grey-800);
+        }
     }
 }
 
+/* ----------- OUTRO */
 
+#outro{
+    height: calc(100vh - 8rem);
+    justify-content: center;
+    padding: 2rem;
+}
+
+.outro-paragraph{
+    grid-column: 1 / 13;
+    text-align: right;
+}
+
+/* ----------- FOOTER */
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.site-footer-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
 @media screen and (max-width: 760px) {
 
@@ -707,9 +794,6 @@ header{
         }
         header{
             padding-bottom: 1rem;
-        }
-        .call-to-action{
-            padding: 1rem;
         }
         .hero-bottom{
             bottom: 1rem;

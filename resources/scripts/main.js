@@ -21,8 +21,39 @@ button.addEventListener("click", () => {
     }
 });
 
+window.addEventListener('scroll', function() {
+    const heroBottom = document.querySelector('.hero-bottom');
+    const main = document.querySelector('main');
+    const rect = main.getBoundingClientRect();
 
-// ANIMATION TEXTE
+    if (rect.bottom <= window.innerHeight) {
+        heroBottom.classList.add('sticky');
+    } else {
+        heroBottom.classList.remove('sticky');
+    }
+});
+
+
+// LOADER
+
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    const topHalf = document.querySelector('.top-half');
+    const bottomHalf = document.querySelector('.bottom-half');
+  
+    // GSAP timeline for the loader animation
+    gsap.timeline()
+      .to(topHalf, { y: '-50vh', duration: 1, ease: 'power2.inOut' })  // Slide top-half upwards
+      .to(bottomHalf, { y: '50vh', duration: 1, ease: 'power2.inOut' }, 0)  // Slide bottom-half downwards simultaneously
+      .to(topHalf, { height: 0, duration: 1, ease: 'power2.inOut' })  // Shrink the top-half vertically
+      .to(bottomHalf, { height: 0, duration: 1, ease: 'power2.inOut', onComplete: () => {
+          // Hide the loader after the animation is complete
+          loader.style.display = 'none';
+        }
+      }, '-=1');  // Shrink the bottom-half simultaneously
+  });
+   
+// HERO ANIMATION TEXT
 
 document.addEventListener("DOMContentLoaded", function() {
     // Sélectionner tous les éléments avec la classe 'scroll-fade'
@@ -61,29 +92,28 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Initialize GSAP and ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
-
-// Sélectionner tous les éléments avec la classe 'msg-wrapper'
-var msgWrappers = document.querySelectorAll('.disap');
-
-// Créer un observateur d'intersection
-var observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Ajouter la classe 'visible' lorsque l'élément est au milieu de l'écran
-            entry.target.classList.add('visible');
-        } else {
-            // Enlever la classe 'visible' lorsque l'élément quitte le milieu de l'écran
-            entry.target.classList.remove('visible');
+// Apply animation to elements with the 'disap' class
+gsap.utils.toArray('.disap').forEach((element) => {
+  gsap.fromTo(element, 
+    { opacity: 0, y: 20 }, // Start state: hidden and translated down
+    { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      ease: 'power2.out', // Ease for smooth transition
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 50%', // When the top of the element reaches 80% of the viewport, the animation starts
+        toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
+        onLeaveBack: () => {
+          gsap.to(element, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
         }
-    });
-}, {
-    threshold: 0.8 // L'élément est considéré visible si 50% de celui-ci est visible
-});
-
-// Observer chaque élément '.msg-wrapper'
-msgWrappers.forEach(msgWrapper => {
-    observer.observe(msgWrapper);
+      }
+    }
+  );
 });
 
 // HOVER EFFECT
@@ -119,7 +149,6 @@ msgWrappers.forEach(msgWrapper => {
             element.classList.remove('play');
         });
     });
-
 
 
 // DREAM DRAFT CRAFT
@@ -220,6 +249,3 @@ msgWrappers.forEach(msgWrapper => {
         requestAnimationFrame(raf)
         }
         requestAnimationFrame(raf)
-
-
-
