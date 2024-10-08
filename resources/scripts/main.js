@@ -153,99 +153,157 @@ gsap.utils.toArray('.disap').forEach((element) => {
 
 // DREAM DRAFT CRAFT
 
-        const text = document.querySelector('.text1');
-        const para = document.querySelector('.para1');
-        text.innerHTML = text.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        para.innerHTML = para.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+document.addEventListener("DOMContentLoaded", (event) => {
+    gsap.registerPlugin(ScrollTrigger);
 
-        document.addEventListener("DOMContentLoaded", (event) => {
-            gsap.registerPlugin(ScrollTrigger)
+    // Animate the SVG layers
+    let tl1 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.process-list li:nth-child(1)',
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true, // Allow scrubbing so animation reverses when scrolling up
+            markers: false
+        }
+    });
+
+    // Animate SVG wrapper 1 and trigger shrinkListItem on complete
+    tl1.to('.svg-wrapper1', {
+        scale: 1,
+        duration: 1,
+        ease: 'power1.out'
+    }).to('.process-list li:nth-child(1)', {
+        height: (i, target) => {
+            let h3 = target.querySelector('h3');
+            let padding = parseFloat(getComputedStyle(target).paddingTop);
+            return h3.offsetHeight + padding;
+        },
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        duration: 1,
+        ease: 'power1.out'
+    }, 0); // Synchronize the shrinkListItem animation with the SVG animation
+
+    let tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.process-list li:nth-child(2)',
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true, 
+            markers: false
+        }
+    });
+
+    // Animate SVG wrapper 2 and trigger shrinkListItem on complete
+    tl2.to('.svg-wrapper2', {
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.out'
+    }).to('.svg-c-dot-layer', {
+        y: 50,
+        duration: 1,
+        ease: 'power1.out'
+    }, 0).to('.svg-text-wrapper2', {
+        y: -50,
+        duration: 1,
+        ease: 'power1.out'
+    }, 0).to('.process-list li:nth-child(2)', {
+        height: (i, target) => {
+            let h3 = target.querySelector('h3');
+            let padding = parseFloat(getComputedStyle(target).paddingTop);
+            return h3.offsetHeight + padding;
+        },
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        duration: 1,
+        ease: 'power1.out'
+    }, 0);
+
+    let tl3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.process-list li:nth-child(3)',
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true, // Allow scrubbing so animation reverses when scrolling up
+            markers: false
+        }
+    });
+
+    // Animate SVG wrapper 3 and trigger shrinkListItem on complete
+    tl3.to('.svg-wrapper3', {
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.out'
+    }).to('.svg-text-wrapper3', {
+        y: -50,
+        duration: 1,
+        ease: 'power1.out'
+    }, 0).to('.svg-text-wrapper2', {
+        y: 0,
+        duration: 1,
+        ease: 'power1.out'
+    }, 0).to('.svg-c-dot-layer', {
+        y: 100,
+        duration: 1,
+        ease: 'power1.out'
+    }, 0);
+});
+
+
+
+
+    
+// COLLABORATION MODEL SWIPE
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('.collaboration_models');
+        
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // Mouse Down Event - Start Dragging
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.classList.add('active');
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
         });
 
-        let tl1 = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.bp1',
-                start: '-10% center',
-                end: '30% center',
-                markers: true,
-                scrub: true
-            }
-        })
+        // Mouse Leave Event - Stop Dragging when leaving the container
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.classList.remove('active');
+        });
 
-        tl1.to('.letter', {
-            y: 0,
-        }, )
-        tl1.to('.svg-wrapper1', {
-            scale: 1,
-        },1 )
-        tl1.to('.text1',{
-            x: -350,
-        }, 1)
-        tl1.to('.para1',{
-            x: 250,
-        }, 1)
+        // Mouse Up Event - Stop Dragging
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.classList.remove('active');
+        });
 
-        let tl2 = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.bp2',
-                start: '-20% center',
-                end: '20% center',
-                markers: true,
-                scrub: true
-            }
-        })
+        // Mouse Move Event - Handle Scrolling while Dragging
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return; // Only run if the mouse is held down
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2; // Adjust this multiplier to change scrolling speed
+            container.scrollLeft = scrollLeft - walk;
+        });
 
-        tl2.to('.svg-wrapper2' ,{
-            opacity: 1
-        })
-        tl2.to('.svg-text-wrapper1' ,{
-            y: 50
-        }, 1)
-        tl2.to('.svg-text-wrapper2' ,{
-            y: -50
-        }, 1)
-        tl2.to('.text2',{
-            opacity: 1,
-            x: -350
-        }, 1)
-        tl2.to('.para2',{
-            opacity: 1,
-            x: 350,
-        }, 1)
+        // Touch Start Event for Mobile Devices
+        let touchStartX;
+        let touchScrollLeft;
 
-        let tl3 = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.bp3',
-                start: '-20% center',
-                end: '20% center',
-                markers: true,
-                scrub: true
-            }
-        })
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].pageX - container.offsetLeft;
+            touchScrollLeft = container.scrollLeft;
+        });
 
-        tl3.to('.svg-wrapper3', {
-            opacity: 1,
-        }).to('.svg-text-wrapper3',{
-            y: -100,
-        }, 1).to('.svg-text-wrapper2',{
-            y: 0,
-        }, 1).to('.svg-text-wrapper1',{
-            y: 100,
-        }, 1).to('.text3',{
-            opacity: 1,
-            x: -350,
-        }, 1).to('.para3',{
-            opacity: 1,
-            x: 350,
-        }, 1);
-
-
-        const lenis = new Lenis()
-        lenis.on('scroll', (e) => {
-        console.log(e)
-        })
-        function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-        }
-        requestAnimationFrame(raf)
+        // Touch Move Event for Swipe Scrolling on Touch Devices
+        container.addEventListener('touchmove', (e) => {
+            const x = e.touches[0].pageX - container.offsetLeft;
+            const walk = (x - touchStartX) * 2;
+            container.scrollLeft = touchScrollLeft - walk;
+        });
+    });
