@@ -37,6 +37,11 @@ main.no-scroll {
     box-sizing: border-box;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
+
 /* -------------- SCROLL EFFECT */
 
 
@@ -163,6 +168,11 @@ p {
     margin: 0;
 }
 
+.SquareIcon{
+    width: 8px;
+    height: 8px;
+    background-color: var(--Grey-800);
+}
 
 /* -------------- STRUCTURE */ 
 
@@ -190,9 +200,10 @@ header{
 
 .container-wrap{
     position: relative;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     z-index: 1;
+    background-color: var(--Grey-200);
 
     display: flex;
     flex-direction: column;
@@ -226,7 +237,6 @@ header{
 
     li{ 
         display: flex;
-        grid-column: span 3;
         flex-direction: column;
         gap: 2rem;
         }
@@ -271,7 +281,7 @@ header{
 
 .disap{
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(5rem);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -324,7 +334,7 @@ header{
 
 
 .hero-bottom{
-    height: 80px;
+    height: 5rem;
     overflow: hidden;
     float: left;
     transition: ease-in-out .5s;
@@ -569,13 +579,15 @@ header{
     display: flex;
     gap: 4rem;
     flex-direction: column;
+    padding-top: 0;
+    background-color: var(--Grey-200);
+    margin-top: 5rem;
 }
 
 .services{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0;
     grid-column: 4 / 13;
 }
 
@@ -622,7 +634,7 @@ header{
 }
 
 .inner-svg {
-    height: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -642,7 +654,7 @@ header{
 .svg-wrapper1 {
     position: absolute;
     width: fit-content;
-    scale: .9; 
+    scale: 1; 
     transition: scale .3s ease;
 }
 
@@ -651,10 +663,6 @@ header{
     width: fit-content;
     opacity: 0; 
     transition: opacity .3s ease;
-}
-
-.svg-wrapper3 {
-    transform: translateY(-50px); /* Optional small initial transform */
 }
 
 
@@ -692,9 +700,15 @@ header{
     li{
         
         padding: 0.25rem 0 0.25rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5rem;
+        text-transform: uppercase;
 
         p{
             color: var(--Grey-800);
+            font-size: .75rem;
         }
     }
 }
@@ -709,7 +723,7 @@ header{
 
 .outro-paragraph{
     grid-column: 1 / 13;
-    text-align: right;
+    text-align: center;
 }
 
 /* ----------- FOOTER */
@@ -821,6 +835,23 @@ footer{
         gap: 2rem;
     }
 
+/* ----------- PROCESS */
+
+.outer-box{
+    grid-column: span 4;
+    height: 40vh;
+}
+
+.process-grid{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.svg{
+        width: 400px;  
+}
+
+
 /* ----------- COLLABORATION MODEL */
 
     .collaboration_models {
@@ -872,6 +903,10 @@ footer{
     .process-list {
         grid-column: span 4;
     }
+    .svg{
+        width: 300px;  
+    }
+
 
     /* ----------- COLLABORATION MODEL */
 

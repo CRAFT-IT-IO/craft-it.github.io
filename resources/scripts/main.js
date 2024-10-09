@@ -156,100 +156,106 @@ gsap.utils.toArray('.disap').forEach((element) => {
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate the SVG layers
+    // First layer: No shrinking yet
     let tl1 = gsap.timeline({
         scrollTrigger: {
             trigger: '.process-list li:nth-child(1)',
             start: 'top center',
             end: 'bottom center',
-            scrub: true, // Allow scrubbing so animation reverses when scrolling up
+            scrub: true,
             markers: false
         }
     });
 
-    // Animate SVG wrapper 1 and trigger shrinkListItem on complete
+    // Just animating opacity of svg-wrapper1
     tl1.to('.svg-wrapper1', {
-        scale: 1,
+        opacity: 1,
         duration: 1,
         ease: 'power1.out'
-    }).to('.process-list li:nth-child(1)', {
-        height: (i, target) => {
-            let h3 = target.querySelector('h3');
-            let padding = parseFloat(getComputedStyle(target).paddingTop);
-            return h3.offsetHeight + padding;
-        },
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
-        duration: 1,
-        ease: 'power1.out'
-    }, 0); // Synchronize the shrinkListItem animation with the SVG animation
+    });
 
+    // Second layer: Trigger shrinkage of the first <li> and opacity of the first <p>
     let tl2 = gsap.timeline({
         scrollTrigger: {
             trigger: '.process-list li:nth-child(2)',
             start: 'top center',
             end: 'bottom center',
-            scrub: true, 
+            scrub: true,
             markers: false
         }
     });
 
-    // Animate SVG wrapper 2 and trigger shrinkListItem on complete
     tl2.to('.svg-wrapper2', {
         opacity: 1,
-        duration: 1,
+        duration: .8,
         ease: 'power1.out'
     }).to('.svg-c-dot-layer', {
-        y: 50,
-        duration: 1,
+        y: 25, // Adjusted to 25 pixels
+        duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-text-wrapper2', {
-        y: -50,
-        duration: 1,
+        y: 0, // Remains at 0 since no movement
+        duration: .8,
         ease: 'power1.out'
-    }, 0).to('.process-list li:nth-child(2)', {
+    }, 0).to('.process-list li:nth-child(1)', {
         height: (i, target) => {
             let h3 = target.querySelector('h3');
             let padding = parseFloat(getComputedStyle(target).paddingTop);
-            return h3.offsetHeight + padding;
+            return h3.offsetHeight + padding; // Shrink to h3 height + padding
         },
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        duration: 1,
+        duration: .8,
+        ease: 'power1.out'
+    }, 0).to('.process-list li:nth-child(1) p', {
+        opacity: 0, // Fade out the paragraph
+        duration: .3,
         ease: 'power1.out'
     }, 0);
 
+    // Third layer: Trigger shrinkage of the second <li> and opacity of the second <p>
     let tl3 = gsap.timeline({
         scrollTrigger: {
             trigger: '.process-list li:nth-child(3)',
             start: 'top center',
             end: 'bottom center',
-            scrub: true, // Allow scrubbing so animation reverses when scrolling up
+            scrub: true,
             markers: false
         }
     });
 
-    // Animate SVG wrapper 3 and trigger shrinkListItem on complete
     tl3.to('.svg-wrapper3', {
         opacity: 1,
-        duration: 1,
+        duration: .8,
         ease: 'power1.out'
     }).to('.svg-text-wrapper3', {
-        y: -50,
-        duration: 1,
+        y: -25, // Adjusted to -25 pixels for upward movement
+        duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-text-wrapper2', {
-        y: 0,
-        duration: 1,
+        y: 0, // Remains at 0
+        duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-c-dot-layer', {
-        y: 100,
-        duration: 1,
+        y: 25, // Adjusted to 25 pixels for movement
+        duration: .8,
+        ease: 'power1.out'
+    }, 0).to('.process-list li:nth-child(2)', {
+        height: (i, target) => {
+            let h3 = target.querySelector('h3');
+            let padding = parseFloat(getComputedStyle(target).paddingTop);
+            return h3.offsetHeight + padding; // Shrink to h3 height + padding
+        },
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        duration: .8,
+        ease: 'power1.out'
+    }, 0).to('.process-list li:nth-child(2) p', {
+        opacity: 0, // Fade out the paragraph
+        duration: 0.5,
         ease: 'power1.out'
     }, 0);
 });
-
-
 
 
     
