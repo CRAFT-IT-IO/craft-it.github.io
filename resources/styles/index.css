@@ -669,6 +669,10 @@ header{
 
 /* ----------- COLLABORATION MODEL */
 
+#collaboration{
+    background: none;
+}
+
 .collaboration_models{
     padding: 0;
 }
@@ -719,6 +723,7 @@ header{
     height: calc(100vh - 8rem);
     justify-content: center;
     padding: 2rem;
+    background: none;
 }
 
 .outro-paragraph{

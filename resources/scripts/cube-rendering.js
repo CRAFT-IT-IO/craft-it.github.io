@@ -1,16 +1,31 @@
-import { createPoints, updatePoints, pointCloud, initialPositions, timeOffsets } from './cube.js';
+import {
+  createPoints,
+  updatePoints,
+  pointCloud,
+  revertToCube,
+  transformToSphere, // Assurez-vous que les nouvelles fonctions sont importées
+} from './cube.js';
 
 const canvas = document.getElementById('threejs-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 80;
+camera.position.z = 80;  // Position initiale de la caméra
+
+let outroTransitionProgress = 0;  // Progression de la transition vers la sphère
+let scrollRotationProgress = 0;   // Progression de la rotation déclenchée par le scroll
+const scrollThreshold = 100; // Quantité minimale de scroll avant de déclencher le snap
+
+let lastScrollPosition = window.scrollY;  // Stocke la dernière position de scroll
+let pointsToSphereProgress = 0;  // Suivi de la progression de la transformation cube-sphère
+
+let cameraCanReposition = true; // Variable de contrôle pour la reposition de la caméra
 
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 const material = new THREE.PointsMaterial({
-  color: 0x353331, // Update to the desired color
+  color: 0x353331, 
   size: 0.5,
   transparent: false,
   map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png'),
@@ -18,119 +33,209 @@ const material = new THREE.PointsMaterial({
   depthWrite: false,
 });
 
-
-// Create initial points
+// Initialiser le cube
 createPoints(scene, material);
 
-// Variables to control mouse behavior and scroll
+// Variables pour le comportement de la souris et le scroll
 let mouseX = 0, mouseY = 0, isMouseInside = true, scrollActivated = false;
-const initialCameraZ = 80;
-let rotationSpeed = 0.001; // Rotation speed when idle
-let rotating = true;
-let rotationTarget = { x: 0, y: 0 }; // Target rotation to snap cube to face
-let transitionProgress = 0; // Track the progress of the transition
-
-// Reset point positions when scroll starts
+const initialCameraZ = 80;  // Position initiale de la caméra
+let rotating = true; // Rotation basique du cube
+let rotationTarget = { x: 0, y: 0 }; // Cible pour le snapping
+let isInOutro = false;  // Suivi de la section outro active
 let resetPointsToInitial = false;
+let isInHero = true;  // Animation par défaut de la section hero
 
-// Event listener for mouse movement
-document.addEventListener('mousemove', (event) => {
-  if (!scrollActivated) {
-    mouseX = ((event.clientX - window.innerWidth / 2) / window.innerWidth) * 50;
-    mouseY = ((event.clientY - window.innerHeight / 2) / window.innerHeight) * -50;
-    isMouseInside = true;
-  }
-});
+// Sélection des sections à observer
+const outroSection = document.getElementById('outro');
+const heroSection = document.getElementById('hero');
 
-document.addEventListener('mouseleave', () => {
-  if (!scrollActivated) {
-    isMouseInside = false;
-  }
-});
-
-// Function to reset points smoothly to their initial positions
-function resetPointPositions() {
-  const positions = pointCloud.geometry.attributes.position.array;
-
-  for (let i = 0; i < positions.length; i += 3) {
-    const initialPosition = initialPositions[i / 3];
-
-    // Interpolate point positions back to their initial positions
-    positions[i] = lerp(positions[i], initialPosition.x, 0.1);
-    positions[i + 1] = lerp(positions[i + 1], initialPosition.y, 0.1);
-    positions[i + 2] = lerp(positions[i + 2], initialPosition.z, 0.1);
-
-    // Reset time offsets for smooth animation after scroll ends
-    timeOffsets[i / 3] = 0;
-  }
-
-  pointCloud.geometry.attributes.position.needsUpdate = true;
+// Fonction de lissage (lerp)
+function lerp(start, end, t) {
+  return start + (end - start) * t;
 }
 
-// Function to find the closest 90-degree face
+// **Intersection Observer pour le hero** : Détecte si la section hero est active
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      isInHero = true;
+      rotating = true;  // Assurer la rotation de base dans le hero
+      console.log("Hero: Rotation de base active");
+    } else {
+      isInHero = false;
+      rotating = false;
+      console.log("Hero: Rotation de base arrêtée");
+    }
+  });
+}, {
+  threshold: 0.9  
+});
+
+// Observer les sections
+heroObserver.observe(heroSection);
+
+// Fonction pour trouver la face la plus proche à 90 degrés pour le snapping
 function snapToClosestFace(currentRotation) {
   const snapAngleX = Math.round(currentRotation.x / (Math.PI / 2)) * (Math.PI / 2);
   const snapAngleY = Math.round(currentRotation.y / (Math.PI / 2)) * (Math.PI / 2);
   return { x: snapAngleX, y: snapAngleY };
 }
 
-// Smooth interpolation
-function lerp(start, end, t) {
-  return start + (end - start) * t;
-}
+// Fonction pour animer la sphère vers la position actuelle de la caméra
+function animateSphereToCamera() {
+  const startZ = pointCloud.position.z;  // Position actuelle de la sphère
+  const targetZ = camera.position.z - 80;  // Position de la caméra moins une petite distance (pour que la sphère ne se superpose pas à la caméra)
+  const duration = 800;  // Durée de l'animation (2 secondes)
 
-// Handle scrolling
-window.addEventListener('scroll', () => {
-  const scrollAmount = window.scrollY;
+  const startTime = performance.now();
 
-  // Stop the rotation during scroll
-  rotating = false;
-  scrollActivated = true;
-  isMouseInside = false;
-  resetPointsToInitial = true; // Activate reset behavior for points
+  function animate() {
+    const elapsedTime = performance.now() - startTime;
+    const t = Math.min(elapsedTime / duration, 3);  // Progression de l'animation
 
-  // Set the rotation target to snap to the closest face
-  if (pointCloud) {
-    rotationTarget = snapToClosestFace(pointCloud.rotation);
-    transitionProgress = 0; // Reset the transition progress
-  }
+    pointCloud.position.z = lerp(startZ, targetZ, t);  // Déplacer la sphère vers la position de la caméra
 
-  // Move the camera based on scroll
-  camera.position.z = initialCameraZ - scrollAmount * 0.03;
-
-  // When scroll reaches the top, resume rotation and enable mouse effects
-  if (scrollAmount === 0) {
-    rotating = true;
-    scrollActivated = false;
-    resetPointsToInitial = false; // Disable reset behavior when scroll reaches the top
-  }
-
-});
-
-// Animation loop
-function animate() {
-  requestAnimationFrame(animate);
-
-  if (rotating && pointCloud) {
-    // Idle rotation when not scrolling
-    pointCloud.rotation.x += rotationSpeed;
-    pointCloud.rotation.y += rotationSpeed;
-  } else {
-    // Smooth transition to snap to the closest face
-    if (pointCloud) {
-      const transitionSpeed = 0.02; // Speed of the transition
-      transitionProgress = Math.min(transitionProgress + transitionSpeed, 1);
-
-      pointCloud.rotation.x = lerp(pointCloud.rotation.x, rotationTarget.x, transitionProgress);
-      pointCloud.rotation.y = lerp(pointCloud.rotation.y, rotationTarget.y, transitionProgress);
+    if (t < 1) {
+      requestAnimationFrame(animate);  // Continuer l'animation tant que t est inférieur à 1
     }
   }
 
-  if (!scrollActivated) {
-    updatePoints(mouseX, mouseY, isMouseInside, easeInOut);
-  } else if (resetPointsToInitial) {
-    // Reset points to their initial positions during scroll
-    resetPointPositions();
+  animate();
+}
+
+// Fonction pour ramener la sphère à sa position initiale
+function animateSphereBackToPosition() {
+  const startZ = pointCloud.position.z;
+  const targetZ = 0;  // Position initiale de la sphère
+  const duration = 800;  // Durée de l'animation (2 secondes)
+
+  const startTime = performance.now();
+
+  function animate() {
+    const elapsedTime = performance.now() - startTime;
+    const t = Math.min(elapsedTime / duration, 3);
+
+    pointCloud.position.z = lerp(startZ, targetZ, t);  // Ramener la sphère à sa position d'origine
+
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    }
+  }
+
+  animate();
+}
+
+// Intersection Observer pour l'outro
+const outroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      isInOutro = true;
+      scrollActivated = false;
+      rotating = false;
+
+      transformToSphere(scene, material);  // Déclencher la transformation du cube en sphère
+
+      // Ajouter une animation pour amener la sphère vers la position actuelle de la caméra
+      animateSphereToCamera();
+      console.log("Outro: Transformation en sphère et déplacement vers la caméra");
+
+    } else {
+      isInOutro = false;
+      scrollActivated = true;
+      rotating = true;
+
+      // Ajouter une animation pour ramener la sphère à sa position initiale
+      animateSphereBackToPosition();
+      revertToCube(scene, material);  // Revenir au cube
+      console.log("Outro: Retour au cube et déplacement inverse");
+    }
+  });
+}, {
+  threshold: 0.5  // Déclencher lorsque 50 % de la section outro est visible
+});
+
+outroObserver.observe(outroSection);
+
+
+// Gestion du scroll
+window.addEventListener('scroll', () => {
+  if (isInOutro) return;  // Ignorer le scroll lorsqu'on est dans l'outro
+
+  const scrollAmount = window.scrollY;
+  const scrollDirection = scrollAmount > lastScrollPosition ? 'down' : 'up';  // Détecter la direction du scroll
+  lastScrollPosition = scrollAmount;  // Mettre à jour la position du scroll
+
+  // **Zoom basé sur le scroll**
+  if (cameraCanReposition) {
+    camera.position.z = initialCameraZ - scrollAmount * 0.03;  // Déplacer la caméra selon le scroll pour le cube
+  }
+
+  // **Snap rotation basé sur le scroll**
+  if (scrollAmount > scrollThreshold && scrollDirection === 'down') {
+    scrollActivated = true;
+    rotating = false;
+
+    // Snap du cube vers la face la plus proche
+    if (pointCloud) {
+      rotationTarget = snapToClosestFace(pointCloud.rotation);
+      scrollRotationProgress = 0;
+      console.log("Scroll: Snap vers une face");
+    }
+  }
+
+  // **Transformation inverse lors du scroll vers le haut**
+  if (scrollDirection === 'up' && scrollAmount < scrollThreshold) {
+    pointsToSphereProgress = Math.max(pointsToSphereProgress - 0.02, 0);  // Revenir au cube
+    revertToCube(scene, material);  // Animation de retour au cube
+    console.log("Scroll: Retour au cube");
+  }
+
+  // Quand le scroll s'arrête tout en haut
+  if (scrollAmount === 0) {
+    rotating = true;
+    scrollActivated = false;
+    resetPointsToInitial = false;
+    revertToCube(scene, material);  // Restaurer le cube tout en haut
+    console.log("Scroll: Réinitialisation du cube");
+  }
+});
+
+
+// Fonction d'animation continue
+function animate() {
+  requestAnimationFrame(animate);
+
+  if (pointCloud) {
+    if (isInOutro) {
+      const transitionSpeed = 0.02;
+      outroTransitionProgress = Math.min(outroTransitionProgress + transitionSpeed, 1);  // Transition vers la sphère
+      pointCloud.rotation.x = lerp(pointCloud.rotation.x, 0, outroTransitionProgress);   // Arrêter progressivement la rotation en X
+      pointCloud.rotation.y += 0.002 * outroTransitionProgress;  // Ralentir la rotation en Y
+    } else if (isInHero) {
+      const transitionSpeed = 0.02;
+      outroTransitionProgress = Math.max(outroTransitionProgress - transitionSpeed, 0);  // Retour au cube
+      pointCloud.rotation.x += 0.002 * (1 - outroTransitionProgress);  // Rotation standard du cube
+      pointCloud.rotation.y += 0.002 * (1 - outroTransitionProgress);
+    }
+
+    // Gestion du snap pendant le scroll
+    if (scrollActivated) {
+      const transitionSpeed = 0.02;  // Vitesse du snap
+      scrollRotationProgress = Math.min(scrollRotationProgress + transitionSpeed, 1);  // Progression du snap
+
+      pointCloud.rotation.x = lerp(pointCloud.rotation.x, rotationTarget.x, scrollRotationProgress);
+      pointCloud.rotation.y = lerp(pointCloud.rotation.y, rotationTarget.y, scrollRotationProgress);
+    }
+
+    // Remettre les points en place sans animation dans d'autres cas
+    if (!scrollActivated && !isInOutro) {
+      updatePoints(mouseX, mouseY, isMouseInside, easeInOut);  // Mettre à jour les points hors de l'outro
+    }
+
+    // Réinitialiser les points lorsqu'on scroll
+    if (resetPointsToInitial && scrollActivated) {
+      updatePoints(mouseX, mouseY, false, easeInOut);
+    }
   }
 
   renderer.render(scene, camera);
@@ -138,12 +243,12 @@ function animate() {
 
 animate();
 
-// Ease function
+// Fonction d'easing
 function easeInOut(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-// Handle window resize
+// Gestion de la redimension du window
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;

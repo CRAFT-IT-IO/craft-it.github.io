@@ -33,25 +33,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-
-// LOADER
-
-window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    const topHalf = document.querySelector('.top-half');
-    const bottomHalf = document.querySelector('.bottom-half');
-  
-    // GSAP timeline for the loader animation
-    gsap.timeline()
-      .to(topHalf, { y: '-50vh', duration: 1, ease: 'power2.inOut' })  // Slide top-half upwards
-      .to(bottomHalf, { y: '50vh', duration: 1, ease: 'power2.inOut' }, 0)  // Slide bottom-half downwards simultaneously
-      .to(topHalf, { height: 0, duration: 1, ease: 'power2.inOut' })  // Shrink the top-half vertically
-      .to(bottomHalf, { height: 0, duration: 1, ease: 'power2.inOut', onComplete: () => {
-          // Hide the loader after the animation is complete
-          loader.style.display = 'none';
-        }
-      }, '-=1');  // Shrink the bottom-half simultaneously
-  });
    
 // HERO ANIMATION TEXT
 
@@ -313,3 +294,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             container.scrollLeft = touchScrollLeft - walk;
         });
     });
+
+
+    
