@@ -133,7 +133,6 @@ gsap.utils.toArray('.disap').forEach((element) => {
 
 
 // DREAM DRAFT CRAFT
-
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 

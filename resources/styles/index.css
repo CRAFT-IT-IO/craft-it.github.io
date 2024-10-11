@@ -4,15 +4,16 @@
     /* src: url('/resources/fonts/Aspekta-400.woff') format('woff');
     src: url('/resources/fonts/Aspekta-400.ttf') format('ttf'); */
   }
-  
 
-:root{
+
+:root {
     --Grey-200: #F0ECE9;
     --Grey-500: #C0C0C0;
     --Grey-700: #56514c;
-    --Grey-800: #171815; 
-
+    --Grey-800: #171815;
     --gfs: 14.4;
+    --sticky-container-wrap-top: 0px;
+    --sticky-process-grid-top: 0px;
 }
 
 ::selection {
@@ -174,36 +175,56 @@ p {
     background-color: var(--Grey-800);
 }
 
-/* -------------- STRUCTURE */ 
+/* -------------- STRUCTURE */
 
-
-main{
+body {
     position: relative;
     padding: 2rem;
+    padding-top: 1rem;
 }
 
-header{
+header {
     display: flex;
+    justify-items: stretch;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     padding-bottom: 24px;
     width: 100%;
-
     position: sticky;
-    z-index: 10;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--Grey-200);
+}
 
-    a{
+    header .spacer {
+        height: 1rem;
+        display: block;
+    }
+
+    header a {
         color: var(--Grey-800);
         text-decoration: none;
     }
+
+.container-wrap .section-subtitle {
+    position: sticky;
+    z-index: 100;
+    top: var(--sticky-container-wrap-top);
+    background-color: var(--Grey-200);
 }
 
-.container-wrap{
-    position: relative;
+.container-wrap:nth-child(1) {
     padding-top: 5rem;
-    padding-bottom: 5rem;
-    z-index: 1;
+}
 
+.container-wrap .spacer, .spacer {
+    height: 10rem;
+}
+
+.container-wrap {
+    z-index: 1;
+    background-color: var(--Grey-200);
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -241,6 +262,13 @@ header{
         }
 }
 
+.site-grid.process-grid
+/*, .site-grid.process-grid .process-list
+.site-grid.process-grid .outer-box */
+{
+    position: sticky;
+    top: var(--sticky-process-grid-top);
+}
 /* -------------- LOADER */ 
 
 #loader {
@@ -628,8 +656,10 @@ header{
 
 .outer-box {
     position: relative;
-    height: 80vh; 
+    height: 75vh;
     grid-column: 6 / 13;
+    display: grid;
+    align-content: center;
 }
 
 .inner-svg {
@@ -637,8 +667,6 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: sticky;
-    top: 0;
     box-sizing: border-box;
 }
 
