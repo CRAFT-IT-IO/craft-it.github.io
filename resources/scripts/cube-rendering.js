@@ -154,6 +154,7 @@ const outroObserver = new IntersectionObserver((entries) => {
   threshold: 0.5  // Déclencher lorsque 50 % de la section outro est visible
 });
 
+// Observer la section outro
 outroObserver.observe(outroSection);
 
 
@@ -190,14 +191,6 @@ window.addEventListener('scroll', () => {
     console.log("Scroll: Retour au cube");
   }
 
-  // Quand le scroll s'arrête tout en haut
-  if (scrollAmount === 0) {
-    rotating = true;
-    scrollActivated = false;
-    resetPointsToInitial = false;
-    revertToCube(scene, material);  // Restaurer le cube tout en haut
-    console.log("Scroll: Réinitialisation du cube");
-  }
 });
 
 
@@ -217,6 +210,7 @@ function animate() {
       pointCloud.rotation.x += 0.002 * (1 - outroTransitionProgress);  // Rotation standard du cube
       pointCloud.rotation.y += 0.002 * (1 - outroTransitionProgress);
     }
+    
 
     // Gestion du snap pendant le scroll
     if (scrollActivated) {
@@ -243,14 +237,6 @@ function animate() {
 
 animate();
 
-// Fonction d'easing
 function easeInOut(t) {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
-
-// Gestion de la redimension du window
-window.addEventListener('resize', () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-});
