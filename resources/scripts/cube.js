@@ -41,9 +41,8 @@ export function createPoints(scene, material, currentSpacing = spacing, gridSize
 }
 
 // Function to update points based on mouse influence (wave effect)
-export function updatePoints(mouseX, mouseY, isMouseInside, easeInOut) {
+export function updatePoints() {
   const positions = geometry.attributes.position.array;
-  const timeFactor = 0.08;
 
   for (let i = 0; i < positions.length; i += 3) {
     const initialPosition = initialPositions[i / 3];
@@ -54,32 +53,18 @@ export function updatePoints(mouseX, mouseY, isMouseInside, easeInOut) {
       continue;  // Sauter l'itération si initialPosition est indéfini
     }
 
-    const distanceX = mouseX - initialPosition.x;
-    const distanceY = mouseY - initialPosition.y;
-
-    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-    const maxDistance = 30;
-    const influence = Math.max(0, maxDistance - distance) / maxDistance;
-
-    if (isMouseInside && influence > 0) {
-      timeOffsets[i / 3] = Math.min(timeOffsets[i / 3] + timeFactor, 1);
-    } else {
-      timeOffsets[i / 3] = Math.max(timeOffsets[i / 3] - timeFactor * 0.5, 0);
-    }
-
-    const easeValue = easeInOut(timeOffsets[i / 3]);
-    const waveEffect = Math.sin(distance * 0.2 + performance.now() * 0.005) * influence * 2 * easeValue;
-
-    positions[i + 2] = initialPosition.z + waveEffect;
+    // Remettre les points à leur position initiale sans aucune influence
+    positions[i + 2] = initialPosition.z;  // Restaurer la position initiale des points sur l'axe Z
 
     if (isNaN(positions[i + 2])) {
       console.error('NaN value detected in geometry positions at index', i);
-      positions[i + 2] = initialPosition.z; // Reset to initial Z if NaN is detected
+      positions[i + 2] = initialPosition.z;  // Reset to initial Z if NaN is detected
     }
   }
 
-  geometry.attributes.position.needsUpdate = true;
+  geometry.attributes.position.needsUpdate = true;  // Indiquer que la géométrie a été mise à jour
 }
+
 
 // Function to transform points into a sphere with denser points at the poles
 export function transformToSphere(scene, material) {
@@ -130,7 +115,7 @@ export function transformToSphere(scene, material) {
 
 
 function animateSphereTransition(initialPoints, targetPoints) {
-  const duration = 2000; // 2 secondes pour la transition
+  const duration = 1000; // 1 secondes pour la transition
   const startTime = performance.now();
 
   function animate() {
@@ -189,13 +174,29 @@ export function revertToCube(scene, material, currentSpacing = spacing, gridSize
     // Lancer l'animation pour transformer les points en cube
     animateSphereToCube(initialCubePositions, currentPositions);
 
+    // Une fois l'animation terminée, repositionner tous les points à leur place correcte
+    setTimeout(() => {
+      initialPositions.length = 0;
+      for (let i = 0; i < initialCubePositions.length; i += 3) {
+        initialPositions.push({
+          x: initialCubePositions[i],
+          y: initialCubePositions[i + 1],
+          z: initialCubePositions[i + 2]
+        });
+      }
+
+      // Assurer que la géométrie est correctement mise à jour
+      geometry.attributes.position.needsUpdate = true;
+
+    }, 300);  // Attendre la fin de la transition (durée de 1 seconde)
+
   }, 100); // Délai de 100ms avant de commencer la transition
 }
 
 
 // Animation pour interpoler les points vers la forme du cube
 function animateSphereToCube(targetPoints, currentPoints) {
-  const duration = 2000; // Durée de l'animation (2 secondes)
+  const duration = 300; // Durée de l'animation (1 secondes)
   const startTime = performance.now();
 
   function animate() {
