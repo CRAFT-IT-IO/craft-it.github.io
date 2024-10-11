@@ -235,7 +235,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
         opacity: 0, // Fade out the paragraph
         duration: 0.5,
         ease: 'power1.out'
-    }, 0);
+    }, 0)
+        .to('.process-list li:nth-child(2) p', {
+            opacity: 0, // Fade out the paragraph inside the second list item
+            duration: 0.5,
+            ease: 'power1.out'
+        }, 0)
+        .to('.process-list li:nth-child(2) p', {
+            opacity: 0, // Fade out the paragraph inside the second list item
+            duration: 0.5,
+            ease: 'power1.out'
+        }, 0)
+        .to('.process-list li:nth-child(3)', {
+            height: (i, target) => {
+                let h3 = target.querySelector('h3');
+                let padding = parseFloat(getComputedStyle(target).paddingTop);
+                return h3.offsetHeight + padding; // Shrink to h3 height + padding
+            },
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            duration: .8,
+            ease: 'power1.out'
+        }, 0) // Shrink the third list item (li:nth-child(3))
+        .to('.process-list li:nth-child(3) p', {
+            opacity: 0, // Fade out the paragraph inside the third list item
+            duration: 0.5,
+            ease: 'power1.out'
+        }, 0); // Fade out the paragraph of li:nth-child(3)
 });
 
 
