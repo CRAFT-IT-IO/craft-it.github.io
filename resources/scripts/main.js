@@ -32,7 +32,6 @@ window.addEventListener('scroll', function() {
         heroBottom.classList.remove('sticky');
     }
 });
-
    
 // HERO ANIMATION TEXT
 
@@ -133,6 +132,7 @@ gsap.utils.toArray('.disap').forEach((element) => {
 
 
 // DREAM DRAFT CRAFT
+
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         duration: .8,
         ease: 'power1.out'
     }).to('.svg-c-dot-layer', {
-        y: 25, // Adjusted to 25 pixels
+        y: 50, // Adjusted to 25 pixels
         duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-text-wrapper2', {
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         duration: .8,
         ease: 'power1.out'
     }).to('.svg-text-wrapper3', {
-        y: -25, // Adjusted to -25 pixels for upward movement
+        y: -50, // Adjusted to -25 pixels for upward movement
         duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-text-wrapper2', {
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         duration: .8,
         ease: 'power1.out'
     }, 0).to('.svg-c-dot-layer', {
-        y: 25, // Adjusted to 25 pixels for movement
+        y: 50, // Adjusted to 25 pixels for movement
         duration: .8,
         ease: 'power1.out'
     }, 0).to('.process-list li:nth-child(2)', {
@@ -236,63 +236,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
         ease: 'power1.out'
     }, 0);
 });
-
-
-    
-// COLLABORATION MODEL SWIPE
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const container = document.querySelector('.collaboration_models');
-        
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        // Mouse Down Event - Start Dragging
-        container.addEventListener('mousedown', (e) => {
-            isDown = true;
-            container.classList.add('active');
-            startX = e.pageX - container.offsetLeft;
-            scrollLeft = container.scrollLeft;
-        });
-
-        // Mouse Leave Event - Stop Dragging when leaving the container
-        container.addEventListener('mouseleave', () => {
-            isDown = false;
-            container.classList.remove('active');
-        });
-
-        // Mouse Up Event - Stop Dragging
-        container.addEventListener('mouseup', () => {
-            isDown = false;
-            container.classList.remove('active');
-        });
-
-        // Mouse Move Event - Handle Scrolling while Dragging
-        container.addEventListener('mousemove', (e) => {
-            if (!isDown) return; // Only run if the mouse is held down
-            e.preventDefault();
-            const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 2; // Adjust this multiplier to change scrolling speed
-            container.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch Start Event for Mobile Devices
-        let touchStartX;
-        let touchScrollLeft;
-
-        container.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].pageX - container.offsetLeft;
-            touchScrollLeft = container.scrollLeft;
-        });
-
-        // Touch Move Event for Swipe Scrolling on Touch Devices
-        container.addEventListener('touchmove', (e) => {
-            const x = e.touches[0].pageX - container.offsetLeft;
-            const walk = (x - touchStartX) * 2;
-            container.scrollLeft = touchScrollLeft - walk;
-        });
-    });
-
 
     

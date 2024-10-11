@@ -8,13 +8,13 @@ export let spacing = 5; // Initial spacing
 
 // Function to create points and update the point cloud (cube form)
 export function createPoints(scene, material, currentSpacing = spacing, gridSizeZ = gridSize) {
-  points.length = 0; // Réinitialiser le tableau des points
-  initialPositions.length = 0; // Réinitialiser les positions initiales
-  timeOffsets.length = 0; // Réinitialiser les décalages de temps
+  points.length = 0;
+  initialPositions.length = 0;
+  timeOffsets.length = 0;
 
   geometry = new THREE.BufferGeometry();
 
-  // Créer une grille de points avec un espacement dynamique et une taille de grille Z
+  // Create a grid of points with dynamic spacing and grid size in Z
   for (let z = 0; z < gridSizeZ; z++) {
     for (let y = 0; y < gridSize; y++) {
       for (let x = 0; x < gridSize; x++) {
@@ -24,7 +24,7 @@ export function createPoints(scene, material, currentSpacing = spacing, gridSize
 
         points.push(posX, posY, posZ);
         initialPositions.push({ x: posX, y: posY, z: posZ });
-        timeOffsets.push(0); // Réinitialiser les décalages de temps
+        timeOffsets.push(0);
       }
     }
   }
@@ -32,12 +32,26 @@ export function createPoints(scene, material, currentSpacing = spacing, gridSize
   const vertices = new Float32Array(points);
   geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
+  setColorsForPoints(geometry);
+
   if (pointCloud) {
     scene.remove(pointCloud);
   }
 
+  material.vertexColors = true;
   pointCloud = new THREE.Points(geometry, material);
   scene.add(pointCloud);
+}
+
+// Function to set colors for points
+function setColorsForPoints(geometry) {
+  const colors = new Float32Array(points.length); // Same size as points
+  for (let i = 0; i < colors.length; i += 3) {
+    colors[i] = 1;   // Red
+    colors[i + 1] = 1; // Green
+    colors[i + 2] = 1; // Blue
+  }
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 }
 
 // Function to update points based on mouse influence (wave effect)
@@ -47,14 +61,14 @@ export function updatePoints() {
   for (let i = 0; i < positions.length; i += 3) {
     const initialPosition = initialPositions[i / 3];
 
-    // Vérifier que initialPosition est bien défini
+    // Verify initialPosition is properly defined
     if (!initialPosition || initialPosition.x === undefined || initialPosition.y === undefined || initialPosition.z === undefined) {
       console.error('Initial position is undefined for index', i / 3);
-      continue;  // Sauter l'itération si initialPosition est indéfini
+      continue;  // Skip iteration if initialPosition is undefined
     }
 
-    // Remettre les points à leur position initiale sans aucune influence
-    positions[i + 2] = initialPosition.z;  // Restaurer la position initiale des points sur l'axe Z
+    // Reset the points to their initial position with no influence
+    positions[i + 2] = initialPosition.z;  // Restore initial Z position of points
 
     if (isNaN(positions[i + 2])) {
       console.error('NaN value detected in geometry positions at index', i);
@@ -62,20 +76,19 @@ export function updatePoints() {
     }
   }
 
-  geometry.attributes.position.needsUpdate = true;  // Indiquer que la géométrie a été mise à jour
+  geometry.attributes.position.needsUpdate = true;  // Mark geometry as updated
 }
-
 
 // Function to transform points into a sphere with denser points at the poles
 export function transformToSphere(scene, material) {
-  points.length = 0;  // Réinitialiser les points
-  initialPositions.length = 0;  // Réinitialiser les positions initiales
-  timeOffsets.length = 0; // Réinitialiser les décalages de temps
+  points.length = 0;  // Reset points
+  initialPositions.length = 0;  // Reset initial positions
+  timeOffsets.length = 0; // Reset time offsets
 
-  const radius = 40;  // Rayon de la sphère
-  const pointCount = 3000;  // Nombre de points pour la sphère (peut être ajusté)
+  const radius = 40;  // Sphere radius
+  const pointCount = 3000;  // Number of points for the sphere (adjustable)
 
-  // Créer des positions initiales loin de la vue, derrière la caméra
+  // Create initial positions far out of view, behind the camera
   for (let i = 0; i < pointCount; i++) {
     const posX = (Math.random() - 0.5) * 500;
     const posY = (Math.random() - 0.5) * 500;
@@ -83,7 +96,7 @@ export function transformToSphere(scene, material) {
 
     points.push(posX, posY, posZ);
     initialPositions.push({ x: posX, y: posY, z: posZ });
-    timeOffsets.push(0); // Réinitialiser les décalages de temps
+    timeOffsets.push(0); // Reset time offsets
   }
 
   const vertices = new Float32Array(points);
@@ -91,17 +104,17 @@ export function transformToSphere(scene, material) {
   geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
 
   if (pointCloud) {
-    scene.remove(pointCloud);  // Supprimer l'ancien pointCloud si nécessaire
+    scene.remove(pointCloud);  // Remove old pointCloud if necessary
   }
 
   pointCloud = new THREE.Points(geometry, material);
   scene.add(pointCloud);
 
-  // Animation vers la sphère
+  // Animate towards sphere
   const targetPoints = [];
   for (let i = 0; i < pointCount; i++) {
-    const theta = Math.random() * Math.PI * 2;  // Angle de longitude
-    const phi = Math.acos(1 - 2 * Math.random());  // Angle de latitude
+    const theta = Math.random() * Math.PI * 2;  // Longitude angle
+    const phi = Math.acos(1 - 2 * Math.random());  // Latitude angle
 
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.sin(phi) * Math.sin(theta);
@@ -113,14 +126,13 @@ export function transformToSphere(scene, material) {
   animateSphereTransition(points, targetPoints);
 }
 
-
 function animateSphereTransition(initialPoints, targetPoints) {
-  const duration = 1000; // 1 secondes pour la transition
+  const duration = 1000; // 1 second for transition
   const startTime = performance.now();
 
   function animate() {
     const elapsedTime = performance.now() - startTime;
-    const t = Math.min(elapsedTime / duration, 1); // Progression entre 0 et 1
+    const t = Math.min(elapsedTime / duration, 1); // Progression between 0 and 1
 
     const positions = geometry.attributes.position.array;
 
@@ -133,7 +145,7 @@ function animateSphereTransition(initialPoints, targetPoints) {
     geometry.attributes.position.needsUpdate = true;
 
     if (t < 1) {
-      requestAnimationFrame(animate); // Continuer jusqu'à la fin de l'animation
+      requestAnimationFrame(animate); // Continue until the animation is complete
     }
   }
 
@@ -143,17 +155,17 @@ function animateSphereTransition(initialPoints, targetPoints) {
 // Function to revert points to cube
 export function revertToCube(scene, material, currentSpacing = spacing, gridSizeZ = gridSize) {
   setTimeout(() => {
-    const initialCubePositions = [];  // Positions cibles pour le cube
-    const currentPositions = geometry.attributes.position.array; // Positions actuelles des points
+    const initialCubePositions = [];  // Target positions for the cube
+    const currentPositions = geometry.attributes.position.array; // Current point positions
 
-    // Créer les positions du cube en gardant le même nombre de points que la sphère
-    const totalPoints = points.length;  // Assurer que le nombre de points reste constant
+    // Create cube positions while keeping the same number of points as the sphere
+    const totalPoints = points.length;  // Ensure point count stays constant
     let index = 0;
 
     for (let z = 0; z < gridSizeZ; z++) {
       for (let y = 0; y < gridSize; y++) {
         for (let x = 0; x < gridSize; x++) {
-          if (index >= totalPoints) break;  // S'assurer qu'on ne dépasse pas le nombre total de points
+          if (index >= totalPoints) break;  // Ensure we don't exceed the total point count
 
           const posX = x * currentSpacing - ((gridSize - 1) * currentSpacing) / 2;
           const posY = y * currentSpacing - ((gridSize - 1) * currentSpacing) / 2;
@@ -165,16 +177,16 @@ export function revertToCube(scene, material, currentSpacing = spacing, gridSize
       }
     }
 
-    // Si des points supplémentaires existent, les repositionner hors de la vue (derrière la caméra par exemple)
+    // Reposition unused points out of view (behind the camera for example)
     while (index < totalPoints) {
-      initialCubePositions.push(1000, 1000, 1000);  // Positionner les points inutilisés hors de vue
+      initialCubePositions.push(1000, 1000, 1000);  // Position unused points out of view
       index++;
     }
 
-    // Lancer l'animation pour transformer les points en cube
+    // Start animation to transform points back into a cube
     animateSphereToCube(initialCubePositions, currentPositions);
 
-    // Une fois l'animation terminée, repositionner tous les points à leur place correcte
+    // Once the animation is complete, reposition all points to their correct place
     setTimeout(() => {
       initialPositions.length = 0;
       for (let i = 0; i < initialCubePositions.length; i += 3) {
@@ -185,14 +197,13 @@ export function revertToCube(scene, material, currentSpacing = spacing, gridSize
         });
       }
 
-      // Assurer que la géométrie est correctement mise à jour
+      // Ensure geometry is properly updated
       geometry.attributes.position.needsUpdate = true;
 
-    }, 300);  // Attendre la fin de la transition (durée de 1 seconde)
+    }, 300);  // Wait until the transition ends (1 second duration)
 
-  }, 100); // Délai de 100ms avant de commencer la transition
+  }, 100); // 100ms delay before starting the transition
 }
-
 
 // Animation pour interpoler les points vers la forme du cube
 function animateSphereToCube(targetPoints, currentPoints) {
