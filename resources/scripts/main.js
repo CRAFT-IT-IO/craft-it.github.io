@@ -133,7 +133,6 @@ gsap.utils.toArray('.disap').forEach((element) => {
 
 
 // DREAM DRAFT CRAFT
-
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -235,33 +234,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
         opacity: 0, // Fade out the paragraph
         duration: 0.5,
         ease: 'power1.out'
-    }, 0)
-        .to('.process-list li:nth-child(2) p', {
-            opacity: 0, // Fade out the paragraph inside the second list item
-            duration: 0.5,
-            ease: 'power1.out'
-        }, 0)
-        .to('.process-list li:nth-child(2) p', {
-            opacity: 0, // Fade out the paragraph inside the second list item
-            duration: 0.5,
-            ease: 'power1.out'
-        }, 0)
-        .to('.process-list li:nth-child(3)', {
-            height: (i, target) => {
-                let h3 = target.querySelector('h3');
-                let padding = parseFloat(getComputedStyle(target).paddingTop);
-                return h3.offsetHeight + padding; // Shrink to h3 height + padding
-            },
-            paddingTop: '1rem',
-            paddingBottom: '1rem',
-            duration: .8,
-            ease: 'power1.out'
-        }, 0) // Shrink the third list item (li:nth-child(3))
-        .to('.process-list li:nth-child(3) p', {
-            opacity: 0, // Fade out the paragraph inside the third list item
-            duration: 0.5,
-            ease: 'power1.out'
-        }, 0); // Fade out the paragraph of li:nth-child(3)
+    }, 0);
+
+    //// Third layer: Trigger shrinkage of the second <li> and opacity of the second <p>
+    //let tl3 = gsap.timeline({
+    //    scrollTrigger: {
+    //        trigger: '.process-list li:nth-child(3)',
+    //        start: 'top center',
+    //        end: 'bottom center',
+    //        scrub: true,
+    //        markers: false
+    //    }
+    //});
+
+    //tl3.to('.svg-wrapper3', {
+    //    opacity: 1,
+    //    duration: .8,
+    //    ease: 'power1.out'
+    //}).to('.svg-text-wrapper3', {
+    //    y: -25, // Adjusted to -25 pixels for upward movement
+    //    duration: .8,
+    //    ease: 'power1.out'
+    //}, 0).to('.svg-text-wrapper2', {
+    //    y: 0, // Remains at 0
+    //    duration: .8,
+    //    ease: 'power1.out'
+    //}, 0).to('.svg-c-dot-layer', {
+    //    y: 25, // Adjusted to 25 pixels for movement
+    //    duration: .8,
+    //    ease: 'power1.out'
+    //}, 0).to('.process-list li:nth-child(2)', {
+    //    height: (i, target) => {
+    //        let h3 = target.querySelector('h3');
+    //        let padding = parseFloat(getComputedStyle(target).paddingTop);
+    //        return h3.offsetHeight + padding; // Shrink to h3 height + padding
+    //    },
+    //    paddingTop: '1rem',
+    //    paddingBottom: '1rem',
+    //    duration: .8,
+    //    ease: 'power1.out'
+    //}, 0).to('.process-list li:nth-child(2) p', {
+    //    opacity: 0, // Fade out the paragraph
+    //    duration: 0.5,
+    //    ease: 'power1.out'
+    //}, 0);
 });
 
 
