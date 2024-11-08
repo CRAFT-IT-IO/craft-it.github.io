@@ -52,8 +52,53 @@ main.no-scroll {
     transform: translateY(20px); 
 }
 
-/* -------------- ANIMATION */
+/* -------------- HOVER 
 
+a.coding {
+	text-transform: uppercase;
+	color: #171717;
+	text-decoration: none;
+	font-size: 1em;
+}
+
+a.coding:before {
+	content: "Get in Touch";
+	color: #FF4135;
+	position: absolute;
+	animation: encode 1s 1;
+}
+
+a.coding:hover:before {
+	animation: decode 1s 1;
+}
+
+@keyframes encode {
+	  0% { content: "\20B9 \03DE \20BE \03BE \2126 \2000 \03EA \03A3"; }
+	 10% { content: "\03BE \03F4 \03DE \03D1 \03A3 \2000 \03DE \03EA"; }
+	 20% { content: "\20BE \03BE \03DE \03EA \03D1 \2000 \2202 \03D1"; }
+	 30% { content: "\03DE \20BA \03A3 \03D1 \20BE \2000 \20BE \2202"; }
+	 40% { content: "G\0394 \20BA \03F4 \20BE \2000 \03A3 \20B9"; }
+	 50% { content: "Ge\03F4 \03BE \03DE \2000 \03DE \20BA"; }
+	 60% { content: "Get\03A3 \03D1 \0020 \20BE \2202"; }
+	 70% { content: "Get in\0394 \0020 \03D1 \03EA"; }
+	 80% { content: "Get in \0020 \03EA \20BE"; }
+	 90% { content: "Get in touch\03DE"; }
+	100% { content: "Get in touch"; }
+}
+
+@keyframes decode {
+	  0% { content: "\20B9 \03DE \20BE \03BE \2126 \2000 \03EA \03A3"; }
+	 10% { content: "\03BE \03F4 \03DE \03D1 \03A3 \2000 \03DE \03EA"; }
+	 20% { content: "\20BE \03BE \03DE \03EA \03D1 \2000 \2202 \03D1"; }
+	 30% { content: "\03DE \20BA \03A3 \03D1 \20BE \2000 \20BE \2202"; }
+	 40% { content: "h\0394 \20BA \03F4 \20BE \2000 \03A3 \20B9"; }
+	 50% { content: "ho\03F4 \03BE \03DE \2000 \03DE \20BA"; }
+	 60% { content: "hov\03A3 \03D1 \0020 \20BE \2202"; }
+	 70% { content: "hove\0394 \0020 \03D1 \03EA"; }
+	 80% { content: "hover \0020 \03EA \20BE"; }
+	 90% { content: "hover m\03DE"; }
+	100% { content: "hover me"; }
+}
 
 
 /* -------------- TYPOGRAPHY */ 
@@ -184,12 +229,13 @@ main {
 }
 
 header {
+    position: relative;
     display: flex;
     justify-items: stretch;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
-    padding: 1rem 2rem 2rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
     width: 100%;
     /* position: sticky;
     top: 0; */
@@ -613,6 +659,8 @@ header {
     padding-top: 0;
     background-color: var(--Grey-200);
     margin-top: 5rem;
+
+    z-index: 4;
 }
 
 .services{
@@ -753,17 +801,19 @@ header {
 /* ----------- OUTRO */
 
 #outro{
+    position: relative;
     height: calc(100vh - 8rem);
     justify-content: center;
     padding: 2rem;
     background: none;
-
+    z-index: 4;
     margin-top: 10rem;
 }
 
 .outro-paragraph{
     grid-column: 1 / 13;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 /* ----------- FOOTER */

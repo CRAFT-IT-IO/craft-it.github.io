@@ -26,10 +26,9 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 const material = new THREE.PointsMaterial({
-  color: 0x353331, 
-  size: 0.5,
+  color: 0xFF4135, 
+  size: 0.3,
   transparent: false,
-  map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png'),
   alphaTest: 0.5,
   depthWrite: false,
 });

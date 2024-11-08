@@ -86,7 +86,7 @@ gsap.utils.toArray('.disap').forEach((element) => {
       ease: 'power2.out', // Ease for smooth transition
       scrollTrigger: {
         trigger: element,
-        start: 'top 50%', // When the top of the element reaches 80% of the viewport, the animation starts
+        start: 'top 50%', // When the top of the element reaches 50% of the viewport, the animation starts
         toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
         onLeaveBack: () => {
           gsap.to(element, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
@@ -237,4 +237,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }, 0);
 });
 
-    
+
+// HOVER DECODE EFFECT
+
+// Sélection du texte cible
+const textElement = document.querySelector(".coding");
+const finalText = textElement.innerText;
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&?*%!@#";
+
+// Fonction pour générer un caractère aléatoire
+function randomChar() {
+  return chars[Math.floor(Math.random() * chars.length)];
+}
+
+// Fonction de decoding temporaire avec la bonne longueur
+function temporaryDecode(element, finalText) {
+  let iterations = 0;
+
+  const interval = setInterval(() => {
+    element.innerText = finalText
+      .split("")
+      .map((char, i) => (i < iterations ? finalText[i] : randomChar()))
+      .join("");
+
+    if (iterations >= finalText.length) clearInterval(interval);
+    iterations += 1;
+  }, 50);
+}
+
+// Appliquer l’effet au hover temporaire
+textElement.addEventListener("mouseenter", () => temporaryDecode(textElement, finalText));
+textElement.addEventListener("mouseleave", () => {
+  textElement.innerText = finalText; // Restaure le texte final
+});
