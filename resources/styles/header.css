@@ -1,0 +1,119 @@
+:root {
+	--spacing-lg: 24px;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	height: 120px;
+	border: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+	border-right: none;
+	background: #F0ECE9;
+}
+
+.header-container {
+	padding-left: var(--spacing-lg);
+	height: 100%;
+	display: grid;
+	place-self: stretch;
+	grid-gap: 5px;
+	grid-template-areas: 'logo logo baseline baseline . . . . menu menu menu menu';
+	grid-template-rows: 1fr;
+	grid-template-columns: repeat(12, 1fr);
+}
+
+.hero-logo {
+	grid-area: logo;
+	padding-top: var(--spacing-lg);
+	margin-bottom: var(--spacing-lg);
+}
+
+.baseline {
+	grid-area: baseline;
+	padding-top: var(--spacing-lg);
+	margin-bottom: var(--spacing-lg);
+}
+
+.menu {
+	grid-area: menu;
+	text-align: left;
+	display: grid;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-shrink: 0;
+	place-content: stretch;
+	padding: var(--spacing-lg) 0 var(--spacing-lg) var(--spacing-lg);
+	border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+}
+
+.menu-container {
+	display: flex;
+	flex-flow: column;
+	place-self: stretch;
+	position: relative;
+	justify-content: space-between;
+}
+
+.toggle-menu {
+	display: flex;
+}
+
+.menu-label {
+	display: flex;
+	color: #FF4135;
+	font-family: "IBM Plex Mono";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 100%; /* 16px */
+	letter-spacing: 0.32px;
+	text-transform: uppercase;
+}
+
+.menu-items {
+	position: absolute;
+	top: calc(100% + 24px);
+	left: -25px; /* spacing + border */
+	display: none;
+	width: calc(100% + 24px);
+	background-color: #F0ECE9;
+	border-top: 1px solid #e0e0e0;
+	transform-origin: center right;
+}
+
+	.menu-items.show {
+		animation: slideIn 0.5s ease-out forwards;
+	}
+
+	.menu-items a:hover {
+		background-color: #f0f0f0;
+	}
+
+	.menu-items a {
+		display: block;
+		padding: var(--spacing-lg);
+		text-decoration: none;
+		border-bottom: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+		border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+	}
+
+		.menu-items a:hover {
+			background-color: #f0f0f0;
+		}
+
+@keyframes slideIn {
+	0% {
+		transform: translateX(50%) translateY(-50%) scaleY(0);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0) translateY(1px) scaleY(1);
+		opacity: 1;
+	}
+}
+
+
+.header-menu {
+}
