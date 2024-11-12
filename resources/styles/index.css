@@ -225,8 +225,7 @@ p {
 
 main {
 	position: relative;
-	padding: 2rem;
-	padding-top: 1rem;
+	padding: 32px 24px;
 }
 
 /* -------------- GRID */
@@ -721,12 +720,8 @@ a {
 
 #outro {
 	position: relative;
-	height: calc(100vh - 8rem);
-	justify-content: center;
-	padding: 2rem;
 	background: none;
 	z-index: 4;
-	margin-top: 10rem;
 }
 
 .outro-paragraph {
@@ -738,21 +733,37 @@ a {
 /* ----------- FOOTER */
 
 footer {
-	display: flex;
-	justify-content: space-between;
-	padding: 0 2rem 2rem 2rem;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 1fr 72px 38px;
+	padding-top: 40px;
 }
 
-.site-footer-bottom {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
+.headquarter {
+	display: grid;
+	grid-column: 7 / span 2;
 }
 
+.reach-us {
+	display: grid;
+	justify-items: start;
+	grid-column: 10 / span 2;
+}
 
+.footer-logo {
+}
 
+.footer-bottom {
+	display: grid;
+	grid-row: 3;
+	grid-column: 1 / span 4;
+}
 
+.back-to-top {
+	display: grid;
+	grid-row: 3;
+	grid-column: 11 / span 2;
+}
 
 @media screen and (max-width: 1080px) {
 
@@ -797,11 +808,6 @@ footer {
 	.site-grid {
 		grid-template-columns: repeat(6, minmax(0, 1fr));
 	}
-
-	footer {
-		padding: 0 1rem 2rem 1rem;
-	}
-
 	/* ----------- HERO */
 
 	.hero-message {
@@ -1031,9 +1037,9 @@ footer {
 }
 
 
-/* --------- Button Explore*/
+/* --------- Button Action*/
 
-.btn-explore {
+.btn-action {
 	color: #FF4135;
 	text-align: center;
 	font-family: "IBM Plex Mono";

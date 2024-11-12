@@ -1,38 +1,9 @@
-var button = document.querySelector(".hero-button");
-var heroBottom = document.querySelector(".hero-bottom");
 var buttonText = document.querySelector(".button-text"); 
 var svgArrow = document.querySelector(".svg-arrow");
 var svgPath = document.querySelector(".arrow-path");
 var callToAction = document.querySelector(".call-to-action");
 var mainContent = document.querySelector("main"); 
 
-button.addEventListener("click", () => {
-    button.classList.toggle("active");
-    heroBottom.classList.toggle("active");
-    svgArrow.classList.toggle("active");
-    callToAction.classList.toggle("active");
-
-
-    // Applique ou enlève la classe 'no-scroll' sur 'main' plutôt que sur 'body'
-    if (callToAction.classList.contains("active")) {
-        mainContent.classList.add("no-scroll");
-    } else {
-        mainContent.classList.remove("no-scroll");
-    }
-});
-
-window.addEventListener('scroll', function() {
-    const heroBottom = document.querySelector('.hero-bottom');
-    const main = document.querySelector('main');
-    const rect = main.getBoundingClientRect();
-
-    if (rect.bottom <= window.innerHeight) {
-        heroBottom.classList.add('sticky');
-    } else {
-        heroBottom.classList.remove('sticky');
-    }
-});
-   
 // HERO ANIMATION TEXT
 
 document.addEventListener("DOMContentLoaded", function() {
