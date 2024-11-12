@@ -1,10 +1,12 @@
 function toggleMenu() {
-    const menu = document.getElementById('menuItems');
-    if (menu.style.display === 'none' || menu.style.display === '') {
-        menu.style.display = 'block';
-        menu.classList.add('show');
-    } else {
-        menu.style.display = 'none';
-        menu.classList.remove('show');
-    }
+	$('.menu').toggleClass('show');
 }
+
+document.addEventListener('scroll', function () {
+	const header = document.querySelector('header'); // Sélectionnez votre header ici
+	if (window.scrollY > 0) {
+		header.classList.add('is-scrolling');
+	} else {
+		header.classList.remove('is-scrolling');
+	}
+});

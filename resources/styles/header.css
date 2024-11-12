@@ -18,7 +18,7 @@ header {
 	display: grid;
 	place-self: stretch;
 	grid-gap: 25px;
-	grid-template-areas: 'logo logo baseline baseline . . . . menu menu menu menu';
+	grid-template-areas: 'logo logo baseline baseline baseline . . . menu menu menu menu';
 	grid-template-rows: 1fr;
 	grid-template-columns: repeat(12, 1fr);
 }
@@ -44,7 +44,7 @@ header {
 	justify-content: space-between;
 	flex-shrink: 0;
 	place-content: stretch;
-	padding: var(--spacing-lg) 0 var(--spacing-lg) var(--spacing-lg);
+	padding: var(--spacing-lg);
 	border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
 }
 
@@ -83,25 +83,26 @@ header {
 	transform-origin: center right;
 }
 
-	.menu-items.show {
-		animation: slideIn 0.5s ease-out forwards;
-	}
+.show .menu-items {
+	display: block;
+	animation: slideIn 0.5s ease-out forwards;
+}
+
+.menu-items a:hover {
+	background-color: #f0f0f0;
+}
+
+.menu-items a {
+	display: block;
+	padding: var(--spacing-lg);
+	text-decoration: none;
+	border-bottom: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+	border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+}
 
 	.menu-items a:hover {
 		background-color: #f0f0f0;
 	}
-
-	.menu-items a {
-		display: block;
-		padding: var(--spacing-lg);
-		text-decoration: none;
-		border-bottom: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
-		border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
-	}
-
-		.menu-items a:hover {
-			background-color: #f0f0f0;
-		}
 
 @keyframes slideIn {
 	0% {
@@ -116,5 +117,22 @@ header {
 }
 
 
-.header-menu {
+header.is-scrolling .hero-logo,
+header.is-scrolling .baseline {
+	margin-bottom: 0;
+}
+
+.menu .menu-container .menu-item-selected {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	cursor: pointer;
+}
+
+.menu-item-selected img {
+	transform: rotate(90deg)
+}
+
+.show .menu-item-selected img {
+	transform: unset;
 }
