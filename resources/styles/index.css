@@ -229,74 +229,8 @@ main {
 	padding-top: 1rem;
 }
 
-header {
-	position: relative;
-	display: flex;
-	justify-items: stretch;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: stretch;
-	width: 100%;
-	/* position: sticky;
-    top: 0; */
-	z-index: 1000;
-	background-color: var(--Grey-200);
-}
-
-	header .spacer {
-		height: 1rem;
-		display: block;
-	}
-
-	header a {
-		color: var(--Grey-800);
-		text-decoration: none;
-	}
-
-.container-wrap .section-subtitle {
-	position: sticky;
-	z-index: 5;
-	top: var(--sticky-container-wrap-top);
-	background-color: var(--Grey-200);
-}
-
-.container-wrap:nth-child(1) {
-	padding-top: 5rem;
-}
-
-.container-wrap .spacer, .spacer {
-	height: 10rem;
-}
-
-.container-wrap {
-	z-index: 1;
-	background-color: var(--Grey-200);
-	display: flex;
-	flex-direction: column;
-	gap: 4rem;
-}
-
 /* -------------- GRID */
 
-.site-grid {
-	display: grid;
-	grid-template-columns: repeat(12, minmax(0, 1fr));
-	grid-column-gap: 1rem;
-}
-
-.section-title {
-	display: grid;
-	grid-column: span 7;
-}
-
-.section-subtitle {
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid var(--Grey-500);
-	border-top: 1px solid var(--Grey-500);
-	padding: 1rem 0 1rem 0;
-	color: var(--Grey-700);
-}
 
 .collaboration_models {
 	justify-content: end;
@@ -726,63 +660,6 @@ a {
 	align-self: stretch;
 }
 
-/* ----------- DREAM DRAFT CRAFT */
-
-.process-list {
-	grid-column: 1 / 6;
-	li
-
-{
-	display: flex;
-	flex-direction: column;
-	padding: 2rem 0;
-	gap: 0.5rem;
-	border-top: 1px solid var(--Grey-500);
-	overflow: hidden;
-}
-
-}
-
-.outer-box {
-	position: relative;
-	height: 75vh;
-	grid-column: 6 / 13;
-	display: grid;
-	align-content: center;
-}
-
-.inner-svg {
-	height: 80%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-}
-
-.svg-c-dot-layer, .svg-text-wrapper2, .svg-text-wrapper3 {
-	position: absolute;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.svg-wrapper1 {
-	position: absolute;
-	width: fit-content;
-	scale: 1;
-	transition: scale .3s ease;
-}
-
-.svg-wrapper2, .svg-wrapper3 {
-	position: absolute;
-	width: fit-content;
-	opacity: 0;
-	transition: opacity .3s ease;
-}
-
-
-
 /* ----------- COLLABORATION MODEL */
 
 #collaboration {
@@ -1091,4 +968,79 @@ footer {
 	.collaboration_models_item {
 		width: 90%;
 	}
+}
+
+
+/* ----------- Approach */
+
+.section-content .approach-section .approach {
+	display: grid;
+	place-self: stretch;
+	grid-template-columns: repeat(6, 1fr);
+	padding: 24px 0px 40px 0px;
+	border-bottom: 1px solid var(--default-palette-default-gray-200, #E2DFDC);
+}
+
+	.section-content .approach-section .approach .approach-title {
+		display: grid;
+		grid-column: 1 / span 2;
+		font-size: 24px;
+	}
+
+	.section-content .approach-section .approach .approach-description {
+		display: grid;
+		grid-column: 3 / span 4;
+		font-size: 16px;
+	}
+
+
+/* Animation */
+.section-content .outer-box {
+	position: relative;
+	align-content: center;
+}
+
+.inner-svg {
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.svg-c-dot-layer, .svg-text-wrapper2, .svg-text-wrapper3 {
+	position: absolute;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.svg-wrapper1 {
+	position: absolute;
+	width: fit-content;
+	scale: 1;
+	transition: scale .3s ease;
+}
+
+.svg-wrapper2, .svg-wrapper3 {
+	position: absolute;
+	width: fit-content;
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+
+
+/* --------- Button Explore*/
+
+.btn-explore {
+	color: #FF4135;
+	text-align: center;
+	font-family: "IBM Plex Mono";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px; /* 100% */
+	letter-spacing: 0.32px;
+	text-transform: uppercase;
 }

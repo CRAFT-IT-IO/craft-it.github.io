@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // First layer: No shrinking yet
     let tl1 = gsap.timeline({
         scrollTrigger: {
-            trigger: '.process-list li:nth-child(1)',
+            trigger: '.approach-section .approach:nth-child(1)',
             start: 'top center',
             end: 'bottom center',
             scrub: true,
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // Second layer: Trigger shrinkage of the first <li> and opacity of the first <p>
     let tl2 = gsap.timeline({
         scrollTrigger: {
-            trigger: '.process-list li:nth-child(2)',
+            trigger: '.approach-section .approach:nth-child(2)',
             start: 'top center',
             end: 'bottom center',
             scrub: true,
@@ -177,26 +177,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         y: 0, // Remains at 0 since no movement
         duration: .8,
         ease: 'power1.out'
-    }, 0).to('.process-list li:nth-child(1)', {
-        height: (i, target) => {
-            let h3 = target.querySelector('h3');
-            let padding = parseFloat(getComputedStyle(target).paddingTop);
-            return h3.offsetHeight + padding; // Shrink to h3 height + padding
-        },
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
-        duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.process-list li:nth-child(1) p', {
-        opacity: 0, // Fade out the paragraph
-        duration: .3,
-        ease: 'power1.out'
     }, 0);
 
     // Third layer: Trigger shrinkage of the second <li> and opacity of the second <p>
     let tl3 = gsap.timeline({
         scrollTrigger: {
-            trigger: '.process-list li:nth-child(3)',
+            trigger: '.approach-section .approach:nth-child(3)',
             start: 'top center',
             end: 'bottom center',
             scrub: true,
@@ -219,20 +205,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }, 0).to('.svg-c-dot-layer', {
         y: 50, // Adjusted to 25 pixels for movement
         duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.process-list li:nth-child(2)', {
-        height: (i, target) => {
-            let h3 = target.querySelector('h3');
-            let padding = parseFloat(getComputedStyle(target).paddingTop);
-            return h3.offsetHeight + padding; // Shrink to h3 height + padding
-        },
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
-        duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.process-list li:nth-child(2) p', {
-        opacity: 0, // Fade out the paragraph
-        duration: 0.5,
         ease: 'power1.out'
     }, 0);
 });

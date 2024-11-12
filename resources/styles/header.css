@@ -2,6 +2,16 @@
 	--spacing-lg: 24px;
 }
 
+	header .spacer {
+		height: 1rem;
+		display: block;
+	}
+
+	header a {
+		color: var(--Grey-800);
+		text-decoration: none;
+	}
+
 header {
 	position: sticky;
 	top: 0;
@@ -10,6 +20,13 @@ header {
 	border: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
 	border-right: none;
 	background: #F0ECE9;
+	display: flex;
+	justify-items: stretch;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
+	width: 100%;
+	background-color: var(--Grey-200);
 }
 
 .header-container {
@@ -147,3 +164,4 @@ header.is-scrolling .baseline {
 		left: -1px;
 	}
 }
+
