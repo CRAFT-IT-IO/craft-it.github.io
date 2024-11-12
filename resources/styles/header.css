@@ -77,7 +77,7 @@ header {
 	top: calc(100% + 24px);
 	left: -25px; /* spacing + border */
 	display: none;
-	width: calc(100% + 24px);
+	width: calc(100% + (var(--spacing-lg) * 2));
 	background-color: #F0ECE9;
 	border-top: 1px solid #e0e0e0;
 	transform-origin: center right;
@@ -135,4 +135,15 @@ header.is-scrolling .baseline {
 
 .show .menu-item-selected img {
 	transform: unset;
+}
+
+@media (max-width: 1024px) {
+	.menu-container {
+		position: static;
+	}
+
+	.menu-items {
+		top: 100%;
+		left: -1px;
+	}
 }
