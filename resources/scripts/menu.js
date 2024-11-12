@@ -3,7 +3,7 @@ function toggleMenu() {
 }
 
 document.addEventListener('scroll', function () {
-	const header = document.querySelector('header'); // Sélectionnez votre header ici
+	let header = document.querySelector('header');
 	if (window.scrollY > 0) {
 		header.classList.add('is-scrolling');
 	} else {
