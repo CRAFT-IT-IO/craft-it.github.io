@@ -765,6 +765,54 @@ footer {
 	grid-column: 11 / span 2;
 }
 
+footer footer-title {
+	color: var(--default-palette-default-gray-900, #1F1C1A);
+	text-align: center;
+	font-family: Aspekta;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+@media screen and (max-width: 1080px) {
+	footer {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+		grid-gap: 40px;
+	}
+
+		footer > * {
+			grid-gap: 16px;
+		}
+
+	.headquarter {
+		grid-column: span 2;
+	}
+
+	.reach-us {
+		grid-row: 3;
+		grid-column: span 2;
+	}
+
+	.footer-logo {
+		grid-column: span 2;
+	}
+
+	.footer-bottom {
+		grid-row: 4;
+		grid-column: span 2;
+		grid-auto-flow: column;
+	}
+
+	.back-to-top {
+		justify-items: start;
+		grid-row: 5;
+		grid-column: span 2;
+	}
+}
+
+/* Collaboration */
 @media screen and (max-width: 1080px) {
 
 	.collaboration_models_item:first-child {
@@ -782,14 +830,12 @@ footer {
 }
 
 
-
-
 @media screen and (max-width: 760px) {
 
 
 	/* ----------- STRUCTURE */
 
-	main {
+	footer, main {
 		position: relative;
 		padding: 1rem;
 		padding-bottom: 2rem;
@@ -999,6 +1045,23 @@ footer {
 		font-size: 16px;
 	}
 
+@media screen and (max-width: 1080px) {
+	.section-content .approach-section .approach {
+		display: grid;
+		place-self: stretch;
+		grid-template-columns: 1fr;
+		padding: 24px 0px;
+		grid-gap: 24px;
+	}
+
+		.section-content .approach-section .approach .approach-title {
+			grid-column: 1;
+		}
+
+		.section-content .approach-section .approach .approach-description {
+			grid-column: 1;
+		}
+}
 
 /* Animation */
 .section-content .outer-box {
@@ -1049,4 +1112,14 @@ footer {
 	line-height: 16px; /* 100% */
 	letter-spacing: 0.32px;
 	text-transform: uppercase;
+}
+
+/* Get intouch */
+#get-in-touch {
+	justify-content: end;
+	.section-title
+
+{
+	font-size: 80px;
+}
 }
