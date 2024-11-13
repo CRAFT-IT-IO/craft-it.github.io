@@ -68,6 +68,7 @@ header {
 	place-content: stretch;
 	padding: var(--spacing-lg);
 	border-left: 1px solid var(--default-palette-default-gray-300, #CFC9C5);
+	cursor: pointer;
 }
 
 .menu-container {

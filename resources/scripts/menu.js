@@ -1,6 +1,10 @@
 $(document).ready(function () {
-	$('.menu-item-selected, .toggle-menu, .arrow-back').on('click', (e) => {
-		$('.menu').toggleClass('show');
+	let menu = $('.menu');
+	menu.on('click', (e) => {
+		if (e.target.nodeName == 'A')
+			return;
+
+		menu.toggleClass('show');
 		e.preventDefault();
 		e.stopPropagation();
 	});

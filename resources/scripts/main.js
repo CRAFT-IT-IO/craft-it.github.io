@@ -1,20 +1,21 @@
-var buttonText = document.querySelector(".button-text"); 
+var button = document.querySelector(".hero-button");
+var buttonText = document.querySelector(".button-text");
 var svgArrow = document.querySelector(".svg-arrow");
 var svgPath = document.querySelector(".arrow-path");
 var callToAction = document.querySelector(".call-to-action");
-var mainContent = document.querySelector("main"); 
+var mainContent = document.querySelector("main");
 
 // HERO ANIMATION TEXT
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Sélectionner tous les éléments avec la classe 'scroll-fade'
     var textWrappers = document.querySelectorAll('.scroll-fade');
-    
+
     // Parcourir chaque élément
-    textWrappers.forEach(function(textWrapper) {
+    textWrappers.forEach(function (textWrapper) {
         // Récupérer le contenu avant et après le <br>
         var parts = textWrapper.innerHTML.split('<br>');
-        
+
         // Fonction pour envelopper chaque mot dans une <div> et chaque lettre dans un <span>
         function wrapWordsInDiv(text) {
             return text.split(' ').map(word => {
@@ -26,12 +27,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Ajouter des <div> autour de chaque mot et des <span> autour de chaque lettre pour les parties avant et après le <br>
         var wrappedBefore = wrapWordsInDiv(parts[0]);
         var wrappedAfter = wrapWordsInDiv(parts[1]);
-        
+
         // Réassembler le HTML avec les <div> autour de chaque mot
         textWrapper.innerHTML = `${wrappedBefore}<br>${wrappedAfter}`;
-        
+
         // Anime chaque lettre à l'intérieur des mots
-        anime.timeline({loop: false})
+        anime.timeline({ loop: false })
             .add({
                 targets: textWrapper.querySelectorAll('.hero-word span'),
                 translateY: [50, 0], // Transition de bas en haut
@@ -48,58 +49,58 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Apply animation to elements with the 'disap' class
 gsap.utils.toArray('.disap').forEach((element) => {
-  gsap.fromTo(element, 
-    { opacity: 0, y: 20 }, // Start state: hidden and translated down
-    { 
-      opacity: 1, 
-      y: 0, 
-      duration: 1, 
-      ease: 'power2.out', // Ease for smooth transition
-      scrollTrigger: {
-        trigger: element,
-        start: 'top 50%', // When the top of the element reaches 50% of the viewport, the animation starts
-        toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
-        onLeaveBack: () => {
-          gsap.to(element, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
+    gsap.fromTo(element,
+        { opacity: 0, y: 20 }, // Start state: hidden and translated down
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power2.out', // Ease for smooth transition
+            scrollTrigger: {
+                trigger: element,
+                start: 'top 50%', // When the top of the element reaches 50% of the viewport, the animation starts
+                toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
+                onLeaveBack: () => {
+                    gsap.to(element, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
+                }
+            }
         }
-      }
-    }
-  );
+    );
 });
 
 // HOVER EFFECT
 
-    let elements = document.querySelectorAll('.rolling-hover');
+let elements = document.querySelectorAll('.rolling-hover');
 
-    elements.forEach(element => {
-        let innerText = element.innerText;
-        element.innerHTML = '';
+elements.forEach(element => {
+    let innerText = element.innerText;
+    element.innerHTML = '';
 
-        let textContainer = document.createElement('div');
-        textContainer.classList.add('block');
+    let textContainer = document.createElement('div');
+    textContainer.classList.add('block');
 
-        for (let letter of innerText) {
-            let span = document.createElement('span');
-            span.innerText = letter.trim() === '' ? '\xa0' : letter;
-            span.classList.add('letter');
-            textContainer.appendChild(span);
-        }
+    for (let letter of innerText) {
+        let span = document.createElement('span');
+        span.innerText = letter.trim() === '' ? '\xa0' : letter;
+        span.classList.add('letter');
+        textContainer.appendChild(span);
+    }
 
-        element.appendChild(textContainer);
-        element.appendChild(textContainer.cloneNode(true));
+    element.appendChild(textContainer);
+    element.appendChild(textContainer.cloneNode(true));
+});
+
+// Appliquer l'effet au survol
+elements.forEach(element => {
+    element.addEventListener('mouseover', () => {
+        element.classList.add('play');
     });
 
-    // Appliquer l'effet au survol
-    elements.forEach(element => {
-        element.addEventListener('mouseover', () => {
-            element.classList.add('play');
-        });
-
-        // Retirer la classe 'play' quand le survol s'arrête
-        element.addEventListener('mouseleave', () => {
-            element.classList.remove('play');
-        });
+    // Retirer la classe 'play' quand le survol s'arrête
+    element.addEventListener('mouseleave', () => {
+        element.classList.remove('play');
     });
+});
 
 
 // DREAM DRAFT CRAFT
@@ -185,7 +186,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // Sélection du texte cible
 const textElement = document.querySelector(".coding");
-const finalText = textElement.innerText;
+const finalText = textElement?.innerText;
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&?*%!@#";
 
 // Fonction pour générer un caractère aléatoire
@@ -209,7 +210,7 @@ function temporaryDecode(element, finalText) {
 }
 
 // Appliquer l’effet au hover temporaire
-textElement.addEventListener("mouseenter", () => temporaryDecode(textElement, finalText));
-textElement.addEventListener("mouseleave", () => {
+textElement?.addEventListener("mouseenter", () => temporaryDecode(textElement, finalText));
+textElement?.addEventListener("mouseleave", () => {
   textElement.innerText = finalText; // Restaure le texte final
 });
