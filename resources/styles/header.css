@@ -2,15 +2,15 @@
 	--spacing-lg: 24px;
 }
 
-	header .spacer {
-		height: 1rem;
-		display: block;
-	}
+header .spacer {
+	height: 1rem;
+	display: block;
+}
 
-	header a {
-		color: var(--Grey-800);
-		text-decoration: none;
-	}
+header a {
+	color: var(--Grey-800);
+	text-decoration: none;
+}
 
 header {
 	position: sticky;
@@ -27,7 +27,12 @@ header {
 	align-items: stretch;
 	width: 100%;
 	background-color: var(--Grey-200);
+	transition: height 0.3s ease;
 }
+
+	header.is-scrolling {
+		height: 80px;
+	}
 
 .header-container {
 	padding-left: var(--spacing-lg);
@@ -87,6 +92,14 @@ header {
 	line-height: 100%; /* 16px */
 	letter-spacing: 0.32px;
 	text-transform: uppercase;
+	transition: opacity 0.3s ease, height 0.3s ease;
+	opacity: 1;
+}
+
+header.is-scrolling .menu-label {
+	opacity: 0;
+	height: 0;
+	pointer-events: none;
 }
 
 .menu-items {
@@ -164,4 +177,3 @@ header.is-scrolling .baseline {
 		left: -1px;
 	}
 }
-
