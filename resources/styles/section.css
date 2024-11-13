@@ -50,7 +50,7 @@
 .section-name {
 	color: #FF4135;
 	display: grid;
-	grid-column: 3;
+	grid-column: 2 / span 2;
 	text-transform: uppercase;
 }
 

@@ -201,9 +201,7 @@ p {
 	color: var(--Grey-800);
 }
 
-.collaboration-title-wrapper h4 {
-	color: var(--Grey-800);
-}
+
 
 .model-anotation {
 	color: var(--Grey-800);
@@ -231,17 +229,6 @@ main {
 /* -------------- GRID */
 
 
-.collaboration_models {
-	justify-content: end;
-	li
-
-{
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-}
-
-}
 
 .site-grid.process-grid
 /*, .site-grid.process-grid .process-list
@@ -659,63 +646,6 @@ a {
 	align-self: stretch;
 }
 
-/* ----------- COLLABORATION MODEL */
-
-#collaboration {
-	position: relative;
-	background: none;
-	z-index: 4;
-}
-
-.collaboration_models {
-	padding: 0;
-}
-
-.collaboration_models_item {
-	min-height: 512px;
-	gap: .5rem;
-	grid-column: span 3;
-	list-style: none;
-	padding: 1.5rem;
-	border-right: 1px solid var(--Grey-500);
-}
-
-	.collaboration_models_item:first-child {
-		grid-column: 4 / 7;
-	}
-
-	.collaboration_models_item:last-child {
-		border: none;
-	}
-
-.collaboration-title-wrapper {
-	display: flex;
-	gap: 0.5rem;
-	flex-direction: column;
-}
-
-.collaboration-model-descriptive-list {
-	padding: 0;
-	list-style: circle;
-	li
-
-{
-	padding: 0.25rem 0 0.25rem 0;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: .5rem;
-	text-transform: uppercase;
-	p
-
-{
-	color: var(--Grey-800);
-	font-size: clamp(.75rem, .75vw, .85rem);
-}
-
-}
-}
-
 /* ----------- OUTRO */
 
 #outro {
@@ -812,22 +742,6 @@ footer footer-title {
 	}
 }
 
-/* Collaboration */
-@media screen and (max-width: 1080px) {
-
-	.collaboration_models_item:first-child {
-		grid-column: 1 / 5;
-	}
-
-	.collaboration_models {
-		li
-
-{
-	grid-column: span 4;
-}
-
-}
-}
 
 
 @media screen and (max-width: 760px) {
@@ -936,30 +850,6 @@ footer footer-title {
 	}
 
 
-	/* ----------- COLLABORATION MODEL */
-
-	.collaboration_models {
-		display: flex;
-		justify-content: flex-start;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-		scroll-snap-stop: always;
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-
-		gap: 1rem;
-		padding-bottom: 1rem;
-	}
-
-	.collaboration_models_item {
-		width: 80%;
-		flex: 0 0 auto;
-	}
-
-		.collaboration_models_item:first-child {
-			grid-column: auto;
-		}
-
 	/* ----------- OUTRO */
 	#outro {
 		padding: 0;
@@ -1012,13 +902,6 @@ footer footer-title {
 
 	.svg {
 		width: 300px;
-	}
-
-
-	/* ----------- COLLABORATION MODEL */
-
-	.collaboration_models_item {
-		width: 90%;
 	}
 }
 
