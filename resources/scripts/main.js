@@ -108,79 +108,58 @@ elements.forEach(element => {
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // First layer: No shrinking yet
-    let tl1 = gsap.timeline({
+    let masterTimeline = gsap.timeline({
         scrollTrigger: {
-            trigger: '.approach-section .approach:nth-child(1)',
+            trigger: '.container-outer-box',
             start: 'top center',
             end: 'bottom center',
-            scrub: true,
+            scrub: false,
             markers: false
         }
     });
 
-    // Just animating opacity of svg-wrapper1
-    tl1.to('.svg-wrapper1', {
-        opacity: 1,
-        duration: 1,
-        ease: 'power1.out'
-    });
-
-    // Second layer: Trigger shrinkage of the first <li> and opacity of the first <p>
-    let tl2 = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.approach-section .approach:nth-child(2)',
-            start: 'top center',
-            end: 'bottom center',
-            scrub: true,
-            markers: false
-        }
-    });
-
-    tl2.to('.svg-wrapper2', {
-        opacity: 1,
-        duration: .8,
-        ease: 'power1.out'
-    }).to('.svg-c-dot-layer', {
-        y: 50, // Adjusted to 25 pixels
-        duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.svg-text-wrapper2', {
-        y: 0, // Remains at 0 since no movement
-        duration: .8,
-        ease: 'power1.out'
-    }, 0);
-
-    // Third layer: Trigger shrinkage of the second <li> and opacity of the second <p>
-    let tl3 = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.approach-section .approach:nth-child(3)',
-            start: 'top center',
-            end: 'bottom center',
-            scrub: true,
-            markers: false
-        }
-    });
-
-    tl3.to('.svg-wrapper3', {
-        opacity: 1,
-        duration: .8,
-        ease: 'power1.out'
-    }).to('.svg-text-wrapper3', {
-        y: -50, // Adjusted to -25 pixels for upward movement
-        duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.svg-text-wrapper2', {
-        y: 0, // Remains at 0
-        duration: .8,
-        ease: 'power1.out'
-    }, 0).to('.svg-c-dot-layer', {
-        y: 50, // Adjusted to 25 pixels for movement
-        duration: .8,
-        ease: 'power1.out'
-    }, 0);
+    masterTimeline
+        .to('.svg-wrapper1', {
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power1.out'
+        })
+        .to('.svg-wrapper2', {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power1.out'
+        })
+        .to('.svg-c-dot-layer', {
+            y: 50,
+            duration: 0.5,
+            ease: 'power1.out'
+        }, "<")
+        .to('.svg-text-wrapper2', {
+            y: 0,
+            duration: 0.5,
+            ease: 'power1.out'
+        }, "<")
+        .to('.svg-wrapper3', {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power1.out'
+        })
+        .to('.svg-text-wrapper3', {
+            y: -50,
+            duration: 0.5,
+            ease: 'power1.out'
+        }, "<")
+        .to('.svg-text-wrapper2', {
+            y: 0,
+            duration: 0.5,
+            ease: 'power1.out'
+        }, "<")
+        .to('.svg-c-dot-layer', {
+            y: 50,
+            duration: 0.5,
+            ease: 'power1.out'
+        }, "<");
 });
-
 
 // HOVER DECODE EFFECT
 
