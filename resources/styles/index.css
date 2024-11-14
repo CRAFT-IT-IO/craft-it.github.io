@@ -8,6 +8,7 @@
 
 :root {
 	--Grey-200: #F0ECE9;
+	--Grey-400: #E2DFDC;
 	--Grey-500: #C0C0C0;
 	--Grey-700: #56514c;
 	--Grey-800: #171815;
@@ -72,7 +73,7 @@ h2 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(2.5rem, 4vw, 5rem);
+	font-size: clamp(4.5rem, 5vw, 5.75rem);
 	line-height: 1.2;
 	margin: 0;
 }
@@ -92,7 +93,7 @@ h4 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(1.125rem, 1.125vw, 1.5rem);
+	font-size: clamp(1.25rem, 1.125vw, 1.5rem);
 	line-height: 1.4;
 	margin: 0;
 }
@@ -613,6 +614,25 @@ a {
 	margin-bottom: 1rem;
 }
 
+/* ----------- OUTRO SMALL */
+
+#outro-sm{
+	padding: 9rem 1.5rem 9rem 1.5rem;
+	background-color: var(--Grey-400);
+
+	gap: 1.5rem;
+
+	h2{
+		grid-column: 1 / span 8;
+		grid-row: 1;
+	}
+
+	p{
+		grid-column: 1 / span 8;
+		grid-row: 2;
+	}
+}
+
 /* ----------- FOOTER */
 
 footer {
@@ -622,7 +642,7 @@ footer {
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: 1fr;
 	gap: 40px;
-	padding: 1.5rem 1.5rem 2rem 1.5rem;
+	padding: 2.5rem 1.5rem 2rem 1.5rem;
 
 	h4{
 		margin-bottom: .5rem;
@@ -668,6 +688,10 @@ footer {
 	}
 }
 
+.sub-link:hover{
+	color: var(--Grey-800);
+}
+
 .footer-bottom-wrapper{
 	display: flex;
 	align-items: center;
@@ -676,6 +700,20 @@ footer {
 }
 
 @media screen and (max-width: 1080px) {
+	
+	/* ----------- OUTRO SMALL */
+
+	#outro-sm{
+
+		h2{
+			grid-column: 1 / span 12;
+		}
+
+		p{
+			grid-column: 1 / span 12;
+		}
+	}
+	
 	footer {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr;
@@ -719,10 +757,14 @@ footer {
 
 	/* ----------- STRUCTURE */
 
-	footer, main {
+	main {
 		position: relative;
 		padding: 1rem;
 		padding-bottom: 2rem;
+	}
+
+	footer{
+		padding: 2.5rem 1rem 2rem 1rem;
 	}
 
 	.hero-bottom {
@@ -736,7 +778,7 @@ footer {
 	}
 
 	.site-grid {
-		grid-template-columns: repeat(6, minmax(0, 1fr));
+		grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
 	}
 	/* ----------- HERO */
 
@@ -825,6 +867,23 @@ footer {
 		padding: 0;
 	}
 
+	/* ----------- OUTRO SMALL */
+
+	#outro-sm{
+
+		gap: 1.5rem;
+
+		h2{
+			grid-column: 1 / span 6;
+			grid-row: 1;
+		}
+
+		p{
+			grid-column: 1 / span 6;
+			grid-row: 2;
+		}
+	}
+
 	/* ----------- FOOTER */
 
 	.footer-bottom{
@@ -838,7 +897,7 @@ footer {
 @media screen and (max-width: 460px) {
 
 	.site-grid {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 	}
 
 	.contact-wrapper {
@@ -881,6 +940,23 @@ footer {
 	.svg {
 		width: 300px;
 	}
+
+		/* ----------- OUTRO SMALL */
+
+		#outro-sm{
+
+			gap: 1.5rem;
+	
+			h2{
+				grid-column: 1 / span 4;
+				grid-row: 1;
+			}
+	
+			p{
+				grid-column: 1 / span 4;
+				grid-row: 2;
+			}
+		}
 
 	/* ----------- FOOTER */
 
@@ -972,7 +1048,6 @@ footer {
 
 .btn-action {
 	color: var(--craft-Red);
-	text-align: center;
 	font-family: "IBM Plex Mono";
 	font-size: 16px;
 	font-style: normal;
