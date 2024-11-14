@@ -497,6 +497,15 @@ a {
 	z-index: 0;
 }
 
+#moodys-threejs-canvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+}
+
 /* HOVER EFFECT */
 
 .rolling-hover {
@@ -632,6 +641,8 @@ a {
 /* ----------- OUTRO SMALL */
 
 #outro-sm{
+	position: relative;
+	overflow: hidden;
 	padding: 9rem 1.5rem 9rem 1.5rem;
 	background-color: var(--Grey-400);
 
