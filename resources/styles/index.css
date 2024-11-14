@@ -280,6 +280,21 @@ main {
 	display: inline-block;
 }
 
+/* SECONDARY HERO */
+
+#sec-hero{
+	background-color: var(--Grey-400);
+	align-items: end;
+	padding: 1.5rem 1.5rem 3.5rem 1.5rem;
+}
+
+.sec-hero-content-wrapper{
+	grid-column: 2 / span 6;
+}
+
+.ma-partner-alliance{
+	grid-column: 10 / span 2;
+}
 
 /* CALL TO ACTION */
 
@@ -700,6 +715,16 @@ footer {
 }
 
 @media screen and (max-width: 1080px) {
+
+	/* ----------- HERO */
+
+	.sec-hero-content-wrapper{
+		grid-column: 2 / span 8;
+	}
+
+	.ma-partner-alliance{
+		grid-column: 2 / span 2;
+	}
 	
 	/* ----------- OUTRO SMALL */
 
@@ -754,6 +779,16 @@ footer {
 
 @media screen and (max-width: 760px) {
 
+
+	/* ----------- HERO */
+
+	.sec-hero-content-wrapper{
+		grid-column: 1 / span 6;
+	}
+
+	.ma-partner-alliance{
+		grid-column: 1 / span 2;
+	}
 
 	/* ----------- STRUCTURE */
 
@@ -895,6 +930,12 @@ footer {
 
 
 @media screen and (max-width: 460px) {
+
+		/* ----------- HERO */
+
+		.sec-hero-content-wrapper{
+			grid-column: 1 / span 4;
+		}
 
 	.site-grid {
 		grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
