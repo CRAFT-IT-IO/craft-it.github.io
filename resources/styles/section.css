@@ -32,7 +32,7 @@
 	color: var(--Grey-700);
 }
 
-	.chapter p {
+	.chapter p:not(.section-title) {
 		color: #FF4135;
 		font-family: "IBM Plex Mono";
 		font-size: 16px;
@@ -54,7 +54,7 @@
 	text-transform: uppercase;
 }
 
-p.section-title {
+.section-title {
 	display: grid;
 	grid-column: 5 / span 6;
 	color: var(--default-palette-default-gray-900, #1F1C1A);
@@ -125,7 +125,7 @@ p.section-title {
 		grid-column: 2;
 	}
 
-	p.section-title {
+	.section-title {
 		grid-row: 3;
 		grid-column: 1 / span 2;
 	}
@@ -166,4 +166,10 @@ p.section-title {
 				display: grid;
 				grid-column: 1;
 			}
+}
+
+@media screen and (max-width: 760px) {
+	.section-title {
+		font-size: 32px;
+	}
 }
