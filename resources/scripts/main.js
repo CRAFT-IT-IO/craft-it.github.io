@@ -68,40 +68,6 @@ gsap.utils.toArray('.disap').forEach((element) => {
     );
 });
 
-// HOVER EFFECT
-
-let elements = document.querySelectorAll('.rolling-hover');
-
-elements.forEach(element => {
-    let innerText = element.innerText;
-    element.innerHTML = '';
-
-    let textContainer = document.createElement('div');
-    textContainer.classList.add('block');
-
-    for (let letter of innerText) {
-        let span = document.createElement('span');
-        span.innerText = letter.trim() === '' ? '\xa0' : letter;
-        span.classList.add('letter');
-        textContainer.appendChild(span);
-    }
-
-    element.appendChild(textContainer);
-    element.appendChild(textContainer.cloneNode(true));
-});
-
-// Appliquer l'effet au survol
-elements.forEach(element => {
-    element.addEventListener('mouseover', () => {
-        element.classList.add('play');
-    });
-
-    // Retirer la classe 'play' quand le survol s'arrête
-    element.addEventListener('mouseleave', () => {
-        element.classList.remove('play');
-    });
-});
-
 
 // DREAM DRAFT CRAFT
 
@@ -163,10 +129,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // HOVER DECODE EFFECT
 
-// Sélection du texte cible
-const textElement = document.querySelector(".coding");
-const finalText = textElement?.innerText;
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&?*%!@#";
+// Sélectionner tous les éléments ayant la classe "coding"
+const textElements = document.querySelectorAll(".coding");
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 // Fonction pour générer un caractère aléatoire
 function randomChar() {
@@ -188,8 +153,12 @@ function temporaryDecode(element, finalText) {
   }, 50);
 }
 
-// Appliquer l’effet au hover temporaire
-textElement?.addEventListener("mouseenter", () => temporaryDecode(textElement, finalText));
-textElement?.addEventListener("mouseleave", () => {
-  textElement.innerText = finalText; // Restaure le texte final
+// Appliquer l’effet au hover temporaire pour chaque élément
+textElements.forEach((element) => {
+  const finalText = element.innerText;
+
+  element.addEventListener("mouseenter", () => temporaryDecode(element, finalText));
+  element.addEventListener("mouseleave", () => {
+    element.innerText = finalText; // Restaure le texte final
+  });
 });
