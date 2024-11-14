@@ -162,7 +162,7 @@ p {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(3rem, 10vw, 14rem);
+	font-size: clamp(9rem, 10vw, 14rem);
 	line-height: 1;
 	margin: 0;
 }
@@ -1021,7 +1021,6 @@ footer {
 	.section-content .approach-section .approach .approach-title {
 		display: grid;
 		grid-column: 1 / span 2;
-		font-size: 24px;
 	}
 
 	.section-content .approach-section .approach .approach-description {
