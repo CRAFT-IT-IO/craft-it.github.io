@@ -28,7 +28,7 @@ body, html {
 	margin: 0;
 	padding: 0;
 	font-family: "Aspekta", Helvetica, sans-serif;
-	background-color: var(--Grey-200);
+	background-color: var(--Grey-400);
 	overflow-x: unset; /* Don't use 'hidden', otherwise the sticky does not work */
 }
 
@@ -178,6 +178,15 @@ p {
 main {
 	position: relative;
 	padding: 32px 24px;
+	background-color: var(--Grey-200);
+
+	margin: 0 auto;
+	z-index: 1;
+}
+
+.contain-wrap {
+	max-width: 2560px;
+	margin: 0 auto;
 }
 
 /* -------------- GRID */
@@ -283,9 +292,19 @@ main {
 /* SECONDARY HERO */
 
 #sec-hero{
-	background-color: var(--Grey-400);
 	align-items: end;
 	padding: 1.5rem 1.5rem 3.5rem 1.5rem;
+	background: none;
+
+	position: relative;
+    overflow: hidden;
+
+	height: calc(100vh - 20rem);
+
+	.contain-wrap{
+		align-items: end;
+	}
+
 }
 
 .sec-hero-content-wrapper{
@@ -498,12 +517,12 @@ a {
 }
 
 #moodys-threejs-canvas {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 100;
+	z-index: 0;
 }
 
 /* HOVER EFFECT */
@@ -644,30 +663,32 @@ a {
 	position: relative;
 	overflow: hidden;
 	padding: 9rem 1.5rem 9rem 1.5rem;
-	background-color: var(--Grey-400);
+	background:none;
 
-	gap: 1.5rem;
+	.contain-wrap{
+		row-gap: 1.5rem;
+	}
 
 	h2{
 		grid-column: 1 / span 8;
 		grid-row: 1;
+		position: relative;
+		z-index: 10;
 	}
 
 	p{
 		grid-column: 1 / span 8;
 		grid-row: 2;
+		position: relative;
+		z-index: 10;
 	}
 }
 
 /* ----------- FOOTER */
 
 footer {
-	display: grid;
 	position: relative;
 	z-index: 50;
-	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: 1fr;
-	gap: 40px;
 	padding: 2.5rem 1.5rem 2rem 1.5rem;
 
 	h4{
@@ -680,6 +701,10 @@ footer {
 
 	.btn-action{
 		margin-bottom: .5rem;
+	}
+
+	.contain-wrap{
+		row-gap: 2.5rem;
 	}
 }
 
@@ -750,33 +775,9 @@ footer {
 		}
 	}
 	
-	footer {
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr;
-		grid-gap: 40px;
-	}
-
-		footer > * {
-			grid-gap: 16px;
-		}
-
-	.headquarter {
-		grid-column: span 2;
-	}
-
-	.reach-us {
-		grid-row: 3;
-		grid-column: span 2;
-	}
 
 	.footer-logo {
 		grid-column: span 2;
-	}
-
-	.footer-bottom {
-		grid-row: 4;
-		grid-column: span 2;
-		grid-auto-flow: column;
 	}
 
 	.back-to-top {
@@ -825,7 +826,9 @@ footer {
 
 	.site-grid {
 		grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+		gap: 1rem;
 	}
+
 	/* ----------- HERO */
 
 	.hero-message {
@@ -936,6 +939,16 @@ footer {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 3rem;
+
+		grid-column: 1 / span 6;
+	}
+	.headquarter{
+		grid-row: 2;
+		grid-column: 1 / span 3;
+	}
+	.reach-us{
+		grid-row: 2;
+		grid-column: 4 / span 3;
 	}
 }
 
@@ -1015,6 +1028,21 @@ footer {
 		.footer-bottom-wrapper{
 			flex-direction: column;
 			align-items: flex-start;
+		}
+
+			/* ----------- FOOTER */
+
+		.footer-bottom{
+			grid-row: 4;
+			grid-column: 1 / span 4;
+		}
+		.headquarter{
+			grid-row: 2;
+			grid-column: 1 / span 4;
+		}
+		.reach-us{
+			grid-row: 3;
+			grid-column: 1 / span 4;
 		}
 }
 

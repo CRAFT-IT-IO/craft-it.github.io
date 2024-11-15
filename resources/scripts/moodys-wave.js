@@ -1,38 +1,68 @@
-const canvas = document.getElementById('moodys-threejs-canvas');
+const canvas = document.getElementById('moodys-threejs-canvas') || document.createElement('canvas');
+canvas.id = 'moodys-threejs-canvas';
+document.body.appendChild(canvas);
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 80;
+camera.position.z = 600;
 camera.position.y = 0;
 
+const cameraInitialY = camera.position.y; 
+const cameraInitialZ = camera.position.z;  
+
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xffffff, 0);
 
-// Paramètres pour la première couche de points
-const numPoints = 200;
-const numLines = 30;
-const lineSpacingZ = 2;
+// Fonction pour mettre à jour la taille du renderer en fonction de la taille de la fenêtre
+function resizeRendererToWindow() {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+}
+
+// Appeler la fonction de redimensionnement pour initialiser correctement la taille
+resizeRendererToWindow();
+
+// Ajouter un événement pour le redimensionnement de la fenêtre
+window.addEventListener('resize', resizeRendererToWindow);
+
+// Fonction pour ajuster la position Y de la caméra au scroll
+function handleScroll() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const scrollFactor = Math.min(1, scrollTop / document.documentElement.scrollHeight);
+
+  // Ajuster simplement la position Y de la caméra en fonction du facteur de scroll
+  camera.position.y = cameraInitialY + scrollFactor * 80;
+  camera.position.z = cameraInitialZ + scrollFactor * -80; 
+  camera.position.x = scrollFactor * -50; 
+}
+
+// Ajouter l'événement de défilement
+window.addEventListener('scroll', handleScroll);
+
+// Paramètres pour les couches de points
+const numPoints = 600;
+const numLines = 100;
+const lineSpacingZ = 5;
 const waveAmplitude1 = 10;
 const echoAmplitudeY1 = 0.9;
-const echoAmplitudeZ1 = 0.1;
+const echoAmplitudeZ1 = 10;
 const waveFrequency1 = 0.05;
-const flowSpeed1 = 0.05;
+const flowSpeed1 = 0.01;
 const echoDelay1 = 0.1;
 
-// Paramètres pour la deuxième couche de points (asynchronisée)
 const waveAmplitude2 = 5;
-const echoAmplitudeY2 = 0.85;
-const echoAmplitudeZ2 = 0.15;
+const echoAmplitudeY2 = 0.8;
+const echoAmplitudeZ2 = 10;
 const waveFrequency2 = 0.08;
-const flowSpeed2 = 0.03;
+const flowSpeed2 = 0.02;
 const echoDelay2 = 0.15;
 
-// Paramètres pour la troisième couche de points (encore plus asynchronisée)
 const waveAmplitude3 = 7;
-const echoAmplitudeY3 = 0.8;
-const echoAmplitudeZ3 = 0.2;
+const echoAmplitudeY3 = 0.7;
+const echoAmplitudeZ3 = 5;
 const waveFrequency3 = 0.1;
-const flowSpeed3 = 0.04;
+const flowSpeed3 = 0.03;
 const echoDelay3 = 0.12;
 
 // Création des points pour les trois couches
@@ -49,15 +79,12 @@ for (let line = 0; line < numLines; line++) {
     const y = (Math.random() - 0.5) * 5;
     const z = line * lineSpacingZ;
 
-    // Première couche de points
     points1.push(x, y, z);
     randomOffsets1.push((Math.random() - 0.5) * 0.5);
 
-    // Deuxième couche de points avec un décalage en Z
     points2.push(x, y, z + 10);
     randomOffsets2.push((Math.random() - 0.5) * 0.5);
 
-    // Troisième couche de points avec un décalage en Z encore plus grand
     points3.push(x, y, z + 20);
     randomOffsets3.push((Math.random() - 0.5) * 0.5);
   }
@@ -115,7 +142,6 @@ function animateWave() {
   const positions3 = geometry3.attributes.position.array;
   const time = performance.now() * 0.001;
 
-  // Animation de la première couche
   for (let line = 0; line < numLines; line++) {
     const phaseOffset1 = line * echoDelay1;
     const currentAmplitudeY1 = waveAmplitude1 * Math.pow(echoAmplitudeY1, line);
@@ -134,7 +160,6 @@ function animateWave() {
     }
   }
 
-  // Animation de la deuxième couche
   for (let line = 0; line < numLines; line++) {
     const phaseOffset2 = line * echoDelay2;
     const currentAmplitudeY2 = waveAmplitude2 * Math.pow(echoAmplitudeY2, line);
@@ -153,7 +178,6 @@ function animateWave() {
     }
   }
 
-  // Animation de la troisième couche
   for (let line = 0; line < numLines; line++) {
     const phaseOffset3 = line * echoDelay3;
     const currentAmplitudeY3 = waveAmplitude3 * Math.pow(echoAmplitudeY3, line);
@@ -182,15 +206,10 @@ function animateWave() {
 
 animateWave();
 
+
 // Gestion de la redimension de la fenêtre
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
-
-
-
-
-
-

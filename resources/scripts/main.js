@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 // Sélectionner tous les éléments ayant la classe "coding"
 const textElements = document.querySelectorAll(".coding");
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%!@#";
 
 // Fonction pour générer un caractère aléatoire
 function randomChar() {
