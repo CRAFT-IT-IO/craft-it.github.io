@@ -63,7 +63,6 @@
 	gap: .5rem;
 	grid-column: span 4;
 	list-style: none;
-	padding: 1.5rem;
 }
 
 	.collaboration_models_item:first-child {

@@ -26,7 +26,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 const material = new THREE.PointsMaterial({
-  color: 0xFF4135, 
+  color: 0x1F1C1A, 
   size: 0.3,
   transparent: false,
   alphaTest: 0.5,

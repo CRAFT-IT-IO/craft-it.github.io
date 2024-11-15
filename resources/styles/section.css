@@ -17,7 +17,6 @@
 	flex-direction: column;
 	gap: 4rem;
 	padding: 80px 0;
-	min-height: 50vh;
 }
 
 .site-grid {
@@ -110,7 +109,7 @@
 @media screen and (max-width: 1080px) {
 
 	.container-wrap {
-		gap: 40px;
+		row-gap: 40px;
 	}
 	/* chapter */
 	.chapter {
