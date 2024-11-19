@@ -58,10 +58,10 @@ gsap.utils.toArray('.disap').forEach((element) => {
             ease: 'power2.out', // Ease for smooth transition
             scrollTrigger: {
                 trigger: element,
-                start: 'top 50%', // When the top of the element reaches 50% of the viewport, the animation starts
+                start: 'top 100%', // When the top of the element reaches 50% of the viewport, the animation starts
                 toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
                 onLeaveBack: () => {
-                    gsap.to(element, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
+                    gsap.to(element, { opacity: 1, y: 20, duration: 1, ease: 'power2.out' }); // Fade out on exit
                 }
             }
         }

@@ -63,7 +63,7 @@ h1 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(3rem, 10vw, 14rem);
+	font-size: clamp(4rem, 5vw, 5.75rem);
 	line-height: 1;
 	margin: 0;
 }
@@ -73,7 +73,7 @@ h2 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(4.5rem, 5vw, 5.75rem);
+	font-size: clamp(3.5rem, 5vw, 5.75rem);
 	line-height: 1.2;
 	margin: 0;
 }
@@ -83,7 +83,7 @@ h3 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+	font-size: clamp(1.8rem, 2.4vw, 3.5rem);
 	line-height: 1.2;
 	margin: 0;
 }
@@ -144,11 +144,14 @@ p {
 	text-transform: uppercase;
 }
 
+.msg-wrapper{
+	grid-column: 4 / span 6;
+}
+
 .msg-wrapper p {
-	font-size: clamp(2.5rem, 4vw, 5rem);
+	font-size: clamp(1.8rem, 2.4vw, 3.5rem);
 	line-height: 1.2;
 	color: var(--Grey-800);
-	text-shadow: var(--Grey-200) 10px 0 30px, var(--Grey-200) 10px 0 30px, var(--Grey-200) 10px 0 30px;
 }
 
 .services_item_content_wrapper h4 {
@@ -261,9 +264,8 @@ main {
 
 .hero-content-wrapper {
 	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
+	grid-column: 1 / span 12;
+	align-content: end;
 }
 
 .hero-links {
@@ -275,13 +277,20 @@ main {
 
 .hero-message {
 	justify-content: space-between;
-	align-items: flex-end;
 	z-index: 1;
 	width: 100%;
+	row-gap: 2.5rem;
+
+	padding-top: 1.5rem;
+
 	h1
 
 {
-	margin-bottom: 40px;
+	grid-column: 1 / span 8;
+}
+
+p{
+	grid-column: 1 / span 3;
 }
 
 }
@@ -511,7 +520,7 @@ a {
 #threejs-canvas {
 	position: fixed;
 	left: 0;
-	top: 0;
+	top: 64px;
 	height: 100%;
 	width: 100%;
 	z-index: 0;
@@ -646,7 +655,7 @@ a {
 
 /* ----------- OUTRO */
 
-#outro {
+#services {
 	position: relative;
 	background: none;
 	z-index: 4;
@@ -1144,5 +1153,6 @@ footer {
 
 /* Get intouch */
 #get-in-touch {
+	height: 90vh;
 	justify-content: end;
 }
