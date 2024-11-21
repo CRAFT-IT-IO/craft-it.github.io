@@ -63,7 +63,7 @@ h1 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(4rem, 5vw, 5.75rem);
+	font-size: clamp(3rem, 5vw, 5.75rem);
 	line-height: 1;
 	margin: 0;
 }
@@ -73,7 +73,7 @@ h2 {
 	font-family: "Aspekta", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: clamp(3.5rem, 5vw, 5.75rem);
+	font-size: clamp(3rem, 5vw, 5.75rem);
 	line-height: 1.2;
 	margin: 0;
 }
@@ -178,6 +178,12 @@ p {
 
 /* -------------- STRUCTURE */
 
+.site-grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	grid-column-gap: 1rem;
+}
+
 main {
 	position: relative;
 	padding: 32px 24px;
@@ -254,12 +260,13 @@ main {
 /* -------------- HERO */
 
 .hero-wrapper {
-	height: calc(100vh - 16rem);
+	height: calc(100vh - 10rem);
 	display: flex;
 	flex-grow: 1;
 	justify-content: space-between;
-	background-color: var(--Grey-200);
 	z-index: 1;
+
+	padding: 1.5rem 1.5rem 3.5rem 1.5rem;
 }
 
 .hero-content-wrapper {
@@ -303,7 +310,6 @@ p{
 
 #sec-hero{
 	align-items: end;
-	padding: 1.5rem 1.5rem 3.5rem 1.5rem;
 	background: none;
 
 	position: relative;
@@ -323,195 +329,6 @@ p{
 
 .ma-partner-alliance{
 	grid-column: 10 / span 2;
-}
-
-/* CALL TO ACTION */
-
-
-.hero-bottom {
-	height: 5rem;
-	overflow: hidden;
-	float: left;
-	transition: ease-in-out .5s;
-	z-index: 10;
-	position: fixed;
-	bottom: 2rem;
-	left: 2rem;
-	right: 2rem;
-	width: auto;
-	background: var(--Grey-200);
-}
-
-	.hero-bottom.active {
-		transition: ease-in-out .5s;
-		height: calc(100vh - 8rem);
-	}
-
-.hero-button {
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	justify-content: space-between;
-	border: 1px solid var(--Grey-500);
-	text-transform: uppercase;
-	padding: 2rem;
-	transition: ease-in-out .3s;
-	cursor: pointer;
-	position: sticky;
-	z-index: 10;
-}
-
-.hero-bottom.sticky {
-	position: absolute;
-	bottom: 2rem;
-}
-
-.hero-button:hover {
-	background: var(--Grey-800);
-	.button-text
-
-{
-	color: var(--Grey-200);
-}
-
-.arrow-path {
-	stroke: var(--Grey-200);
-}
-
-}
-
-.hero-button.active {
-	background: var(--Grey-800);
-	border: 1px solid var(--Grey-700);
-	height: 8vh;
-	.button-text
-
-{
-	color: var(--Grey-200);
-}
-
-.arrow-path {
-	stroke: var(--Grey-200);
-}
-
-}
-
-.svg-arrow.active {
-	transition: 0.3s ease-in-out;
-	transform: rotate(180deg);
-}
-
-.call-to-action {
-	height: calc(92vh - 8rem);
-	width: 100%;
-	padding: 2rem;
-	gap: 4rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-end;
-	background-color: var(--Grey-800);
-	transition: .3s ease-in-out;
-	flex-wrap: nowrap;
-	overflow-y: scroll;
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
-}
-
-.cta-top {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	padding: 1em;
-}
-
-.cta-top-svg {
-	cursor: pointer;
-}
-
-.cta-mid {
-	display: flex;
-	height: 100%;
-	width: 100%;
-}
-
-.cta-mid-content {
-	display: flex;
-	margin-top: auto;
-	width: 100%;
-	justify-content: space-between;
-}
-
-.cta-mid-message {
-	height: 30vh;
-	h2
-
-{
-	color: var(--Grey-200);
-}
-
-}
-
-.cta-mid-contacts {
-	width: 50%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.cta-contact-info:first-child {
-	border-bottom: solid 1px rgba(240, 236, 233, 0.10);
-}
-
-.cta-contact-info {
-	display: flex;
-	flex-direction: column;
-	height: 50%;
-	width: 100%;
-	padding: 2rem;
-	gap: 2em;
-	h3
-
-{
-	color: var(--Grey-200);
-}
-
-}
-
-.cta-mid-email {
-	height: 50%;
-	display: flex;
-	flex-direction: column;
-}
-
-.cta-contact-wrap {
-	display: flex;
-	gap: 1rem;
-	flex-direction: column;
-}
-
-.contact-wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-	h4
-
-{
-	color: var(--Grey-200);
-}
-
-a {
-	text-decoration: underline;
-}
-
-}
-
-.cta-bottom {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	color: var(--Grey-200);
 }
 
 
@@ -591,10 +408,12 @@ a {
 
 /* NEW PAGES */
 
+/*
 .msg-window {
 	background: var(--Grey-200);
 	display: flex;
 	flex-direction: column;
+	padding: 1rem;
 }
 
 	.msg-window.visible {
@@ -608,10 +427,46 @@ a {
 	align-items: center;
 	text-align: center;
 	margin: auto;
-	width: 100%;
+	max-width: 920px;
 	height: 100vh;
 	z-index: 1;
-}
+} */ 
+
+.intro-msg {
+	position: relative;
+	height: 400vh;
+	display: flex;
+	align-items: start;
+  
+	.container {
+	  height: auto;
+	  margin-right: auto;
+	  margin-left: auto;
+	  padding-right: 1rem;
+	  padding-left: 1rem;
+		
+  
+	  .msg-wrapper {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		align-items: center;
+		height: 100vh;
+  
+		.content_text {
+		  max-width: 66.666667%;
+		  flex: 66.666667%;
+		  text-align: center;
+		  
+		  @media (max-width: 780px) {
+			max-width:100%;
+			flex: 1;
+		  }
+		}
+	  }
+	}
+  }
+
 
 /* ----------- MOODYS */
 
@@ -762,16 +617,28 @@ footer {
 
 @media screen and (max-width: 1080px) {
 
+	/* ----------- STRUCTURE */
+
+	.site-grid {
+		display: grid;
+		grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+		grid-column-gap: 1rem;
+	}
+
 	/* ----------- HERO */
 
 	.sec-hero-content-wrapper{
-		grid-column: 2 / span 8;
+		grid-column: 2 / span 7;
 	}
 
 	.ma-partner-alliance{
 		grid-column: 2 / span 2;
 	}
 	
+	.msg-wrapper {
+		grid-column: 2 / span 6;
+	}
+
 	/* ----------- OUTRO SMALL */
 
 	#outro-sm{
@@ -794,6 +661,13 @@ footer {
 		justify-items: start;
 		grid-row: 5;
 		grid-column: span 2;
+	}
+
+	.headquarter {
+		grid-column: 3 / span 3;
+	}
+	.reach-us {
+		grid-column: 6 / span 3;
 	}
 }
 
@@ -841,10 +715,23 @@ footer {
 
 	/* ----------- HERO */
 
+	.hero-wrapper{
+		padding:1rem;
+	}
+
 	.hero-message {
 		flex-direction: column;
 		z-index: 1;
-		gap: 2.75rem;
+		row-gap: 2.75rem;
+		grid-column: span 6;
+
+		p{
+			grid-column: span 6;
+		}
+
+		h1{
+			grid-column: span 6;
+		}
 	}
 
 	.hero-text-left {
@@ -885,6 +772,10 @@ footer {
 
 	.cta-email-left {
 		gap: 0;
+	}
+
+	.msg-wrapper {
+		grid-column: span 6;
 	}
 
 	/* ----------- MOODYS */
@@ -1000,6 +891,21 @@ footer {
 		grid-column: span 4;
 	}
 
+	.msg-wrapper {
+		grid-column: span 4;
+	}
+
+	.hero-message {
+
+		p{
+			grid-column: span 4;
+		}
+
+		h1{
+			grid-column: span 4;
+		}
+	}
+
 	/* ----------- MOODYS */
 
 	.services {
@@ -1079,13 +985,15 @@ footer {
 	}
 
 @media screen and (max-width: 1080px) {
-	.section-content .approach-section .approach {
-		display: grid;
-		place-self: stretch;
-		grid-template-columns: 1fr;
-		padding: 24px 0px;
-		grid-gap: 24px;
-	}
+
+
+		.section-content .approach-section .approach {
+			display: grid;
+			place-self: stretch;
+			grid-template-columns: 1fr;
+			padding: 24px 0px;
+			grid-gap: 24px;
+		}
 
 		.section-content .approach-section .approach .approach-title {
 			grid-column: 1;

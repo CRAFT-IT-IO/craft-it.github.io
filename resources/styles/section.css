@@ -19,12 +19,6 @@
 	padding: 80px 0;
 }
 
-.site-grid {
-	display: grid;
-	grid-template-columns: repeat(12, minmax(0, 1fr));
-	grid-column-gap: 1rem;
-}
-
 .chapter {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -144,7 +138,7 @@
 		.section-content .left-content,
 		.section-content .right-content,
 		.section-content .bottom-content {
-			grid-column: 1;
+			grid-column: 2 / span 6;
 			display: grid;
 		}
 
@@ -164,6 +158,10 @@
 			.section-content .bottom-content .hero-links {
 				display: grid;
 				grid-column: 1;
+			}
+
+			.outer-box{
+					min-height: 40vh;
 			}
 }
 

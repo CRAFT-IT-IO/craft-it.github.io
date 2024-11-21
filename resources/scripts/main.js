@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
 // Initialize GSAP and ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +68,48 @@ gsap.utils.toArray('.disap').forEach((element) => {
         }
     );
 });
+
+
+// Initialisation de Lenis pour un défilement fluide
+const lenis = new Lenis({
+    smooth: true,
+    lerp: 0.1, // Ajuste la fluidité (0.1 = très fluide, 0.5 = plus rapide)
+  });
+  
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+  
+  // Décomposition des mots dans chaque paragraphe
+  document.querySelectorAll(".content_text").forEach((el) => {
+    const words = el.textContent.split(" ").map(
+      (word) => `<span class="word">${word}</span>`
+    );
+    el.innerHTML = words.join(" ");
+  });
+  
+  // Animation GSAP pour les mots
+  gsap.registerPlugin(ScrollTrigger);
+  
+  document.querySelectorAll(".content_text").forEach((el) => {
+    const words = el.querySelectorAll(".word");
+    gsap.from(words, {
+      opacity: .1,
+      y: 30, 
+      stagger: 0.1, 
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el, 
+        start: "top 100%", 
+        end: "top 40%", 
+        scrub: true, 
+      },
+    });
+  });
+  
 
 
 // DREAM DRAFT CRAFT
