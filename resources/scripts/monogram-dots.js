@@ -1,7 +1,7 @@
 const canvas = document.getElementById('threejs-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = -40; // Position initiale de la caméra
+camera.position.z = 80; // Position initiale de la caméra
 
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -34,22 +34,6 @@ let animationTriggered = false; // Drapeau pour éviter les animations répété
 let initialCameraZ = camera.position.z;
 let mainScrollActive = false; // Indique si la section <main> est active
 let scrollStartPosition = 0; // Position du scroll au moment où <main> devient visible
-
-// Fonction pour enregistrer et récupérer la position du scroll
-function saveScrollPosition() {
-  localStorage.setItem('scrollPosition', window.scrollY);
-}
-
-function loadScrollPosition() {
-  return parseFloat(localStorage.getItem('scrollPosition')) || 0;
-}
-
-// Ajuster la caméra selon la position initiale du scroll
-function updateCameraFromScroll() {
-  const scrollPosition = loadScrollPosition(); // Charger la position du scroll
-  const scrollFactor = 0.03; // Facteur de déplacement de la caméra
-  camera.position.z = initialCameraZ + scrollPosition * scrollFactor; // Ajuster la position de la caméra
-}
 
 // Fonction pour créer un cube de points
 function createCube() {
@@ -159,10 +143,8 @@ function handleScroll() {
   if (!mainScrollActive) return;
 
   const scrollPosition = window.scrollY - scrollStartPosition; // Scroll relatif depuis l'entrée de <main>
-  const scrollFactor = 0.025; // Facteur de déplacement de la caméra
+  const scrollFactor = 0.025; // Facteur de déplacement de la caméra (ajustable)
   camera.position.z = initialCameraZ + scrollPosition * scrollFactor; // Ajuster la position Z
-
-  saveScrollPosition(); // Enregistrer la position actuelle du scroll
 }
 
 // Détecter quand la section <main> est visible
@@ -205,18 +187,14 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-// Gestion du redimensionnement de la fenêtre
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
 
-// Ajuster la caméra dès le chargement
-updateCameraFromScroll();
-
-// Lancer l'animation
 animate();
+
 
 
 
