@@ -1,346 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Craft IT — Bespoke solutions for risk management</title>
+	<title>craft it — One guide into Moody's universe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="As an official Moody’s Elite Partner, we provide 360° services around Moody’s Lending Solutions">
+	<meta name="googlebot" content="notranslate">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Average companies avoid risk, good companies manage risk, great companies craft risk, we’ll show you how.">
-    <meta name="googlebot" content="notranslate">
+	<!-- Favicons -->
+	<link rel="icon" href="./resources/assets/favicon.svg" type="image/svg+xml">
 
-    <link rel="canonical" href="https://www.craft-it.io/">
-    <link rel="alternate" hreflang="en" href="https://www.craft-it.io/">
-    <link rel="icon" href="" type="image/x-icon">
+	<!-- Canonical and hreflang -->
+	<link rel="canonical" href="https://www.craft-it.io/">
+	<link rel="alternate" hreflang="en" href="https://www.craft-it.io/">
 
-    <link rel="stylesheet" href="resources/styles/reset.css">
-    <link rel="stylesheet" href="resources/styles/index.css">
+	<!-- CSS Stylesheets -->
+	<link rel="stylesheet" href="resources/styles/reset.css">
+	<link rel="stylesheet" href="resources/styles/index.css">
+	<link rel="stylesheet" href="resources/styles/moodys.css">
+	<link rel="stylesheet" href="resources/styles/header.css">
+	<link rel="stylesheet" href="resources/styles/section.css">
+
+	<!-- Social Media Meta Tags -->
+	<meta property="og:title" content="craft it — One guide into Moody's universe">
+	<meta property="og:description" content="As an official Moody’s Elite Partner, we provide 360° services around Moody’s Lending Solutions">
+	<meta property="og:image" content="./resources/assets/favicon.svg">
+	<meta property="og:url" content="https://www.craft-it.io/">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="">
+	<meta name="twitter:title" content="craft it — One guide into Moody's universe">
+	<meta name="twitter:description" content="As an official Moody’s Elite Partner, we provide 360° services around Moody’s Lending Solutions">
+	<meta name="twitter:image" content="./resources/assets/favicon.svg">
 </head>
 <body>
-    <header>
-        <div class="spacer"></div>
-        <div class="hero-logo">
-            <svg width="32" height="20" viewBox="0 0 222 134" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1149_3605)">
-                <path d="M196.891 39.6303V133.21H221.691V39.5703L196.891 39.6303Z" fill="#1F1C1A"/>
-                <path d="M196.65 0.820312H171.84V39.5703H196.65V0.820312Z" fill="#1F1C1A"/>
-                <path d="M122.861 0.820312H31.2905C14.1805 0.820312 0.310547 14.6903 0.310547 31.8003V102.23C0.310547 119.34 14.1805 133.21 31.2905 133.21H122.861C139.971 133.21 153.841 119.34 153.841 102.23V86.3903H129.171V97.6903C129.171 103.61 124.371 108.4 118.461 108.4H35.7105C29.7905 108.4 24.9905 103.59 25.0005 97.6703L25.1005 36.2003C25.1105 30.2903 29.9105 25.5003 35.8305 25.5103L118.481 25.6203C124.391 25.6203 129.181 30.4203 129.181 36.3303V47.6403H153.851V31.8103C153.841 14.7003 139.971 0.820312 122.861 0.820312Z" fill="#1F1C1A"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_1149_3605">
-                <rect width="221.38" height="132.39" fill="white" transform="translate(0.310547 0.820312)"/>
-                </clipPath>
-                </defs>
-                </svg>
-        </div>
-        <!--
-        <div class="hero-links">
-            <a class="upperlinks rolling-hover" href="#">Explore</a>
-        </div>
-        -->
-    </header>
-    <main class="container">
-        <div id="hero" class="hero-wrapper">
+	<canvas id="moodys-threejs-canvas"></canvas>
+	
+	<header>
+		<div class="header-container">
+			<div class="hero-logo">
+				<a href="index.html">
+					<svg width="153" height="32" viewBox="0 0 153 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0_1581_8808)">
+							<path d="M35.6856 11.3182V6.01073C35.6898 2.69143 33.0074 0 29.6941 0H5.94551C2.66148 0 0 2.66632 0 5.95631V26.0228C0 29.3253 2.66984 32 5.9664 32H29.6858C33.0032 32 35.6898 29.3044 35.6898 25.9851V20.6859H29.7485V26.006H5.94551L5.93716 5.99398H29.7485V11.3224H35.6898L35.6856 11.3182Z" fill="#FF4135" />
+							<path d="M44.623 31.9995H50.5727V9.36719L44.623 9.38393V31.9995Z" fill="#FF4135" />
+							<path d="M44.6235 0H38.6738V9.38025H44.6235V0Z" fill="#FF4135" />
+							<path d="M71.2089 12.5196C73.8453 12.5196 75.6127 14.0725 76.1182 16.5672H79.256C78.6794 12.5196 75.8258 9.76953 71.2089 9.76953C65.9402 9.76953 62.4766 13.9636 62.4766 19.606C62.4766 25.2484 65.9402 29.4425 71.2089 29.4425C75.504 29.4425 78.717 26.659 79.256 22.5737H76.1182C75.6503 25.1061 73.8453 26.6967 71.2089 26.6967C67.599 26.6967 65.652 23.7332 65.652 19.6102C65.652 15.4873 67.6032 12.5237 71.2089 12.5237V12.5196Z" fill="#201D1B" />
+							<path d="M83.7308 13.3517V10.204H80.8438V29.0063H83.8771V18.9564C83.8771 14.2558 86.4759 12.9163 89.6513 12.9163H91.1304V9.98633H89.7223C87.4494 9.98633 85.2475 10.6728 83.7308 13.3475V13.3517Z" fill="#201D1B" />
+							<path d="M100.009 9.77344C96.0397 9.77344 92.2835 11.4352 92.1415 15.9935H95.1748C95.3211 13.1388 97.7736 12.4481 100.013 12.4481C102.612 12.4481 104.129 13.2434 104.129 15.487V16.9352L98.2458 18.057C94.0593 18.8523 91.498 20.5894 91.498 23.9129C91.498 27.4582 94.0593 29.4464 98.2834 29.4464C100.485 29.4464 102.65 28.76 104.275 26.6629V29.0153H107.091V15.2023C107.091 11.8747 104.851 9.77762 100.017 9.77762L100.009 9.77344ZM104.124 21.5605C104.124 25.2146 101.166 26.7676 98.4212 26.7676C95.6762 26.7676 94.6317 25.5746 94.6317 23.8375C94.6317 21.7028 96.257 21.1252 98.6719 20.6187L104.12 19.4969V21.5563L104.124 21.5605Z" fill="#201D1B" />
+							<path d="M125.561 4.42092H122.528V10.2056H114.155V7.60209C114.155 6.22916 114.732 5.64735 116.106 5.64735H119.211V2.97266H115.53C112.283 2.97266 111.126 4.34558 111.126 7.23793V10.2014H107.662V12.8761H111.126V29.0038H114.159V12.8803H122.532V24.7385C122.532 27.6309 123.685 29.0038 126.936 29.0038H130.617V26.3291H127.513C126.142 26.3291 125.561 25.7515 125.561 24.3744V12.8761H130.613V10.2014H125.561V4.41674V4.42092Z" fill="#201D1B" />
+							<path d="M140.215 2.97656H137.182V6.6642H140.215V2.97656Z" fill="#201D1B" />
+							<path d="M140.215 10.2051H137.182V29.0074H140.215V10.2051Z" fill="#201D1B" />
+							<path d="M152.775 12.8793V10.2046H147.724V4.41992H144.69V10.2046H141.227V12.8793H144.69V24.7375C144.69 27.6299 145.843 29.0028 149.094 29.0028H152.775V26.3281H149.671C148.3 26.3281 147.719 25.7505 147.719 24.3734V12.8751H152.771L152.775 12.8793Z" fill="#201D1B" />
+						</g>
+						<defs>
+							<clipPath id="clip0_1581_8808">
+								<rect width="152.774" height="32" fill="white" />
+							</clipPath>
+						</defs>
+					</svg>
+				</a>
+			</div>
+			<div class="baseline">
+				Crafting resilience</br>
+				with precision
+			</div>
+			<div class="menu">
+				<div class="menu-container">
+					<div class="menu-label">MENU</div>
+					<div class="menu-item-selected">
+						<p class="toggle-menu">Moody's Partnership</p>
+						<img class="arrow-back" src="./resources/assets/arrow_back.svg" alt="">
+					</div>
+					<div class="menu-items" id="menuItems">
+						<a href="index.html">Home</a>
+						<a href="#">Join our team</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="sec-hero" class="hero-wrapper">
 
-            <canvas id="threejs-canvas"></canvas>
+		<div class="contain-wrap site-grid">
+			<div class="sec-hero-content-wrapper disap">
+					<h2 class="scroll-fade">One guide into <br>Moody's universe</h2>
+			</div>
 
-            <div class="hero-content-wrapper disap">
-                <div class="hero-message">
-                    <h1 class="scroll-fade">Stop avoiding risk,<br>start managing it</h1>
-                    <p>Average companies avoid risk, good companies manage risk, great companies craft risk, we’ll show you how.</p>
-                </div>
-            </div>
+			<svg class="ma-partner-alliance" width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<g id="MoodysAnalytics_PartnerAllianceElite_Black 1" clip-path="url(#clip0_1651_7476)">
+					<g id="Group">
+						<path id="Vector" d="M239.943 0.0527344H99.3086V47.9424H239.938V0.0527344H239.943ZM130.938 14.2581L129.771 13.5873C130.172 13.7859 130.564 14.011 130.938 14.2581ZM119.652 13.5962L118.529 14.2449C118.886 14.0066 119.265 13.7903 119.652 13.5962ZM136.05 23.8475V23.6622C136.05 23.6931 136.05 23.724 136.05 23.7549C136.055 23.7858 136.055 23.8122 136.05 23.8475Z" stroke="#1F1C1A" stroke-width="0.25" />
+					</g>
+					<path id="Vector_2" d="M99.3131 0.0527344H0V47.9424H99.3131V0.0527344Z" fill="#1F1C1A" />
+					<g id="Group_2">
+						<path id="Vector_3" d="M136.051 23.6582V23.8435C136.051 23.8126 136.051 23.7818 136.051 23.7509C136.055 23.72 136.055 23.6935 136.051 23.6582Z" fill="#1F1C1A" />
+						<path id="Vector_4" d="M129.771 13.584L130.938 14.2548C130.564 14.0121 130.172 13.787 129.771 13.584Z" fill="#1F1C1A" />
+						<path id="Vector_5" d="M119.652 13.5957C119.265 13.7899 118.89 14.0061 118.529 14.2444L119.652 13.5957Z" fill="#1F1C1A" />
+						<path id="Vector_6" d="M117.033 28.4686L116.773 28.3185V28.0184V24.5719V24.2718L117.033 24.1218L121.467 21.5667L122.251 21.1121L124.457 19.8412L124.717 19.6911L124.976 19.8412L127.182 21.1121V17.2022L124.717 15.7812L113.488 22.2551C113.422 22.7449 113.387 23.2436 113.387 23.7511C113.387 27.6169 115.315 31.0325 118.261 33.0845C118.79 33.4508 119.349 33.773 119.934 34.051C121.388 34.7306 123.008 35.1101 124.717 35.1101C125.787 35.1101 126.826 34.9601 127.808 34.6776L117.033 28.4686Z" fill="#1F1C1A" />
+						<path id="Vector_7" d="M132.664 15.6523V28.0175V28.3176L132.404 28.4676L129.414 30.1931L129.155 30.3432L128.895 30.1931L121.471 25.9169L121.206 25.7625V25.4624V22.9205L117.82 24.8711V27.7174L129.115 34.2266C129.243 34.1736 129.37 34.1119 129.498 34.0545C130.092 33.7765 130.656 33.4499 131.189 33.0792C134.104 31.0404 136.024 27.6689 136.055 23.8473V23.6619C136.028 20.5243 134.734 17.6956 132.664 15.6523Z" fill="#1F1C1A" />
+						<path id="Vector_8" d="M124.721 14.5809L124.985 14.731L127.975 16.4564L128.239 16.6065V16.9021V22.0124V22.9126V25.4545V25.7634L127.975 25.9134L125.769 27.1844L129.159 29.1393L131.625 27.7184V14.7442C131.405 14.5721 131.176 14.4088 130.943 14.2588L129.776 13.588C128.252 12.829 126.539 12.3965 124.725 12.3965C122.902 12.3965 121.18 12.829 119.657 13.5968L118.534 14.2455C116.205 15.7724 114.47 18.1334 113.752 20.9091L124.456 14.731L124.721 14.5809Z" fill="#1F1C1A" />
+						<path id="Vector_9" d="M32.4527 24.4349C31.4708 24.3334 31.4884 23.7818 31.4268 22.7403C31.255 19.713 31.2374 15.8296 31.1934 13.6011C31.1714 12.1315 31.3387 11.7564 32.6553 11.602L33.1 11.5623C33.2057 11.4784 33.2057 11.121 33.0824 11.0371C32.4263 11.0768 31.7394 11.0945 31.2154 11.0945C30.7971 11.0945 30.3568 11.0945 29.6434 11.0371C29.5994 12.0036 29.0181 13.1598 28.0538 15.0662L26.0811 19.0776C25.5571 20.1499 25.0331 21.2443 24.4695 22.2284H24.4299C23.9235 21.3017 23.4655 20.3397 22.9811 19.3556L20.5901 14.5013C19.9428 13.1598 19.4144 11.8535 19.4981 11.0371C18.8068 11.0945 18.2387 11.0945 17.7588 11.0945C17.2348 11.0945 16.7328 11.0768 16.1031 11.0371C15.9358 11.121 15.9138 11.4343 16.0195 11.5623L16.3541 11.602C17.6311 11.8138 17.8028 12.0874 17.7588 13.4113C17.7191 14.5631 17.6311 16.3503 17.5254 18.0935C17.4021 20.1764 17.3008 21.3282 17.1731 22.7183C17.0454 24.1834 16.7504 24.3334 15.8741 24.4393L15.4118 24.5011C15.2797 24.607 15.3237 24.9248 15.4558 25.0263C16.1692 24.9865 16.9221 24.9689 17.5914 24.9689C18.3885 24.9689 19.2075 24.9909 19.9164 25.0263C20.0661 24.9689 20.0837 24.6291 19.9384 24.5011L19.1414 24.4393C18.3224 24.3776 18.1991 24.0422 18.1991 22.4888C18.1991 20.7059 18.2828 18.8304 18.3444 17.5507C18.4105 16.3327 18.4721 15.1103 18.5514 13.8085H18.5954C19.0534 14.7749 19.4937 15.8693 19.9384 16.8314L21.8187 20.8869C22.303 21.9151 23.307 23.976 23.6681 25.088C23.7077 25.1542 23.8134 25.1719 23.853 25.1719C23.9411 25.1719 24.0203 25.1542 24.06 25.088C24.4387 24.1216 25.3854 22.149 26.3233 20.3L28.1859 16.6239C28.6086 15.8075 29.4012 14.1262 29.5509 13.8967H29.5906L29.6566 22.6521C29.6566 23.998 29.6566 24.3334 28.6306 24.4349L28.0274 24.4967C27.8997 24.6247 27.9173 24.9204 28.067 25.0218C28.9213 24.9821 29.868 24.9645 30.5989 24.9645C31.3563 24.9645 32.215 24.9865 33.078 25.0218C33.2189 24.938 33.2409 24.6247 33.1177 24.4967L32.4527 24.4349Z" fill="white" />
+						<path id="Vector_10" d="M39.0489 24.62C36.6315 24.8274 35.4513 22.59 35.2664 20.432C35.0154 17.4798 36.5742 16.3147 38.0757 16.1867C40.3743 15.9882 41.6381 18.1594 41.8274 20.3967C42.0696 23.2608 40.6341 24.4832 39.0489 24.62ZM38.5821 15.5469C35.5438 15.5469 33.4082 17.6916 33.4082 20.4806C33.4082 23.1284 35.3325 25.2466 38.5821 25.2466C41.5324 25.2466 43.6768 23.1902 43.6768 20.3526C43.6768 17.7931 41.9551 15.5469 38.5821 15.5469Z" fill="white" />
+						<path id="Vector_11" d="M78.7151 13.1027C78.7151 12.0127 77.9666 11.0859 77.0991 11.0859C76.2889 11.0859 76.0951 11.6287 76.0951 11.9509C76.0951 12.3436 76.3726 12.5157 76.6588 12.5378C77.0595 12.5599 77.7068 12.9129 77.7068 13.7161C77.7068 14.5722 76.8922 15.1635 76.1172 15.5166C76.0115 15.6622 76.0951 15.8784 76.2625 15.9579C77.5835 15.5651 78.7151 14.5545 78.7151 13.1027Z" fill="white" />
+						<path id="Vector_12" d="M82.2801 19.9167L80.9811 19.2459C80.1445 18.8046 79.5853 18.3412 79.5853 17.5954C79.5853 16.8805 80.0432 16.1612 81.2762 16.1612C82.5135 16.1612 83.0551 17.2336 83.2312 17.9705C83.3281 18.1162 83.7068 18.0941 83.7773 17.9308C83.7905 17.0262 83.6452 16.2274 83.4778 15.87C82.7689 15.7464 82.2625 15.5566 81.5271 15.5566C79.4179 15.5566 78.2334 16.629 78.2334 18.1603C78.2334 19.3342 79.0965 20.155 80.1049 20.6757L81.0472 21.1611C82.2449 21.7701 82.5179 22.463 82.5179 23.1381C82.5179 24.1002 81.8266 24.6518 80.7566 24.6518C79.3519 24.6518 78.4316 23.1602 78.2643 22.4012C78.1145 22.207 77.8019 22.2335 77.7227 22.4453C77.7227 23.5574 77.9736 24.312 78.163 24.6033C78.4536 24.8107 79.2991 25.252 80.5716 25.252C82.6456 25.252 83.9886 24.2237 83.9886 22.5865C83.9842 21.1788 83.0375 20.2962 82.2801 19.9167Z" fill="white" />
+						<path id="Vector_13" d="M60.4263 24.4528C58.8235 24.4528 58.621 23.7776 58.621 22.4404V17.4361C58.621 16.9728 58.621 16.7036 58.7399 16.6153C58.9116 16.4741 59.3123 16.3858 60.0036 16.3858C62.3682 16.3858 64.1692 17.7318 64.1692 20.3134C64.1692 22.8773 62.9362 24.4528 60.4263 24.4528ZM63.1432 16.2446C62.1568 15.9048 61.1309 15.7812 59.9596 15.7812C58.2643 15.7812 57.0886 15.821 55.9129 15.9048C55.728 15.9666 55.7059 16.3682 55.8909 16.43L56.5206 16.5138C57.0049 16.5756 57.027 16.933 57.027 18.2966V22.7538C57.027 24.2012 56.9433 24.2807 56.0406 24.4307L55.6399 24.4925C55.4946 24.5984 55.5166 24.9602 55.6795 25.0176C56.5029 24.9779 57.1502 24.9602 57.824 24.9602C58.141 24.9602 58.5373 24.9823 58.9512 25C59.396 25.0441 59.8803 25.0617 60.3427 25.0617C61.3863 25.0617 62.562 24.8985 63.5043 24.4086C65.1819 23.5481 66.0406 22.0168 66.0406 20.3575C66.0362 18.429 65.0498 16.8933 63.1432 16.2446Z" fill="white" />
+						<path id="Vector_14" d="M75.0371 15.7812C74.4427 15.821 74.0023 15.843 73.54 15.843C73.0644 15.843 72.5845 15.8254 71.9548 15.7812C71.7434 15.8651 71.7214 16.2005 71.9108 16.302L72.3511 16.3682C72.8575 16.4344 72.8134 16.6197 72.5008 17.2066L71.6642 18.7424C71.3119 19.4087 70.9949 19.9118 70.6602 20.4811C70.3476 19.9339 70.0305 19.369 69.7179 18.7424L68.9385 17.2508C68.5994 16.5976 68.6655 16.4785 69.1234 16.3682L69.4185 16.302C69.6254 16.2005 69.5682 15.8607 69.3964 15.7812C68.7271 15.821 68.2472 15.843 67.6175 15.843C66.8645 15.843 66.3801 15.8254 65.6888 15.7812C65.5259 15.843 65.4819 16.1784 65.6272 16.302L66.1732 16.4079C66.7148 16.5138 66.9306 16.7036 67.3665 17.5464L68.8945 20.384C69.4229 21.3504 69.4801 21.5181 69.4801 22.1712V22.9656C69.4801 24.2056 69.3964 24.3336 68.4982 24.4395L67.9742 24.5013C67.8244 24.6072 67.8465 24.9691 68.0138 25.0264C68.9561 24.9867 69.6078 24.9691 70.2815 24.9691C70.9244 24.9691 71.6201 24.9911 72.536 25.0264C72.7078 24.9691 72.7298 24.6072 72.5801 24.5013L72.0561 24.4395C71.1578 24.338 71.0697 24.21 71.0697 22.9656V21.8314C71.0697 21.2269 71.1137 21.015 71.8711 19.8191L73.1701 17.7141C73.8218 16.6683 73.9231 16.5403 74.5748 16.4123L75.0768 16.3064C75.2485 16.2005 75.2001 15.843 75.0371 15.7812Z" fill="white" />
+						<path id="Vector_15" d="M50.3047 24.62C47.8873 24.8274 46.7028 22.59 46.5179 20.432C46.2669 17.4798 47.8257 16.3147 49.3316 16.1867C51.6302 15.9882 52.8895 18.1594 53.0789 20.3967C53.3254 23.2608 51.89 24.4832 50.3047 24.62ZM49.838 15.5469C46.7997 15.5469 44.6641 17.6916 44.6641 20.4806C44.6641 23.1284 46.5927 25.2466 49.838 25.2466C52.7926 25.2466 54.9327 23.1902 54.9327 20.3526C54.9327 17.7931 53.2154 15.5469 49.838 15.5469Z" fill="white" />
+						<path id="Vector_16" d="M19.0361 33.9532L18.5209 32.5234C18.3492 32.0071 18.2523 31.7203 18.1863 31.5129H18.1643C18.107 31.7335 18.0102 32.0204 17.8208 32.5234L17.3056 33.9532H19.0361ZM17.7812 30.0742H18.5518L21.0353 36.3848H19.9608L19.3444 34.7741H17.0238L16.425 36.3848H15.377L17.7812 30.0742Z" fill="white" />
+						<path id="Vector_17" d="M26.9403 36.3862L24.1222 32.666C23.8095 32.2644 23.5717 31.9202 23.3516 31.6245H23.334C23.3516 31.8981 23.3648 32.2247 23.3648 32.6351V36.3817H22.3652V30.0977H23.3428L26.0552 33.6722C26.3811 34.0914 26.6277 34.4356 26.8258 34.7401H26.8478C26.839 34.4091 26.8258 34.0561 26.8258 33.6633V30.0977H27.8254V36.3817H26.9403V36.3862Z" fill="white" />
+						<path id="Vector_18" d="M32.8174 33.9532L32.3066 32.5234C32.1349 32.0071 32.038 31.7203 31.9719 31.5129H31.9543C31.8971 31.7335 31.8002 32.0204 31.6109 32.5234L31.1001 33.9532H32.8174ZM31.5624 30.0742H32.333L34.8165 36.3848H33.7421L33.1256 34.7741H30.8051L30.2062 36.3848H29.1582L31.5624 30.0742Z" fill="white" />
+					</g>
+					<path id="Vector_19" d="M36.1523 30.1055H37.1475V35.5378H39.4064V36.3851H36.1523V30.1055Z" fill="white" />
+					<path id="Vector_20" d="M41.5799 33.8874L39.4707 30.1055H40.5627L42.0951 32.9827H42.1127L43.6054 30.1055H44.6931L42.5883 33.9095V36.3851H41.5799V33.8874Z" fill="white" />
+					<path id="Vector_21" d="M47.2033 30.9533H45.3848V30.1016H50.1888L49.907 30.9533H48.2029V36.3857H47.2033V30.9533Z" fill="white" />
+					<path id="Vector_22" d="M52.439 30.1055H51.4395V36.3895H52.439V30.1055Z" fill="white" />
+					<g id="Group_3">
+						<path id="Vector_23" d="M59.1819 36.0049C58.5258 36.3668 57.8785 36.4815 57.2709 36.4815C55.2806 36.4815 54.1621 35.1576 54.1621 33.313C54.1621 31.4948 55.4567 30.043 57.4162 30.043C58.0899 30.043 58.6623 30.1886 59.0234 30.3563V31.2918C58.5567 31.0447 58.0547 30.8903 57.4338 30.8903C56.0247 30.8903 55.2277 31.9759 55.2277 33.2821C55.2277 34.6634 56.0556 35.6298 57.3854 35.6298C57.993 35.6298 58.4686 35.4577 58.9089 35.2106L59.1819 36.0049Z" fill="white" />
+						<path id="Vector_24" d="M60.8382 35.1929C61.1817 35.4224 61.6572 35.6298 62.2253 35.6298C62.8065 35.6298 63.3481 35.4092 63.3481 34.8002C63.3481 33.4763 60.618 33.6395 60.618 31.7376C60.618 30.8152 61.3402 30.043 62.5951 30.043C63.216 30.043 63.7444 30.1842 64.0703 30.3563V31.2609C63.6035 31.0226 63.1191 30.8903 62.626 30.8903C62.1504 30.8903 61.6837 31.08 61.6837 31.6405C61.6837 32.8805 64.4049 32.7393 64.4049 34.7119C64.4049 35.8063 63.5022 36.4727 62.2473 36.4727C61.5251 36.4727 60.8778 36.2608 60.4375 35.9475L60.8382 35.1929Z" fill="white" />
+					</g>
+					<g id="Group_4">
+						<path id="Vector_25" d="M144.469 28.6191H147.622L147.349 29.4267H145.416V31.1478H147.34V31.9554H145.416V33.7867H147.648V34.5899H144.465V28.6191H144.469Z" fill="#1F1C1A" />
+						<path id="Vector_26" d="M148.904 28.6191H149.855V33.7823H151.995V34.5899H148.904V28.6191Z" fill="#1F1C1A" />
+						<path id="Vector_27" d="M152.914 28.6191H153.865V34.5899H152.914V28.6191Z" fill="#1F1C1A" />
+						<path id="Vector_28" d="M156.472 29.4267H154.746V28.6191H159.312L159.039 29.4267H157.423V34.5899H156.472V29.4267Z" fill="#1F1C1A" />
+					</g>
+					<g id="Group_5">
+						<path id="Vector_29" d="M160.415 28.6191H163.567L163.294 29.4267H161.361V31.1478H163.286V31.9554H161.361V33.7867H163.594V34.5899H160.41V28.6191H160.415Z" fill="#1F1C1A" />
+					</g>
+					<g id="Group_6">
+						<path id="Vector_30" d="M144.469 13.748H146.133C146.992 13.748 147.582 13.8849 148.053 14.154C148.859 14.613 149.33 15.4338 149.33 16.5503C149.33 17.5873 148.885 18.5273 147.855 19.0127C147.41 19.2157 146.833 19.3481 146.041 19.3481H145.464V22.6181H144.469V13.748ZM146.12 18.5141C146.684 18.5141 147.102 18.4082 147.41 18.2449C148 17.936 148.308 17.3579 148.308 16.5503C148.308 15.8089 148.013 15.2043 147.463 14.8822C147.155 14.6924 146.736 14.5865 146.133 14.5865H145.464V18.5141H146.12Z" fill="#1F1C1A" />
+						<path id="Vector_31" d="M154.285 21.9071C153.787 22.3793 153.171 22.7544 152.378 22.7544C151.224 22.7544 150.361 22.013 150.361 20.7906C150.361 19.9433 150.793 19.3652 151.436 19.0695C151.867 18.8533 152.374 18.7871 153.021 18.7606L154.227 18.7209V18.3193C154.227 17.3485 153.651 16.9204 152.858 16.9204C152.092 16.9204 151.555 17.1764 151.11 17.4456L150.736 16.7439C151.475 16.2717 152.268 16.0996 152.964 16.0996C154.28 16.0996 155.218 16.7439 155.218 18.2664V20.4596C155.218 21.7129 155.258 22.3043 155.337 22.6264H154.465L154.285 21.9071ZM153.113 19.5108C152.563 19.5241 152.198 19.6035 151.92 19.7536C151.559 19.9566 151.37 20.3184 151.37 20.7376C151.37 21.4393 151.828 21.9203 152.55 21.9203C153.342 21.9203 153.932 21.3952 154.227 21.0863V19.4711L153.113 19.5108Z" fill="#1F1C1A" />
+						<path id="Vector_32" d="M156.913 16.2531H157.745L157.864 17.0607C158.564 16.2928 159.097 16.0898 159.647 16.0898C159.902 16.0898 160.171 16.156 160.334 16.2531L159.986 17.1534C159.823 17.0739 159.665 17.021 159.436 17.021C158.978 17.021 158.524 17.3034 157.903 17.9345V22.6166H156.908V16.2531H156.913Z" fill="#1F1C1A" />
+						<path id="Vector_33" d="M161.703 21.271V17.0566H160.629V16.2491H161.703V14.8104L162.685 14.4883V16.2491H164.579L164.284 17.0566H162.685V21.1078C162.685 21.6594 162.914 21.9021 163.341 21.9021C163.76 21.9021 164.121 21.7256 164.376 21.5535L164.724 22.2551C164.337 22.5375 163.76 22.7538 163.126 22.7538C162.214 22.7538 161.703 22.2154 161.703 21.271Z" fill="#1F1C1A" />
+						<path id="Vector_34" d="M165.86 16.2531H166.692L166.811 17.0739C167.511 16.4826 168.22 16.0898 169.039 16.0898C170.034 16.0898 170.919 16.7209 170.919 18.3228V22.6166H169.937V18.6582C169.937 17.705 169.695 16.9769 168.797 16.9769C168.084 16.9769 167.441 17.4093 166.851 17.9301V22.6122H165.855V16.2531H165.86Z" fill="#1F1C1A" />
+						<path id="Vector_35" d="M173.338 19.6026C173.351 20.9088 174.104 21.915 175.447 21.915C176.05 21.915 176.574 21.7252 177.019 21.4825L177.327 22.1842C176.777 22.546 176.011 22.749 175.311 22.749C173.298 22.749 172.316 21.2133 172.316 19.3599C172.316 17.4226 173.391 16.0898 174.919 16.0898C176.53 16.0898 177.455 17.3564 177.455 19.3599V19.6026H173.338ZM176.425 18.8347C176.398 17.8683 175.927 16.8974 174.936 16.8974C173.954 16.8974 173.364 17.7712 173.338 18.8347H176.425Z" fill="#1F1C1A" />
+						<path id="Vector_36" d="M178.868 16.2531H179.7L179.819 17.0607C180.519 16.2928 181.052 16.0898 181.602 16.0898C181.858 16.0898 182.126 16.156 182.289 16.2531L181.941 17.1534C181.778 17.0739 181.62 17.021 181.391 17.021C180.933 17.021 180.479 17.3034 179.858 17.9345V22.6166H178.863V16.2531H178.868Z" fill="#1F1C1A" />
+						<path id="Vector_37" d="M188.41 13.7207H189.093L192.479 22.6173H191.404L190.532 20.2343H186.975L186.103 22.6173H185.055L188.41 13.7207ZM190.211 19.4002L189.295 16.8451C189.013 16.064 188.881 15.6492 188.771 15.3094H188.745C188.639 15.6448 188.489 16.064 188.207 16.8451L187.283 19.4002H190.211Z" fill="#1F1C1A" />
+						<path id="Vector_38" d="M193.633 13.0898H194.615V21.1524C194.615 21.6775 194.778 21.8231 195.112 21.8231C195.218 21.8231 195.407 21.7702 195.5 21.7305L195.716 22.5116C195.46 22.6307 195.126 22.7013 194.831 22.7013C194.025 22.7013 193.637 22.2291 193.637 21.4613V13.0898H193.633Z" fill="#1F1C1A" />
+						<path id="Vector_39" d="M196.877 13.0898H197.859V21.1524C197.859 21.6775 198.022 21.8231 198.356 21.8231C198.462 21.8231 198.651 21.7702 198.744 21.7305L198.96 22.5116C198.704 22.6307 198.37 22.7013 198.075 22.7013C197.269 22.7013 196.881 22.2291 196.881 21.4613V13.0898H196.877Z" fill="#1F1C1A" />
+						<path id="Vector_40" d="M200.043 14.1532C200.043 13.7781 200.312 13.4824 200.699 13.4824C201.104 13.4824 201.373 13.7648 201.373 14.1532C201.373 14.5283 201.091 14.8107 200.699 14.8107C200.312 14.8107 200.043 14.5283 200.043 14.1532ZM200.219 16.2538H201.201V22.6217H200.219V16.2538Z" fill="#1F1C1A" />
+						<path id="Vector_41" d="M206.648 21.9071C206.15 22.3793 205.534 22.7544 204.741 22.7544C203.588 22.7544 202.725 22.013 202.725 20.7906C202.725 19.9433 203.156 19.3652 203.799 19.0695C204.231 18.8533 204.737 18.7871 205.384 18.7606L206.591 18.7209V18.3193C206.591 17.3485 206.014 16.9204 205.221 16.9204C204.455 16.9204 203.918 17.1764 203.473 17.4456L203.099 16.7439C203.839 16.2717 204.631 16.0996 205.327 16.0996C206.644 16.0996 207.582 16.7439 207.582 18.2664V20.4596C207.582 21.7129 207.621 22.3043 207.7 22.6264H206.829L206.648 21.9071ZM205.481 19.5108C204.931 19.5241 204.565 19.6035 204.288 19.7536C203.927 19.9566 203.737 20.3184 203.737 20.7376C203.737 21.4393 204.195 21.9203 204.917 21.9203C205.71 21.9203 206.3 21.3952 206.595 21.0863V19.4711L205.481 19.5108Z" fill="#1F1C1A" />
+						<path id="Vector_42" d="M209.278 16.2531H210.11L210.229 17.0739C210.929 16.4826 211.638 16.0898 212.457 16.0898C213.452 16.0898 214.337 16.7209 214.337 18.3228V22.6166H213.355V18.6582C213.355 17.705 213.113 16.9769 212.215 16.9769C211.502 16.9769 210.859 17.4093 210.269 17.9301V22.6122H209.273V16.2531H209.278Z" fill="#1F1C1A" />
+						<path id="Vector_43" d="M215.732 19.4967C215.732 17.6388 216.926 16.0898 218.89 16.0898C219.519 16.0898 220.083 16.2664 220.475 16.4782V17.352C220.056 17.096 219.563 16.9195 218.942 16.9195C217.586 16.9195 216.754 17.983 216.754 19.4217C216.754 20.9971 217.573 21.8973 218.863 21.8973C219.533 21.8973 220.004 21.6811 220.396 21.4649L220.704 22.1665C220.246 22.4754 219.524 22.7446 218.744 22.7446C216.794 22.7535 215.732 21.2839 215.732 19.4967Z" fill="#1F1C1A" />
+						<path id="Vector_44" d="M222.457 19.6026C222.47 20.9088 223.223 21.915 224.566 21.915C225.17 21.915 225.694 21.7252 226.138 21.4825L226.447 22.1842C225.896 22.546 225.13 22.749 224.43 22.749C222.418 22.749 221.436 21.2133 221.436 19.3599C221.436 17.4226 222.51 16.0898 224.038 16.0898C225.65 16.0898 226.574 17.3564 226.574 19.3599V19.6026H222.457ZM225.548 18.8347C225.522 17.8683 225.051 16.8974 224.06 16.8974C223.078 16.8974 222.488 17.7712 222.462 18.8347H225.548Z" fill="#1F1C1A" />
+					</g>
+				</g>
+				<defs>
+					<clipPath id="clip0_1651_7476">
+						<rect width="240" height="48" fill="white" />
+					</clipPath>
+				</defs>
+			</svg>
 
-            <div class="hero-bottom">
+		</div>
 
-                <div class="hero-button">
-                    <div class="message-wrapper">
-                        <span class="button-text upperlinks">Kickoff your project</span>
-                    </div>
-                    <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18" fill="none">
-                        <path class="arrow-path" d="M9 14.25L9 3.75M9 3.75L3.75 9M9 3.75L14.25 9" stroke="#1F1C1A" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
+	</div>
 
-                <div class="call-to-action">
+	<main class="container moodys">
 
-                    <div class="cta-mid">
-                        <div class="cta-mid-content">
-                            <div class="cta-mid-message">
-                                <h2>Your vision, our expertise<br> – Connect Today</h2>
-                            </div>
-                            <div class="cta-mid-contacts">
-                                <div class="cta-contact-info">
-                                    <h3>Visit us</h3>
-                                    <div class="cta-contact-wrap">
-                                        <div class="contact-wrapper">
-                                            <h4>Headquarters</h4>
-                                            <p class="cta-copy">Silversquare Bailli, <br>Av. Louise 231, 1050 Bruxelles</p>
-                                        </div>
-                                    </div>
-                                </div>
+		<div class="contain-wrap">
+			<!-- MOODYS -->
+			<div id="moodys" class="container-wrap">
+				<div class="chapter">
+					<p class="section-start">//</p>
+					<p class="section-name">Partner Alliance Program</p>
+					<h3 class="section-title">
+						For decades, we’ve designed and implemented digital solutions in the banking sector
+					</h3>
+					<p class="section-number">001</p>
+				</div>
 
-                                <div class="cta-contact-info">
-                                    <h3>Get in touch</h3>
+				<div class="section-content">
+					<div class="right-content">
+						<p>Attentive to the necessity to respond to financial and credit risk operational challenges and intent on offering a few outstanding, exacting clients the best-of-breed technology, implementation and consulting services, Moody’s Analytics and CRAFT IT initiated a partnership to formulate bespoken solutions globally.</p>
+					</div>
+				</div>
+			</div>
 
-                                    <div class="cta-contact-wrap">
-                                        <div class="contact-wrapper">
-                                            <h4>General inquiries</h4>
-                                            <a class="cta-copy" href="mailto:hello@craft-it.io">hello@craft-it.io</a>
-                                        </div>
+			<!-- PROCESS -->
+			<div id="process" class="container-wrap">
+				<div class="chapter">
+					<p class="section-start">//</p>
+					<p class="section-name">Lending Suite services</p>
+					<h3 class="section-title">
+						As an official Moody’s Elite Partner, we provide 360° services around Moody’s Lending Solutions
+					</h3>
+					<p class="section-number">002</p>
+				</div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+				<div class="section-content">
 
-        </div>
-        </div>
+					<div class="right-content approach-section">
+						<div class="approach">
+							<h4>FACT Support</h4>
+							<div class="approach-description">
+								<p>Optimize Operations</p>
+								<p>
+									Leverage our expertise in Moody's FACT platform to ensure your operations run smoothly.
+								</p>
+							</div>
+						</div>
 
-        <div class="msg-window">
-            <div class="msg-wrapper disap">
-                <p>We, Crafters, are people who chose to believe that ownership and commitment lead to excellence</p>
-            </div>
+						<div class="approach">
+							<h4>FACT Enhancement</H4>
+							<div class="approach-description">
+								<p>Boost Performance<p>
+								<p>
+									Enhance your FACT capabilities with tailored technical and functional solutions that boost performance.
+								</p>
+							</div>
+						</div>
 
-            <div class="msg-wrapper disap">
-                <p>As audacious experienced experts, we craft your data flow like artisan watchmakers</p>
-            </div>
+						<div class="approach">
+							<h4>FACT to Creditlens</h4>
+							<div class="approach-description">
+								<p>Seamless Migration<p>
+								<p>
+									Easily migrate your FACT data into CreditLens for deeper analysis and improved decision-making.
+								</p>
+							</div>
+						</div>
+						<div class="approach">
+							<h4>CreditLens integration</h4>
+							<div class="approach-description">
+								<p>Work Together<p>
+								<p>
+									Integrate CreditLens seamlessly into your existing systems for automated, scalable credit decision processes.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <div class="msg-wrapper disap">
-                <p>We support our partners in tackling digital Risk Management  challenges with resilient solutions, guaranteeing the highest standards of efficiency & quality</p>
-            </div>
+			<!-- World wide services  -->
+			<div id="process" class="container-wrap world-wide-services">
+				<div class="chapter">
+					<p class="section-start">//</p>
+					<p class="section-name">World wide services</p>
+					<h3 class="section-title">
+						Wherever you are, our expertise travels to you — delivering tailored solutions across continents
+					</h3>
+					<p class="section-number">003</p>
+				</div>
 
-            <div class="msg-wrapper disap">
-                <p>To exceed limits of their business</p>
-            </div>
-        </div>
+				<div class="section-content">
+					<div class="left-content outer-box">
+					</div>
+					<div class="right-content approach-section">
+						<div class="approach">
+							<p class="approach-title">// 01</p>
+							<div class="approach-description">
+								<p>Europe<p>
+							</div>
+						</div>
 
-        <!-- MOODYS -->
+						<div class="approach">
+							<p class="approach-title">// 02</p>
+							<div class="approach-description">
+								<p>USA<p>
+							</div>
+						</div>
 
-        <div id="moodys" class="container-wrap">
-            <div class="section-subtitle">
-                <p class="anotation">Moodys Partnership</p>
-                <p class="anotation">/002</p>
-            </div>
+						<div class="approach">
+							<p class="approach-title">// 03</p>
+							<div class="approach-description">
+								<p>Asia<p>
+							</div>
+						</div>
+						<div class="approach">
+							<p class="approach-title">// 04</p>
+							<div class="approach-description">
+								<p>Africa<p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <div class="site-grid">
-                <h2 class="section-title">As an official Moody’s Elite Partner, we provide 360° services on Moody’s platforms</h2>
-            </div>
+			<!-- COLLABORATION MODELS -->
+			<div id="collaboration" class="container-wrap collaboration-models">
+				<div class="chapter">
+					<p class="section-start">//</p>
+					<p class="section-name">Collaboration models</p>
+					<h3 class="section-title">
+						With flexible collaboration models, we adapt our way of working to your specific needs
+					</h3>
+					<p class="section-number">004</p>
+				</div>
 
-            <div class="site-grid">
-                <ul class="services">
-                    <li class="services_item">
-                        <div class="services_item_title_wrapper">
-                            <p class="anotation">01</p>
-                            <h3>FACT Support</h3>
-                        </div>
+				<div class="section-content">
+					<div class="right-content">
+						<ul class="collaboration_models site-grid">
 
-                        <div class="services_item_content_wrapper">
-                            <h4>Optimize Operations</h4>
-                            <p>Leverage our expertise in Moody's FACT platform to ensure your operations run smoothly.</p>
-                        </div>
-                    </li>
-                    <li class="services_item">
-                        <div class="services_item_title_wrapper">
-                            <p class="anotation">02</p>
-                            <h3>FACT Enhancement</h3>
-                        </div>
-                        <div class="services_item_content_wrapper">
-                            <h4>Boost Performance</h4>
-                            <p>Enhance your FACT capabilities with tailored technical and functional solutions that boost performance.</p>
-                        </div>
-                    </li>
-                    <li class="services_item">
+							<li class="collaboration_models_item">
+								<p class="model-anotation">S01</p>
+								<div class="collaboration-wrapper">
+									<div class="collaboration-title-wrapper">
+										<p class="section-name">Standard</p>
+										<h4>We Handle Everything</h4>
+										<p>We take care of every step, ensuring quality at every milestone.</p>
+									</div>
+									<ul class="collaboration-model-descriptive-list">
+										<li><div class="SquareIcon"></div><p>Full project management</p></li>
+										<li><div class="SquareIcon"></div><p>Client approval at key stages</p></li>
+										<li><div class="SquareIcon"></div><p>Flexible pricing: Fixed or T&M</p></li>
+									</ul>
+								</div>
+							</li>
 
-                        <div class="services_item_title_wrapper">
-                            <p class="anotation">03</p>
-                            <h3>FACT to CreditLens</h3>
-                        </div>
+							<li class="collaboration_models_item">
+								<p class="model-anotation">S02</p>
 
-                        <div class="services_item_content_wrapper">
-                            <h4>Seamless Migration</h4>
-                            <p>Easily migrate your FACT data into CreditLens for deeper analysis and improved decision-making.</p>
-                        </div>
-                    </li>
-                    <li class="services_item">
-                        <div class="services_item_title_wrapper">
-                            <p class="anotation">04</p>
-                            <h3>CreditLens integration</h3>
-                        </div>
-                        <div class="services_item_content_wrapper">
-                            <h4>Work Together</h4>
-                            <p>Integrate CreditLens seamlessly into your existing systems for automated, scalable credit decision processes.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="spacer"></div>
-        </div>
+								<div class="collaboration-wrapper">
+									<div class="collaboration-title-wrapper">
+										<p class="section-name">Co-Development</p>
+										<h4>Work Together</h4>
+										<p>We divide tasks and work in sync, ensuring a smooth production process.</p>
+									</div>
+									<ul class="collaboration-model-descriptive-list">
+										<li><div class="SquareIcon"></div><p>Split scope</p></li>
+										<li><div class="SquareIcon"></div><p>Synced production</p></li>
+										<li><div class="SquareIcon"></div><p>Fixed or T&M pricing</p></li>
+									</ul>
+								</div>
+							</li>
 
-        <!-- PROCESS -->
+							<li class="collaboration_models_item">
+								<p class="model-anotation">S03</p>
 
-        <div id="process" class="container-wrap">
-            <div class="section-subtitle">
-                <p class="anotation">Streamlined process</p>
-                <p class="anotation">/003</p>
-            </div>
-
-            <div class="site-grid">
-                <h2 class="section-title">A guided process tailored to your project</h2>
-            </div>
-
-
-            <div class="site-grid process-grid">
-                <ul class="process-list">
-                    <li>
-                        <h3>[Dream it]</h3>
-                        <p>We listen to your ideas, analyze your needs, and create a tailored vision for your project’s foundation.</p>
-                    </li>
-                    <li>
-                        <h3>[Draft it]</h3>
-                        <p>We refine your vision into a structured plan, laying out each step of the solution we’ll create together.</p>
-                    </li>
-                    <li>
-                        <h3>[Craft it]</h3>
-                        <p>Our team brings the blueprint to reality, crafting a polished and functional product that exceeds expectations.</p>
-                    </li>
-                </ul>
-
-                <div class="outer-box">
-
-                    <div class="inner-svg">
-                        <div class="svg-c-dot-layer">
-
-                            <div class="svg-wrapper1">
-                                <svg class="svg" width="522" height="230" viewBox="0 0 522 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.25087 115.935L3.10779 115.56L2.64064 114.95L3.10887 114.34L2.25171 113.964L0 114.949L2.25087 115.935ZM5.932 112.355L7.06234 113.831L11.0169 112.101L9.88654 110.626L5.932 112.355ZM13.8411 108.896L14.9714 110.372L18.926 108.643L17.7956 107.167L13.8411 108.896ZM21.7502 105.437L22.8805 106.913L26.8351 105.184L25.7047 103.708L21.7502 105.437ZM29.6593 101.978L30.7896 103.454L34.7441 101.725L33.6138 100.249L29.6593 101.978ZM37.5683 98.5196L38.6987 99.9955L42.6532 98.266L41.5229 96.7902L37.5683 98.5196ZM45.4774 95.0608L46.6078 96.5366L50.5623 94.8072L49.432 93.3313L45.4774 95.0608ZM53.3865 91.6019L54.5168 93.0778L58.4714 91.3483L57.341 89.8725L53.3865 91.6019ZM61.2956 88.1431L62.4259 89.6189L66.3805 87.8895L65.2501 86.4136L61.2956 88.1431ZM69.2047 84.6842L70.335 86.1601L74.2896 84.4306L73.1592 82.9548L69.2047 84.6842ZM77.1138 81.2254L78.2441 82.7012L82.1986 80.9718L81.0683 79.4959L77.1138 81.2254ZM85.0228 77.7665L86.1532 79.2424L90.1077 77.5129L88.9774 76.0371L85.0228 77.7665ZM92.9319 74.3077L94.0623 75.7835L98.0168 74.0541L96.8865 72.5782L92.9319 74.3077ZM100.841 70.8488L101.971 72.3247L105.926 70.5952L104.796 69.1194L100.841 70.8488ZM108.75 67.39L109.88 68.8658L113.835 67.1364L112.705 65.6605L108.75 67.39ZM116.659 63.9311L117.79 65.407L121.744 63.6775L120.614 62.2017L116.659 63.9311ZM124.568 60.4723L125.699 61.9481L129.653 60.2187L128.523 58.7428L124.568 60.4723ZM132.477 57.0134L133.608 58.4893L137.562 56.7598L136.432 55.284L132.477 57.0134ZM140.386 53.5546L141.517 55.0304L145.471 53.301L144.341 51.8251L140.386 53.5546ZM148.296 50.0957L149.426 51.5716L153.38 49.8421L152.25 48.3663L148.296 50.0957ZM156.205 46.6369L157.335 48.1127L161.289 46.3833L160.159 44.9074L156.205 46.6369ZM164.114 43.178L165.244 44.6539L169.199 42.9244L168.068 41.4486L164.114 43.178ZM172.023 39.7192L173.153 41.195L177.108 39.4656L175.977 37.9897L172.023 39.7192ZM179.932 36.2603L181.062 37.7362L185.017 36.0068L183.886 34.5309L179.932 36.2603ZM187.841 32.8015L188.971 34.2773L192.926 32.5479L191.795 31.072L187.841 32.8015ZM195.75 29.3426L196.88 30.8185L200.835 29.0891L199.705 27.6132L195.75 29.3426ZM203.659 25.8838L204.789 27.3596L208.744 25.6302L207.614 24.1543L203.659 25.8838ZM211.568 22.4249L212.699 23.9008L216.653 22.1713L215.523 20.6955L211.568 22.4249ZM219.477 18.9661L220.608 20.4419L224.562 18.7125L223.432 17.2366L219.477 18.9661ZM227.386 15.5072L228.517 16.9831L232.471 15.2536L231.341 13.7778L227.386 15.5072ZM235.295 12.0484L236.426 13.5242L240.38 11.7948L239.25 10.3189L235.295 12.0484ZM243.205 8.5895L244.335 10.0654L248.289 8.33594L247.159 6.86008L243.205 8.5895ZM251.114 5.13065L252.244 6.60651L256.199 4.87708L255.068 3.40123L251.114 5.13065ZM259.023 1.67179L260.153 3.14765L261 2.77726L261.847 3.14773L262.977 1.67188L261 0.807086L259.023 1.67179ZM266.932 3.40131L265.802 4.87716L269.756 6.60658L270.887 5.13074L266.932 3.40131ZM274.841 6.86016L273.711 8.336L277.665 10.0654L278.796 8.58958L274.841 6.86016ZM282.75 10.319L281.62 11.7949L285.574 13.5243L286.705 12.0484L282.75 10.319ZM290.659 13.7779L289.529 15.2537L293.483 16.9831L294.614 15.5073L290.659 13.7779ZM298.568 17.2367L297.438 18.7126L301.393 20.442L302.523 18.9661L298.568 17.2367ZM306.477 20.6955L305.347 22.1714L309.302 23.9008L310.432 22.425L306.477 20.6955ZM314.386 24.1544L313.256 25.6303L317.211 27.3597L318.341 25.8838L314.386 24.1544ZM322.296 27.6133L321.165 29.0891L325.12 30.8185L326.25 29.3427L322.296 27.6133ZM330.205 31.0721L329.074 32.548L333.029 34.2774L334.159 32.8015L330.205 31.0721ZM338.114 34.5309L336.983 36.0068L340.938 37.7362L342.068 36.2604L338.114 34.5309ZM346.023 37.9898L344.892 39.4657L348.847 41.1951L349.977 39.7192L346.023 37.9898ZM353.932 41.4487L352.802 42.9245L356.756 44.6539L357.886 43.1781L353.932 41.4487ZM361.841 44.9075L360.711 46.3833L364.665 48.1128L365.796 46.6369L361.841 44.9075ZM369.75 48.3663L368.62 49.8422L372.574 51.5716L373.705 50.0958L369.75 48.3663ZM377.659 51.8252L376.529 53.3011L380.483 55.0305L381.614 53.5546L377.659 51.8252ZM385.568 55.284L384.438 56.7599L388.392 58.4893L389.523 57.0135L385.568 55.284ZM393.477 58.7429L392.347 60.2188L396.302 61.9482L397.432 60.4723L393.477 58.7429ZM401.386 62.2017L400.256 63.6776L404.211 65.407L405.341 63.9312L401.386 62.2017ZM409.296 65.6606L408.165 67.1364L412.12 68.8659L413.25 67.39L409.296 65.6606ZM417.205 69.1194L416.074 70.5953L420.029 72.3247L421.159 70.8489L417.205 69.1194ZM425.114 72.5783L423.983 74.0542L427.938 75.7836L429.068 74.3077L425.114 72.5783ZM433.023 76.0371L431.892 77.513L435.847 79.2424L436.977 77.7666L433.023 76.0371ZM440.932 79.496L439.802 80.9718L443.756 82.7013L444.886 81.2254L440.932 79.496ZM448.841 82.9548L447.711 84.4307L451.665 86.1601L452.795 84.6843L448.841 82.9548ZM456.75 86.4137L455.62 87.8895L459.574 89.619L460.705 88.1431L456.75 86.4137ZM464.659 89.8725L463.529 91.3484L467.483 93.0778L468.614 91.602L464.659 89.8725ZM472.568 93.3314L471.438 94.8072L475.392 96.5367L476.523 95.0608L472.568 93.3314ZM480.477 96.7902L479.347 98.2661L483.301 99.9955L484.432 98.5197L480.477 96.7902ZM488.386 100.249L487.256 101.725L491.211 103.454L492.341 101.979L488.386 100.249ZM496.295 103.708L495.165 105.184L499.12 106.913L500.25 105.437L496.295 103.708ZM504.205 107.167L503.074 108.643L507.029 110.372L508.159 108.896L504.205 107.167ZM512.114 110.626L510.983 112.102L514.938 113.831L516.068 112.355L512.114 110.626ZM519.748 113.964L518.891 114.34L519.359 114.951L518.892 115.56L519.749 115.935L522 114.949L519.748 113.964ZM516.068 117.547L514.937 116.072L510.982 117.804L512.114 119.279L516.068 117.547ZM508.159 121.011L507.027 119.536L503.073 121.268L504.204 122.743L508.159 121.011ZM500.25 124.475L499.118 123L495.164 124.732L496.295 126.207L500.25 124.475ZM492.341 127.939L491.209 126.464L487.255 128.196L488.386 129.671L492.341 127.939ZM484.432 131.403L483.3 129.928L479.346 131.66L480.477 133.135L484.432 131.403ZM476.523 134.867L475.391 133.392L471.436 135.124L472.568 136.599L476.523 134.867ZM468.614 138.331L467.482 136.856L463.527 138.588L464.659 140.063L468.614 138.331ZM460.704 141.795L459.573 140.32L455.618 142.052L456.75 143.527L460.704 141.795ZM452.795 145.259L451.664 143.784L447.709 145.516L448.841 146.991L452.795 145.259ZM444.886 148.723L443.755 147.248L439.8 148.98L440.932 150.455L444.886 148.723ZM436.977 152.187L435.846 150.712L431.891 152.444L433.023 153.919L436.977 152.187ZM429.068 155.651L427.937 154.176L423.982 155.908L425.114 157.383L429.068 155.651ZM421.159 159.115L420.027 157.64L416.073 159.372L417.204 160.847L421.159 159.115ZM413.25 162.579L412.118 161.104L408.164 162.836L409.295 164.311L413.25 162.579ZM405.341 166.043L404.209 164.568L400.255 166.3L401.386 167.775L405.341 166.043ZM397.432 169.507L396.3 168.032L392.346 169.764L393.477 171.239L397.432 169.507ZM389.523 172.971L388.391 171.496L384.437 173.228L385.568 174.703L389.523 172.971ZM381.614 176.435L380.482 174.96L376.527 176.692L377.659 178.167L381.614 176.435ZM373.705 179.899L372.573 178.424L368.618 180.156L369.75 181.631L373.705 179.899ZM365.795 183.363L364.664 181.888L360.709 183.62L361.841 185.095L365.795 183.363ZM357.886 186.827L356.755 185.352L352.8 187.084L353.932 188.559L357.886 186.827ZM349.977 190.291L348.846 188.816L344.891 190.548L346.023 192.023L349.977 190.291ZM342.068 193.755L340.937 192.28L336.982 194.012L338.114 195.487L342.068 193.755ZM334.159 197.219L333.027 195.744L329.073 197.476L330.205 198.951L334.159 197.219ZM326.25 200.683L325.118 199.208L321.164 200.94L322.295 202.415L326.25 200.683ZM318.341 204.147L317.209 202.672L313.255 204.404L314.386 205.879L318.341 204.147ZM310.432 207.611L309.3 206.136L305.346 207.868L306.477 209.343L310.432 207.611ZM302.523 211.075L301.391 209.6L297.437 211.332L298.568 212.807L302.523 211.075ZM294.614 214.539L293.482 213.064L289.528 214.796L290.659 216.271L294.614 214.539ZM286.705 218.003L285.573 216.528L281.618 218.26L282.75 219.735L286.705 218.003ZM278.795 221.467L277.664 219.992L273.709 221.724L274.841 223.199L278.795 221.467ZM270.886 224.931L269.755 223.456L265.8 225.188L266.932 226.663L270.886 224.931ZM262.977 228.395L261.846 226.92L261 227.29L260.154 226.92L259.023 228.395L261 229.261L262.977 228.395ZM255.068 226.663L256.2 225.188L252.245 223.456L251.114 224.931L255.068 226.663ZM247.159 223.199L248.291 221.724L244.336 219.992L243.204 221.467L247.159 223.199ZM239.25 219.735L240.381 218.26L236.427 216.528L235.295 218.003L239.25 219.735ZM231.341 216.271L232.472 214.796L228.518 213.064L227.386 214.539L231.341 216.271ZM223.432 212.807L224.563 211.332L220.609 209.6L219.477 211.075L223.432 212.807ZM215.523 209.343L216.654 207.868L212.7 206.136L211.568 207.611L215.523 209.343ZM207.614 205.879L208.745 204.404L204.791 202.672L203.659 204.147L207.614 205.879ZM199.704 202.415L200.836 200.94L196.882 199.208L195.75 200.683L199.704 202.415ZM191.795 198.951L192.927 197.476L188.972 195.744L187.841 197.219L191.795 198.951ZM183.886 195.487L185.018 194.012L181.063 192.28L179.932 193.755L183.886 195.487ZM175.977 192.023L177.109 190.548L173.154 188.816L172.023 190.291L175.977 192.023ZM168.068 188.559L169.2 187.084L165.245 185.352L164.114 186.827L168.068 188.559ZM160.159 185.095L161.291 183.62L157.336 181.888L156.204 183.363L160.159 185.095ZM152.25 181.631L153.382 180.156L149.427 178.424L148.295 179.899L152.25 181.631ZM144.341 178.167L145.472 176.692L141.518 174.96L140.386 176.435L144.341 178.167ZM136.432 174.703L137.563 173.228L133.609 171.496L132.477 172.971L136.432 174.703ZM128.523 171.239L129.654 169.764L125.7 168.032L124.568 169.507L128.523 171.239ZM120.614 167.775L121.745 166.3L117.791 164.568L116.659 166.043L120.614 167.775ZM112.705 164.311L113.836 162.836L109.882 161.104L108.75 162.579L112.705 164.311ZM104.795 160.847L105.927 159.372L101.972 157.64L100.841 159.115L104.795 160.847ZM96.8863 157.383L98.018 155.908L94.0634 154.176L92.9318 155.651L96.8863 157.383ZM88.9773 153.919L90.1089 152.444L86.1543 150.712L85.0227 152.187L88.9773 153.919ZM81.0682 150.455L82.1998 148.98L78.2452 147.248L77.1136 148.723L81.0682 150.455ZM73.1591 146.991L74.2907 145.516L70.3362 143.784L69.2045 145.259L73.1591 146.991ZM65.25 143.527L66.3816 142.052L62.4271 140.32L61.2955 141.795L65.25 143.527ZM57.3409 140.063L58.4725 138.588L54.518 136.856L53.3864 138.331L57.3409 140.063ZM49.4318 136.599L50.5634 135.124L46.6089 133.392L45.4773 134.867L49.4318 136.599ZM41.5227 133.135L42.6543 131.66L38.6998 129.928L37.5682 131.403L41.5227 133.135ZM33.6136 129.671L34.7452 128.196L30.7907 126.464L29.6591 127.939L33.6136 129.671ZM25.7045 126.207L26.8361 124.732L22.8816 123L21.75 124.475L25.7045 126.207ZM17.7955 122.743L18.9271 121.268L14.9725 119.536L13.8409 121.011L17.7955 122.743ZM9.88636 119.279L11.018 117.804L7.06342 116.072L5.93182 117.547L9.88636 119.279Z" fill="#1C1917" fill-opacity="0.15" />
-                                </svg>
-                            </div>
-
-                        </div>
-
-                        <div class="svg-text-wrapper2">
-
-                            <div class="svg-wrapper2">
-                                <svg class="svg" width="522" height="229" viewBox="0 0 522 229" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M261 227.789L2.25129 114.463L261 1.30585L519.749 114.463L261 227.789Z" stroke="#FF4135" stroke-width="2" />
-                                </svg>
-                            </div>
-
-                        </div>
-
-                        <div class="svg-text-wrapper3">
-
-                            <div class="svg-wrapper3">
-                                <svg class="svg" width="522" height="229" viewBox="0 0 522 229" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 114.688L261 0.545367L522 114.688L261 228.999L0 114.688Z" fill="#FF4135" />
-                                </svg>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="spacer"></div>
-        </div>
-        <!-- COLLABORATION MODELS -->
-
-        <div id="collaboration" class="container-wrap">
-            <div class="section-subtitle">
-                <p class="anotation">Collaboration Models</p>
-                <p class="anotation">/004</p>
-            </div>
-
-            <div class="site-grid">
-                <h2 class="section-title">With flexible collaboration models adapted to your needs</h2>
-            </div>
-
-            <ul class="collaboration_models site-grid">
-                <li class="collaboration_models_item">
-                    <p class="model-anotation">S01</p>
-                    <div class="collaboration-title-wrapper">
-                        <h3>[Standard]</h3>
-                        <h4>— We Handle Everything</h4>
-                        <p>We take care of every step, ensuring quality at every milestone.</p>
-                    </div>
-                    <ul class="collaboration-model-descriptive-list">
-                        <li><div class="SquareIcon"></div><p>Full project management</p></li>
-                        <li><div class="SquareIcon"></div><p>Client approval at key stages</p></li>
-                        <li><div class="SquareIcon"></div><p>Flexible pricing: Fixed or T&M</p></li>
-                    </ul>
-                </li>
-                <li class="collaboration_models_item">
-                    <p class="model-anotation">S02</p>
-
-                    <div class="collaboration-title-wrapper">
-                        <h3>[Co-Development]</h3>
-                        <h4>— Work Together</h4>
-                        <p>We divide tasks and work in sync, ensuring a smooth production process.</p>
-                    </div>
-                    <ul class="collaboration-model-descriptive-list">
-                        <li><div class="SquareIcon"></div><p>Split scope</p></li>
-                        <li><div class="SquareIcon"></div><p>Synced production</p></li>
-                        <li><div class="SquareIcon"></div><p>Fixed or T&M pricing</p></li>
-                    </ul>
-                </li>
-                <li class="collaboration_models_item">
-                    <p class="model-anotation">S03</p>
-
-                    <div class="collaboration-title-wrapper">
-                        <h3>[One Team]</h3>
-                        <h4>— Combined forces</h4>
-                        <p>Merge your team with ours to maximize efficiency and shared expertise.</p>
-                    </div>
-
-                    <ul class="collaboration-model-descriptive-list">
-                        <li><div class="SquareIcon"></div><p>Joint team</p></li>
-                        <li><div class="SquareIcon"></div><p>Shared responsibilities</p></li>
-                        <li><div class="SquareIcon"></div><p>Innovative pricing model</p></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="spacer"></div>
-        </div>
-
-        <!-- OUTRO -->
-
-        <div id="outro" class="container-wrap">
-            <div class="site-grid">
-                <p class="model-anotation outro-paragraph">Great projects start with a conversation</p>
-                <p class="outro-paragraph">[<a class="coding">Get in Touch</a>]</p>
-            </div>
-            
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-
-    <footer>
-        <div class="site-footer-bottom">
-            <p class="p-sm">©2024, All Rights Reserved</p>
-            <a class="upperlinks rolling-hover" href="#hero">Back to top</a>
-        </div>
-    </footer>
+								<div class="collaboration-title-wrapper">
+									<div class="collaboration-title-wrapper">
+										<p class="section-name">One Team</p>
+										<h4>Combined forces</h4>
+										<p>Merge your team with ours to maximize efficiency and shared expertise.</p>
+									</div>
+									<ul class="collaboration-model-descriptive-list">
+										<li><div class="SquareIcon"></div><p>Joint team</p></li>
+										<li><div class="SquareIcon"></div><p>Shared responsibilities</p></li>
+										<li><div class="SquareIcon"></div><p>Innovative pricing model</p></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+			</div>
+		</div>
+	</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+	<!-- OUTRO CTA -->
 
-    <script type="module" src="resources/scripts/cube.js"></script>
-    <script type="module" src="resources/scripts/cube-rendering.js"></script>
+		<div id="outro-sm">
+			<div class="contain-wrap site-grid">
+				<h2>Great projects start with a conversation</h2>
+				<p class="get-in-touch btn-action">[ <a class="coding" href="mailto:sales@craft-it.io">Get in Touch</a> ]</p>
+			</div>
+		</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="resources/scripts/sticky.js" defer></script>
+	<!-- FOOTER -->
 
-    <script src="resources/scripts/main.js"></script>
+	<footer>
+		<div class="contain-wrap site-grid">
+			<svg width="117" height="75" viewBox="0 0 117 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M82.5592 26.1849V13.9059C82.5689 6.22667 76.3631 0 68.6978 0H13.755C6.15738 0 0 6.16857 0 13.78V60.204C0 67.8445 6.17671 74.0325 13.8034 74.0325H68.6785C76.3535 74.0325 82.5688 67.7961 82.5688 60.1169V47.8572H68.8235V60.1653H13.755L13.7357 13.8672H68.8235V26.1946H82.5688L82.5592 26.1849Z" fill="#1F1C1A"/>
+				<path d="M103.234 74.0308H116.999V21.6707L103.234 21.7094V74.0308Z" fill="#1F1C1A"/>
+				<path d="M103.237 0H89.4722V21.7013H103.237V0Z" fill="#1F1C1A"/>
+			</svg>
+				
+			<div class="headquarter">
+				<h4>Headquarter</h4>
+				<p>
+					Silversquare Bailli <br/> Av. Louise 231, 1050 Bruxelles
+				</p>
+			</div>
+			<div class="reach-us">
+				<h4>Reach us</h4>
+				<p class="btn-action">[ <a class="coding" href="mailto:sales@craft-it.io">Email Us</a> ]</p>
+				<p class="btn-action">[ <a class="coding" target="_blank" href="https://www.linkedin.com/company/craft-it-solution/">Linkedin</a> ]</p>
+			</div>
+			<div class="footer-bottom">
+				<div class="footer-bottom-wrapper">
+					<p class="p-sm">©2024, All Rights Reserved</p>
+					<a class="sub-link" href="#">Cookies policy</a>
+					<a class="sub-link" href="#">Terms of use</a>
+				</div>
+
+				<p class="btn-action back-to-top">[ <a class="coding" href="#hero">back to top</a> ]</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r127/three.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r127/examples/js/loaders/SVGLoader.js"></script>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+	<script src="resources/scripts/sticky.js" defer></script>
+	<script src="resources/scripts/menu.js" defer></script>
+	<script src="resources/scripts/main.js"></script>
+
+	<script type="module" src="resources/scripts/moodys-wave.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>

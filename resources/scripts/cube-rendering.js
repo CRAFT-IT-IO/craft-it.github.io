@@ -26,7 +26,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000, 0);
 
 const material = new THREE.PointsMaterial({
-  color: 0xFF4135, 
+  color: 0x1F1C1A, 
   size: 0.3,
   transparent: false,
   alphaTest: 0.5,
@@ -46,7 +46,7 @@ let resetPointsToInitial = false;
 let isInHero = true;  // Animation par défaut de la section hero
 
 // Sélection des sections à observer
-const outroSection = document.getElementById('outro');
+const outroSection = document.getElementById('get-in-touch');
 const heroSection = document.getElementById('hero');
 
 // Fonction de lissage (lerp)
@@ -85,7 +85,7 @@ function snapToClosestFace(currentRotation) {
 function animateSphereToCamera() {
   const startZ = pointCloud.position.z;  // Position actuelle de la sphère
   const targetZ = camera.position.z - 80;  // Position de la caméra moins une petite distance (pour que la sphère ne se superpose pas à la caméra)
-  const duration = 800;  // Durée de l'animation (2 secondes)
+  const duration = 500;  // Durée de l'animation (2 secondes)
 
   const startTime = performance.now();
 
@@ -107,7 +107,7 @@ function animateSphereToCamera() {
 function animateSphereBackToPosition() {
   const startZ = pointCloud.position.z;
   const targetZ = 0;  // Position initiale de la sphère
-  const duration = 800;  // Durée de l'animation (2 secondes)
+  const duration = 200;  // Durée de l'animation (2 secondes)
 
   const startTime = performance.now();
 
@@ -190,7 +190,7 @@ window.addEventListener('scroll', () => {
   // **Transformation inverse lors du scroll vers le haut**
   if (scrollDirection === 'up' && scrollAmount < scrollThreshold && !isTransitioning) {
     pointsToSphereProgress = Math.max(pointsToSphereProgress - 0.02, 0);  // Revenir au cube
-    scrollActivated = true;  // Activer l'animation pour que `animate` la gère
+    scrollActivated = true;  // Activer l'animation pour que animate la gère
     hasSnapped = false;  // Réinitialiser le flag pour permettre un autre snap lors du prochain scroll vers le bas
     console.log("Scroll: Retour au cube et réinitialisation du snap");
   }
@@ -228,16 +228,15 @@ function animate() {
 
     // Si le scroll est activé (snap)
     if (scrollActivated) {
-      const transitionSpeed = 0.01;  // Vitesse du snap
-      scrollRotationProgress = Math.min(scrollRotationProgress + transitionSpeed, 1);  // Progression du snap
-
-      // Snap vers la face la plus proche
+      const transitionSpeed = 0.01;
+      scrollRotationProgress = Math.min(scrollRotationProgress + transitionSpeed, 1);
+    
       pointCloud.rotation.x = lerp(pointCloud.rotation.x, rotationTarget.x, scrollRotationProgress);
       pointCloud.rotation.y = lerp(pointCloud.rotation.y, rotationTarget.y, scrollRotationProgress);
-
-      // Désactiver le snap une fois terminé
+    
       if (scrollRotationProgress === 1) {
         scrollActivated = false;
+        isTransitioning = false; 
         console.log("Snap terminé");
       }
     }
