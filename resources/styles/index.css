@@ -727,6 +727,7 @@ footer {
 
 		p{
 			grid-column: span 6;
+			font-size: clamp(1.125rem, 1.25vw, 1.25rem);
 		}
 
 		h1{
